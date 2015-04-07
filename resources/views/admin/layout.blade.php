@@ -2,25 +2,51 @@
 <html>
 <head>
     <link rel="stylesheet" href="/packages/semantic-ui/dist/semantic.min.css"/>
+    <link rel="stylesheet" href="/packages/semantic-ui/dist/components/dropdown.min.css"/>
+
+
+
+
+    <script src="/packages/jquery/dist/jquery.min.js"></script>
+    <script src="/packages/semantic-ui/dist/semantic.min.js" type="text/javascript"></script>
+    <script src="/packages/semantic-ui/dist/components/dropdown.min.js" type="text/javascript"></script>
+    <style>
+        .avatar-menu {
+            height: 2em !important;
+            width : 2em !important;
+            margin-top : -0.5em;
+            margin-bottom:  -0.5em;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="ui one column grid">
     <div class="column">
-        <div class="ui menu">
-            <div class="header item">
-                Success Model - ระบบฐานข้อมูลหนึ่งคณะหนึ่งโมเดล
+        <div class="ui large menu ">
+            <div class="left menu">
+                <div class="header item">
+                    Success Model - ระบบฐานข้อมูลหนึ่งคณะหนึ่งโมเดล
+                </div>
+                <a class="item active">
+                    Main Menu
+                </a>
+                <a class="item">
+                    About Us
+                </a>
             </div>
-            <a class="item active">
-                Main Menu
-            </a>
-            <a class="item">
-                About Us
-            </a>
 
             <div class="right menu">
-                <div class="header item">
+                <div class="item ui dropdown ">
+                    <img class="ui avatar avatar-menu image" src="/images/square-image.png"> <span>UserName</span>
+                    <div class="menu">
+                        <a class="item">Change Profile</a>
+                        <a class="item">Logout</a>
+                    </div>
+
+                </div>
+                <div class="item">
                     Support
                 </div>
                 <a class="item">
@@ -39,17 +65,18 @@
 <div class="ui centered grid">
     <div class="ui centered row">
         <div class="ui three wide column">
-            <div class="ui secondary vertical menu">
-                <a class="active item">
-                    <i class="users icon"></i>
-                    Friends
+            <div class="ui vertical menu">
+                <div class="header item">
+                    Administrator
+                </div>
+                <a class="active item" href="/admin">
+                    <i class="home icon"></i>
+                    Dashboard
                 </a>
-                <a class="item">
-                    <i class="mail icon"></i> Messages
+                <a class="item" href="/admin/faculty">
+                   Faculty
                 </a>
-                <a class="item">
-                    <i class="user icon"></i> Friends
-                </a>
+
                 <div class="ui dropdown item">
                     More
                     <i class="dropdown icon"></i>
@@ -62,12 +89,24 @@
             </div>
         </div>
         <div class="ui twelve wide column">
-            XXX
+            @yield('content')
         </div>
     </div>
 </div>
 
 
+<script type="text/javascript">
+    $('.ui.dropdown').dropdown();
+</script>
+<script type="text/javascript" src="/packages/flow.js/dist/flow.min.js"></script>
+
+<script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+<script type="text/javascript" src="/packages/angular-semantic-ui/dist/angular-semantic-ui.min.js"></script>
+<script type="text/javascript" src="/packages/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="/packages/ng-flow/dist/ng-flow.min.js"></script>
+
+
+@yield('javascript')
 
 </body>
 </html>

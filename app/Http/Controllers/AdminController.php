@@ -4,7 +4,11 @@ class AdminController extends Controller {
 
 	public function index()
 	{
-		return view('admin.main');
+		return redirect('/admin/dashboard');
 	}
 
+    public function dashboard()
+    {
+        return view('admin.main');
+    }
 }

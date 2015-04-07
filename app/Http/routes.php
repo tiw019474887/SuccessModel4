@@ -13,3 +13,9 @@
 
 Route::get('/', 'WelcomeController@index');
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/dashboard', 'AdminController@dashboard');
+
+Route::get('/admin/faculty', 'FacultyAdminController@index');
+
+
+Route::resource('/api/faculty','FacultyController');
