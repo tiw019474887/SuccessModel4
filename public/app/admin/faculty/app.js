@@ -31,10 +31,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('edit', {
             url: "/edit/:id",
-            templateUrl: "/app/admin/faculty/_add.html",
-            controller : "AddCtrl",
+            templateUrl: "/app/admin/faculty/_edit.html",
+            controller : "EditCtrl",
             resolve : {
-
+                faculty : function(FacultyService,$stateParams){
+                    return FacultyService.get($stateParams.id)
+                }
             }
         })
 });
@@ -78,6 +80,20 @@ app.controller("AddCtrl",function($scope,$state,faculty,FacultyService){
 
     $scope.save = function(){
         FacultyService.store($scope.faculty).success(function (resposne) {
+            $state.go('home');
+            //$state.go("edit",{id:resposne.id});
+        }).error(function(response){
+            alert(response.name_th);
+        });
+    }
+});
+
+app.controller("EditCtrl",function($scope,$state,faculty,FacultyService){
+    console.log("EditCtrl Start...");
+    $scope.faculty = faculty.data;
+
+    $scope.save = function(){
+        FacultyService.save($scope.faculty).success(function (resposne) {
             $state.go("home");
         }).error(function(response){
             alert(response.name_th);

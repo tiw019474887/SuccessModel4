@@ -1,6 +1,6 @@
 <h2>Add Faculty</h2>
 
-<form class="ui form" ng-submit="save()">
+<form class="ui form" ng-submit="save()" >
     <h4 class="ui dividing header">Faculty Information</h4>
 
     <div class="field">
@@ -8,10 +8,6 @@
         <input ng-model="faculty.name_th" type="text" name="name" placeholder="Faculty Name" required="required">
     </div>
 
-    <div class="field">
-        <label>Logo</label>
-        <img class="ui small image" src="/images/square-image.png">
-    </div>
-    <button type="submit" class="ui primary submit button">Add</button>
+    <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
 </form>

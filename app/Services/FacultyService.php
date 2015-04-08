@@ -29,9 +29,10 @@ class FacultyService extends Service{
     public function save(array $input){
         if (array_has($input,'id')){
             $id = $input['id'];
-            /* @var faculty Faculty */
+            /* @var Faculty $faculty */
             $faculty = Faculty::find($id);
             $faculty->fill($input);
+            $faculty->save();
             return $faculty;
         }else {
             return $this->store($input);

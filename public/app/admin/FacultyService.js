@@ -8,11 +8,14 @@ angular.module('Faculty',[])
             all : function(){
                 return $http.get('/api/faculty');
             },
+            get : function(id){
+                return  $http.get('/api/faculty/'+id);
+            },
             create : function(){
                 return $http.get('/api/faculty/create');
             },
             store : function(faculty){
-                console.log(faculty);
+
                 return $http({
                     url : '/api/faculty',
                     method : 'post',
@@ -21,6 +24,13 @@ angular.module('Faculty',[])
             },
             delete : function(faculty){
                 return $http.delete('/api/faculty/' + faculty.id);
+            },
+            save : function(faculty){
+                return $http({
+                    url : '/api/faculty/' + faculty.id,
+                    method : 'put',
+                    data : faculty
+                })
             }
         }
     })

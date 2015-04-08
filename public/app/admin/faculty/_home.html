@@ -18,7 +18,7 @@
         <td ng-bind="faculty.name_th"></td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
-                <button class="ui positive button">Edit</button>
+                <button ui-sref="edit({id:faculty.id})" class="ui positive button">Edit</button>
                 <button ng-click="showDeleteModal(faculty)" class="ui negative button">Delete</button>
             </div>
         </td>
@@ -43,10 +43,10 @@
     </div>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxDelete(null,false)">
-            Nope
+            No
         </div>
         <div class="ui positive right labeled icon button" ng-click="ajaxDelete(faculty,true)">
-            Yep, that's me
+            Yes
             <i class="checkmark icon"></i>
         </div>
     </div>

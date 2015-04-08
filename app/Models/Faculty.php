@@ -27,9 +27,9 @@ class Faculty extends \NeoEloquent
 //        return $this->hasMany('Photo','PHOTO');
 //    }
 //
-//    public function logo(){
-//        return $this->hasOne("Photo","LOGO");
-//    }
+    public function logo(){
+        return $this->hasOne("Photo","LOGO");
+    }
 //
 //    public function researchers(){
 //        return $this->hasMany('Researcher','HAS');

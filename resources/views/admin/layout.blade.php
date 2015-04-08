@@ -69,11 +69,11 @@
                 <div class="header item">
                     Administrator
                 </div>
-                <a class="active item" href="/admin">
+                <a class=" {{ Request::is('admin/dashboard') ? 'active' : '' }} item" href="/admin">
                     <i class="home icon"></i>
                     Dashboard
                 </a>
-                <a class="item" href="/admin/faculty">
+                <a class=" {{ Request::is('admin/faculty') ? 'active' : '' }} item" href="/admin/faculty">
                    Faculty
                 </a>
 
