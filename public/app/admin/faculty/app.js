@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('FacultyAdmin',['ui.router','angularify.semantic','flow','Faculty']);
+var app = angular.module('FacultyAdmin', ['ui.router', 'angularify.semantic', 'flow', 'Faculty']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -12,9 +12,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: "/",
             templateUrl: "/app/admin/faculty/_home.html",
-            controller : "HomeCtrl",
-            resolve : {
-                faculties : function(FacultyService){
+            controller: "HomeCtrl",
+            resolve: {
+                faculties: function (FacultyService) {
                     return FacultyService.all();
                 }
             }
@@ -22,33 +22,33 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('add', {
             url: "/add",
             templateUrl: "/app/admin/faculty/_add.html",
-            controller : "AddCtrl",
-            resolve : {
-                faculty : function(FacultyService){
-                    return { data : {} }
+            controller: "AddCtrl",
+            resolve: {
+                faculty: function (FacultyService) {
+                    return {data: {}}
                 }
             }
         })
         .state('edit', {
             url: "/edit/:id",
             templateUrl: "/app/admin/faculty/_edit.html",
-            controller : "EditCtrl",
-            resolve : {
-                faculty : function(FacultyService,$stateParams){
+            controller: "EditCtrl",
+            resolve: {
+                faculty: function (FacultyService, $stateParams) {
                     return FacultyService.get($stateParams.id)
                 }
             }
         })
 });
 
-app.controller("HomeCtrl",function($scope,$state, faculties,FacultyService){
+app.controller("HomeCtrl", function ($scope, $state, faculties, FacultyService) {
     console.log("HomeCtrl Start...");
 
     $scope.faculties = faculties.data;
     $scope.faculty = {};
     $scope.delete_modal = false;
 
-    $scope.showDeleteModal = function(faculty){
+    $scope.showDeleteModal = function (faculty) {
         $scope.faculty = faculty;
         $scope.delete_modal = true;
     }
@@ -57,45 +57,51 @@ app.controller("HomeCtrl",function($scope,$state, faculties,FacultyService){
         $scope.delete_modal = false;
     }
 
-    $scope.ajaxDelete = function (faculty,bool) {
+    $scope.ajaxDelete = function (faculty, bool) {
         $scope.faculty = faculty;
-        if(bool){
-            FacultyService.delete(faculty).success(function(response){
+        if (bool) {
+            FacultyService.delete(faculty).success(function (response) {
                 $scope.closeDeleteModal();
-                FacultyService.all().success(function(response){
+                FacultyService.all().success(function (response) {
                     $scope.faculties = response;
                 })
             });
-        }else {
+        } else {
             $scope.closeDeleteModal();
         }
 
     }
 });
 
-app.controller("AddCtrl",function($scope,$state,faculty,FacultyService){
+app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
     console.log("AddCtrl Start...");
 
     $scope.faculty = faculty.data;
 
-    $scope.save = function(){
+    $scope.save = function () {
         FacultyService.store($scope.faculty).success(function (resposne) {
             $state.go('home');
             //$state.go("edit",{id:resposne.id});
-        }).error(function(response){
+        }).error(function (response) {
             alert(response.name_th);
         });
     }
 });
 
-app.controller("EditCtrl",function($scope,$state,faculty,FacultyService){
+app.controller("EditCtrl", function ($scope, $state, faculty, FacultyService) {
     console.log("EditCtrl Start...");
+
+    $scope.myFlow = new Flow({
+        target: '/upload',
+        singleFile: true
+    })
+
     $scope.faculty = faculty.data;
 
-    $scope.save = function(){
+    $scope.save = function () {
         FacultyService.save($scope.faculty).success(function (resposne) {
             $state.go("home");
-        }).error(function(response){
+        }).error(function (response) {
             alert(response.name_th);
         });
     }

@@ -19,3 +19,7 @@ Route::get('/admin/faculty', 'FacultyAdminController@index');
 
 
 Route::resource('/api/faculty','FacultyController');
+
+Route::get('img/{path}',function(League\Glide\Server $server,$path){
+    $server->outputImage($path,$_GET);
+});

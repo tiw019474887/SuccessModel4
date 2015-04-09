@@ -11,7 +11,7 @@
     <div class="field">
         <label>Logo</label>
 
-        <div flow-init="{target: '/upload',  singleFile: true}"
+        <div flow-init flow-object="myFlow"
              flow-files-submitted="$flow.upload()"
              flow-file-success="$file.msg = $message"
              flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
@@ -19,7 +19,7 @@
             <div class="alert" flow-drop>
                 <img ng-if="$flow.files.length==0" class="ui bordered  small image" src="/images/square-image.png" />
 
-                <div ng-repeat="file in $flow.files">
+                <div ng-repeat="file in myFlow.files">
                     <img class="ui medium bordered image" flow-img="file" />
                 </div>
 
