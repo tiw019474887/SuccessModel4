@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider {
                 'cache' => storage_path(),
                 'source_path_prefix' => 'images/',
                 'cache_path_prefix' => 'images/.cache',
+                'base_url' =>'img',
             ]);
         });
 	}
