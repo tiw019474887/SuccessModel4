@@ -18,7 +18,15 @@ Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/faculty', 'FacultyAdminController@index');
 
 
-Route::resource('/api/faculty','FacultyController');
+Route::group(['prefix' => 'api'], function()
+{
+    Route::resource('faculty','FacultyController');
+    Route::resource('faculty.logo', 'FacultyLogoController');
+
+});
+
+
+use Rhumsaa\Uuid\Uuid;
 
 Route::get('/img/{path}',function(League\Glide\Server $server,\Illuminate\Http\Request $request){
     $server->outputImage($request);

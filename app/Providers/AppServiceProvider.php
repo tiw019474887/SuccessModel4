@@ -27,8 +27,8 @@ class AppServiceProvider extends ServiceProvider {
             return \League\Glide\ServerFactory::create([
                 'source' => storage_path(),
                 'cache' => storage_path(),
-                'source_path_prefix' => 'images/',
-                'cache_path_prefix' => 'images/.cache',
+                'source_path_prefix' => 'app/',
+                'cache_path_prefix' => 'app/.cache',
                 'base_url' =>'img',
             ]);
         });

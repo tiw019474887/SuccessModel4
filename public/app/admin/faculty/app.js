@@ -35,7 +35,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "EditCtrl",
             resolve: {
                 faculty: function (FacultyService, $stateParams) {
-                    return FacultyService.get($stateParams.id)
+                    return FacultyService.edit($stateParams.id)
                 }
             }
         })
@@ -91,16 +91,29 @@ app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
 app.controller("EditCtrl", function ($scope, $state, faculty, FacultyService) {
     console.log("EditCtrl Start...");
 
+    $scope.faculty = faculty.data;
+
     $scope.myFlow = new Flow({
-        target: '/upload',
-        singleFile: true
+        target: '/api/faculty/'+$scope.faculty.id+'/logo',
+        singleFile: true,
+        method : 'post',
+        testChunks : false
     })
 
-    $scope.faculty = faculty.data;
+
+    $scope.uploadFile = function(){
+        $scope.myFlow.upload();
+    }
+
+    $scope.cancelFile = function (file){
+        var index = $scope.myFlow.files.indexOf(file)
+        $scope.myFlow.files.splice(index,1);
+
+    }
 
     $scope.save = function () {
         FacultyService.save($scope.faculty).success(function (resposne) {
-            $state.go("home");
+            $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
         });

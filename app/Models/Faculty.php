@@ -28,7 +28,7 @@ class Faculty extends \NeoEloquent
 //    }
 //
     public function logo(){
-        return $this->hasOne("Photo","LOGO");
+        return $this->hasOne('App\Models\Logo','HAS');
     }
 //
 //    public function researchers(){

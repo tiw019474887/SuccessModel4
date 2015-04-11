@@ -11,6 +11,9 @@ angular.module('Faculty',[])
             get : function(id){
                 return  $http.get('/api/faculty/'+id);
             },
+            edit : function(id){
+                return  $http.get('/api/faculty/'+id);
+            },
             create : function(){
                 return $http.get('/api/faculty/create');
             },

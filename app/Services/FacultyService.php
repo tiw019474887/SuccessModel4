@@ -1,6 +1,10 @@
 <?php
 namespace App\Services;
 use App\Models\Faculty;
+use App\Models\Logo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  * Created by PhpStorm.
@@ -12,11 +16,11 @@ use App\Models\Faculty;
 class FacultyService extends Service{
 
     public function getAll(){
-        return Faculty::all();
+        return Faculty::with('logo')->get();
     }
 
     public function get($id){
-        $faculty = Faculty::find($id);
+        $faculty = Faculty::with('logo')->find($id);
         return $faculty;
     }
 
@@ -46,6 +50,20 @@ class FacultyService extends Service{
 
     public function delete($id){
         return Faculty::find($id)->delete();
+    }
+
+    public function saveLogo($facultyId,Request $input){
+        /* @var Faculty $faculty */
+        $faculty = $this->get($facultyId);
+        $uuid = Uuid::uuid4();
+        $storage_path= "app/faculties/$facultyId/logo/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path,$uuid);
+
+        $logo = new Logo();
+        $logo->url = "/img/faculties/$facultyId/logo/$uuid";
+        $faculty->logo()->save($logo);
+        return $logo;
     }
 
 }
