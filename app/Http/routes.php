@@ -16,6 +16,7 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
 
 Route::get('/admin/faculty', 'FacultyAdminController@index');
+Route::get('/admin/user','UserAdminController@index');
 
 
 Route::group(['prefix' => 'api'], function()
@@ -23,10 +24,11 @@ Route::group(['prefix' => 'api'], function()
     Route::resource('faculty','FacultyController');
     Route::resource('faculty.logo', 'FacultyLogoController');
 
+    Route::resource('user','UserController');
+    Route::resource('user-type','UserTypeController');
+
+
 });
-
-
-use Rhumsaa\Uuid\Uuid;
 
 Route::get('/img/{path}',function(League\Glide\Server $server,\Illuminate\Http\Request $request){
     $server->outputImage($request);

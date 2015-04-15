@@ -77,6 +77,10 @@
                    Faculty
                 </a>
 
+                <a class=" {{ Request::is('admin/user') ? 'active' : '' }} item" href="/admin/user">
+                    Users
+                </a>
+
                 <div class="ui dropdown item">
                     More
                     <i class="dropdown icon"></i>

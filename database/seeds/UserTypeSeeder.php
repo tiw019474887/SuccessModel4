@@ -1,11 +1,9 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Faculty;
 
-
-class DatabaseSeeder extends Seeder {
+class UserTypeSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
@@ -17,24 +15,6 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-
-        $this->call("UserTypeSeeder");
-    }
-
-}
-
-class UserTypeSeeder extends Seeder {
-
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-
-
-    public function run()
-    {
-        Model::unguard();
 
         $adminType = new \App\Models\UserType();
         $adminType->key="admin";

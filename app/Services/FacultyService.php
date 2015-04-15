@@ -49,7 +49,7 @@ class FacultyService extends Service{
     }
 
     public function delete($id){
-        return Faculty::find($id)->delete();
+        return [Faculty::find($id)->delete()];
     }
 
     public function saveLogo($facultyId,Request $input){
