@@ -1,6 +1,15 @@
 <h2>Add Faculty</h2>
 
 <form class="ui form" ng-submit="save()" >
+
+    <div ng-if="message" class="ui message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
     <h4 class="ui dividing header">User Information</h4>
 
     <div class="field">

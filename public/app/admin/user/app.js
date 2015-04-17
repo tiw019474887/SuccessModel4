@@ -78,12 +78,14 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService) {
 
     $scope.user = user.data;
 
+    $scope.message = null;
+
     $scope.save = function () {
         UserService.store($scope.user).success(function (resposne) {
             $state.go('home');
             //$state.go("edit",{id:resposne.id});
         }).error(function (response) {
-            alert(response.name_th);
+            $scope.message = response;
         });
     }
 });

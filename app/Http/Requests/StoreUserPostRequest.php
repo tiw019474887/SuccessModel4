@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class StoreFacultyPostRequest extends Request {
+class StoreUserPostRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -25,10 +25,18 @@ class StoreFacultyPostRequest extends Request {
             'title' => 'required|max:255',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'email' => 'required|max:255',
-            'password' => 'required|max:255',
-            'vpassword' => 'required|max:255',
+            'email' => 'email|required|max:255',
+            'password' => 'max:255',
+            'vpassword' => 'max:255|same:password',
         ];
 	}
+
+    public function messages()
+    {
+        return [
+          'vpassword.same' => "Verify password and Password must match.",
+        ];
+    }
+
 
 }
