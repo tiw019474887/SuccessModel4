@@ -125,7 +125,7 @@
 }
 
 /*--------------
-      User
+      UserRequest
 ---------------*/
 
 .ui.feed > .event > .content .user {
@@ -271,6 +271,6 @@
 
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 

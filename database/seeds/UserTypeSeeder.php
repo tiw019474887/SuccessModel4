@@ -14,7 +14,6 @@ class UserTypeSeeder extends Seeder {
 
 	public function run()
 	{
-		Model::unguard();
 
         $adminType = new \App\Models\UserType();
         $adminType->key="admin";
@@ -42,8 +41,8 @@ class UserTypeSeeder extends Seeder {
 
         $userType = new \App\Models\UserType();
         $userType->key = "user";
-        $userType->name = "Normal User";
-        $userType->description = "Normal User";
+        $userType->name = "Normal UserRequest";
+        $userType->description = "Normal UserRequest";
         $userType->save();
 
 

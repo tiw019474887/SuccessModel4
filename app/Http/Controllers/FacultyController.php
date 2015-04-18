@@ -39,7 +39,7 @@ class FacultyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreFacultyPostRequest $request)
+	public function store(Requests\StoreFacultyPostRequest $facultyPostRequest)
 	{
 		return $this->facultyService->store(Input::all());
 	}
@@ -72,7 +72,7 @@ class FacultyController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Requests\StoreFacultyPostRequest $facultyPostRequest ,$id)
 	{
         return $this->facultyService->save(Input::all());
 	}

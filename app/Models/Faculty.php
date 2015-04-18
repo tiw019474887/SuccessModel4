@@ -3,7 +3,7 @@ namespace App\Models;
 
 /**
  * Created by PhpStorm.
- * User: chaow
+ * UserRequest: chaow
  * Date: 4/6/2015
  * Time: 12:59 PM
  */

@@ -1,11 +1,11 @@
 <?php namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserPostRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreUserPostRequest;
 use \Input;
 
 class UserController extends Controller {
@@ -39,9 +39,18 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(StoreUserPostRequest $postRequest)
+	public function store(StoreUserPostRequest $storeUserPostRequest)
 	{
-		return $this->userService->store(Input::all());
+		$response =  $this->userService->store(Input::all());
+
+        if ($response != null){
+            return $response;
+        }else {
+
+            return \Response::json([
+                "error" => "There is something wrong, Please contact administrator."
+            ],500);
+        }
 	}
 
 	/**
@@ -72,7 +81,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(StoreUserPostRequest $storeUserPostRequest,$id)
 	{
 		return $this->userService->save(Input::all());
 	}

@@ -25,7 +25,7 @@ class CreateUertypeLabel extends Migration {
      */
     public function down()
     {
-        Neo4jSchema::label('User', function(Blueprint $label)
+        Neo4jSchema::label('UserRequest', function(Blueprint $label)
         {
             $label->dropUnique('uuid');
         });

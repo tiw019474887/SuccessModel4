@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: chaow
+ * UserRequest: chaow
  * Date: 4/14/2015 AD
  * Time: 5:53 PM
  */
@@ -17,6 +17,6 @@ class UserType extends \NeoEloquent{
     protected $label = "UserType";
 
     public function users(){
-        return $this->hasMany("User","HAS");
+        return $this->hasMany("UserRequest","HAS");
     }
 }

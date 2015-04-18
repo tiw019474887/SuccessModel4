@@ -8,7 +8,7 @@ use Rhumsaa\Uuid\Uuid;
 
 /**
  * Created by PhpStorm.
- * User: chaow
+ * UserRequest: chaow
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
@@ -60,7 +60,13 @@ class FacultyService extends Service{
         $destination_path = storage_path($storage_path);
         $input->file('file')->move($destination_path,$uuid);
 
-        $logo = new Logo();
+        $logo = null;
+        if ($faculty->logo){
+            $logo = $faculty->logo;
+        }else {
+            $logo = new Logo();
+        }
+
         $logo->url = "/img/faculties/$facultyId/logo/$uuid";
         $faculty->logo()->save($logo);
         return $logo;

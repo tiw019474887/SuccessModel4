@@ -78,8 +78,6 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService) {
 
     $scope.user = user.data;
 
-    $scope.message = null;
-
     $scope.save = function () {
         UserService.store($scope.user).success(function (resposne) {
             $state.go('home');
@@ -95,29 +93,11 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService) {
 
     $scope.user = user.data;
 
-    $scope.myFlow = new Flow({
-        target: '/api/user/'+$scope.user.id+'/logo',
-        singleFile: true,
-        method : 'post',
-        testChunks : false
-    })
-
-
-    $scope.uploadFile = function(){
-        $scope.myFlow.upload();
-    }
-
-    $scope.cancelFile = function (file){
-        var index = $scope.myFlow.files.indexOf(file)
-        $scope.myFlow.files.splice(index,1);
-
-    }
-
     $scope.save = function () {
         UserService.save($scope.user).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
-            alert(response.name_th);
+            $scope.message = response;
         });
     }
 });

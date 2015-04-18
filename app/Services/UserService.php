@@ -9,7 +9,7 @@ use Rhumsaa\Uuid\Uuid;
 
 /**
  * Created by PhpStorm.
- * User: chaow
+ * UserRequest: chaow
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
@@ -37,22 +37,51 @@ class UserService extends Service{
         }
         return $user;
     }
+    private function hasUserType(array $input){
+        $userType = null;
+        if (isset($input['user_type'])){
+            $id = $input['user_type']['id'];
+            $userType = UserType::find($id);
+        }else {
+            $userType = UserType::where('key','=','user')->first();
+        }
+
+        if ($userType != null) return true;
+        else return false;
+    }
+
+    private function setPassword(User $user, array $input){
+        if(isset($input['password'])){
+            $user->password = \Hash::make($input['password']);
+        }
+
+        return $user;
+    }
 
     public function store(array $input){
 
+        if (!$this->hasUserType($input)){
+            return null;
+        }
+
         $user = new User();
         $user->fill($input);
+        $user = $this->setPassword($user,$input);
         $user->save();
         $this->linkToUserType($user,$input);
         return $user;
-
     }
+
+
+
     public function save(array $input){
+
         if (array_has($input,'id')){
             $id = $input['id'];
             /* @var User $user */
             $user = User::find($id);
             $user->fill($input);
+            $user = $this->setPassword($user,$input);
             $user->save();
             $this->linkToUserType($user,$input);
             return $user;
