@@ -42,8 +42,22 @@ Route::group(['prefix' => 'api'], function()
     Route::resource('user-type','API\UserTypeApiController');
 
 
+    Route::post('auth/login','API\AuthApiController@authenticate');
+    Route::post('auth/logout','API\AuthApiController@unAuthenticate');
+
 });
 
 Route::get('/img/{path}',function(League\Glide\Server $server,\Illuminate\Http\Request $request){
     $server->outputImage($request);
 })->where('path','.*');
+
+use \Auth;
+Route::get('test',function(){
+    $user = \App\Models\User::find(70);
+    Auth::attempt(['email'=>'chaow.po@up.ac.th','password'=>'3arfurzf']);
+    return Auth::user();
+});
+
+Route::get('test2',function(){
+    Auth::logout();
+});
