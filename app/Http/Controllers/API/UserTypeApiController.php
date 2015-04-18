@@ -1,18 +1,19 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
-use App\Http\Requests\StoreUserPostRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\UserType;
 use App\Services\UserService;
+use App\Services\UserTypeService;
 use Illuminate\Http\Request;
 use \Input;
 
-class UserController extends Controller {
+class UserTypeApiController extends Controller {
 
 
-    public function __construct(UserService $userService){
-        $this->userService = $userService;
+    public function __construct(UserTypeService $userTypeService){
+        $this->service = $userTypeService;
     }
 	/**
 	 * Display a listing of the resource.
@@ -21,7 +22,7 @@ class UserController extends Controller {
 	 */
 	public function index()
 	{
-		return $this->userService->getAll();
+		return $this->service->getAll();
 	}
 
 	/**
@@ -31,7 +32,7 @@ class UserController extends Controller {
 	 */
 	public function create()
 	{
-		return $this->userService->create();
+
 	}
 
 	/**
@@ -39,18 +40,9 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(StoreUserPostRequest $storeUserPostRequest)
+	public function store()
 	{
-		$response =  $this->userService->store(Input::all());
 
-        if ($response != null){
-            return $response;
-        }else {
-
-            return \Response::json([
-                "error" => "There is something wrong, Please contact administrator."
-            ],500);
-        }
 	}
 
 	/**
@@ -61,7 +53,7 @@ class UserController extends Controller {
 	 */
 	public function show($id)
 	{
-		return $this->userService->get($id);
+
 	}
 
 	/**
@@ -72,7 +64,7 @@ class UserController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return $this->userService->get($id);
+
 	}
 
 	/**
@@ -81,9 +73,9 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(StoreUserPostRequest $storeUserPostRequest,$id)
+	public function update($id)
 	{
-		return $this->userService->save(Input::all());
+
 	}
 
 	/**
@@ -94,7 +86,7 @@ class UserController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		return $this->userService->delete($id);
+
 	}
 
 }

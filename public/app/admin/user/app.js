@@ -93,6 +93,26 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService) {
 
     $scope.user = user.data;
 
+    $scope.upload = {};
+    $scope.upload.myFlow = new Flow({
+        target: '/api/user/'+$scope.user.id+'/logo',
+        singleFile: true,
+        method : 'post',
+        testChunks : false
+    })
+
+
+    $scope.upload.uploadFile = function(){
+        $scope.upload.myFlow.upload();
+    }
+
+    $scope.upload.cancelFile = function (file){
+        var index = $scope.upload.myFlow.files.indexOf(file)
+        $scope.upload.myFlow.files.splice(index,1);
+
+    }
+
+
     $scope.save = function () {
         UserService.save($scope.user).success(function (resposne) {
             $state.go("home")

@@ -12,20 +12,21 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-Route::get('/admin', 'AdminController@index');
-Route::get('/admin/dashboard', 'AdminController@dashboard');
+Route::get('/admin', 'Admin\AdminController@index');
+Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
 
-Route::get('/admin/faculty', 'FacultyAdminController@index');
-Route::get('/admin/user','UserAdminController@index');
+Route::get('/admin/faculty', 'Admin\FacultyAdminController@index');
+Route::get('/admin/user','Admin\UserAdminController@index');
 
 
 Route::group(['prefix' => 'api'], function()
 {
-    Route::resource('faculty','FacultyController');
-    Route::resource('faculty.logo', 'FacultyLogoController');
+    Route::resource('faculty','API\FacultyApiController');
+    Route::resource('faculty.logo', 'API\FacultyLogoApiController');
 
-    Route::resource('user','UserController');
-    Route::resource('user-type','UserTypeController');
+    Route::resource('user','API\UserApiController');
+    Route::resource('user.logo','API\UserLogoApiController');
+    Route::resource('user-type','API\UserTypeApiController');
 
 
 });

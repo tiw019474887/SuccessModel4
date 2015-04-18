@@ -1,19 +1,18 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
+use App\Http\Requests\StoreUserPostRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\UserType;
 use App\Services\UserService;
-use App\Services\UserTypeService;
 use Illuminate\Http\Request;
 use \Input;
 
-class UserTypeController extends Controller {
+class UserApiController extends Controller {
 
 
-    public function __construct(UserTypeService $userTypeService){
-        $this->service = $userTypeService;
+    public function __construct(UserService $userService){
+        $this->userService = $userService;
     }
 	/**
 	 * Display a listing of the resource.
@@ -22,7 +21,7 @@ class UserTypeController extends Controller {
 	 */
 	public function index()
 	{
-		return $this->service->getAll();
+		return $this->userService->getAll();
 	}
 
 	/**
@@ -32,7 +31,7 @@ class UserTypeController extends Controller {
 	 */
 	public function create()
 	{
-
+		return $this->userService->create();
 	}
 
 	/**
@@ -40,9 +39,18 @@ class UserTypeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(StoreUserPostRequest $storeUserPostRequest)
 	{
+		$response =  $this->userService->store(Input::all());
 
+        if ($response != null){
+            return $response;
+        }else {
+
+            return \Response::json([
+                "error" => "There is something wrong, Please contact administrator."
+            ],500);
+        }
 	}
 
 	/**
@@ -53,7 +61,7 @@ class UserTypeController extends Controller {
 	 */
 	public function show($id)
 	{
-
+		return $this->userService->get($id);
 	}
 
 	/**
@@ -64,7 +72,7 @@ class UserTypeController extends Controller {
 	 */
 	public function edit($id)
 	{
-
+		return $this->userService->get($id);
 	}
 
 	/**
@@ -73,9 +81,9 @@ class UserTypeController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(StoreUserPostRequest $storeUserPostRequest,$id)
 	{
-
+		return $this->userService->save(Input::all());
 	}
 
 	/**
@@ -86,7 +94,7 @@ class UserTypeController extends Controller {
 	 */
 	public function destroy($id)
 	{
-
+		return $this->userService->delete($id);
 	}
 
 }

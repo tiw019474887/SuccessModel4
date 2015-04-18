@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -7,7 +7,7 @@ use App\Models\Logo;
 use App\Services\FacultyService;
 use Illuminate\Http\Request;
 
-class FacultyLogoController extends Controller {
+class FacultyLogoApiController extends Controller {
 
 
     public function __construct(FacultyService $facultyService){

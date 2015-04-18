@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Models\Logo;
 
 /**
  * Created by PhpStorm.
@@ -9,5 +10,16 @@ namespace App\Services;
  */
 
 class Service {
+
+    protected function getLogoFromModel($model){
+        $logo = null;
+        if ($model->logo){
+            $logo = $model->logo;
+        }else {
+            $logo = new Logo();
+        }
+
+        return $logo;
+    }
 
 }

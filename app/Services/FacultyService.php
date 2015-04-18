@@ -60,12 +60,7 @@ class FacultyService extends Service{
         $destination_path = storage_path($storage_path);
         $input->file('file')->move($destination_path,$uuid);
 
-        $logo = null;
-        if ($faculty->logo){
-            $logo = $faculty->logo;
-        }else {
-            $logo = new Logo();
-        }
+        $logo = $this->getLogoFromModel($faculty);
 
         $logo->url = "/img/faculties/$facultyId/logo/$uuid";
         $faculty->logo()->save($logo);

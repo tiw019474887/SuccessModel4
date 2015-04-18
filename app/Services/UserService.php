@@ -16,12 +16,14 @@ use Rhumsaa\Uuid\Uuid;
 
 class UserService extends Service{
 
+    var $withArr = ['userType','logo'];
+
     public function getAll(){
-        return User::with(['userType'])->get();
+        return User::with($this->withArr)->get();
     }
 
     public function get($id){
-        $user = User::with(['userType'])->find($id);
+        $user = User::with($this->withArr)->find($id);
         return $user;
     }
 
@@ -107,10 +109,11 @@ class UserService extends Service{
         $destination_path = storage_path($storage_path);
         $input->file('file')->move($destination_path,$uuid);
 
-        $logo = new Logo();
+        $logo = $this->getLogoFromModel($user);
         $logo->url = "/img/users/$userId/logo/$uuid";
         $user->logo()->save($logo);
         return $logo;
     }
+
 
 }

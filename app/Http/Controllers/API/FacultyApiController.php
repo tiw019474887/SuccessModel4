@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Services\FacultyService;
 use Illuminate\Http\Request;
 use \Input;
 
-class FacultyController extends Controller {
+class FacultyApiController extends Controller {
 
     public function __construct(FacultyService $facultyService){
         $this->facultyService = $facultyService;
