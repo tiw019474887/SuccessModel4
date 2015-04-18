@@ -22,8 +22,6 @@
 
 <body>
 
-<div class="ui one column grid">
-    <div class="column">
         <div class="ui large menu ">
             <div class="left menu">
                 <div class="header item">
@@ -58,11 +56,8 @@
             </div>
         </div>
 
-    </div>
-</div>
 
-
-<div class="ui centered grid">
+<div class="ui padded  grid">
     <div class="ui centered row">
         <div class="ui three wide column">
             <div class="ui vertical menu">

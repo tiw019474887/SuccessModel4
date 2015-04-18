@@ -12,11 +12,24 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-Route::get('/admin', 'Admin\AdminController@index');
-Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
 
-Route::get('/admin/faculty', 'Admin\FacultyAdminController@index');
-Route::get('/admin/user','Admin\UserAdminController@index');
+Route::get('/auth/login',function(){
+    return view('auth.login');
+});
+
+Route::group(
+    [
+    //    'middleware' => 'App\Http\Middleware\Authenticate'
+    ]
+    ,function(){
+
+    Route::get('/admin', 'Admin\AdminController@index');
+    Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
+    Route::get('/admin/faculty', 'Admin\FacultyAdminController@index');
+    Route::get('/admin/user','Admin\UserAdminController@index');
+
+});
+
 
 
 Route::group(['prefix' => 'api'], function()
