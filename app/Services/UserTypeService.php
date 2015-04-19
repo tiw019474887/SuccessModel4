@@ -20,5 +20,9 @@ class UserTypeService extends Service{
         return UserType::with([])->get();
     }
 
+    public function updateOrderable(array $input){
+
+    }
+
 
 }

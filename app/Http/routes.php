@@ -27,6 +27,7 @@ Route::group(
     Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
     Route::get('/admin/faculty', 'Admin\FacultyAdminController@index');
     Route::get('/admin/user','Admin\UserAdminController@index');
+    Route::get('/admin/role','Admin\AdminController@role');
 
 });
 

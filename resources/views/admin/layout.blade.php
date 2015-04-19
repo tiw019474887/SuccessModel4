@@ -76,6 +76,10 @@
                     Users
                 </a>
 
+                <a class=" {{ Request::is('admin/role') ? 'active' : '' }} item" href="/admin/role">
+                    Roles
+                </a>
+
                 <div class="ui dropdown item">
                     More
                     <i class="dropdown icon"></i>
