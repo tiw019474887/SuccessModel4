@@ -32,7 +32,9 @@ class UserService extends Service{
         if (isset($input['user_type'])){
             $id = $input['user_type']['id'];
             $userType = UserType::find($id);
-            $user->userType()->associate($userType);
+            $user->userType()->dissociate();
+            $user->userType()->associate($userType)->save();
+
         }else {
             $userType = UserType::where('key','=','user')->first();
             $user->userType()->associate($userType)->save();

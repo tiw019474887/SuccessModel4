@@ -99,10 +99,23 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, userTypes
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService) {
+app.controller("EditCtrl", function ($scope, $state, user, UserService,userTypes) {
     console.log("EditCtrl Start...");
 
     $scope.user = user.data;
+    $scope.userTypes = userTypes.data;
+
+    var setUserType = function(){
+        for(i=0;i<$scope.userTypes.length;i++){
+            if ($scope.user.user_type.key == $scope.userTypes[i].key){
+                $scope.user.user_type = $scope.userTypes[i];
+                break;
+            }
+        }
+    }
+
+    setUserType();
+
 
     $scope.upload = {};
     $scope.upload.myFlow = new Flow({

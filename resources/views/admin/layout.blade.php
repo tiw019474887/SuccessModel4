@@ -57,10 +57,10 @@
         </div>
 
 
-<div class="ui padded  grid">
-    <div class="ui centered row">
+<div class="ui padded stackable grid">
+    <div class="ui row">
         <div class="ui three wide column">
-            <div class="ui vertical menu">
+            <div class="ui fluid vertical menu">
                 <div class="header item">
                     Administrator
                 </div>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui twelve wide column">
+        <div class="ui thirteen wide column">
             @yield('content')
         </div>
     </div>

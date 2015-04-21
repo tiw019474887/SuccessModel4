@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use \Input;
+use App\Models\UserType;
 
 class UserApiController extends Controller {
 
@@ -83,6 +84,7 @@ class UserApiController extends Controller {
 	 */
 	public function update(StoreUserPostRequest $storeUserPostRequest,$id)
 	{
+
 		return $this->userService->save(Input::all());
 	}
 
