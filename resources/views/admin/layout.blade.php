@@ -21,7 +21,8 @@
 </head>
 
 <body>
-
+<div class="ui">
+    <div class="row">
         <div class="ui large menu ">
             <div class="left menu">
                 <div class="header item">
@@ -55,6 +56,10 @@
                 </a>
             </div>
         </div>
+    </div>
+
+</div>
+
 
 
 <div class="ui padded stackable grid">
