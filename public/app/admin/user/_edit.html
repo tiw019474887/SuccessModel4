@@ -58,17 +58,17 @@
 
             Drag and Drop Image to change<br/>
 
-            <div ng-if="$flow.files.length==0 && !user.logo" class="ui bordered  medium image">
+            <div ng-if="$flow.files.length==0 && !user.logo" class="ui bordered  small image">
                 <img src="/images/square-image.png"/>
             </div>
 
 
-            <div ng-if="$flow.files.length==0 && user.logo" class="ui bordered  medium image">
+            <div ng-if="$flow.files.length==0 && user.logo" class="ui bordered  small image">
                 <img ng-src="{{user.logo.url}}?h=200"/>
             </div>
 
             <div ng-repeat="file in upload.myFlow.files">
-                <div class="ui medium bordered image">
+                <div class="ui small bordered image">
                     <a ng-if="file.isComplete()" href="#" class="ui label left corner">
                         <i class="checkmark green icon"></i>
                     </a>

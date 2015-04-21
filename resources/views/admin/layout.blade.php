@@ -77,6 +77,10 @@
                    Faculty
                 </a>
 
+                <a class=" {{ Request::is('admin/project') ? 'active' : '' }} item" href="/admin/project">
+                    Projects
+                </a>
+
                 <a class=" {{ Request::is('admin/user') ? 'active' : '' }} item" href="/admin/user">
                     Users
                 </a>

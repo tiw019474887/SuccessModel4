@@ -28,6 +28,7 @@ Route::group(
     Route::get('/admin/faculty', 'Admin\FacultyAdminController@index');
     Route::get('/admin/user','Admin\UserAdminController@index');
     Route::get('/admin/role','Admin\AdminController@role');
+    Route::get('/admin/project','Admin\AdminController@project');
 
 });
 
@@ -41,6 +42,8 @@ Route::group(['prefix' => 'api'], function()
     Route::resource('user','API\UserApiController');
     Route::resource('user.logo','API\UserLogoApiController');
     Route::resource('user-type','API\UserTypeApiController');
+
+    Route::resource('project','API\ProjectApiController');
 
 
     Route::post('auth/login','API\AuthApiController@authenticate');

@@ -1,0 +1,13 @@
+<h2>Add Project</h2>
+
+<form class="ui form" ng-submit="save()" >
+    <h4 class="ui dividing header">Project Information</h4>
+
+    <div class="field">
+        <label>Name (TH)</label>
+        <input ng-model="project.name_th" type="text" name="name" placeholder="Project Name" required="required">
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>
