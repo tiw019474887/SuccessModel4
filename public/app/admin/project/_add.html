@@ -4,23 +4,13 @@
     <h4 class="ui dividing header">Project Information</h4>
 
     <div class="field">
-        <label>Name (EN)</label>
-        <input ng-model="project.name_en" type="text" name="name" placeholder="Project Name" required="required">
+        <label>Project Name</label>
+        <input ng-model="project.name" type="text" name="name" placeholder="Project Name" required="required">
     </div>
 
     <div class="field">
-        <label>Name (TH)</label>
-        <input ng-model="project.name_th" type="text" name="name" placeholder="Project Name" required="required">
-    </div>
-
-    <div class="field">
-        <label>Abstract (EN)</label>
-        <textarea rows="5" ng-model="project.abstract_en" required="required"></textarea>
-    </div>
-
-    <div class="field">
-        <label>Abstract (TH)</label>
-        <textarea rows="5" ng-model="project.abstract_th" required="required"></textarea>
+        <label>Project Abstract</label>
+        <textarea rows="5" ng-model="project.abstract" required="required"></textarea>
     </div>
 
     <button type="submit" class="ui primary submit button">Save</button>

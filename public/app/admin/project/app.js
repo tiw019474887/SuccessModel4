@@ -123,4 +123,9 @@ app.controller("EditCtrl", function ($scope, $state, project, ProjectService) {
             alert(response.name_th);
         });
     }
+
+    $('.menu .item')
+        .tab()
+    ;
+
 });

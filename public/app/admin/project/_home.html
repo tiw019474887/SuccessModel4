@@ -8,14 +8,14 @@
     <thead>
     <tr>
         <th class="center aligned one wide">ID</th>
-        <th class="center aligned wide">Name</th>
+        <th class="center aligned wide">Project Name</th>
         <th class="center aligned four wide">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="project in faculties">
         <td class="collapsing" ng-bind="project.id"></td>
-        <td ng-bind="project.name_th"></td>
+        <td ng-bind="project.name"></td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
                 <button ui-sref="edit({id:project.id})" class="ui positive button">Edit</button>

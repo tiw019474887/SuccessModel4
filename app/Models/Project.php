@@ -17,7 +17,7 @@ class Project extends \NeoEloquent
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name_en','name_th','abstract_th','abstract_en'];
+    protected $fillable = ['name','abstract'];
 
     public function cover(){
         return $this->hasOne('App\Models\Image','COVER');
