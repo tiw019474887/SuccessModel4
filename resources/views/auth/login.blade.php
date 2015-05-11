@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/packages/semantic-ui/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic-ui/dist/components/dropdown.min.css"/>
 
-
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic-ui/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic-ui/dist/components/dropdown.min.js" type="text/javascript"></script>
@@ -55,24 +54,34 @@
             <div class="ui attached segment" ng-if="message">
                 <div class="ui negative message">
                     <div class="header">We had some issues</div>
-                    <ul class="list">
-                        <li ng-bind="message.error"></li>
+                    <ul class="list" ng-if="message">
+                        <li ng-repeat="m in message" ng-bind="m"></li>
                     </ul>
                 </div>
             </div>
 
             <div class="ui attached segment">
-                <form class="ui form">
+                <form class="ui form" ng-submit="login()">
                     <div class="ui fluid left icon input field">
                         <i class="mail icon"></i>
                         <input ng-model="user.email" type="text" placeholder="E-Mail Address">
                     </div>
                     <div class="ui fluid left icon input field">
                         <i class="lock icon"></i>
-                        <input ng-model="user.password" type="password" placeholder="E-Mail Address">
+                        <input ng-model="user.password" type="password" placeholder="Password">
+                    </div>
+                    <div class="ui grid">
+                        <div class="row two column">
+                            <div class="column">
+                                <button type="submit" class="fluid ui primary button">User Login</button>
+                            </div>
+                            <div class="column">
+                                <a href="#" class="fluid ui positive button">Register</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="fluid ui primary button" ng-click="login()">User Login</div>
+
                 </form>
             </div>
         </div>
@@ -93,14 +102,18 @@
 
 
 <script type="text/javascript" src="/app/admin/AuthService.js"></script>
+<script type="text/javascript" src="/app/admin/loader.js"></script>
+
 <script type="text/javascript">
-    var app = angular.module("MainApp", ['Auth']);
+    var app = angular.module("MainApp", ['Auth', 'AppConfig']);
     app.controller("LoginCtrl", function ($scope, AuthService) {
         $scope.user = {}
         $scope.message = null;
         $scope.login = function () {
+            $scope.user.csrf_token = "<?php echo csrf_token();?>";
             AuthService.login($scope.user).success(function (response) {
                 window.location = "/admin";
+                //console.log(response);
             }).error(function (response) {
                 //console.log(response);
                 $scope.message = response;
@@ -108,6 +121,5 @@
         }
     })
 </script>
-<script type="text/javascript" src="/app/admin/loader.js"></script>
 </body>
 </html>

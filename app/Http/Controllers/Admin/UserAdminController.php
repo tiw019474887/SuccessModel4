@@ -10,4 +10,5 @@ class UserAdminController  extends Controller {
 		return view('admin.user.main');
 	}
 
+
 }

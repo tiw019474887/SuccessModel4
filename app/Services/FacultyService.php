@@ -55,10 +55,11 @@ class FacultyService extends Service{
     public function saveLogo($facultyId,Request $input){
         /* @var Faculty $faculty */
         $faculty = $this->get($facultyId);
-        $uuid = Uuid::uuid4();
-        $storage_path= "app/faculties/$facultyId/logo/";
-        $destination_path = storage_path($storage_path);
-        $input->file('file')->move($destination_path,$uuid);
+
+        $uuid = Uuid::uuid4(); // ชื่อไฟล์
+        $storage_path= "app/faculties/$facultyId/logo/"; // พาธ
+        $destination_path = storage_path($storage_path); // เอาไว้ใน storage ถ้าเอาไว้ public ใช้ public_path($path)
+        $input->file('file')->move($destination_path,$uuid); // save ไฟล์
 
         $logo = $this->getLogoFromModel($faculty);
 

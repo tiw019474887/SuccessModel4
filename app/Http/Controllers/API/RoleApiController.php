@@ -3,26 +3,26 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\UserType;
-use App\Services\UserService;
-use App\Services\UserTypeService;
+use App\Services\RoleService;
 use Illuminate\Http\Request;
-use \Input;
 
-class UserTypeApiController extends Controller {
+class RoleApiController extends Controller {
 
+    function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
 
-    public function __construct(UserTypeService $userTypeService){
-        $this->service = $userTypeService;
     }
-	/**
+
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return $this->service->getAll();
+		return $this->roleService->all();
 	}
 
 	/**
@@ -32,6 +32,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function create()
 	{
+		return $this->roleService->create();
 
 	}
 
@@ -42,7 +43,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function store()
 	{
-
+		return $this->roleService->store(Input::all());
 	}
 
 	/**
@@ -53,7 +54,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function show($id)
 	{
-
+		return $this->roleService->getById($id);
 	}
 
 	/**
@@ -64,7 +65,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function edit($id)
 	{
-
+        return $this->roleService->getById($id);
 	}
 
 	/**
@@ -75,7 +76,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function update($id)
 	{
-
+		return $this->roleService->save(Input::all());
 	}
 
 	/**
@@ -86,7 +87,7 @@ class UserTypeApiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-
+		return $this->roleService->delete($id);
 	}
 
 }

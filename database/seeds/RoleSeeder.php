@@ -3,7 +3,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Faculty;
 
-class UserTypeSeeder extends Seeder {
+class RoleSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
@@ -15,34 +15,34 @@ class UserTypeSeeder extends Seeder {
 	public function run()
 	{
 
-        $adminType = new \App\Models\UserType();
+        $adminType = new \App\Models\Role();
         $adminType->key="admin";
         $adminType->name="Administrator";
         $adminType->description="Administrator";
         $adminType->save();
 
-        $facultyType = new \App\Models\UserType();
+        $facultyType = new \App\Models\Role();
         $facultyType->key = "faculty";
         $facultyType->name = "Faculty Officer";
         $facultyType->description = "Faculty Officer";
         $facultyType->save();
 
-        $universityType = new \App\Models\UserType();
+        $universityType = new \App\Models\Role();
         $universityType->key = "university";
         $universityType->name = "University Officer";
         $universityType->description = "University Officer";
         $universityType->save();
 
-        $researcherType = new \App\Models\UserType();
+        $researcherType = new \App\Models\Role();
         $researcherType->key = "researcher";
         $researcherType->name = "Researcher";
         $researcherType->description = "Researcher";
         $researcherType->save();
 
-        $userType = new \App\Models\UserType();
+        $userType = new \App\Models\Role();
         $userType->key = "user";
-        $userType->name = "Normal UserRequest";
-        $userType->description = "Normal UserRequest";
+        $userType->name = "Normal User";
+        $userType->description = "Normal User";
         $userType->save();
 
 

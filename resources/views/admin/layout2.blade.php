@@ -19,24 +19,13 @@
 </head>
 
 <body>
-
-<div class="ui" style="background-color: #4c1d6e">
-
-    <h2 class="ui header inverted" style="padding: 10px;">
-        <img src="/images/uplogo.png">
-
-        <div class="content">
-            Success Model
-            <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
-        </div>
-    </h2>
-
-</div>
-
 <div class="ui">
     <div class="row">
         <div class="ui large menu " id="MainMenu">
-            <div class="left purple inverted menu">
+            <div class="left menu">
+                <div class="header item">
+                    Success Model - ระบบฐานข้อมูลหนึ่งคณะหนึ่งโมเดล
+                </div>
                 <a class="item active">
                     Main Menu
                 </a>
@@ -92,23 +81,23 @@
                 <div class="header item">
                     Administrator
                 </div>
-                <a class=" <% Request::is('admin/dashboard') ? 'active' : '' %> item" href="/admin">
+                <a class=" {{ Request::is('admin/dashboard') ? 'active' : '' }} item" href="/admin">
                     <i class="home icon"></i>
                     Dashboard
                 </a>
-                <a class=" <% Request::is('admin/faculty') ? 'active' : '' %> item" href="/admin/faculty">
+                <a class=" {{ Request::is('admin/faculty') ? 'active' : '' }} item" href="/admin/faculty">
                     Faculty
                 </a>
 
-                <a class=" <% Request::is('admin/project') ? 'active' : '' %> item" href="/admin/project">
+                <a class=" {{ Request::is('admin/project') ? 'active' : '' }} item" href="/admin/project">
                     Projects
                 </a>
 
-                <a class=" <% Request::is('admin/user') ? 'active' : '' %> item" href="/admin/user">
+                <a class=" {{ Request::is('admin/user') ? 'active' : '' }} item" href="/admin/user">
                     Users
                 </a>
 
-                <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
+                <a class=" {{ Request::is('admin/role') ? 'active' : '' }} item" href="/admin/role">
                     Roles
                 </a>
 

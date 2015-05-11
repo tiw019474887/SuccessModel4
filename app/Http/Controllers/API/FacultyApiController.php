@@ -21,6 +21,7 @@ class FacultyApiController extends Controller {
 	 */
 	public function index()
 	{
+
 		return $this->facultyService->getAll();
 	}
 
@@ -31,6 +32,7 @@ class FacultyApiController extends Controller {
 	 */
 	public function create()
 	{
+
         return $this->facultyService->create();
 	}
 

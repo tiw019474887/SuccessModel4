@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'angularify.semantic', 'flow', 'Project']);
+var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Project']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -97,7 +97,12 @@ app.controller("EditCtrl", function ($scope, $state, project, ProjectService) {
         target: '/api/project/'+$scope.project.id+'/logo',
         singleFile: true,
         method : 'post',
-        testChunks : false
+        testChunks : false,
+        headers: function (file, chunk, isTest) {
+            return {
+                'X-CSRFToken': cookie.get("csrftoken")// call func for getting a cookie
+            }
+        }
     })
 
 

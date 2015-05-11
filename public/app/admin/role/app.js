@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('RoleAdmin', ['ui.router', 'angularify.semantic', 'flow', 'UserType']);
+var app = angular.module('RoleAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Role']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -14,16 +14,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/admin/role/_home.html",
             controller: "HomeCtrl",
             resolve: {
-                userTypes: function (UserTypeService) {
-                    return UserTypeService.all();
+                roles: function (RoleService) {
+                    return RoleService.all();
                 }
             }
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, userTypes) {
+app.controller("HomeCtrl", function ($scope, $state, roles) {
     console.log("HomeCtrl Start...");
 
-    $scope.userTypes = userTypes.data;
+    $scope.roles = roles.data;
 
 });

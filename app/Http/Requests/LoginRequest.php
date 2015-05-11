@@ -3,7 +3,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StoreFacultyPostRequest extends Request {
+class LoginRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -20,11 +20,12 @@ class StoreFacultyPostRequest extends Request {
 	 *
 	 * @return array
 	 */
-	    public function rules()
-    {
+	public function rules()
+	{
         return [
-            'name_th' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'required|max:255',
         ];
-    }
+	}
 
 }

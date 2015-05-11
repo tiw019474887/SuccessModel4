@@ -42,22 +42,9 @@
     </div>
 
     <div class="field">
-        <label>Roles</label>
-
-        <div class="ui floating dropdown upward labeled icon button">
-            <i class="world icon"></i>
-            <span class="text">Select Roles</span>
-
-            <div class="menu">
-                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
-            </div>
-        </div>
-
-        <div class="ui label" ng-repeat="role in user.roles">
-            {{role.name}}
-            <i class="delete icon" ng-click="removeRole(role)"></i>
-        </div>
-
+        <label>User Type</label>
+        <select ng-model="user.user_type" ng-options="opt.name for opt in userTypes">
+        </select>
     </div>
 
     <h4 class="ui dividing header">User Profile</h4>

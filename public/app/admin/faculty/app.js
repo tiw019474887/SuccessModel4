@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('FacultyAdmin', ['ui.router', 'angularify.semantic', 'flow', 'Faculty']);
+var app = angular.module('FacultyAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Faculty']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -97,7 +97,12 @@ app.controller("EditCtrl", function ($scope, $state, faculty, FacultyService) {
         target: '/api/faculty/'+$scope.faculty.id+'/logo',
         singleFile: true,
         method : 'post',
-        testChunks : false
+        testChunks : false,
+        headers: function (file, chunk, isTest) {
+            return {
+                'X-CSRFToken': cookie.get("csrftoken")// call func for getting a cookie
+            }
+        }
     })
 
 

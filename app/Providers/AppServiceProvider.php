@@ -21,7 +21,8 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app->singleton('League\Glide\Server',function($app){
+
+        $this->app->singleton('League\Glide\Server',function($app){
            $filesystem = $app->make('Illuminate\Contracts\Filesystem\Filesystem');
 
             return \League\Glide\ServerFactory::create([

@@ -36,17 +36,13 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
 	protected $hidden = ['password', 'remember_token'];
 
 
-    public function userType(){
-        return $this->belongsTo("\App\Models\UserType","HAS");
-    }
-
 	public function logo(){
 		return $this->hasOne('App\Models\Logo','HAS');
 	}
 
     public function getAuthIdentifier()
     {
-        return $this->email;
+        return $this->id;
     }
 
     public function getAuthPassword()
@@ -72,5 +68,18 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
     public function getReminderEmail()
     {
         return $this->email;
+    }
+
+    public function roles() {
+        return $this->belongsToMany("App\Models\Role","USER_ROLE");
+    }
+
+
+    public function syncRoles(array $roles){
+        $ids = [];
+        foreach($roles as $role){
+            array_push($ids,$role['id']);
+        }
+        $this->roles()->sync($ids,true);
     }
 }

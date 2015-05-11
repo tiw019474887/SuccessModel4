@@ -40,10 +40,6 @@ class ProjectService extends Service{
 
     public function store(array $input){
 
-        if (!$this->hasProjectType($input)){
-            return null;
-        }
-
         $project = new Project();
         $project->fill($input);
         $project->save();
@@ -88,6 +84,21 @@ class ProjectService extends Service{
         $project->logo()->save($logo);
         return $logo;
     }
+
+    public function saveCover($id,Request $input){
+        /* @var Project $project */
+        $project = $this->get($id);
+        $uuid = Uuid::uuid4();
+        $storage_path= "app/projects/$id/cover/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path,$uuid);
+
+        $logo = $this->getCoverFromModel($project);
+        $logo->url = "/img/projects/$id/logo/$uuid";
+        $project->logo()->save($logo);
+        return $logo;
+    }
+
 
 
 }

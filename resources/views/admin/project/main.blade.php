@@ -18,5 +18,4 @@
 @section('javascript')
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/project/app.js"></script>
-    <script type="text/javascript" src="/app/admin/loader.js"></script>
 @stop

@@ -1,12 +1,13 @@
 <?php namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use \Auth;
 use Illuminate\Http\Response;
 use \Input;
 class AuthApiController extends Controller {
 
-    public function authenticate()
+    public function authenticate(LoginRequest $loginRequest)
     {
         $email = Input::get('email');
         $password = Input::get('password');
@@ -16,8 +17,6 @@ class AuthApiController extends Controller {
             return Auth::user();
         }else {
             return \Response::json([
-                "email" => $email,
-                "password" =>$password,
                 "error" => "E-mail or Password is invalid"
             ],500);
         }
@@ -27,5 +26,12 @@ class AuthApiController extends Controller {
         Auth::logout();
         return ["true"];
     }
+
+    public function user(){
+        $user = Auth::user();
+        $user->logo;
+        return Auth::user();
+    }
+
 
 }

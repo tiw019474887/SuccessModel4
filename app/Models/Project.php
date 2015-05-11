@@ -33,6 +33,7 @@ class Project extends \NeoEloquent
 
     public function researchers(){
         return $this->hasMany("App\Models\User","RESEARCH_BY");
+
     }
 
     public function faculty(){
