@@ -5,10 +5,20 @@
                 <input ng-change="searchUser(keyword)" ng-model="keyword" type="text" placeholder="Search users...">
                 <i class="users icon"></i>
             </div>
-            {{keywrod}}
-            <ul>
-                <li ng-repeat="user in users">{{user.firstname}} {{user.lastname}}</li>
-            </ul>
+
+            <div class="ui divided list">
+                <div class="item" ng-repeat="user in users">
+                    <div class="right floated compact ui button">Add</div>
+                    <img class="ui avatar image" src="/images/square-image.png">
+                    <div class="content">
+                        <div class="header">{{user.firstname}} {{user.lastname}}</div>
+                        {{user.email}}
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
     <div class="six wide column">
