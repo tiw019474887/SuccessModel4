@@ -38,6 +38,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
 
     Route::resource('user', 'API\UserApiController');
+    Route::post('user/search', 'API\UserApiController@search');
+
     Route::resource('user.logo', 'API\UserLogoApiController');
     Route::resource('role', 'API\RoleApiController');
 

@@ -34,6 +34,13 @@ angular.module('User',[])
                     method : 'put',
                     data : user
                 })
+            },
+            search : function($keyword){
+                return $http({
+                    url : '/api/user/search',
+                    method : 'post',
+                    data : { keyword : $keyword }
+                })
             }
         }
     })

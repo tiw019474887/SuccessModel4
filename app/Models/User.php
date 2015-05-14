@@ -13,7 +13,7 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
 	use Authenticatable, CanResetPassword;
     use SoftDeletes;
 
-
+    protected $dates = ['deleted_at'];
     /**
 	 * The database table used by the model.
 	 *
@@ -81,5 +81,9 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
             array_push($ids,$role['id']);
         }
         $this->roles()->sync($ids,true);
+    }
+
+    public function faculty(){
+        return $this->hasOne("App\Models\Faculty","WORK_IN");
     }
 }

@@ -1,0 +1,80 @@
+<div class="ui grid">
+    <div class="ten wide column">
+        <div class="ui form">
+            <div class="ui left icon input">
+                <input ng-change="searchUser(keyword)" ng-model="keyword" type="text" placeholder="Search users...">
+                <i class="users icon"></i>
+            </div>
+            {{keywrod}}
+            <ul>
+                <li ng-repeat="user in users">{{user.firstname}} {{user.lastname}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="six wide column">
+
+        <div class="ui fluid card">
+            <div class="content">
+                <div class="header">Member</div>
+                <div class="meta">30 members</div>
+                <div class="description">
+                    <p>
+                    <div class="ui list">
+                        <div class="item">
+                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <div class="content">
+                                <div class="header">Daniel Louise</div>
+                                Friends since 1992
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <div class="content">
+                                <div class="header">Daniel Louise</div>
+                                Friends since 1992
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <div class="content">
+                                <div class="header">Daniel Louise</div>
+                                Friends since 1992
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <div class="content">
+                                <div class="header">Daniel Louise</div>
+                                Friends since 1992
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <div class="content">
+                                <div class="header">Daniel Louise</div>
+                                Friends since 1992
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+                <div class="extra content">
+                    <a>
+                        <i class="plus icon"></i>
+                        Show More
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+</div>

@@ -31,8 +31,8 @@ class Faculty extends \NeoEloquent
         return $this->hasOne('App\Models\Logo','HAS');
     }
 //
-//    public function researchers(){
-//        return $this->hasMany('Researcher','HAS');
-//    }
+    public function users(){
+        return $this->belongsToMany("App\Models\User","WORK_IN");
+    }
 
 }

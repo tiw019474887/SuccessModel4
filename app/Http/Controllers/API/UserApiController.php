@@ -98,4 +98,9 @@ class UserApiController extends Controller {
 		return $this->userService->delete($id);
 	}
 
+    public function search(){
+        return $this->userService->search(Input::all());
+    }
+
+
 }

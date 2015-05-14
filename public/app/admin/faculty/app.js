@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('FacultyAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Faculty']);
+var app = angular.module('FacultyAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Faculty','User']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -36,6 +36,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 faculty: function (FacultyService, $stateParams) {
                     return FacultyService.edit($stateParams.id)
+                },
+                users : function(UserService){
+                    return UserService.all();
                 }
             }
         })
@@ -88,10 +91,12 @@ app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, faculty, FacultyService) {
+app.controller("EditCtrl", function ($scope, $state, faculty,users, FacultyService,UserService,$timeout) {
     console.log("EditCtrl Start...");
 
     $scope.faculty = faculty.data;
+    $scope.users = users.data;
+    //console.log($scope.users);
 
     $scope.myFlow = new Flow({
         target: '/api/faculty/'+$scope.faculty.id+'/logo',
@@ -123,4 +128,31 @@ app.controller("EditCtrl", function ($scope, $state, faculty, FacultyService) {
             alert(response.name_th);
         });
     }
+
+    $('.menu .item').tab();
+    $('.ui.dropdown').dropdown();
+
+    // search segment
+    var tempFilterText = '',
+        filterTextTimeout;
+    $scope.searchUser = function($keyword){
+        if (filterTextTimeout) $timeout.cancel(filterTextTimeout);
+
+        tempFilterText = $keyword;
+        filterTextTimeout = $timeout(function() {
+            $scope.filterText = tempFilterText;
+            //console.log($scope.filterText);
+            if ($scope.filterText.length ==0){
+
+            }else {
+                UserService.search($scope.filterText)
+                    .success(function(response){
+                        $scope.users = response;
+                    });
+            }
+
+        }, 250); // delay 250 ms
+    }
+
+    //end
 });
