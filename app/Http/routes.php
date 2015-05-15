@@ -29,6 +29,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
         Route::get('/admin/user', 'Admin\UserAdminController@index');
         Route::get('/admin/role', 'Admin\AdminController@role');
         Route::get('/admin/project', 'Admin\AdminController@project');
+        Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
 
     });
 
@@ -45,6 +46,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('role', 'API\RoleApiController');
 
     Route::resource('project', 'API\ProjectApiController');
+    Route::resource('project-status', 'API\ProjectStatusApiController');
 
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');

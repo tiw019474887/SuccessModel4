@@ -22,4 +22,8 @@ class AdminController extends Controller {
     public function project(){
         return view('admin.project.main');
     }
+
+    public function projectStatus(){
+        return view('admin.projectStatus.main');
+    }
 }
