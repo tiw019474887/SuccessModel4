@@ -36,6 +36,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
 Route::group(['prefix' => 'api'], function () {
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
+    Route::resource('faculty.user', 'API\FacultyUserApiController');
 
     Route::resource('user', 'API\UserApiController');
     Route::post('user/search', 'API\UserApiController@search');

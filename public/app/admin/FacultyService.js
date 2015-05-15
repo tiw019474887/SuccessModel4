@@ -34,6 +34,27 @@ angular.module('Faculty',[])
                     method : 'put',
                     data : faculty
                 })
+            },
+
+            getUsers : function ($id){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user',
+                    method : 'get'
+                })
+            },
+            addUsers : function($id,$user){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user',
+                    method : 'post',
+                    data : $user
+                })
+            },
+            deleteUsers : function($id,$user){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user/'+$user.id,
+                    method : 'delete',
+                    data : $user
+                })
             }
         }
     })

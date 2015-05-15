@@ -2,9 +2,13 @@
 namespace App\Services;
 use App\Models\Faculty;
 use App\Models\Logo;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
+
+use App\Services\UserService;
 
 /**
  * Created by PhpStorm.
@@ -14,6 +18,7 @@ use Rhumsaa\Uuid\Uuid;
  */
 
 class FacultyService extends Service{
+
 
     public function getAll(){
         return Faculty::with('logo')->get();
@@ -66,6 +71,33 @@ class FacultyService extends Service{
         $logo->url = "/img/faculties/$facultyId/logo/$uuid";
         $faculty->logo()->save($logo);
         return $logo;
+    }
+
+    public function addUser($facultyId,array $input){
+        /* @var Faculty $faculty */
+        $faculty = $this->get($facultyId);
+        $user = User::find($input['id']);
+
+        if($user){
+            $faculty->users()->attach($user->id);
+            return $user;
+        }else {
+            return null;
+        }
+
+    }
+
+    public function deleteUser($facultyId,$userId){
+        /* @var Faculty $faculty */
+        $faculty = $this->get($facultyId);
+        $user = User::find($userId);
+
+        if($user){
+            $faculty->users()->detach([$user->id]);
+            return $user;
+        }else {
+            return null;
+        }
     }
 
 }

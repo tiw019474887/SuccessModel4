@@ -37,8 +37,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 faculty: function (FacultyService, $stateParams) {
                     return FacultyService.edit($stateParams.id)
                 },
-                users : function(UserService){
-                    return UserService.all();
+                facultyUsers : function(FacultyService,$stateParams){
+                    return FacultyService.getUsers($stateParams.id)
+                },
+                users: function (UserService) {
+                    return {data: {}}
                 }
             }
         })
@@ -91,10 +94,11 @@ app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, faculty,users, FacultyService,UserService,$timeout) {
+app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers, FacultyService,UserService,$timeout) {
     console.log("EditCtrl Start...");
 
     $scope.faculty = faculty.data;
+    $scope.facultyUsers = facultyUsers.data;
     $scope.users = users.data;
     //console.log($scope.users);
 
@@ -154,5 +158,36 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users, FacultyServi
         }, 250); // delay 250 ms
     }
 
+    $scope.checkUser = function($user){
+        var countUsers = $scope.facultyUsers.length;
+        for(i=0;i<countUsers;i++){
+            if ($scope.facultyUsers[i].id === $user.id){
+                return true;
+            }
+        }
+        return false;
+    }
     //end
+
+    //add user to faculty
+
+    $scope.addUser = function(user){
+        FacultyService.addUsers($scope.faculty.id,user)
+            .success(function(response){
+                //console.log(response);
+                //alert('view console');
+                $scope.facultyUsers.push(response);
+            })
+    }
+
+    $scope.removeUser = function(user){
+        FacultyService.deleteUsers($scope.faculty.id,user)
+            .success(function(response){
+
+                var index = $scope.facultyUsers.indexOf(user);
+                $scope.facultyUsers.splice(index,1);
+
+            })
+    }
+
 });
