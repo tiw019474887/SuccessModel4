@@ -96,13 +96,29 @@
                     <i class="home icon"></i>
                     Dashboard
                 </a>
+
+                <div class="header item">
+                    Faculty Management
+                </div>
+
                 <a class=" <% Request::is('admin/faculty') ? 'active' : '' %> item" href="/admin/faculty">
                     Faculty
                 </a>
 
+                <div class="header item">
+                    Success Model Management
+                </div>
+
                 <a class=" <% Request::is('admin/project') ? 'active' : '' %> item" href="/admin/project">
                     Projects
                 </a>
+
+                <a class=" <% Request::is('admin/project-status') ? 'active' : '' %> item" href="/admin/project-status">
+                    Project Status
+                </a>
+                <div class="header item">
+                    User Management
+                </div>
 
                 <a class=" <% Request::is('admin/user') ? 'active' : '' %> item" href="/admin/user">
                     Users
@@ -111,7 +127,9 @@
                 <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
                     Roles
                 </a>
-
+                <div class="header item">
+                    Profiles
+                </div>
                 <div class="ui dropdown item">
                     More
                     <i class="dropdown icon"></i>

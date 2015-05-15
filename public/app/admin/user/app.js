@@ -147,8 +147,6 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$co
         $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
     }
 
-    $('.ui.dropdown').dropdown();
-
     $scope.upload = {};
     $scope.upload.myFlow = new Flow({
         target: '/api/user/' + $scope.user.id + '/logo',
@@ -181,4 +179,6 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$co
             $scope.message = response;
         });
     }
+
+    $('.ui.dropdown').dropdown();
 });

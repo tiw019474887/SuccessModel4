@@ -40,4 +40,8 @@ class Project extends \NeoEloquent
         return $this->belongsTo("App\Models\Faculty","HAS");
     }
 
+    public function status(){
+        return $this->belongsTo("App\Models\ProjectStatus","HAS_STATUS");
+    }
+
 }

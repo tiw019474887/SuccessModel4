@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Project']);
+var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Project','ProjectStatus']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -36,6 +36,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 project: function (ProjectService, $stateParams) {
                     return ProjectService.edit($stateParams.id)
+                },
+                statuses : function(ProjectStatusService){
+                    return ProjectStatusService.all();
                 }
             }
         })
@@ -88,10 +91,11 @@ app.controller("AddCtrl", function ($scope, $state, project, ProjectService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, project, ProjectService) {
+app.controller("EditCtrl", function ($scope, $state, project, ProjectService,statuses) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
+    $scope.statuses = statuses.data;
 
     $scope.myFlow = new Flow({
         target: '/api/project/'+$scope.project.id+'/logo',
@@ -124,8 +128,11 @@ app.controller("EditCtrl", function ($scope, $state, project, ProjectService) {
         });
     }
 
-    $('.menu .item')
-        .tab()
-    ;
+    $scope.updateStatus = function(status){
+        $scope.project.status = status;
+    }
+
+    $('.menu .item').tab();
+    $('.ui.dropdown').dropdown();
 
 });

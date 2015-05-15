@@ -45,8 +45,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('user.logo', 'API\UserLogoApiController');
     Route::resource('role', 'API\RoleApiController');
 
-    Route::resource('project', 'API\ProjectApiController');
     Route::resource('project-status', 'API\ProjectStatusApiController');
+    Route::resource('project', 'API\ProjectApiController');
+    Route::resource('project.status','API\ProjectProjectStatusApiController');
+
 
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');

@@ -1,8 +1,10 @@
 <?php
 namespace App\Services;
+
 use App\Models\Project;
 use App\Models\Faculty;
 use App\Models\Logo;
+use App\Models\ProjectStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
@@ -13,22 +15,40 @@ use Rhumsaa\Uuid\Uuid;
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
+class ProjectService extends Service
+{
 
-class ProjectService extends Service{
+    var $withArr = ['faculty', 'cover', 'logo','status'];
 
-    var $withArr = ['faculty','cover','logo'];
+    function __construct(ProjectStatusService $projectStatusService)
+    {
+        $this->projectStatusService = $projectStatusService;
+    }
 
-    public function getAll(){
+
+    public function getAll()
+    {
         return Project::with($this->withArr)->get();
     }
 
-    public function get($id){
+    public function get($id)
+    {
         $project = Project::with($this->withArr)->find($id);
         return $project;
     }
 
-    private function linkToFaculty(Project $project,array $input){
-        if (isset($input['faculty'])){
+    private function linkToStatus(Project $project, array $input){
+        if (isset($input['status'])) {
+            $id = $input['status']['id'];
+            $status = ProjectStatus::find($id);
+            $project->status()->dissociate();
+            $project->status()->associate($status)->save();
+        }
+    }
+
+    private function linkToFaculty(Project $project, array $input)
+    {
+        if (isset($input['faculty'])) {
             $id = $input['faculty']['id'];
             $faculty = Faculty::find($id);
             $project->faculty()->dissociate();
@@ -38,26 +58,30 @@ class ProjectService extends Service{
         return $project;
     }
 
-    public function store(array $input){
+    public function store(array $input)
+    {
 
         $project = new Project();
         $project->fill($input);
         $project->save();
-        $this->linkToFaculty($project,$input);
+        $this->linkToFaculty($project, $input);
+        $this->linkToStatus($project,$input);
         return $project;
     }
 
-    public function save(array $input){
+    public function save(array $input)
+    {
 
-        if (array_has($input,'id')){
+        if (array_has($input, 'id')) {
             $id = $input['id'];
             /* @var Project $project */
             $project = Project::find($id);
             $project->fill($input);
             $project->save();
-            $this->linkToFaculty($project,$input);
+            $this->linkToFaculty($project, $input);
+            $this->linkToStatus($project,$input);
             return $project;
-        }else {
+        } else {
             return $this->store($input);
         }
     }
@@ -67,17 +91,19 @@ class ProjectService extends Service{
         return new Project();
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         return [Project::find($id)->delete()];
     }
 
-    public function saveLogo($id,Request $input){
+    public function saveLogo($id, Request $input)
+    {
         /* @var Project $project */
         $project = $this->get($id);
         $uuid = Uuid::uuid4();
-        $storage_path= "app/projects/$id/logo/";
+        $storage_path = "app/projects/$id/logo/";
         $destination_path = storage_path($storage_path);
-        $input->file('file')->move($destination_path,$uuid);
+        $input->file('file')->move($destination_path, $uuid);
 
         $logo = $this->getLogoFromModel($project);
         $logo->url = "/img/projects/$id/logo/$uuid";
@@ -85,13 +111,14 @@ class ProjectService extends Service{
         return $logo;
     }
 
-    public function saveCover($id,Request $input){
+    public function saveCover($id, Request $input)
+    {
         /* @var Project $project */
         $project = $this->get($id);
         $uuid = Uuid::uuid4();
-        $storage_path= "app/projects/$id/cover/";
+        $storage_path = "app/projects/$id/cover/";
         $destination_path = storage_path($storage_path);
-        $input->file('file')->move($destination_path,$uuid);
+        $input->file('file')->move($destination_path, $uuid);
 
         $logo = $this->getCoverFromModel($project);
         $logo->url = "/img/projects/$id/logo/$uuid";
@@ -99,6 +126,23 @@ class ProjectService extends Service{
         return $logo;
     }
 
+    public function updateStatus($projectId, array $input)
+    {
+
+        $projectStatusId = $input['id'];
+        $projectStatus = $this->projectStatusService->getById($projectStatusId);
+        if ($projectStatus){
+            $project = $this->get($projectId);
+            if($project){
+                /* @var Project $project */
+                $project->status()->dissociate();
+                $project->status()->associate($projectStatus);
+            }
+            return null;
+        }
+        return null;
+
+    }
 
 
 }
