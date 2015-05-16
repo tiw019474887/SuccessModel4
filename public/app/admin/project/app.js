@@ -26,6 +26,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 project: function (ProjectService) {
                     return {data: {}}
+                },
+                statuses : function(ProjectStatusService){
+                    return ProjectStatusService.all();
                 }
             }
         })
@@ -76,7 +79,7 @@ app.controller("HomeCtrl", function ($scope, $state, faculties, ProjectService) 
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, ProjectService) {
+app.controller("AddCtrl", function ($scope, $state, project,statuses, ProjectService) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
@@ -89,6 +92,13 @@ app.controller("AddCtrl", function ($scope, $state, project, ProjectService) {
             alert(response.name_th);
         });
     }
+
+    $scope.statuses = statuses.data;
+
+    $scope.updateStatus = function(status){
+        $scope.project.status = status;
+    }
+    $('.ui.dropdown').dropdown();
 });
 
 app.controller("EditCtrl", function ($scope, $state, project, ProjectService,statuses) {

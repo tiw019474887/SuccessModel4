@@ -123,15 +123,15 @@
                 </div>
             </div>
 
-            <div class="ui attached segment">
+            <div class="ui attached segment" ng-if="!loginComplete">
                 <form class="ui form" ng-submit="login()">
                     <div class="ui fluid left icon input field">
                         <i class="mail icon"></i>
-                        <input ng-model="user.email" type="text" placeholder="E-Mail Address">
+                        <input ng-model="user.email" name="email" type="text" placeholder="E-Mail Address">
                     </div>
                     <div class="ui fluid left icon input field">
                         <i class="lock icon"></i>
-                        <input ng-model="user.password" type="password" placeholder="Password">
+                        <input ng-model="user.password" name="password" type="password" placeholder="Password">
                     </div>
                     <div class="ui grid">
                         <div class="row two column">
@@ -146,6 +146,20 @@
 
 
                 </form>
+            </div>
+            <div class="ui attached segment" ng-if="loginComplete">
+                <div class="ui green message">
+                    <b>ผู้ใช้งาน : </b> {{user.firstname}} {{user.lastname}}
+                </div>
+
+                <div class="ui vertical fluid menu">
+                    <a class="item">
+                        เลือกสิทธิ์การใช้งาน
+                    </a>
+                    <a class="item" ng-repeat="role in user.roles " href="/{{role.key}}">
+                       {{role.name}}
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -172,11 +186,15 @@
     app.controller("LoginCtrl", function ($scope, AuthService) {
         $scope.user = {}
         $scope.message = null;
+        $scope.loginComplete = false;
         $scope.login = function () {
             $scope.user.csrf_token = "<?php echo csrf_token();?>";
             AuthService.login($scope.user).success(function (response) {
-                window.location = "/admin";
+                //window.location = "/admin";
                 //console.log(response);
+                $scope.message = null;
+                $scope.loginComplete = true;
+                $scope.user = response;
             }).error(function (response) {
                 //console.log(response);
                 $scope.message = response;

@@ -31,7 +31,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
         if(\Auth::check()){
-            redirect('/admin');
+            return redirect('/admin');
         }else {
             return redirect('/auth/login');
         }

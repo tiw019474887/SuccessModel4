@@ -14,7 +14,9 @@ class AuthApiController extends Controller {
 
         if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
-            return Auth::user();
+            $user = Auth::user();
+            $user->roles;
+            return $user;
         }else {
             return \Response::json([
                 "error" => "E-mail or Password is invalid"
