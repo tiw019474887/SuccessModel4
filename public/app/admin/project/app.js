@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Project','ProjectStatus']);
+var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow','Faculty', 'Project','ProjectStatus']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -29,6 +29,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 statuses : function(ProjectStatusService){
                     return ProjectStatusService.all();
+                },
+                faculties : function(FacultyService){
+                    return FacultyService.all();
                 }
             }
         })
@@ -42,6 +45,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 statuses : function(ProjectStatusService){
                     return ProjectStatusService.all();
+                },
+                faculties : function(FacultyService){
+                    return FacultyService.all();
                 }
             }
         })
@@ -101,11 +107,12 @@ app.controller("AddCtrl", function ($scope, $state, project,statuses, ProjectSer
     $('.ui.dropdown').dropdown();
 });
 
-app.controller("EditCtrl", function ($scope, $state, project, ProjectService,statuses) {
+app.controller("EditCtrl", function ($scope, $state, project, ProjectService,statuses,faculties) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
     $scope.statuses = statuses.data;
+    $scope.faculties = faculties.data;
 
     $scope.myFlow = new Flow({
         target: '/api/project/'+$scope.project.id+'/logo',
@@ -140,6 +147,10 @@ app.controller("EditCtrl", function ($scope, $state, project, ProjectService,sta
 
     $scope.updateStatus = function(status){
         $scope.project.status = status;
+    }
+
+    $scope.updateFaculty = function(faculty){
+        $scope.project.faculty = faculty;
     }
 
     $('.menu .item').tab();

@@ -126,23 +126,8 @@ class ProjectService extends Service
         return $logo;
     }
 
-    public function updateStatus($projectId, array $input)
-    {
 
-        $projectStatusId = $input['id'];
-        $projectStatus = $this->projectStatusService->getById($projectStatusId);
-        if ($projectStatus){
-            $project = $this->get($projectId);
-            if($project){
-                /* @var Project $project */
-                $project->status()->dissociate();
-                $project->status()->associate($projectStatus);
-            }
-            return null;
-        }
-        return null;
 
-    }
 
 
 }

@@ -9,6 +9,7 @@
     <tr>
         <th class="center aligned one wide">ID</th>
         <th class="center aligned wide">Project Name</th>
+        <th class="center aligned three wide">Faculty</th>
         <th class="center aligned two wide">Status</th>
         <th class="center aligned four wide">Action</th>
     </tr>
@@ -17,6 +18,7 @@
     <tr ng-repeat="project in faculties">
         <td class="collapsing" ng-bind="project.id"></td>
         <td ng-bind="project.name"></td>
+        <td ng-bind="project.faculty.name_th"></td>
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
