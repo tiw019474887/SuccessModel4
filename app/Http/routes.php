@@ -49,11 +49,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
 
-
-
     Route::post('auth/login', 'API\AuthApiController@authenticate');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');
+
+    Route::get('chart/faculty-project','API\ChartApiController@facultyProjectChart');
 
 });
 

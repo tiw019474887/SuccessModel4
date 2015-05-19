@@ -16,6 +16,10 @@
             margin-bottom: -0.5em;
         }
     </style>
+
+    @yield('header')
+
+
 </head>
 
 <body>
@@ -65,7 +69,7 @@
 
 
                 </div>
-                
+
                 <div class="item">
                     Support
                 </div>

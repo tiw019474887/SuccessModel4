@@ -35,4 +35,8 @@ class Faculty extends \NeoEloquent
         return $this->belongsToMany("App\Models\User","WORK_IN");
     }
 
+    public function projects(){
+        return $this->hasMany("App\Models\Project","HAS");
+    }
+
 }
