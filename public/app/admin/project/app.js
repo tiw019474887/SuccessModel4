@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow','Faculty', 'Project','ProjectStatus']);
+var app = angular.module('ProjectAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow','Faculty','User', 'Project','ProjectStatus']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -107,12 +107,14 @@ app.controller("AddCtrl", function ($scope, $state, project,statuses, ProjectSer
     $('.ui.dropdown').dropdown();
 });
 
-app.controller("EditCtrl", function ($scope, $state, project, ProjectService,statuses,faculties) {
+app.controller("EditCtrl", function ($scope, $state, project,UserService, ProjectService,statuses,faculties,$timeout) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
     $scope.statuses = statuses.data;
     $scope.faculties = faculties.data;
+    $scope.keyword;
+
 
     $scope.myFlow = new Flow({
         target: '/api/project/'+$scope.project.id+'/logo',
@@ -151,6 +153,59 @@ app.controller("EditCtrl", function ($scope, $state, project, ProjectService,sta
 
     $scope.updateFaculty = function(faculty){
         $scope.project.faculty = faculty;
+    }
+
+    // search segment
+    var tempFilterText = '',
+        filterTextTimeout;
+    $scope.searchUser = function($keyword){
+        if (filterTextTimeout) $timeout.cancel(filterTextTimeout);
+
+        tempFilterText = $keyword;
+        filterTextTimeout = $timeout(function() {
+            $scope.filterText = tempFilterText;
+            //console.log($scope.filterText);
+            if ($scope.filterText.length ==0){
+
+            }else {
+                UserService.search($scope.filterText)
+                    .success(function(response){
+                        $scope.users = response;
+                    });
+            }
+
+        }, 250); // delay 250 ms
+    }
+    //end search segment
+
+    $scope.checkUser = function(user){
+
+        if(!$scope.project.created_by){
+            $scope.project.created_by = null;
+        }
+        if($scope.project.created_by){
+            if($scope.project.created_by && user){
+                if($scope.project.created_by.id == user.id){
+                    return true;
+                }else {
+                    return false;
+                }
+            }else {
+                return false;
+            }
+
+        }
+
+    }
+
+    $scope.addUser = function(user){
+        $scope.project.created_by = user;
+        $scope.users = null;
+
+    }
+
+    $scope.removeUser = function(user){
+        $scope.project.created_by = null;
     }
 
     $('.menu .item').tab();

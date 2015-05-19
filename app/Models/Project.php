@@ -44,4 +44,8 @@ class Project extends \NeoEloquent
         return $this->belongsTo("App\Models\ProjectStatus","HAS_STATUS");
     }
 
+    public function createdBy(){
+        return $this->belongsTo("App\Models\User","CREATE");
+    }
+
 }

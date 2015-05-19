@@ -5,11 +5,16 @@
 @section('content')
     <h2>Dashboard</h2>
 
-    <div ng-app="DashboardApp">
+    <div ng-app="DashboardApp" class="">
         <div class="ui two column grid">
-            <div class="column">
+            <div class="two column">
+                <div class="ui top attached purple inverted segment">
+                    แผนภูมิแสดงจำนวนโครงการต่อคณะ
+                </div>
+                <div class="ui attached segment">
                 <div ng-controller="ProjectFacultyChartCtrl">
-                    <canvas id="bar" class="chart chart-bar" data="data" labels="labels"></canvas>
+                    <canvas id="bar" style="height: 400px;" class="chart chart-pie" data="data" labels="labels" legend="true">></canvas>
+                </div>
                 </div>
             </div>
 
@@ -29,8 +34,8 @@
         app.controller("ProjectFacultyChartCtrl",function($scope,ChartService){
             ChartService.facultyProjectChart().success(function(response){
                 $scope.labels = response.labels;
-                $scope.data = response.data;
-                $scoep.series = response.series;
+                $scope.data = response.data[0];
+                $scope.series = response.series;
             })
         })
     </script>

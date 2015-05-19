@@ -39,13 +39,6 @@ class RoleSeeder extends Seeder {
         $researcherType->description = "Researcher";
         $researcherType->save();
 
-        $userType = new \App\Models\Role();
-        $userType->key = "user";
-        $userType->name = "Normal User";
-        $userType->description = "Normal User";
-        $userType->save();
-
-
     }
 
 }

@@ -5,6 +5,7 @@ use App\Models\Project;
 use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
@@ -18,7 +19,7 @@ use Rhumsaa\Uuid\Uuid;
 class ProjectService extends Service
 {
 
-    var $withArr = ['faculty', 'cover', 'logo','status'];
+    var $withArr = ['faculty','createdBy', 'cover', 'logo','status'];
 
     function __construct(ProjectStatusService $projectStatusService)
     {
@@ -46,6 +47,17 @@ class ProjectService extends Service
         }
     }
 
+    private  function  linkToUser(Project $project, array $input){
+        if (isset($input['created_by'])) {
+            $id = $input['created_by']['id'];
+            $user = User::find($id);
+            $project->createdBy()->dissociate();
+            $project->createdBy()->associate($user)->save();
+        }else {
+            $project->status()->dissociate();
+        }
+    }
+
     private function linkToFaculty(Project $project, array $input)
     {
         if (isset($input['faculty'])) {
@@ -66,6 +78,7 @@ class ProjectService extends Service
         $project->save();
         $this->linkToFaculty($project, $input);
         $this->linkToStatus($project,$input);
+        $this->linkToUser($project,$input);
         return $project;
     }
 
@@ -80,6 +93,7 @@ class ProjectService extends Service
             $project->save();
             $this->linkToFaculty($project, $input);
             $this->linkToStatus($project,$input);
+            $this->linkToUser($project,$input);
             return $project;
         } else {
             return $this->store($input);
