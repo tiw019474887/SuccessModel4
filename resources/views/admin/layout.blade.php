@@ -48,19 +48,16 @@
             <div class="right menu">
 
 
-                <div class="item ui dropdown " ng-controller="UserCtrl">
+                <div class="item ui dropdown" ng-controller="UserCtrl">
 
-                    <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
-                        <div class="ui small text loader">
-                            Loading
-                        </div>
-                    </div>
-
-                    <img ng-if="!current_user.logo" class="ui avatar avatar-menu image" src="/images/square-image.png">
-                    <img ng-if="current_user.logo" class="ui avatar avatar-menu image" ng-src="{{current_user.logo.url}}?h=200">
-                    <span ng-if="!current_user.email">UserName</span>
-                    <span ng-if="current_user.email" ng-bind="current_user.email"></span>
-
+                    @if(Auth::user()->logo)
+                        <img ng-if="current_user.logo" class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                    @else
+                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                    @endif
+                    @if(Auth::user())
+                        <span><%Auth::user()->email%></span>
+                    @endif
                     <div class="menu">
                         <a class="item">Change Profile</a>
                         <a class="item" ng-click="logout()">Logout</a>
@@ -68,7 +65,7 @@
 
 
                 </div>
-
+                
                 <div class="item">
                     Support
                 </div>
@@ -161,9 +158,9 @@
                 $scope.current_user = {};
                 console.log("UserCtrl MainMenuApp Start...")
 
-                $http.get('/api/auth/user').success(function (response) {
-                    $scope.current_user = response;
-                })
+//                $http.get('/api/auth/user').success(function (response) {
+//                    $scope.current_user = response;
+//                })
 
                 $scope.logout = function () {
                     var logout = $http.get('/api/auth/user');

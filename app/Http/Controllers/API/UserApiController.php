@@ -93,10 +93,10 @@ class UserApiController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		return $this->userService->delete($id);
-	}
+	    public function destroy($id)
+    {
+        return $this->userService->delete($id);
+    }
 
     public function search(){
         return $this->userService->search(Input::all());
