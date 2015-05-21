@@ -31,9 +31,8 @@ class Project extends \NeoEloquent
         return $this->hasOne('App\Models\Logo','HAS');
     }
 
-    public function researchers(){
-        return $this->hasMany("App\Models\User","RESEARCH_BY");
-
+    public function members(){
+        return $this->hasMany("App\Models\User","HAS_MEMBER");
     }
 
     public function faculty(){

@@ -86,4 +86,8 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
     public function faculty(){
         return $this->hasOne("App\Models\Faculty","WORK_IN");
     }
+
+    public function createProject(){
+        return $this->hasMany("App\Models\Project","CREATE");
+    }
 }

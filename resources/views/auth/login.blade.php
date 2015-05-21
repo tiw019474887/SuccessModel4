@@ -34,7 +34,7 @@
 
 <div class="ui padded  grid ">
     <div class="twelve wide column">
-        <div class="ui purple segment">
+        <div class="">
             <div class="ui two column grid">
                 <div class="column">
                     <div class="ui fluid card">

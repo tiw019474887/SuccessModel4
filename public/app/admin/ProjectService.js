@@ -34,6 +34,26 @@ angular.module('Project',[])
                     method : 'put',
                     data : project
                 })
+            },
+            getMembers : function ($id){
+                return $http({
+                    url : '/api/project/' + $id + '/member',
+                    method : 'get'
+                })
+            },
+            addMember : function($id,$user){
+                return $http({
+                    url : '/api/project/' + $id + '/member',
+                    method : 'post',
+                    data : $user
+                })
+            },
+            deleteMember : function($id,$user){
+                return $http({
+                    url : '/api/project/' + $id + '/member/'+$user.id,
+                    method : 'delete',
+                    data : $user
+                })
             }
         }
     })

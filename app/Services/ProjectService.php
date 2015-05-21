@@ -19,7 +19,7 @@ use Rhumsaa\Uuid\Uuid;
 class ProjectService extends Service
 {
 
-    var $withArr = ['faculty','createdBy', 'cover', 'logo','status'];
+    var $withArr = ['faculty', 'createdBy', 'cover', 'logo', 'status'];
 
     function __construct(ProjectStatusService $projectStatusService)
     {
@@ -38,7 +38,8 @@ class ProjectService extends Service
         return $project;
     }
 
-    private function linkToStatus(Project $project, array $input){
+    private function linkToStatus(Project $project, array $input)
+    {
         if (isset($input['status'])) {
             $id = $input['status']['id'];
             $status = ProjectStatus::find($id);
@@ -47,14 +48,19 @@ class ProjectService extends Service
         }
     }
 
-    private  function  linkToUser(Project $project, array $input){
+    private function  linkToUser(Project $project, array $input)
+    {
         if (isset($input['created_by'])) {
             $id = $input['created_by']['id'];
             $user = User::find($id);
-            $project->createdBy()->dissociate();
+            $project->createdBy()->dissociate()->save();
             $project->createdBy()->associate($user)->save();
-        }else {
-            $project->status()->dissociate();
+
+        } else {
+            /* @var User $user */
+            $user = $project->createdBy;
+            $user = User::find($user->id);
+            $user->createProject()->detach($project->id);
         }
     }
 
@@ -77,8 +83,8 @@ class ProjectService extends Service
         $project->fill($input);
         $project->save();
         $this->linkToFaculty($project, $input);
-        $this->linkToStatus($project,$input);
-        $this->linkToUser($project,$input);
+        $this->linkToStatus($project, $input);
+        $this->linkToUser($project, $input);
         return $project;
     }
 
@@ -92,8 +98,8 @@ class ProjectService extends Service
             $project->fill($input);
             $project->save();
             $this->linkToFaculty($project, $input);
-            $this->linkToStatus($project,$input);
-            $this->linkToUser($project,$input);
+            $this->linkToStatus($project, $input);
+            $this->linkToUser($project, $input);
             return $project;
         } else {
             return $this->store($input);
@@ -140,8 +146,34 @@ class ProjectService extends Service
         return $logo;
     }
 
+    public function addMember($proejctId, array $input)
+    {
+        /* @var Faculty $faculty */
+        $project = $this->get($proejctId);
+        $user = User::find($input['id']);
 
+        if ($user) {
+            $project->members()->attach($user->id);
+            return $user;
+        } else {
+            return null;
+        }
 
+    }
+
+    public function deleteMember($proejctId, $userId)
+    {
+        /* @var Faculty $faculty */
+        $project = $this->get($proejctId);
+        $user = User::find($userId);
+
+        if ($user) {
+            $project->members()->detach([$user->id]);
+            return $user;
+        } else {
+            return null;
+        }
+    }
 
 
 }
