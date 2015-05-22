@@ -90,4 +90,19 @@ class FacultyApiController extends Controller {
 		return [$this->facultyService->delete($id)];
 	}
 
+    public function saveLogo($id){
+        $faculty = $this->get($id);
+
+        $uuid = Uuid::uuid4(); // ชื่อไฟล์
+        $storage_path= "app/faculties/$id/logo/"; // พาธ
+        $destination_path = storage_path($storage_path); // เอาไว้ใน storage ถ้าเอาไว้ public ใช้ public_path($path)
+        Input::file('file')->move($destination_path,$uuid); // save ไฟล์
+
+        $logo = $this->getLogoFromModel($faculty);
+
+        $logo->url = "/img/faculties/$id/logo/$uuid";
+        $faculty->logo()->save($logo);
+        return $logo;
+    }
+
 }

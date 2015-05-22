@@ -128,6 +128,7 @@
                 <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
                     Roles
                 </a>
+                <!--
                 <div class="header item">
                     Profiles
                 </div>
@@ -141,6 +142,7 @@
                         <a class="item"><i class="settings icon"></i> Account Settings</a>
                     </div>
                 </div>
+                -->
             </div>
         </div>
         <div class="ui thirteen wide column">

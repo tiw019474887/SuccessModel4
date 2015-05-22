@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('FacultyAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Faculty','User']);
+var app = angular.module('FacultyAdmin', ['ui.router','ngCookies','AppConfig','angularify.semantic', 'flow', 'Faculty','User']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -94,9 +94,8 @@ app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers, FacultyService,UserService,$timeout) {
+app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers, FacultyService,UserService,$timeout,$cookies) {
     console.log("EditCtrl Start...");
-
     $scope.faculty = faculty.data;
     $scope.facultyUsers = facultyUsers.data;
     $scope.users = users.data;
@@ -109,7 +108,7 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
         testChunks : false,
         headers: function (file, chunk, isTest) {
             return {
-                'X-CSRFToken': cookie.get("csrftoken")// call func for getting a cookie
+                'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']// call func for getting a cookie
             }
         }
     })
@@ -127,6 +126,7 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
 
     $scope.save = function () {
         FacultyService.save($scope.faculty).success(function (resposne) {
+
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
