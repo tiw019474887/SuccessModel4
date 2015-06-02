@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('FacultyAdmin', ['ui.router','ngCookies','AppConfig','angularify.semantic', 'flow', 'Faculty','User']);
+var app = angular.module('FacultyAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow', 'Faculty', 'User']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -37,7 +37,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 faculty: function (FacultyService, $stateParams) {
                     return FacultyService.edit($stateParams.id)
                 },
-                facultyUsers : function(FacultyService,$stateParams){
+                facultyUsers: function (FacultyService, $stateParams) {
                     return FacultyService.getUsers($stateParams.id)
                 },
                 users: function (UserService) {
@@ -94,7 +94,7 @@ app.controller("AddCtrl", function ($scope, $state, faculty, FacultyService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers, FacultyService,UserService,$timeout,$cookies) {
+app.controller("EditCtrl", function ($scope, $state, faculty, users, facultyUsers, FacultyService, UserService, $timeout, $cookies) {
     console.log("EditCtrl Start...");
     $scope.faculty = faculty.data;
     $scope.facultyUsers = facultyUsers.data;
@@ -102,10 +102,10 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
     //console.log($scope.users);
 
     $scope.myFlow = new Flow({
-        target: '/api/faculty/'+$scope.faculty.id+'/logo',
+        target: '/api/faculty/' + $scope.faculty.id + '/logo',
         singleFile: true,
-        method : 'post',
-        testChunks : false,
+        method: 'post',
+        testChunks: false,
         headers: function (file, chunk, isTest) {
             return {
                 'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']// call func for getting a cookie
@@ -114,13 +114,13 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
     })
 
 
-    $scope.uploadFile = function(){
+    $scope.uploadFile = function () {
         $scope.myFlow.upload();
     }
 
-    $scope.cancelFile = function (file){
+    $scope.cancelFile = function (file) {
         var index = $scope.myFlow.files.indexOf(file)
-        $scope.myFlow.files.splice(index,1);
+        $scope.myFlow.files.splice(index, 1);
 
     }
 
@@ -139,18 +139,18 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
     // search segment
     var tempFilterText = '',
         filterTextTimeout;
-    $scope.searchUser = function($keyword){
+    $scope.searchUser = function ($keyword) {
         if (filterTextTimeout) $timeout.cancel(filterTextTimeout);
 
         tempFilterText = $keyword;
-        filterTextTimeout = $timeout(function() {
+        filterTextTimeout = $timeout(function () {
             $scope.filterText = tempFilterText;
             //console.log($scope.filterText);
-            if ($scope.filterText.length ==0){
+            if ($scope.filterText.length == 0) {
 
-            }else {
+            } else {
                 UserService.search($scope.filterText)
-                    .success(function(response){
+                    .success(function (response) {
                         $scope.users = response;
                     });
             }
@@ -158,10 +158,10 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
         }, 250); // delay 250 ms
     }
 
-    $scope.checkUser = function($user){
+    $scope.checkUser = function ($user) {
         var countUsers = $scope.facultyUsers.length;
-        for(i=0;i<countUsers;i++){
-            if ($scope.facultyUsers[i].id === $user.id){
+        for (i = 0; i < countUsers; i++) {
+            if ($scope.facultyUsers[i].id === $user.id) {
                 return true;
             }
         }
@@ -171,21 +171,21 @@ app.controller("EditCtrl", function ($scope, $state, faculty,users,facultyUsers,
 
     //add user to faculty
 
-    $scope.addUser = function(user){
-        FacultyService.addUsers($scope.faculty.id,user)
-            .success(function(response){
+    $scope.addUser = function (user) {
+        FacultyService.addUsers($scope.faculty.id, user)
+            .success(function (response) {
                 //console.log(response);
                 //alert('view console');
                 $scope.facultyUsers.push(response);
             })
     }
 
-    $scope.removeUser = function(user){
-        FacultyService.deleteUsers($scope.faculty.id,user)
-            .success(function(response){
+    $scope.removeUser = function (user) {
+        FacultyService.deleteUsers($scope.faculty.id, user)
+            .success(function (response) {
 
                 var index = $scope.facultyUsers.indexOf(user);
-                $scope.facultyUsers.splice(index,1);
+                $scope.facultyUsers.splice(index, 1);
 
             })
     }
