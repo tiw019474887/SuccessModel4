@@ -11046,11 +11046,11 @@ $.fn.sidebar = function(parameters) {
               clickedContext  = ($context.is(event.target))
             ;
             if(clickedInPusher) {
-              module.verbose('User clicked on dimmed page');
+              module.verbose('UserRequest clicked on dimmed page');
               module.hide();
             }
             if(clickedContext) {
-              module.verbose('User clicked on dimmable context (scaled out page)');
+              module.verbose('UserRequest clicked on dimmable context (scaled out page)');
               module.hide();
             }
           },

@@ -11,6 +11,9 @@ angular.module('Faculty',[])
             get : function(id){
                 return  $http.get('/api/faculty/'+id);
             },
+            edit : function(id){
+                return  $http.get('/api/faculty/'+id);
+            },
             create : function(){
                 return $http.get('/api/faculty/create');
             },
@@ -30,6 +33,27 @@ angular.module('Faculty',[])
                     url : '/api/faculty/' + faculty.id,
                     method : 'put',
                     data : faculty
+                })
+            },
+
+            getUsers : function ($id){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user',
+                    method : 'get'
+                })
+            },
+            addUsers : function($id,$user){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user',
+                    method : 'post',
+                    data : $user
+                })
+            },
+            deleteUsers : function($id,$user){
+                return $http({
+                    url : '/api/faculty/' + $id + '/user/'+$user.id,
+                    method : 'delete',
+                    data : $user
                 })
             }
         }

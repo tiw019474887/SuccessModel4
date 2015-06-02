@@ -1,35 +1,26 @@
 <h2>Edit Faculty</h2>
 
-<form class="ui form" ng-submit="save()">
-    <h4 class="ui dividing header">Faculty Information</h4>
+<div class="ui secondary pointing menu">
+    <a class="active item" data-tab="information">Faculty Information</a>
+    <a class="item" data-tab="officers">Faculty Officer</a>
+    <a class="item" data-tab="photos">Photos</a>
+</div>
 
-    <div class="field">
-        <label>Name (TH)</label>
-        <input ng-model="faculty.name_th" type="text" name="name" placeholder="Faculty Name" required="required">
+<div class="ui active tab " data-tab="information">
+    <div class="" ng-include="'/app/admin/faculty/_edit_form.html'">
     </div>
 
-    <div class="field">
-        <label>Logo</label>
+</div>
 
-        <div flow-init="{target: '/upload',  singleFile: true}"
-             flow-files-submitted="$flow.upload()"
-             flow-file-success="$file.msg = $message"
-             flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
-
-            <div class="alert" flow-drop>
-                <img ng-if="$flow.files.length==0" class="ui bordered  small image" src="/images/square-image.png" />
-
-                <div ng-repeat="file in $flow.files">
-                    <img class="ui medium bordered image" flow-img="file" />
-                </div>
-
-            </div>
-
-
-        </div>
+<div class="ui tab " data-tab="officers">
+    <div  ng-include="'/app/admin/faculty/_edit_user.html'">
 
 
     </div>
-    <button type="submit" class="ui primary submit button">Save</button>
-    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
-</form>
+</div>
+
+<div class="ui tab " data-tab="photos">
+    Photos
+</div>
+
+

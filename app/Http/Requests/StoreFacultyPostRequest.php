@@ -1,4 +1,5 @@
-<?php namespace App\Http\Requests;
+<?php
+namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
@@ -19,11 +20,11 @@ class StoreFacultyPostRequest extends Request {
 	 *
 	 * @return array
 	 */
-	public function rules()
-	{
+	    public function rules()
+    {
         return [
             'name_th' => 'required|max:255',
         ];
-	}
+    }
 
 }

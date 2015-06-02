@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Faculty;
 
+
 class DatabaseSeeder extends Seeder {
 
 	/**
@@ -17,10 +18,9 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-        $faculty = new Faculty();
-        $faculty->name_th = "คณะเทคโนโลีสารสนเทศแลการสื่อสาร";
-        $faculty->save();
-		// $this->call('UserTableSeeder');
-	}
+        $this->call("RoleSeeder");
+        $this->call("AdminSeeder");
+        $this->call("FacultySeeder");
+    }
 
 }

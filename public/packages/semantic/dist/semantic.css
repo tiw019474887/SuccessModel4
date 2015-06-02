@@ -6201,7 +6201,7 @@ i.icon.heartbeat:before {
   content: "\f21e";
 }
 
-/* User Actions */
+/* UserRequest Actions */
 
 i.icon.download:before {
   content: "\f019";
@@ -11585,7 +11585,7 @@ ol.ui.horizontal.list li:before,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Loader
@@ -18990,7 +18990,7 @@ ol.ui.horizontal.list li:before,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Table
@@ -20422,7 +20422,7 @@ ol.ui.horizontal.list li:before,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Item
@@ -21437,7 +21437,7 @@ a.ui.card:hover,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Comment
@@ -21597,7 +21597,7 @@ a.ui.card:hover,
 }
 
 /*--------------------
-     User Actions
+     UserRequest Actions
 ---------------------*/
 
 .ui.comments .comment .actions {
@@ -21707,7 +21707,7 @@ a.ui.card:hover,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Feed
@@ -21846,7 +21846,7 @@ a.ui.card:hover,
 }
 
 /*--------------
-      User
+      UserRequest
 ---------------*/
 
 .ui.feed > .event > .content .user {
@@ -22002,7 +22002,7 @@ a.ui.card:hover,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Item
@@ -22493,7 +22493,7 @@ a.ui.card:hover,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Statistic
@@ -22940,7 +22940,7 @@ a.ui.card:hover,
 *******************************/
 
 /*******************************
-    User Variable Overrides
+    UserRequest Variable Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Accordion
@@ -23206,7 +23206,7 @@ a.ui.card:hover,
 }
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Checkbox
@@ -23928,7 +23928,7 @@ body.dimmed.dimmable > :not(.dimmer) {
 *******************************/
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Dropdown
@@ -25127,7 +25127,7 @@ select.ui.dropdown {
 */
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Modal
@@ -25743,7 +25743,7 @@ a.ui.nag {
 *******************************/
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Popup
@@ -26045,7 +26045,7 @@ a.ui.nag {
 *******************************/
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Progress Bar
@@ -27333,7 +27333,7 @@ a.ui.nag {
 *******************************/
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Sidebar
@@ -28180,7 +28180,7 @@ html.ios {
 *******************************/
 
 /*******************************
-        User Overrides
+        UserRequest Overrides
 *******************************/
 /*!
  * # Semantic UI 1.11.6 - Table

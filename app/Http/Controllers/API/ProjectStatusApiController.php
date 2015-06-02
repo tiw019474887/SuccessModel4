@@ -1,18 +1,20 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\API;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\Faculty;
-use App\Services\FacultyService;
+use App\Services\ProjectStatusService;
+use App\Services\RoleService;
 use Illuminate\Http\Request;
-use \Input;
 
-class FacultyController extends Controller {
+class ProjectStatusApiController extends Controller {
 
-    public function __construct(FacultyService $facultyService){
-        $this->facultyService = $facultyService;
+    function __construct(ProjectStatusService $service)
+    {
+        $this->projectStatusService = $service;
+
     }
+
 
     /**
 	 * Display a listing of the resource.
@@ -21,7 +23,7 @@ class FacultyController extends Controller {
 	 */
 	public function index()
 	{
-		return $this->facultyService->getAll();
+		return $this->projectStatusService->all();
 	}
 
 	/**
@@ -31,7 +33,8 @@ class FacultyController extends Controller {
 	 */
 	public function create()
 	{
-        return $this->facultyService->create();
+		return $this->projectStatusService->create();
+
 	}
 
 	/**
@@ -39,9 +42,9 @@ class FacultyController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Requests\StoreFacultyPostRequest $request)
+	public function store()
 	{
-		return $this->facultyService->store(Input::all());
+		return $this->projectStatusService->store(Input::all());
 	}
 
 	/**
@@ -52,18 +55,18 @@ class FacultyController extends Controller {
 	 */
 	public function show($id)
 	{
-		return $this->facultyService->get($id);
+		return $this->projectStatusService->getById($id);
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
+	 *
+	 * @param  int  $id
+	 * @return Response
 	 */
 	public function edit($id)
 	{
-        return $this->facultyService->get($id);
+        return $this->projectStatusService->getById($id);
 	}
 
 	/**
@@ -74,7 +77,7 @@ class FacultyController extends Controller {
 	 */
 	public function update($id)
 	{
-        return $this->facultyService->save(Input::all());
+		return $this->projectStatusService->save(Input::all());
 	}
 
 	/**
@@ -85,7 +88,7 @@ class FacultyController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		return [$this->facultyService->delete($id)];
+		return $this->projectStatusService->delete($id);
 	}
 
 }

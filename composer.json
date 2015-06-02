@@ -1,13 +1,17 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "pchaow/SuccessModel4",
+	"description": "University of Phayao Success Model.",
+	"keywords": ["University","Phayao","Research","Database", "laravel"],
 	"license": "MIT",
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
         "vinelab/neoeloquent": "1.2.*",
-		"barryvdh/laravel-ide-helper": "~2.0"
+		"barryvdh/laravel-ide-helper": "~2.0",
+		"league/glide": "0.3.*",
+		"spatie/laravel-glide": "~2.1",
+		"rhumsaa/uuid": "~2.8",
+        "mews/captcha": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

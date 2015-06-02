@@ -3,7 +3,7 @@ namespace App\Models;
 
 /**
  * Created by PhpStorm.
- * User: chaow
+ * UserRequest: chaow
  * Date: 4/6/2015
  * Time: 12:59 PM
  */
@@ -28,11 +28,15 @@ class Faculty extends \NeoEloquent
 //    }
 //
     public function logo(){
-        return $this->hasOne("Photo","LOGO");
+        return $this->hasOne('App\Models\Logo','HAS');
     }
 //
-//    public function researchers(){
-//        return $this->hasMany('Researcher','HAS');
-//    }
+    public function users(){
+        return $this->belongsToMany("App\Models\User","WORK_IN");
+    }
+
+    public function projects(){
+        return $this->hasMany("App\Models\Project","HAS");
+    }
 
 }

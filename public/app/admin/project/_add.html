@@ -1,0 +1,33 @@
+<h2>Add Project</h2>
+
+<form class="ui form" ng-submit="save()" >
+    <h4 class="ui dividing header">Project Information</h4>
+
+    <div class="field">
+        <label>Project Name</label>
+        <input ng-model="project.name" type="text" name="name" placeholder="Project Name" required="required">
+    </div>
+
+    <div class="field">
+        <label>Project Abstract</label>
+        <textarea rows="5" ng-model="project.abstract" required="required"></textarea>
+    </div>
+
+    <div class="field">
+        <label>Status</label>
+
+        <div class="ui floating dropdown upward labeled icon button">
+            <i class="world icon"></i>
+            <span ng-if="!project.status" class="text">Select Status</span>
+            <span ng-if="project.status" class="text">{{project.status.name}}</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="status in statuses" ng-click="updateStatus(status)">{{status.name}}</div>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>

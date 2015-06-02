@@ -21,7 +21,18 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+
+        $this->app->singleton('League\Glide\Server',function($app){
+           $filesystem = $app->make('Illuminate\Contracts\Filesystem\Filesystem');
+
+            return \League\Glide\ServerFactory::create([
+                'source' => storage_path(),
+                'cache' => storage_path(),
+                'source_path_prefix' => 'app/',
+                'cache_path_prefix' => 'app/.cache',
+                'base_url' =>'img',
+            ]);
+        });
 	}
 
 }
