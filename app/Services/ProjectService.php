@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
+use \Auth;
+
 
 /**
  * Created by PhpStorm.
@@ -173,6 +175,27 @@ class ProjectService extends Service
         } else {
             return null;
         }
+    }
+
+    public function getCurrentResearcherProjects()
+    {
+        $projects = \App\Models\Project::with(['createdBy', 'faculty'])->get();
+
+        $fil_projects = [];
+
+        foreach ($projects as $project) {
+            if ($project->createdBy) {
+                if ($project->createdBy->id == Auth::user()->id) {
+                    if ($project->status) {
+                        if ($project->status->key == 'draft' || $project->status->key == 'published') {
+                            array_push($fil_projects, $project);
+                        }
+                    }
+                }
+            }
+        }
+
+        return $fil_projects;
     }
 
 

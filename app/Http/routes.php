@@ -52,6 +52,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.member', 'API\ProjectMemberApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
+    Route::get('/researcher/projects', 'API\ProjectApiController@researcherProjects');
+
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
@@ -67,3 +69,8 @@ Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Htt
 
 
 Route::get('/register','Guest\RegisterController@registerPage');
+
+Route::get('test',function(){
+
+
+});
