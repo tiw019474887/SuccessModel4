@@ -100,10 +100,11 @@ class UserService extends Service{
 
     public function search(array $input){
         $keyword = $input['keyword'];
-        $users = User::with([])
+        $users = User::with(['faculty','logo'])
             ->where(function($q) use ($keyword){
                 return $q->where('firstname','=~',"(?i).*$keyword.*")->where('lastname','=~',"(?i).*$keyword.*","or");
             })
+            ->take(10)
             ->get();
         return $users;
     }

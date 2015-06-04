@@ -186,6 +186,7 @@ app.controller("EditCtrl", function ($scope, $state, faculty, users, facultyUser
 
                 var index = $scope.facultyUsers.indexOf(user);
                 $scope.facultyUsers.splice(index, 1);
+                user.faculty=null;
 
             })
     }
