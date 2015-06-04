@@ -44,15 +44,25 @@ class FacultyProjectService extends ProjectService
         return $fil_projects;
     }
     public function acceptProject($id,array $input){
-
-        $project = $this->get($id);
-
+        $project = Project::find($id);
+        if($project){
+            $this->linkToUniversityStatus($project,$input);
+        }
+    }
+    private function linkToUniversityStatus(Project $project, array $input)
+    {
+        $university = ProjectStatus::where('key','=','university');
+        if($university){
+            $project->status()->associate($university)->save();
+        }
+        return $project;
     }
 
     public function rejectProject($id,array $input){
-
-
-
-
+        $project = Project::find($id);
+        if($project){
+            $this->linkToDraftStatus($project,$input);
+        }
     }
+
 }

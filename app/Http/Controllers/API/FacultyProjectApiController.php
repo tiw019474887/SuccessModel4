@@ -22,10 +22,14 @@ class FacultyProjectApiController extends Controller {
 
     public function getProjects()
     {
-        //return "HELLO WORLD";
         return $this->facultyProjectService->getProjects();
     }
 
-
+    public function acceptProject($id){
+        return $this->facultyProjectService->acceptProject($id,Input::all());
+    }
+    public function rejectProject($id){
+        return $this->facultyProjectService->rejectProject($id,Input::all());
+    }
 
 }
