@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder {
         $this->call("AdminSeeder");
         $this->call("FacultySeeder");
         $this->call("ProjectStatusSeeder");
+
+
     }
 
 }
