@@ -24,7 +24,7 @@ class FacultyUserApiController extends Controller {
 	{
         /* @var Faculty $faculty */
         $faculty = $this->facultyService->get($facultyId);
-        $users = $faculty->users;
+        $users = $faculty->users()->with(['logo'])->get();
 
         return $users;
 	}
