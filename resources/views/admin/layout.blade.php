@@ -53,9 +53,8 @@
 
 
                 <div class="item ui dropdown" ng-controller="UserCtrl">
-
                     @if(Auth::user()->logo)
-                        <img ng-if="current_user.logo" class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
                     @else
                         <img class="ui avatar avatar-menu image" src="/images/square-image.png">
                     @endif

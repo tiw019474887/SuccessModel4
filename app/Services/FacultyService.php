@@ -79,10 +79,13 @@ class FacultyService extends Service{
         $user = User::find($input['id']);
 
         if($user){
+            if($user->faculty){
+                return response("This user is in another faculty",500);
+            }
             $faculty->users()->attach($user->id);
             return $user;
         }else {
-            return null;
+            return response("This user isn't in Database or removed.",500);
         }
 
     }
