@@ -50,8 +50,6 @@
             </div>
 
             <div class="right menu">
-
-
                 <div class="item ui dropdown" ng-controller="UserCtrl">
                     @if(Auth::user()->logo)
                         <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">

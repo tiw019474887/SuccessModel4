@@ -88,10 +88,11 @@ app.controller("HomeCtrl", function ($scope, $state, faculties, ProjectService) 
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses, ProjectService) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses,faculties,UserService, UserSearchService, ProjectService,$timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
+    $scope.faculties = faculties.data;
 
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
@@ -107,6 +108,66 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, ProjectSe
     $scope.updateStatus = function (status) {
         $scope.project.status = status;
     }
+
+    $scope.updateFaculty = function (faculty) {
+        $scope.project.faculty = faculty;
+    }
+
+    // search segment
+
+    $scope.createdBy = {};
+
+    $scope.createdBy.tempFilterText = '';
+    $scope.createdBy.filterTextTimeout;
+
+    $scope.createdBy.searchUser = function ($keyword) {
+        if ($scope.createdBy.filterTextTimeout) $timeout.cancel($scope.createdBy.filterTextTimeout);
+
+        $scope.createdBy.tempFilterText = $keyword;
+        $scope.createdBy.filterTextTimeout = $timeout(function () {
+            $scope.createdBy.filterText = $scope.createdBy.tempFilterText;
+            //console.log($scope.filterText);
+            if ($scope.createdBy.filterText.length == 0) {
+
+            } else {
+                UserService.search($scope.createdBy.filterText)
+                    .success(function (response) {
+                        $scope.createdBy.users = response;
+                    });
+            }
+
+        }, 250); // delay 250 ms
+    }
+    //end search segment
+
+    $scope.createdBy.checkUser = function (user) {
+
+        if (!$scope.project.created_by) {
+            $scope.project.created_by = null;
+        }
+        if ($scope.project.created_by) {
+            if ($scope.project.created_by && user) {
+                if ($scope.project.created_by.id == user.id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    $scope.createdBy.addUser = function (user) {
+        $scope.project.created_by = user;
+        $scope.createdBy.users = null;
+
+    }
+
+    $scope.createdBy.removeUser = function (user) {
+        $scope.project.created_by = null;
+    }
+
     $('.ui.dropdown').dropdown();
 });
 
