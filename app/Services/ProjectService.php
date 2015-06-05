@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
+use \Auth;
+
 
 /**
  * Created by PhpStorm.

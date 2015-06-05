@@ -32,9 +32,14 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
 
     });
+    Route::get('/researcher', 'Researcher\ResearcherController@index');
+
 
 
 Route::group(['prefix' => 'api'], function () {
+
+    Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
+
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
 
@@ -54,6 +59,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project.image', 'API\ProjectImageApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
 
+
+    Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
+    Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
+    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
+
+
+
     Route::post('auth/login', 'API\AuthApiController@authenticate');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');
@@ -68,3 +80,8 @@ Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Htt
 
 
 Route::get('/register','Guest\RegisterController@registerPage');
+
+Route::get('test',function(){
+
+
+});
