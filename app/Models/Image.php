@@ -21,7 +21,11 @@ class Image extends \NeoEloquent
 
 
     public function faculty(){
-        return $this->morphTo('Faculty','HAS');
+        return $this->morphTo('App\Models\Faculty','HAS_IMAGE');
+    }
+
+    public function project(){
+        return $this->morphTo('App\Models\Project','HAS_IMAGE');
     }
 
 }

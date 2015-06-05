@@ -17,13 +17,13 @@ class Project extends \NeoEloquent
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name','abstract'];
+    protected $fillable = ['name','abstract','content'];
 
     public function cover(){
         return $this->hasOne('App\Models\Image','COVER');
     }
 
-    public function photos(){
+    public function images(){
         return $this->hasMany('App\Models\Image','PHOTO');
     }
 

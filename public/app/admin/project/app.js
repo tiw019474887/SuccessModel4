@@ -2,7 +2,10 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'AppConfig', 'angularify.semantic', 'flow', 'Faculty', 'User', 'Project', 'ProjectStatus']);
+var app = angular.module('ProjectAdmin', ['ui.router', 'AppConfig',
+    'angularify.semantic', 'flow', 'Faculty', 'User', 'Project',
+    'ProjectStatus','ngCkeditor'
+]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -173,7 +176,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses,faculties,
 
 app.controller("EditCtrl", function ($scope, $state, project, UserService, UserSearchService, ProjectService, members, statuses, faculties, $timeout) {
     console.log("EditCtrl Start...");
-
+    this.test_edit = "EEEEEEE";
     $scope.project = project.data;
     $scope.statuses = statuses.data;
     $scope.faculties = faculties.data;
@@ -316,9 +319,20 @@ app.controller("EditCtrl", function ($scope, $state, project, UserService, UserS
         $('.ui.dropdown').dropdown();
     }, 100);
 
-
+    $scope.project_id =20;
 });
 
 app.controller("ProjectMemberCtrl", function ($scope, $state, UserService, ProjectService, $timeout) {
     console.log("ProjectMemberCtrl Start...")
+});
+
+app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService, $timeout){
+    console.log("ProjectPhotoController Start...");
+
+    var self = this;
+
+    self.project_id = $scope.project.id;
+    console.log(self.project_id);
+    console.log($scope.project_id);
+    self.test = "helloworld";
 });
