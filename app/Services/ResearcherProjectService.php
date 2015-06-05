@@ -50,7 +50,7 @@ class ResearcherProjectService extends ProjectService
         return $project;
     }
 
-    private function linkToDraftStatus(Project $project, array $input)
+    protected  function linkToDraftStatus(Project $project, array $input)
     {
         $draft = ProjectStatus::where('key','=','draft');
         if($draft){
@@ -61,10 +61,16 @@ class ResearcherProjectService extends ProjectService
 
     private function  linkToCurrentUser(Project $project, array $input)
     {
-        $user = Auth::user();
+        $user = User::find($user->id);
         if($user){
+
             $project->createdBy()->associate($user)->save();
+        }else{
+            $user = $project->createdBy;
+            $user = User::find($user->id);
+            $user->createProject()->detach($project->id);
         }
+
         return $project;
     }
 
@@ -84,6 +90,7 @@ class ResearcherProjectService extends ProjectService
             $this->linkToFacultyStatus($project,$input);
         }
     }
+
     private function linkToFacultyStatus(Project $project, array $input)
     {
         $faculty = ProjectStatus::where('key','=','faculty');
@@ -92,4 +99,24 @@ class ResearcherProjectService extends ProjectService
         }
         return $project;
     }
+
+    public function delete($id){
+        return Project::find($id)->delete();
+    }
+
+    public function update(array $input){
+        if(array_has($input,'id')){
+            $id = $input['id'];
+            /* @var Project $project */
+            $project = Project::find($id);
+            $project->fill($input);
+            $project->save();
+            $this->linkToCurrentUser($project, $input);
+            $this->linkToFaculty($project, $input);
+            $this->linkToDraftStatus($project, $input);
+
+            return $project;
+        }
+    }
+
 }

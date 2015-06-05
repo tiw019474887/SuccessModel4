@@ -32,4 +32,11 @@ class ResearcherProjectApiController extends Controller {
         return $this->researcherProjectService->submitProject($id,Input::all());
     }
 
+    public function delete($id){
+        return $this->researcherProjectService->delete($id);
+    }
+
+    public function update($id){
+
+    }
 }

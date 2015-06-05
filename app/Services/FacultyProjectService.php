@@ -18,7 +18,7 @@ use \Auth;
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
-class FacultyProjectService extends ProjectService
+class FacultyProjectService extends ResearcherProjectService
 {
 
 
