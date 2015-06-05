@@ -32,6 +32,8 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
 
     });
+    Route::get('/researcher', 'Researcher\ResearcherController@index');
+
 
 
 Route::group(['prefix' => 'api'], function () {
