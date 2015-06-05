@@ -90,4 +90,9 @@ class ProjectApiController extends Controller {
 		return [$this->projectService->delete($id)];
 	}
 
+
+    public function researcherProjects(){
+        return $this->projectService->getCurrentResearcherProjects();
+    }
+
 }
