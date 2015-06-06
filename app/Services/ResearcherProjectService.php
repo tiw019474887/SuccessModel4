@@ -61,14 +61,10 @@ class ResearcherProjectService extends ProjectService
 
     private function  linkToCurrentUser(Project $project, array $input)
     {
-        $user = User::find($user->id);
+        $user = User::all($input);
         if($user){
 
             $project->createdBy()->associate($user)->save();
-        }else{
-            $user = $project->createdBy;
-            $user = User::find($user->id);
-            $user->createProject()->detach($project->id);
         }
 
         return $project;
@@ -111,9 +107,6 @@ class ResearcherProjectService extends ProjectService
             $project = Project::find($id);
             $project->fill($input);
             $project->save();
-            $this->linkToCurrentUser($project, $input);
-            $this->linkToFaculty($project, $input);
-            $this->linkToDraftStatus($project, $input);
 
             return $project;
         }
