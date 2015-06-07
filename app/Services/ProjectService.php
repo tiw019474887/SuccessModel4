@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Image;
 use App\Models\Project;
 use App\Models\Faculty;
 use App\Models\Logo;
@@ -177,25 +178,34 @@ class ProjectService extends Service
         }
     }
 
-    public function getCurrentResearcherProjects()
+    public function getProjectPhotos($projectId){
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        return $project->photos;
+    }
+
+
+    public function saveImage($id, Request $input)
     {
-        $projects = \App\Models\Project::with(['createdBy', 'faculty'])->get();
+        /* @var Project $project */
+        $project = $this->get($id);
+        $uuid = Uuid::uuid4();
+        $storage_path = "app/projects/$id/images/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path, $uuid);
 
-        $fil_projects = [];
+        $image = new Image();
+        $image->url = "/img/projects/$id/images/$uuid";
+        $project->images()->save($image);
+        return $image;
+    }
 
-        foreach ($projects as $project) {
-            if ($project->createdBy) {
-                if ($project->createdBy->id == Auth::user()->id) {
-                    if ($project->status) {
-                        if ($project->status->key == 'draft' || $project->status->key == 'published') {
-                            array_push($fil_projects, $project);
-                        }
-                    }
-                }
-            }
-        }
-
-        return $fil_projects;
+    public function deleteImage($projectId,$imageId)
+    {
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $project->images()->detach($imageId);
+        return [Image::find($imageId)->delete()];
     }
 
 

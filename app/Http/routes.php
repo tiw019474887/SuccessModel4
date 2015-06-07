@@ -56,6 +56,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project-status', 'API\ProjectStatusApiController');
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.member', 'API\ProjectMemberApiController');
+    Route::resource('project.image', 'API\ProjectImageApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
 
 
