@@ -39,6 +39,12 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
 Route::group(['prefix' => 'api'], function () {
 
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
+    Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@acceptProject');
+    Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
+
+    Route::get('university/projects','API\UniversityProjectApiController@getProject');
+    Route::post('university/accept-project','API\UniversityProjectApiController@acceptProject');
+    Route::post('university/reject-project','API\UniversityProjectApiController@rejectProject');
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
