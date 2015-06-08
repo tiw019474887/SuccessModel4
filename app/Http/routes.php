@@ -65,7 +65,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
 
 
-
     Route::post('auth/login', 'API\AuthApiController@authenticate');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');

@@ -61,7 +61,9 @@ class ResearcherProjectService extends ProjectService
 
     private function  linkToCurrentUser(Project $project, array $input)
     {
+
         $user = Auth::user();
+
         if($user){
 
             $project->createdBy()->associate($user)->save();

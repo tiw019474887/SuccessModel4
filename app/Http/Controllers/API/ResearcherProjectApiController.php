@@ -37,6 +37,7 @@ class ResearcherProjectApiController extends Controller {
     }
 
     public function update($id){
+        return $this->researcherProjectService->update(Input::all());
 
     }
 }
