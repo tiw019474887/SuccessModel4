@@ -5,7 +5,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ResearcherProjectAdmin', ['ui.router', 'AppConfig']);
+var app = angular.module('ResearcherProjectAdmin', ['ui.router', 'AppConfig','Researcher']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -17,7 +17,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_home.html",
             controller: "HomeCtrl",
             resolve: {
-
+                faculties: function (ResearcherService) {
+                    return ResearcherService.all();
+                }
             }
         })
         .state('add', {
@@ -25,7 +27,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_add.html",
             controller: "AddCtrl",
             resolve: {
-
+                faculties: function (ResearcherService) {
+                    return ResearcherService.all();
+                }
             }
         })
         .state('edit', {
@@ -33,7 +37,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_edit.html",
             controller: "EditCtrl",
             resolve: {
-
+                faculties: function (ResearcherService) {
+                    return ResearcherService.all();
+                }
             }
         })
 });

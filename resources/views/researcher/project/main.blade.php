@@ -18,6 +18,8 @@
 
 
 @section('javascript')
+    <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
     <script src="/app/admin/loader.js"></script>
     <script src="/app/researcher/project/app.js"></script>
+
 @stop
