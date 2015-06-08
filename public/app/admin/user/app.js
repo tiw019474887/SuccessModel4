@@ -91,6 +91,7 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
     console.log($scope.roles);
 
 
+
     $scope.save = function () {
         UserService.store($scope.user).success(function (resposne) {
             $state.go('home');
@@ -103,7 +104,7 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
     $('.ui.dropdown').dropdown();
 
     $scope.addRole = function(role){
-        found = false;
+        var found = false;
         for(i=0;i<$scope.user.roles.length;i++){
             if($scope.user.roles[i].id == role.id){
                 found = true;

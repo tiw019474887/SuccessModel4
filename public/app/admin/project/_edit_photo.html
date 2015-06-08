@@ -1,44 +1,30 @@
 <div class="" ng-controller="ProjectPhotoController as pc">
 
-    {{pc.test}}
-
-    <div class="ui padded grid">
-        <button class="ui button primary">Add Photos</button>
-    </div>
+    <div flow-init>
 
 
-    <div class="ui five column grid">
+        <div class="ui padded grid">
+            <button flow-btn class="ui button primary">Add Photos</button>
+        </div>
+        <br/>
 
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
+        <div ng-if="$flow.files.length>0">
+            <h3>File Upload</h3>
+
+            <div class="ui five column grid">
+
+                <div class="column" ng-repeat="file in $flow.files">
+                    <img class="ui segment medium image" flow-img="file"/>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
-        </div>
-
-        <div class="column">
-            <img class="ui medium image" src="/images/square-image.png">
+        <div class="ui five column grid">
+            <div class="column" ng-repeat="image in pc.images">
+                <img class="ui medium image" src="/images/square-image.png">
+            </div>
         </div>
 
     </div>
