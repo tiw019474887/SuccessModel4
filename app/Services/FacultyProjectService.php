@@ -34,7 +34,7 @@ class FacultyProjectService extends ResearcherProjectService
                 $projects = $faculty->projects()->with(['status','createdBy'])->get();
                 foreach ($projects as $project) {
                     /* @var Project $project */
-                        if ($project->status->key != 'draft'){
+                        if ($project->status->key = 'faculty'){
                             array_push($fil_projects, $project);
                         }
                     }

@@ -18,7 +18,7 @@ use \Auth;
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
-class UniversityProjectService extends ResearcherProjectService
+class PublishProjectService extends ResearcherProjectService
 {
 
 
@@ -35,37 +35,13 @@ class UniversityProjectService extends ResearcherProjectService
                 $projects = $faculty->projects()->with(['status','createdBy'])->get();
                 foreach ($projects as $project) {
                     /* @var Project $project */
-                    if ($project->status->key = 'university'){
+                    if ($project->status->key = 'publish'){
                         array_push($fil_projects, $project);
                     }
                 }
             }
         }
         return $fil_projects;
-    }
-    public function acceptProject($id,array $input){
-        $project = Project::find($id);
-        if($project){
-            $this->linkToPublish($project,$input);
-        }
-    }
-    private function linkToPublish(Project $project, array $input)
-    {
-        $publish = ProjectStatus::where('key','=','publish');
-        if($publish){
-            $project->status()->associate($publish)->save();
-        }
-        return $project;
-    }
-
-    public function rejectProject($id,array $input){
-        $project = Project::find($id);
-        if($project){
-            $this->linkToFacultyStatus($project,$input);
-        }
-    }
-    public function comment($id){
-
     }
 
 }

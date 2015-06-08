@@ -42,9 +42,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@acceptProject');
     Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
 
-    Route::get('university/projects','API\UniversityProjectApiController@getProject');
-    Route::post('university/accept-project','API\UniversityProjectApiController@acceptProject');
-    Route::post('university/reject-project','API\UniversityProjectApiController@rejectProject');
+    Route::get('university/projects','API\UniversityProjectApiController@getProjects');
+    Route::post('university/accept-project/{id}','API\UniversityProjectApiController@acceptProject');
+    Route::post('university/reject-project{id}','API\UniversityProjectApiController@rejectProject');
+
+    Route::get('publish/projects','API\PublishProjectApiController@getProjects');
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
