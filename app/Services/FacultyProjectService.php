@@ -21,7 +21,6 @@ use \Auth;
 class FacultyProjectService extends ResearcherProjectService
 {
 
-
     public function getProjects()
     {
         $user = Auth::user();
@@ -43,12 +42,14 @@ class FacultyProjectService extends ResearcherProjectService
             }
         return $fil_projects;
     }
+
     public function acceptProject($id,array $input){
         $project = Project::find($id);
         if($project){
             $this->linkToUniversityStatus($project,$input);
         }
     }
+
     private function linkToUniversityStatus(Project $project, array $input)
     {
         $university = ProjectStatus::where('key','=','university');

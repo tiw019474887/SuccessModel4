@@ -54,6 +54,27 @@ angular.module('Project',[])
                     method : 'delete',
                     data : $user
                 })
+            },
+
+            getImages : function($id){
+                return $http({
+                    url : '/api/project/' + $id + '/image',
+                    method : 'get'
+                })
+            },
+            addImage : function($id,$image){
+                return $http({
+                    url : '/api/project/' + $id + '/image',
+                    method : 'post',
+                    data : $image
+                })
+            },
+            deleteImage : function($id,$image){
+                return $http({
+                    url : '/api/project/' + $id + '/image/'+$image.id,
+                    method : 'delete',
+                    data : $image
+                })
             }
         }
     })

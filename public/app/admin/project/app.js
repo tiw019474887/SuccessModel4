@@ -51,9 +51,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 faculties: function (FacultyService) {
                     return FacultyService.all();
-                },
-                members: function (ProjectService, $stateParams) {
-                    return ProjectService.getMembers($stateParams.id);
                 }
             }
         })
@@ -174,8 +171,9 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses,faculties,
     $('.ui.dropdown').dropdown();
 });
 
-app.controller("EditCtrl", function ($scope, $state, project, UserService, UserSearchService, ProjectService, members, statuses, faculties, $timeout) {
+app.controller("EditCtrl", function ($scope, $state, project, UserService, UserSearchService, ProjectService, statuses, faculties, $timeout) {
     console.log("EditCtrl Start...");
+
     this.test_edit = "EEEEEEE";
     $scope.project = project.data;
     $scope.statuses = statuses.data;
@@ -276,43 +274,6 @@ app.controller("EditCtrl", function ($scope, $state, project, UserService, UserS
         $scope.project.created_by = null;
     }
 
-    $scope.projectMembers = members.data;
-
-    $scope.member = UserSearchService.getSearchAjax();
-    $scope.member.addMember = function (user) {
-
-    }
-
-    $scope.member.addMember = function (user) {
-        ProjectService.addMember($scope.project.id, user)
-            .success(function (response) {
-                //console.log(response);
-                //alert('view console');
-                $scope.projectMembers.push(response);
-            })
-    }
-
-    $scope.member.removeMember = function (user) {
-        ProjectService.deleteMember($scope.project.id, user)
-            .success(function (response) {
-                //console.log(response);
-                //alert('view console');
-                var index = $scope.projectMembers.indexOf(user);
-                $scope.projectMembers.splice(index, 1);
-            })
-    }
-
-    $scope.checkUser = function ($user) {
-        var countUsers = $scope.projectMembers.length;
-        for (i = 0; i < countUsers; i++) {
-            if ($scope.projectMembers[i].id === $user.id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     $('.menu .item').tab();
 
     $timeout(function () {
@@ -322,17 +283,86 @@ app.controller("EditCtrl", function ($scope, $state, project, UserService, UserS
     $scope.project_id =20;
 });
 
-app.controller("ProjectMemberCtrl", function ($scope, $state, UserService, ProjectService, $timeout) {
-    console.log("ProjectMemberCtrl Start...")
-});
-
-app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService, $timeout){
-    console.log("ProjectPhotoController Start...");
+app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchService  , $state, UserService, ProjectService, $timeout) {
 
     var self = this;
 
-    self.project_id = $scope.project.id;
-    console.log(self.project_id);
-    console.log($scope.project_id);
-    self.test = "helloworld";
+    $scope.initProjectMemberCtrl = function(){
+        console.log("ProjectMemberCtrl Start...")
+        ProjectService.getMembers($stateParams.id).success(function(resposne){
+            self.projectMembers = resposne;
+        });
+    }
+
+    $scope.initProjectMemberCtrl();
+
+    self.member = UserSearchService.getSearchAjax();
+    self.member.addMember = function (user) {
+
+    }
+
+    self.member.addMember = function (user) {
+        ProjectService.addMember($scope.project.id, user)
+            .success(function (response) {
+                //console.log(response);
+                //alert('view console');
+                self.projectMembers.push(response);
+            })
+    }
+
+    self.member.removeMember = function (user) {
+        console.log(user);
+        ProjectService.deleteMember($scope.project.id, user)
+            .success(function (response) {
+                //console.log(response);
+                //alert('view console');
+                var index = self.findUser(user);
+                if(index != -1){
+                    self.projectMembers.splice(index, 1);
+                }
+            })
+    }
+
+    self.findUser = function(user){
+        var countUsers = self.projectMembers.length;
+        var i=0;
+        for (i = 0; i < countUsers; i++) {
+            if (self.projectMembers[i].id === user.id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    self.checkUser = function ($user) {
+        var countUsers = self.projectMembers.length;
+        var i=0;
+        for (i = 0; i < countUsers; i++) {
+            if (self.projectMembers[i].id === $user.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+});
+
+app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService, $timeout){
+
+    var self = this;
+    $scope.initProjectPhotoController = function(){
+        console.log("ProjectPhotoController Start...");
+        self.project = $scope.project;
+        self.images=[];
+    }
+
+    self.loadImages = function(){
+        ProjectService.getImages(self.project.id).success(function(response){
+            self.images = response;
+        })
+    };
+
+    $scope.initProjectPhotoController();
+
+
 });
