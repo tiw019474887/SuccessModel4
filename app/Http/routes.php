@@ -82,5 +82,11 @@ Route::get('/register','Guest\RegisterController@registerPage');
 
 Route::get('test',function(){
 
+    \App\Models\Project::reindex();
+
+});
+
+Route::get('test2',function(){
+
 
 });

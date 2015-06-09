@@ -4,7 +4,7 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'AppConfig',
     'angularify.semantic', 'flow', 'Faculty', 'User', 'Project',
-    'ProjectStatus','ngCkeditor'
+    'ProjectStatus','ngCkeditor','ngCookies'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -347,13 +347,25 @@ app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchServ
 
 });
 
-app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService, $timeout){
+app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService,$cookies,$timeout){
 
     var self = this;
     $scope.initProjectPhotoController = function(){
         console.log("ProjectPhotoController Start...");
         self.project = $scope.project;
         self.images=[];
+
+        self.myFlow = new Flow({
+            target: '/api/project/' + self.project.id + '/image',
+            singleFile: true,
+            method: 'post',
+            testChunks: false,
+            headers: function (file, chunk, isTest) {
+                return {
+                    'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']// call func for getting a cookie
+                }
+            }
+        })
     }
 
     self.loadImages = function(){
@@ -362,7 +374,9 @@ app.controller("ProjectPhotoController",function($scope, $state, UserService, Pr
         })
     };
 
-    $scope.initProjectPhotoController();
 
+
+
+    $scope.initProjectPhotoController();
 
 });
