@@ -15,9 +15,9 @@ class Comment extends \NeoEloquent
 
     use SoftDeletes;
 
-    protected $label = ['Project'];
+    protected $label = ['Comment'];
 
-    protected $fillable = ['name','abstract','content'];
+    protected $fillable = ['comment'];
 
     public function project(){
         return $this->hasOne("App\Models\Project","ON");

@@ -15,9 +15,9 @@ class Comment extends \NeoEloquent
 
     use SoftDeletes;
 
-    protected $label = ['Project'];
+    protected $label = ['Comments'];
 
-    protected $fillable = ['name','abstract','content'];
+    protected $fillable = ['comments'];
 
 
     public function user(){
