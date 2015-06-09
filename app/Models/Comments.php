@@ -20,7 +20,7 @@ class Comment extends \NeoEloquent
     protected $fillable = ['comments'];
 
 
-    public function user(){
+    public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
 

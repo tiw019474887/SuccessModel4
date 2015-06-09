@@ -22,7 +22,7 @@ class Comment extends \NeoEloquent
     public function project(){
         return $this->hasOne("App\Models\Project","ON");
     }
-    public function user(){
+    public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
     public function comments(){

@@ -46,7 +46,7 @@ class Project extends \NeoEloquent
     public function createdBy(){
         return $this->belongsTo("App\Models\User","CREATE");
     }
-    public function project(){
+    public function comment(){
         return $this->belongsToMany("App\Models\Comment","ON");
     }
 
