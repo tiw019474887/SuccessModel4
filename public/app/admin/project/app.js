@@ -4,7 +4,7 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'AppConfig',
     'angularify.semantic', 'flow', 'Faculty', 'User', 'Project',
-    'ProjectStatus','ngCkeditor','ngCookies'
+    'ProjectStatus', 'ngCkeditor', 'ngCookies'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -88,7 +88,7 @@ app.controller("HomeCtrl", function ($scope, $state, faculties, ProjectService) 
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses,faculties,UserService, UserSearchService, ProjectService,$timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
@@ -280,16 +280,16 @@ app.controller("EditCtrl", function ($scope, $state, project, UserService, UserS
         $('.ui.dropdown').dropdown();
     }, 100);
 
-    $scope.project_id =20;
+    $scope.project_id = 20;
 });
 
-app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchService  , $state, UserService, ProjectService, $timeout) {
+app.controller("ProjectMemberCtrl", function ($scope, $stateParams, UserSearchService, $state, UserService, ProjectService, $timeout) {
 
     var self = this;
 
-    $scope.initProjectMemberCtrl = function(){
+    $scope.initProjectMemberCtrl = function () {
         console.log("ProjectMemberCtrl Start...")
-        ProjectService.getMembers($stateParams.id).success(function(resposne){
+        ProjectService.getMembers($stateParams.id).success(function (resposne) {
             self.projectMembers = resposne;
         });
     }
@@ -317,15 +317,15 @@ app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchServ
                 //console.log(response);
                 //alert('view console');
                 var index = self.findUser(user);
-                if(index != -1){
+                if (index != -1) {
                     self.projectMembers.splice(index, 1);
                 }
             })
     }
 
-    self.findUser = function(user){
+    self.findUser = function (user) {
         var countUsers = self.projectMembers.length;
-        var i=0;
+        var i = 0;
         for (i = 0; i < countUsers; i++) {
             if (self.projectMembers[i].id === user.id) {
                 return i;
@@ -336,7 +336,7 @@ app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchServ
 
     self.checkUser = function ($user) {
         var countUsers = self.projectMembers.length;
-        var i=0;
+        var i = 0;
         for (i = 0; i < countUsers; i++) {
             if (self.projectMembers[i].id === $user.id) {
                 return true;
@@ -347,36 +347,41 @@ app.controller("ProjectMemberCtrl", function ($scope,$stateParams,UserSearchServ
 
 });
 
-app.controller("ProjectPhotoController",function($scope, $state, UserService, ProjectService,$cookies,$timeout){
+app.controller("ProjectPhotoController", function ($scope, $state, UserService, ProjectService, $cookies, $timeout) {
 
     var self = this;
-    $scope.initProjectPhotoController = function(){
+    $scope.initProjectPhotoController = function () {
         console.log("ProjectPhotoController Start...");
         self.project = $scope.project;
-        self.images=[];
+        self.images = [];
 
         self.myFlow = new Flow({
             target: '/api/project/' + self.project.id + '/image',
-            singleFile: true,
+            singleFile: false,
             method: 'post',
             testChunks: false,
             headers: function (file, chunk, isTest) {
                 return {
-                    'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']// call func for getting a cookie
+                    'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')// call func for getting a cookie
                 }
             }
         })
     }
 
-    self.loadImages = function(){
-        ProjectService.getImages(self.project.id).success(function(response){
-            self.images = response;
-        })
+    self.loadImages = function () {
+        ProjectService.getImages(self.project.id)
+            .success(function (response) {
+                self.images = response;
+                console.log(response);
+            })
     };
 
 
-
+    self.uploadFiles = function () {
+        console.log("do uploading");
+        self.myFlow.upload();
+    }
 
     $scope.initProjectPhotoController();
-
+    self.loadImages();
 });
