@@ -18,8 +18,9 @@ use \Auth;
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
-class FacultyProjectService extends ResearcherProjectService
+class UniversityProjectService extends ResearcherProjectService
 {
+
 
     public function getProjects()
     {
@@ -34,27 +35,25 @@ class FacultyProjectService extends ResearcherProjectService
                 $projects = $faculty->projects()->with(['status','createdBy'])->get();
                 foreach ($projects as $project) {
                     /* @var Project $project */
-                        if ($project->status->key = 'faculty'){
-                            array_push($fil_projects, $project);
-                        }
+                    if ($project->status->key = 'university'){
+                        array_push($fil_projects, $project);
                     }
                 }
             }
+        }
         return $fil_projects;
     }
-
     public function acceptProject($id,array $input){
         $project = Project::find($id);
         if($project){
-            $this->linkToUniversityStatus($project,$input);
+            $this->linkToPublish($project,$input);
         }
     }
-
-    private function linkToUniversityStatus(Project $project, array $input)
+    private function linkToPublish(Project $project, array $input)
     {
-        $university = ProjectStatus::where('key','=','university');
-        if($university){
-            $project->status()->associate($university)->save();
+        $publish = ProjectStatus::where('key','=','publish');
+        if($publish){
+            $project->status()->associate($publish)->save();
         }
         return $project;
     }
@@ -62,7 +61,7 @@ class FacultyProjectService extends ResearcherProjectService
     public function rejectProject($id,array $input){
         $project = Project::find($id);
         if($project){
-            $this->linkToDraftStatus($project,$input);
+            $this->linkToFacultyStatus($project,$input);
         }
     }
     public function comment($id){
