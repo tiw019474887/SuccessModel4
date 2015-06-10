@@ -5,7 +5,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ResearcherProjectAdmin', ['ui.router', 'AppConfig','Researcher']);
+var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig','Researcher']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -17,8 +17,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_home.html",
             controller: "HomeCtrl",
             resolve: {
-                faculties: function (ResearcherService) {
-                    return ResearcherService.all();
+                projects: function (ResearcherService) {
+                    return ResearcherService.getProjects();
                 }
             }
         })
@@ -27,9 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_add.html",
             controller: "AddCtrl",
             resolve: {
-                faculties: function (ResearcherService) {
-                    return ResearcherService.all();
-                }
+
             }
         })
         .state('edit', {
@@ -37,20 +35,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_edit.html",
             controller: "EditCtrl",
             resolve: {
-                faculties: function (ResearcherService) {
-                    return ResearcherService.all();
-                }
+
             }
         })
 });
 
-app.controller("HomeCtrl", function ($scope) {
+app.controller("HomeCtrl", function ($scope,projects) {
     console.log("HomeCtrl Start...");
+    $scope.projects = projects.data;
+
+
 
 });
 
 app.controller("AddCtrl", function ($scope) {
-
+    console.log("AddCtrl Start...");
 });
 
 app.controller("EditCtrl", function ($scope) {

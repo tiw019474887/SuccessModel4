@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div ng-app="UserAdmin">
+    <div ng-app="RoleAdmin">
         <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
             <div class="ui large text loader">
                 Loading
@@ -15,9 +15,7 @@
 @stop
 
 
-
 @section('javascript')
-    <script type="text/javascript" src="/app/admin/UserService.js"></script>
     <script type="text/javascript" src="/app/admin/RoleService.js"></script>
-    <script type="text/javascript" src="/app/admin/user/app.js"></script>
+    <script type="text/javascript" src="/app/admin/role/app.js"></script>
 @stop

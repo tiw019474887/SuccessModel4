@@ -33,6 +33,8 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
 
     });
     Route::get('/researcher', 'Researcher\ResearcherController@index');
+    Route::get('/faculty', 'Faculty\FacultyController@index');
+
 
 
 

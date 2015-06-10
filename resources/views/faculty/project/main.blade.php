@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div ng-app="ResearcherProject">
+    <div ng-app="FacultyProject">
         <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
             <div class="ui large text loader">
                 Loading
@@ -18,8 +18,8 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
+    <script type="text/javascript" src="/app/faculty/FacultyService.js"></script>
     <script src="/app/admin/loader.js"></script>
-    <script src="/app/researcher/project/app.js"></script>
+    <script src="/app/faculty/project/app.js"></script>
 
 @stop
