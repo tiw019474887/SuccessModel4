@@ -174,7 +174,6 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 app.controller("EditCtrl", function ($scope, $state, project, UserService, UserSearchService, ProjectService, statuses, faculties, $timeout) {
     console.log("EditCtrl Start...");
 
-    this.test_edit = "EEEEEEE";
     $scope.project = project.data;
     $scope.statuses = statuses.data;
     $scope.faculties = faculties.data;
@@ -395,6 +394,7 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
             .success(function(response){
                 var i=0;
                 var index = -1;
+
                 for(i=0;i<self.images.length;i++){
                     if(self.images[i].id == image.id){
                         index = i;
