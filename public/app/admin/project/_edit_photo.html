@@ -8,7 +8,8 @@
         </div>
         <div class="ui row padded grid">
             <div ng-if="$flow.files.length>0">
-                <h3>File Upload <span> <button ng-click="pc.uploadFiles()" class="ui small button positive">Upload</button></span>
+                <h3>File Upload <span> <button ng-click="pc.uploadFiles()" class="ui small button positive">Upload
+                </button></span>
                 </h3>
 
                 <div class="ui five column grid">
@@ -23,7 +24,7 @@
         </div>
 
         <div class="ui purple inverted top attached segment">
-                <h4>Project's Photos</h4>
+            <h4>Project's Photos</h4>
         </div>
 
         <div class="ui attached segment">
@@ -32,7 +33,14 @@
 
                 <div class="ui five column grid ">
                     <div class="column" ng-repeat="image in pc.images">
-                        <img class="ui medium image" ng-src="{{image.url}}?w=300&h=300&fit=crop&crop=top">
+
+                        <div class="ui fluid image" ng-mouseover="selected=$index" ng-mouseleave="selected=-1">
+                            <a ng-click="pc.deleteImage(image)" ng-show="selected == $index" class="ui red corner label">
+                                <i class="trash icon"></i>
+                            </a>
+                            <img class="ui medium image" ng-src="{{image.url}}?w=300&h=300&fit=crop&crop=top">
+                        </div>
+
                     </div>
                 </div>
             </div>

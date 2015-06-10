@@ -372,10 +372,9 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
         ProjectService.getImages(self.project.id)
             .success(function (response) {
                 self.images = response;
-                console.log(response);
+                //console.log(response);
             })
     };
-
 
     self.uploadFiles = function () {
         console.log("do uploading");
@@ -389,6 +388,23 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
         var file = JSON.parse($message);
         self.images.push(file);
         $flow.removeFile($file);
+    }
+
+    self.deleteImage = function(image){
+        ProjectService.deleteImage(self.project.id,image)
+            .success(function(response){
+                var i=0;
+                var index = -1;
+                for(i=0;i<self.images.length;i++){
+                    if(self.images[i].id == image.id){
+                        index = i;
+                        break;
+                    }
+                }
+                if(index != -1 ){
+                    self.images.splice(index,1);
+                }
+            })
     }
 
     $scope.initProjectPhotoController();

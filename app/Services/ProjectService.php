@@ -178,10 +178,11 @@ class ProjectService extends Service
         }
     }
 
-    public function getProjectPhotos($projectId){
+    public function getProjectImages($projectId){
         /* @var Project $project */
         $project = Project::find($projectId);
-        return $project->photos;
+        $images = $project->images()->orderBy('created_at','asc')->get();
+        return $images;
     }
 
 
@@ -203,9 +204,14 @@ class ProjectService extends Service
     public function deleteImage($projectId,$imageId)
     {
         /* @var Project $project */
+        /* @var Image $image */
         $project = Project::find($projectId);
-        $project->images()->detach($imageId);
-        return [Image::find($imageId)->delete()];
+        $image = Image::find($imageId);
+        $project->images()->detach($image->id);
+        if($image->delete()){
+            return $image;
+        }
+        return response("Cannot Delete image",400);
     }
 
 
