@@ -34,6 +34,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
     });
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
+    Route::get('/university', 'University\UniversityController@index');
 
 
 
@@ -46,7 +47,7 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('university/projects','API\UniversityProjectApiController@getProjects');
     Route::post('university/accept-project/{id}','API\UniversityProjectApiController@acceptProject');
-    Route::post('university/reject-project{id}','API\UniversityProjectApiController@rejectProject');
+    Route::post('university/reject-project/{id}','API\UniversityProjectApiController@rejectProject');
 
     Route::get('publish/projects','API\PublishProjectApiController@getProjects');
 
