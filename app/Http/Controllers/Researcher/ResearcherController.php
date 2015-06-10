@@ -9,9 +9,7 @@ class ResearcherController  extends Controller {
 	{
 		return view('researcher.project.main');
 	}
-    public function project(){
-        return view('researcher.project.main');
-    }
+
 
 
 }

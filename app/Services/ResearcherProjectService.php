@@ -24,7 +24,7 @@ class ResearcherProjectService extends ProjectService
 
     public function getProjects()
     {
-        $projects = \App\Models\Project::with(['createdBy', 'faculty'])->get();
+        $projects = \App\Models\Project::with(['createdBy', 'faculty','status'])->get();
 
         $fil_projects = [];
 
@@ -89,7 +89,7 @@ class ResearcherProjectService extends ProjectService
         }
     }
 
-    private function linkToFacultyStatus(Project $project, array $input)
+    protected  function linkToFacultyStatus(Project $project, array $input)
     {
         $faculty = ProjectStatus::where('key','=','faculty');
         if($faculty){
