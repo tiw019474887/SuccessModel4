@@ -1,6 +1,7 @@
 <div class="" ng-controller="ProjectPhotoController as pc">
 
-    <div flow-init flow-object="pc.myFlow">
+    <div flow-init flow-object="pc.myFlow"
+         flow-file-success="pc.addFileToList($file, $message, $flow)">
 
         <div class="ui row padded grid">
             <button flow-btn class="ui button primary">Add Photos</button>
@@ -26,8 +27,6 @@
         </div>
 
         <div class="ui attached segment">
-
-
 
             <div class="row">
 

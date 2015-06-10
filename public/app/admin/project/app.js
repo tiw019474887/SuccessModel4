@@ -382,6 +382,15 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
         self.myFlow.upload();
     }
 
+    self.addFileToList = function($file,$message,$flow){
+        //console.log($file);
+        //console.log($message);
+
+        var file = JSON.parse($message);
+        self.images.push(file);
+        $flow.removeFile($file);
+    }
+
     $scope.initProjectPhotoController();
     self.loadImages();
 });
