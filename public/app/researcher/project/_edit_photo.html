@@ -1,0 +1,31 @@
+<div class="" ng-controller="ProjectPhotoController as pc">
+
+    <div flow-init>
+
+
+        <div class="ui padded grid">
+            <button flow-btn class="ui button primary">Add Photos</button>
+        </div>
+        <br/>
+
+        <div ng-if="$flow.files.length>0">
+            <h3>File Upload</h3>
+
+            <div class="ui five column grid">
+
+                <div class="column" ng-repeat="file in $flow.files">
+                    <img class="ui segment medium image" flow-img="file"/>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="ui five column grid">
+            <div class="column" ng-repeat="image in pc.images">
+                <img class="ui medium image" src="/images/square-image.png">
+            </div>
+        </div>
+
+    </div>
+</div>
