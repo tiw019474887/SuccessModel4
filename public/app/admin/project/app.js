@@ -380,7 +380,7 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
         self.myFlow.upload();
     }
 
-    self.addFileToList = function($file,$message,$flow){
+    self.addFileToList = function ($file, $message, $flow) {
         //console.log($file);
         //console.log($message);
 
@@ -389,22 +389,26 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
         $flow.removeFile($file);
     }
 
-    self.deleteImage = function(image){
-        ProjectService.deleteImage(self.project.id,image)
-            .success(function(response){
-                var i=0;
-                var index = -1;
+    self.deleteImage = function (image) {
 
-                for(i=0;i<self.images.length;i++){
-                    if(self.images[i].id == image.id){
-                        index = i;
-                        break;
+        if (confirm("Do you want to delete this image")) {
+            ProjectService.deleteImage(self.project.id, image)
+                .success(function (response) {
+                    var i = 0;
+                    var index = -1;
+
+                    for (i = 0; i < self.images.length; i++) {
+                        if (self.images[i].id == image.id) {
+                            index = i;
+                            break;
+                        }
                     }
-                }
-                if(index != -1 ){
-                    self.images.splice(index,1);
-                }
-            })
+                    if (index != -1) {
+                        self.images.splice(index, 1);
+                    }
+                })
+        }
+
     }
 
     $scope.initProjectPhotoController();
