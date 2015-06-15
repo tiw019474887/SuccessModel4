@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\File;
 use App\Models\Image;
 use App\Models\Project;
 use App\Models\Faculty;
@@ -185,6 +186,31 @@ class ProjectService extends Service
         return $images;
     }
 
+    public function getProjectFiles($projectId){
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $files = $project->files()->orderBy('created_at','asc')->get();
+        return $files;
+    }
+
+    public function saveFile($id,Request $input){
+
+        /* @var Project $project */
+        $project = $this->get($id);
+        $uuid = Uuid::uuid4();
+        $storage_path = "app/projects/$id/files/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path, $uuid);
+
+        $origin_name = $input->file('file')->getClientOriginalName();
+
+
+        $file = new File();
+        $file->url = "/img/projects/$id/files/$uuid";
+        $file->origin_name = $origin_name;
+        $project->files()->save($file);
+        return $file;
+    }
 
     public function saveImage($id, Request $input)
     {
@@ -212,6 +238,19 @@ class ProjectService extends Service
             return $image;
         }
         return response("Cannot Delete image",400);
+    }
+
+    public function deleteFile($projectId,$fileId)
+    {
+        /* @var Project $project */
+        /* @var File $file */
+        $project = Project::find($projectId);
+        $file = File::find($fileId);
+        $project->files()->detach($file->id);
+        if($file->delete()){
+            return $file;
+        }
+        return response("Cannot Delete File",400);
     }
 
 
