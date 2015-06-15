@@ -68,7 +68,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project.file', 'API\ProjectFileApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
 
-
     Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
     Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
