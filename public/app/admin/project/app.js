@@ -416,3 +416,27 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
     $scope.initProjectPhotoController();
     self.loadImages();
 });
+
+app.controller("ProjectFileController", function ($scope, $state, UserService, ProjectService, $cookies, $timeout) {
+
+    var self = this;
+    $scope.initProjectFileController = function () {
+        console.log("ProjectFileController Start...");
+        self.project = $scope.project;
+        self.files = [];
+
+        self.myFlow = new Flow({
+            target: '/api/project/' + self.project.id + '/file',
+            singleFile: true,
+            method: 'post',
+            testChunks: false,
+            headers: function (file, chunk, isTest) {
+                return {
+                    'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')// call func for getting a cookie
+                }
+            }
+        })
+    }
+
+    $scope.initProjectFileController();
+});
