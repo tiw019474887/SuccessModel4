@@ -67,4 +67,8 @@ class Project extends \NeoEloquent
         return $this->belongsToMany("App\Models\Comment","ON");
     }
 
+    public function files(){
+        return $this->belongsToMany("App\Models\File","FILE");
+    }
+
 }
