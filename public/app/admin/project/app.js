@@ -375,6 +375,8 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
             })
     };
 
+
+
     self.uploadFiles = function () {
         console.log("do uploading");
         self.myFlow.upload();
