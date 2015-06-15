@@ -13,8 +13,6 @@ use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 class Image extends \NeoEloquent
 {
 
-    use SoftDeletes;
-
     protected $label = ['Image'];
 
     protected $fillable = ['url'];
