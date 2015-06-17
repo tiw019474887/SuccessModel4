@@ -44,8 +44,11 @@
                 <div class="ui feed">
 
                     <div class="event" ng-show="pc.file">
-                        <div class="label">
-                            <img src="/images/square-image.png">
+                        <div class="label" ng-switch="file.origin_ext">
+                            <i ng-switch-when="doc" class="file world outline icon"></i>
+                            <i ng-switch-when="docx" class="file word outline icon"></i>
+                            <i ng-switch-when="pdf" class="file pdf outline icon"></i>
+                            <i ng-switch-default="default" class="file text outline icon"></i>
                         </div>
                         <div class="content">
                             <a href="/downloads/{{file.origin_name}}{{file.url}}">{{file.origin_name}}</a>
@@ -68,8 +71,11 @@
                 <div class="ui feed">
 
                     <div class="event" ng-repeat="file in pc.previousFiles">
-                        <div class="label">
-                            <img src="/images/square-image.png">
+                        <div class="label" ng-switch="file.origin_ext">
+                            <i ng-switch-when="doc" class="file world outline icon"></i>
+                            <i ng-switch-when="docx" class="file word outline icon"></i>
+                            <i ng-switch-when="pdf" class="file pdf outline icon"></i>
+                            <i ng-switch-default="default" class="file text outline icon"></i>
                         </div>
                         <div class="content">
                             <a href="/downloads/{{file.origin_name}}{{file.url}}">{{file.origin_name}}</a>
