@@ -51,6 +51,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 faculties: function (FacultyService) {
                     return FacultyService.all();
+                },
+                images: function (ProjectService, $stateParams) {
+                    return ProjectService.getImages($stateParams.id);
+                },
+                members: function (ProjectService, $stateParams) {
+                    return ProjectService.getMembers($stateParams.id);
+                },
+                file: function (ProjectService, $stateParams) {
+                    return ProjectService.getFile($stateParams.id);
+                },
+                previousFiles : function (ProjectService, $stateParams) {
+                    return ProjectService.getPreviousFiles($stateParams.id);
                 }
             }
         })
@@ -171,12 +183,18 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
     $('.ui.dropdown').dropdown();
 });
 
-app.controller("EditCtrl", function ($scope, $state, project, UserService, UserSearchService, ProjectService, statuses, faculties, $timeout) {
+app.controller("EditCtrl", function ($scope, $state, $timeout,
+                                     UserService, UserSearchService, ProjectService,
+                                     statuses, faculties, project, images, members, file,previousFiles) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
+    $scope.images = images.data;
     $scope.statuses = statuses.data;
     $scope.faculties = faculties.data;
+    $scope.projectMembers = members.data;
+    $scope.file = file.data;
+    $scope.previousFiles = previousFiles.data;
     $scope.keyword;
 
     $scope.myFlow = new Flow({
@@ -282,15 +300,22 @@ app.controller("EditCtrl", function ($scope, $state, project, UserService, UserS
     $scope.project_id = 20;
 });
 
-app.controller("ProjectMemberCtrl", function ($scope, $stateParams, UserSearchService, $state, UserService, ProjectService, $timeout) {
+app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $timeout,
+                                              UserSearchService, UserService, ProjectService) {
 
     var self = this;
-
+    self.firstInit = false;
     $scope.initProjectMemberCtrl = function () {
         console.log("ProjectMemberCtrl Start...")
-        ProjectService.getMembers($stateParams.id).success(function (resposne) {
-            self.projectMembers = resposne;
-        });
+        if (self.firstInit) {
+            ProjectService.getMembers($stateParams.id).success(function (resposne) {
+                self.projectMembers = resposne;
+            });
+        } else {
+            self.projectMembers = $scope.projectMembers
+        }
+
+        self.firstInit = true;
     }
 
     $scope.initProjectMemberCtrl();
@@ -346,9 +371,11 @@ app.controller("ProjectMemberCtrl", function ($scope, $stateParams, UserSearchSe
 
 });
 
-app.controller("ProjectPhotoController", function ($scope, $state, UserService, ProjectService, $cookies, $timeout) {
+app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $timeout,
+                                                   UserService, ProjectService) {
 
     var self = this;
+    self.firstInit = false;
     $scope.initProjectPhotoController = function () {
         console.log("ProjectPhotoController Start...");
         self.project = $scope.project;
@@ -365,16 +392,23 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
                 }
             }
         })
+
+        self.loadImages();
+        self.firstInit = true;
     }
 
     self.loadImages = function () {
-        ProjectService.getImages(self.project.id)
-            .success(function (response) {
-                self.images = response;
-                //console.log(response);
-            })
-    };
+        if (self.firstInit) {
+            ProjectService.getImages(self.project.id)
+                .success(function (response) {
+                    self.images = response;
+                    //console.log(response);
+                })
+        } else {
+            self.images = $scope.images;
+        }
 
+    };
 
 
     self.uploadFiles = function () {
@@ -414,16 +448,28 @@ app.controller("ProjectPhotoController", function ($scope, $state, UserService, 
     }
 
     $scope.initProjectPhotoController();
-    self.loadImages();
+
 });
 
-app.controller("ProjectFileController", function ($scope, $state, UserService, ProjectService, $cookies, $timeout) {
+app.controller("ProjectFileController", function ($scope, $state, $cookies, $timeout,
+                                                  ProjectService) {
 
     var self = this;
+    self.firstInit = false;
+    self.file = {};
     $scope.initProjectFileController = function () {
         console.log("ProjectFileController Start...");
         self.project = $scope.project;
-        self.files = [];
+        if(self.firstInit){
+            ProjectService.getFiles($stateParams.id)
+                .success(function(response){
+                    self.files = response;
+                })
+        }else {
+            self.file = $scope.file
+            self.previousFiles = $scope.previousFiles;
+        }
+
 
         self.myFlow = new Flow({
             target: '/api/project/' + self.project.id + '/file',
@@ -435,8 +481,26 @@ app.controller("ProjectFileController", function ($scope, $state, UserService, P
                     'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')// call func for getting a cookie
                 }
             }
-        })
-    }
+        });
+
+        self.uploadFiles = function () {
+            console.log("do uploading");
+            self.myFlow.upload();
+        };
+
+        self.addFileToList = function ($file, $message, $flow) {
+            console.log('add file to list');
+            var file = JSON.parse($message);
+            if($scope.file){
+                self.previousFiles.splice(0,0,$scope.file);
+            }
+            self.file = file;
+            $scope.file = file;
+            $flow.removeFile($file);
+        };
+
+        self.firstInit = true;
+    };
 
     $scope.initProjectFileController();
 });

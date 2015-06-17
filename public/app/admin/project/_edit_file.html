@@ -2,28 +2,30 @@
 
     <div flow-init flow-object="pc.myFlow"
          flow-file-success="pc.addFileToList($file, $message, $flow)"
-         flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+         flow-file-added="!!{doc:1,docx:1,pdf:1}[$file.getExtension()]"
          flow-complete="$root.$broadcast('httpResponse', {})"
          flow-upload-started="$root.$broadcast('httpRequest', {})"
             >
 
         <div class="ui purple inverted top attached segment">
-            <button flow-btn class="ui small button primary">Add Photos</button>
-            <button ng-if="$flow.files.length>0" ng-click="pc.uploadFiles()" class="ui small button positive">Upload</button>
+            <button flow-btn class="ui small button primary">Upload File</button>
+            <button ng-if="$flow.files.length>0" ng-click="pc.uploadFiles()" class="ui small button positive">Upload
+            </button>
         </div>
         <div class="ui attached segment" ng-if="$flow.files.length>0">
 
-            <div class="ui five column grid">
+            <div class="row">
 
-                <div class="column" ng-repeat="file in $flow.files">
-                    <div class="ui fluid image" ng-mouseover="upload_selected=$index" ng-mouseleave="upload_selected=-1">
-                        <a ng-click="$flow.removeFile(file)" ng-show="upload_selected == $index"
-                           class="ui red corner label">
-                            <i class="trash icon"></i>
-                        </a>
-                        <img class="ui segment medium image" flow-img="file"/>
+                <div class="ui feed">
+
+                    <div class="event" ng-repeat="file in $flow.files">
+                        <div class="label">
+                            <img src="/images/square-image.png">
+                        </div>
+                        <div class="content">
+                            {{file.name}}
+                        </div>
                     </div>
-
                 </div>
 
             </div>
@@ -32,27 +34,51 @@
 
 
         <div class="ui purple inverted top attached segment">
-            <h4>Project's Photos</h4>
+            <h4>Current Published Files</h4>
         </div>
 
         <div class="ui attached segment">
 
             <div class="row">
 
-                <div class="ui five column grid ">
-                    <div class="column" ng-repeat="image in pc.images">
+                <div class="ui feed">
 
-                        <div class="ui fluid image" ng-mouseover="selected=$index" ng-mouseleave="selected=-1">
-                            <a ng-click="pc.deleteImage(image)" ng-show="selected == $index"
-                               class="ui red corner label">
-                                <i class="trash icon"></i>
-                            </a>
-                            <img class="ui medium image" ng-src="{{image.url}}?w=300&h=300&fit=crop&crop=top">
+                    <div class="event" ng-show="pc.file">
+                        <div class="label">
+                            <img src="/images/square-image.png">
                         </div>
-
+                        <div class="content">
+                            <a href="/downloads/{{file.origin_name}}{{file.url}}">{{file.origin_name}}</a>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
+        </div>
+
+        <div class="ui purple inverted top attached segment">
+            <h4>Previous Published Files</h4>
+        </div>
+
+        <div class="ui attached segment">
+
+            <div class="row">
+
+                <div class="ui feed">
+
+                    <div class="event" ng-repeat="file in pc.previousFiles">
+                        <div class="label">
+                            <img src="/images/square-image.png">
+                        </div>
+                        <div class="content">
+                            <a href="/downloads/{{file.origin_name}}{{file.url}}">{{file.origin_name}}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </div>

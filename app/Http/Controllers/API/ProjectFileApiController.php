@@ -24,7 +24,7 @@ class ProjectFileApiController extends Controller {
 	{
         /* @var Project $project */
 
-        $files = $this->projectService->getProjectFiles($projectId);
+        $files = $this->projectService->getProjectFile($projectId);
 
         return $files;
 	}
@@ -60,5 +60,9 @@ class ProjectFileApiController extends Controller {
             return response("There was an error. Please contact Administrator.",400);
         }
 	}
+
+    public function getPreviousFiles($projectId){
+        return $this->projectService->getPreviousFiles($projectId);
+    }
 
 }

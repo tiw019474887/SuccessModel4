@@ -33,7 +33,7 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with($this->withArr)->get();
+        return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
     public function get($id)
@@ -63,8 +63,11 @@ class ProjectService extends Service
         } else {
             /* @var User $user */
             $user = $project->createdBy;
-            $user = User::find($user->id);
-            $user->createProject()->detach($project->id);
+            if($user){
+                $user = User::find($user->id);
+                $user->createProject()->detach($project->id);
+            }
+
         }
     }
 
@@ -186,10 +189,17 @@ class ProjectService extends Service
         return $images;
     }
 
-    public function getProjectFiles($projectId){
+    public function getProjectFile($projectId){
         /* @var Project $project */
         $project = Project::find($projectId);
-        $files = $project->files()->orderBy('created_at','asc')->get();
+        $files = $project->current_file;
+        return $files;
+    }
+
+    public function getPreviousFiles($projectId){
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $files = $project->files()->orderBy('created_at','desc')->get();
         return $files;
     }
 
@@ -206,9 +216,15 @@ class ProjectService extends Service
 
 
         $file = new File();
-        $file->url = "/img/projects/$id/files/$uuid";
+        $file->url = "/files/projects/$id/files/$uuid";
         $file->origin_name = $origin_name;
-        $project->files()->save($file);
+        $oldFile = $project->current_file()->first();
+        if($oldFile != null){
+            $project->files()->save($oldFile);
+        }
+
+        $project->current_file()->save($file);
+
         return $file;
     }
 
