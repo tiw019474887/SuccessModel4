@@ -2,9 +2,9 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'AppConfig',
-    'angularify.semantic', 'flow', 'Faculty', 'User', 'Project',
-    'ProjectStatus', 'ngCkeditor', 'ngCookies'
+var app = angular.module('ProjectAdmin', ['ui.router','ui.tinymce', 'AppConfig',
+    'angularify.semantic', 'flow', 'ngCkeditor', 'ngCookies',
+    'Faculty', 'User', 'Project','ProjectStatus'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -197,6 +197,17 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
     $scope.previousFiles = previousFiles.data;
     $scope.keyword;
 
+    $scope.mceOptions = {
+        inline: false,
+        content_css : '/packages/semantic-ui/dist/semantic.min.css',
+        plugins : '',
+        skin: 'lightgray',
+        theme : 'modern',
+        height : 400,
+        menubar : false
+    };
+
+
     $scope.myFlow = new Flow({
         target: '/api/project/' + $scope.project.id + '/logo',
         singleFile: true,
@@ -297,7 +308,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
         $('.ui.dropdown').dropdown();
     }, 100);
 
-    $scope.project_id = 20;
 });
 
 app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $timeout,
