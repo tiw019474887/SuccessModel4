@@ -213,11 +213,14 @@ class ProjectService extends Service
         $input->file('file')->move($destination_path, $uuid);
 
         $origin_name = $input->file('file')->getClientOriginalName();
-
+        $origin_ext = $input->file('file')->getClientOriginalExtension();
+        $origin_mime = $input->file('file')->getClientMimeType();
 
         $file = new File();
         $file->url = "/files/projects/$id/files/$uuid";
         $file->origin_name = $origin_name;
+        $file->origin_ext = $origin_ext;
+        $file->mime_type = $origin_mime;
         $oldFile = $project->current_file()->first();
         if($oldFile != null){
             $project->files()->save($oldFile);
