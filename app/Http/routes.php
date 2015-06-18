@@ -100,7 +100,21 @@ Route::get('test',function(){
 
 });
 
-Route::get('test2',function(){
+use Rhumsaa\Uuid\Uuid;
+Route::post('tinymce-upload',function(){
+    $uuid = Uuid::uuid4();
+    $storage_path = "app/temp/";
+    $destination_path = storage_path($storage_path);
+    Input::file('file')->move($destination_path, $uuid);
 
+    $url = "/img/temp/$uuid";
+    $response = [
+        'url' => $url,
+        'base_url' => url()
+    ];
+    return $response;
+});
 
+Route::get('dialog-v4',function(){
+    return view('tinymce.dialog');
 });

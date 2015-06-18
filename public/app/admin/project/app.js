@@ -2,9 +2,9 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router','ui.tinymce', 'AppConfig',
-    'angularify.semantic', 'flow', 'ngCkeditor', 'ngCookies',
-    'Faculty', 'User', 'Project','ProjectStatus'
+var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig',
+    'angularify.semantic', 'flow', 'ngCookies',
+    'Faculty', 'User', 'Project', 'ProjectStatus'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -61,7 +61,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 file: function (ProjectService, $stateParams) {
                     return ProjectService.getFile($stateParams.id);
                 },
-                previousFiles : function (ProjectService, $stateParams) {
+                previousFiles: function (ProjectService, $stateParams) {
                     return ProjectService.getPreviousFiles($stateParams.id);
                 }
             }
@@ -185,7 +185,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
 app.controller("EditCtrl", function ($scope, $state, $timeout,
                                      UserService, UserSearchService, ProjectService,
-                                     statuses, faculties, project, images, members, file,previousFiles) {
+                                     statuses, faculties, project, images, members, file, previousFiles) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
@@ -199,13 +199,16 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
 
     $scope.mceOptions = {
         inline: false,
-        content_css : '/packages/semantic-ui/dist/semantic.min.css',
-        plugins : '',
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "chaowimages image hr",
         skin: 'lightgray',
-        theme : 'modern',
-        height : 400,
-        menubar : false
-    };
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image chaowimages |"
+    } ;
 
 
     $scope.myFlow = new Flow({
@@ -215,7 +218,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
         testChunks: false,
         headers: function (file, chunk, isTest) {
             return {
-                'X-CSRFToken': cookie.get("csrftoken")// call func for getting a cookie
+                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')
             }
         }
     })
@@ -470,12 +473,12 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
     $scope.initProjectFileController = function () {
         console.log("ProjectFileController Start...");
         self.project = $scope.project;
-        if(self.firstInit){
+        if (self.firstInit) {
             ProjectService.getFiles($stateParams.id)
-                .success(function(response){
+                .success(function (response) {
                     self.files = response;
                 })
-        }else {
+        } else {
             self.file = $scope.file
             self.previousFiles = $scope.previousFiles;
         }
@@ -501,8 +504,8 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
         self.addFileToList = function ($file, $message, $flow) {
             console.log('add file to list');
             var file = JSON.parse($message);
-            if($scope.file){
-                self.previousFiles.splice(0,0,$scope.file);
+            if ($scope.file) {
+                self.previousFiles.splice(0, 0, $scope.file);
             }
             self.file = file;
             $scope.file = file;
