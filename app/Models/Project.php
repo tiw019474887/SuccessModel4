@@ -8,12 +8,29 @@ namespace App\Models;
  * Time: 12:59 PM
  */
 
+use Elasticquent\ElasticquentTrait;
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
 class Project extends \NeoEloquent
 {
 
     use SoftDeletes;
+    use ElasticquentTrait;
+
+    protected $mappingProperties = [
+        'name' => [
+            'type' => 'string',
+            'analyzer' => 'thai'
+        ],
+        'abstract' => [
+            'type' => 'string',
+            'analyzer' => 'thai'
+        ],
+        'content' => [
+            'type' => 'string',
+            'analyzer' => 'thai'
+        ]
+    ];
 
     protected $label = ['Project'];
 
@@ -48,6 +65,14 @@ class Project extends \NeoEloquent
     }
     public function comment(){
         return $this->belongsToMany("App\Models\Comment","ON");
+    }
+
+    public function current_file(){
+        return $this->hasOne('App\Models\File',"CURRENT_FILE");
+    }
+
+    public function files(){
+        return $this->hasMany("App\Models\File","FILE");
     }
 
 }

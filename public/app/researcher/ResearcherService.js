@@ -20,7 +20,7 @@ angular.module('Researcher',[])
             },
             submitProject : function($id,$project){
                 return $http({
-                    url : 'researcher/submit-project/'+ $id,
+                    url : '/api/researcher/submit-project/'+ $id,
                     method : 'post',
                     data : $project
                 })

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML5>
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">

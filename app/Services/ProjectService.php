@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\File;
 use App\Models\Image;
 use App\Models\Project;
 use App\Models\Faculty;
@@ -32,7 +33,7 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with($this->withArr)->get();
+        return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
     public function get($id)
@@ -62,8 +63,11 @@ class ProjectService extends Service
         } else {
             /* @var User $user */
             $user = $project->createdBy;
-            $user = User::find($user->id);
-            $user->createProject()->detach($project->id);
+            if($user){
+                $user = User::find($user->id);
+                $user->createProject()->detach($project->id);
+            }
+
         }
     }
 
@@ -178,12 +182,54 @@ class ProjectService extends Service
         }
     }
 
-    public function getProjectPhotos($projectId){
+    public function getProjectImages($projectId){
         /* @var Project $project */
         $project = Project::find($projectId);
-        return $project->photos;
+        $images = $project->images()->orderBy('created_at','asc')->get();
+        return $images;
     }
 
+    public function getProjectFile($projectId){
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $files = $project->current_file;
+        return $files;
+    }
+
+    public function getPreviousFiles($projectId){
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $files = $project->files()->orderBy('created_at','desc')->get();
+        return $files;
+    }
+
+    public function saveFile($id,Request $input){
+
+        /* @var Project $project */
+        $project = $this->get($id);
+        $uuid = Uuid::uuid4();
+        $storage_path = "app/projects/$id/files/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path, $uuid);
+
+        $origin_name = $input->file('file')->getClientOriginalName();
+        $origin_ext = $input->file('file')->getClientOriginalExtension();
+        $origin_mime = $input->file('file')->getClientMimeType();
+
+        $file = new File();
+        $file->url = "/files/projects/$id/files/$uuid";
+        $file->origin_name = $origin_name;
+        $file->origin_ext = $origin_ext;
+        $file->mime_type = $origin_mime;
+        $oldFile = $project->current_file()->first();
+        if($oldFile != null){
+            $project->files()->save($oldFile);
+        }
+
+        $project->current_file()->save($file);
+
+        return $file;
+    }
 
     public function saveImage($id, Request $input)
     {
@@ -203,9 +249,27 @@ class ProjectService extends Service
     public function deleteImage($projectId,$imageId)
     {
         /* @var Project $project */
+        /* @var Image $image */
         $project = Project::find($projectId);
-        $project->images()->detach($imageId);
-        return [Image::find($imageId)->delete()];
+        $image = Image::find($imageId);
+        $project->images()->detach($image->id);
+        if($image->delete()){
+            return $image;
+        }
+        return response("Cannot Delete image",400);
+    }
+
+    public function deleteFile($projectId,$fileId)
+    {
+        /* @var Project $project */
+        /* @var File $file */
+        $project = Project::find($projectId);
+        $file = File::find($fileId);
+        $project->files()->detach($file->id);
+        if($file->delete()){
+            return $file;
+        }
+        return response("Cannot Delete File",400);
     }
 
 

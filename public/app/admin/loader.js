@@ -1,7 +1,6 @@
 /**
  * Created by chaow on 4/12/2015 AD.
  */
-
 angular.module('AppConfig', [])
     .config(function ($httpProvider, $provide) {
         $provide.factory('httpInterceptor', function ($q, $rootScope) {
@@ -33,7 +32,6 @@ angular.module('AppConfig', [])
         });
         $httpProvider.interceptors.push('httpInterceptor');
     })
-
     .controller('loadCtrl', function ($scope) {
 
         $scope.active = false;
@@ -50,5 +48,4 @@ angular.module('AppConfig', [])
         $scope.$on('httpResponseError', function (e) {
             $scope.active = false;
         });
-
     })
