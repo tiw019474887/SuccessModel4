@@ -200,14 +200,14 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
     $scope.mceOptions = {
         inline: false,
         content_css: '/packages/semantic-ui/dist/semantic.min.css',
-        plugins: "chaowimages image hr",
+        plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
         height: 400,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
-        "bullist numlist outdent indent | hr | link unlink | image chaowimages |"
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
     } ;
 
 
