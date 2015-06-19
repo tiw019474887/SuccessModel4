@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('dashboard_master')
 
 
 @section('sidemenu')
