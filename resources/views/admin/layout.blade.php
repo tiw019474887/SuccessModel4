@@ -60,6 +60,16 @@
                         <span><%Auth::user()->email%></span>
                     @endif
                     <div class="menu">
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            เลือกสิทธิ์การใช้งาน
+                        </div>
+                        @foreach( Auth::user()->roles as $role)
+                            <a class="item" href="/<%$role->key%>">
+                                <% $role->name %>
+                            </a>
+                        @endforeach
+                        <div class="divider"></div>
                         <a class="item">Change Profile</a>
                         <a class="item" ng-click="logout()">Logout</a>
                     </div>
@@ -114,6 +124,7 @@
                 <a class=" <% Request::is('admin/project-status') ? 'active' : '' %> item" href="/admin/project-status">
                     Project Status
                 </a>
+
                 <div class="header item">
                     User Management
                 </div>
