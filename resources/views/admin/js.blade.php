@@ -1,5 +1,4 @@
 <!-- Third Party Javascript -->
-<script type="text/javascript" src="/packages/ng-ckeditor/libs/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/packages/tinymce-dist/tinymce.min.js"></script>
 <script type="text/javascript" src="/packages/flow.js/dist/flow.min.js"></script>
 
