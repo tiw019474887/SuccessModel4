@@ -1,5 +1,7 @@
 <?php
 
+use Rhumsaa\Uuid\Uuid;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -100,7 +102,6 @@ Route::get('test',function(){
 
 });
 
-use Rhumsaa\Uuid\Uuid;
 Route::post('tinymce-upload',function(){
     $uuid = Uuid::uuid4();
     $storage_path = "app/temp/";

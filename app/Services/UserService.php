@@ -16,7 +16,7 @@ use Rhumsaa\Uuid\Uuid;
 
 class UserService extends Service{
 
-    var $withArr = ['roles','logo'];
+    var $withArr = ['roles','logo','faculty'];
 
     public function getAll(){
         return User::with($this->withArr)->get();

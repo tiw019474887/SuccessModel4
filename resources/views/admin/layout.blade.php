@@ -42,7 +42,7 @@
         <div class="ui large menu " id="MainMenu">
             <div class="left purple inverted menu">
                 <a class="item active">
-                    Main Menu
+                    Administrator
                 </a>
                 <a class="item">
                     About Us
