@@ -32,12 +32,10 @@ Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
 
     });
+
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
     Route::get('/university', 'University\UniversityController@index');
-
-
-
 
 Route::group(['prefix' => 'api'], function () {
 
@@ -68,8 +66,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.member', 'API\ProjectMemberApiController');
     Route::resource('project.image', 'API\ProjectImageApiController');
-    Route::resource('project.status','API\ProjectProjectStatusApiController');
 
+    Route::get('project/{id}/previous-files','API\ProjectFileApiController@getPreviousFiles');
+    Route::resource('project.file', 'API\ProjectFileApiController');
+    Route::resource('project.status','API\ProjectProjectStatusApiController');
 
     Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
     Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
@@ -88,10 +88,34 @@ Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Htt
     $server->outputImage($request);
 })->where('path', '.*');
 
+Route::get('/downloads/{name}/files/{path}',function($name,$path){
+    $filePath = storage_path().'/app/'.$path;
+    return Response::download($filePath,$name);
+})->where('path','.*');
 
 Route::get('/register','Guest\RegisterController@registerPage');
 
 Route::get('test',function(){
 
+    \App\Models\Project::reindex();
 
+});
+
+use Rhumsaa\Uuid\Uuid;
+Route::post('tinymce-upload',function(){
+    $uuid = Uuid::uuid4();
+    $storage_path = "app/temp/";
+    $destination_path = storage_path($storage_path);
+    Input::file('file')->move($destination_path, $uuid);
+
+    $url = "/img/temp/$uuid";
+    $response = [
+        'url' => $url,
+        'base_url' => url()
+    ];
+    return $response;
+});
+
+Route::get('dialog-v4',function(){
+    return view('tinymce.dialog');
 });
