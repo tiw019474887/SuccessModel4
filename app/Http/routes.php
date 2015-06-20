@@ -22,9 +22,10 @@ Route::get('/auth/login', function () {
     return view('auth.login');
 });
 
-Route::group(['middleware' => 'App\Http\Middleware\Authenticate']
+Route::group([
+    //    'middleware' => 'App\Http\Middleware\Authenticate'
+    ]
     , function () {
-
         Route::get('/admin', 'Admin\AdminController@index');
         Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
         Route::get('/admin/faculty', 'Admin\AdminController@faculty');

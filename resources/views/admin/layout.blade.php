@@ -1,5 +1,8 @@
 @extends('dashboard_master')
 
+@section('header')
+    @yield('header')
+@stop
 
 @section('sidemenu')
     <div class="ui fluid vertical menu">
