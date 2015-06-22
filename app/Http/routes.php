@@ -23,7 +23,7 @@ Route::get('/auth/login', function () {
 });
 
 Route::group([
-    //    'middleware' => 'App\Http\Middleware\Authenticate'
+        'middleware' => 'App\Http\Middleware\Authenticate'
     ]
     , function () {
         Route::get('/admin', 'Admin\AdminController@index');
@@ -117,6 +117,3 @@ Route::post('tinymce-upload',function(){
     return $response;
 });
 
-Route::get('dialog-v4',function(){
-    return view('tinymce.dialog');
-});

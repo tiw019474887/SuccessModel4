@@ -4,7 +4,9 @@
 
 
 var app = angular.module('UserAdmin', ['ui.router','ngCookies',
-    'AppConfig','angularify.semantic', 'flow', 'User','Role']);
+    'AppConfig','angularify.semantic', 'flow',
+    'User','Role','Faculty'
+]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -31,6 +33,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 roles : function(RoleService){
                     return RoleService.all();
+                },
+                faculties : function(FacultyService){
+                    return FacultyService.all();
                 }
             }
         })
@@ -44,6 +49,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 roles: function (RoleService) {
                     return RoleService.all();
+                },
+                faculties : function(FacultyService){
+                    return FacultyService.all();
                 }
             }
         })
@@ -82,11 +90,12 @@ app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
+app.controller("AddCtrl", function ($scope, $state, user, UserService, roles,faculties) {
     console.log("AddCtrl Start...");
 
     $scope.user = user.data;
     $scope.roles = roles.data;
+    $scope.faculties = faculties.data;
 
     console.log($scope.roles);
 
@@ -122,14 +131,12 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
+app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,faculties,$cookies) {
     console.log("EditCtrl Start...");
-
-    var cookies = $cookies['XSRF-TOKEN'];
-
 
     $scope.user = user.data;
     $scope.roles = roles.data;
+    $scope.faculties = faculties.data;
 
     $scope.addRole = function(role){
         found = false;

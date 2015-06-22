@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Models\Faculty;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Logo;
@@ -54,6 +55,7 @@ class UserService extends Service{
         $user = $this->setPassword($user,$input);
         $user->save();
         $this->linkToRole($user,$input);
+        $this->linkToFaculty($user,$input);
         return $user;
     }
 
@@ -69,6 +71,7 @@ class UserService extends Service{
             $user = $this->setPassword($user,$input);
             $user->save();
             $this->linkToRole($user,$input);
+            $this->linkToFaculty($user,$input);
             return $user;
         }else {
             return $this->store($input);
@@ -107,6 +110,26 @@ class UserService extends Service{
             ->take(10)
             ->get();
         return $users;
+    }
+
+    private function linkToFaculty(User $user, array $input)
+    {
+        if (isset($input['faculty'])) {
+            $id = $input['faculty']['id'];
+            if($oldFac = $user->faculty()->first()){
+                /* @var Faculty $oldFac */
+                $oldFac->users()->detach($user->id);
+            }
+            $faculty = Faculty::find($id);
+            $faculty->users()->attach($user->id);
+        }else {
+            if($oldFac = $user->faculty()->first()){
+                /* @var Faculty $oldFac */
+                $oldFac->users()->detach($user->id);
+            }
+        }
+
+        return $user;
     }
 
 
