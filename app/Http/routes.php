@@ -33,6 +33,7 @@ Route::group([
         Route::get('/admin/role', 'Admin\AdminController@role');
         Route::get('/admin/project', 'Admin\AdminController@project');
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
+        Route::get('/admin/api-key', 'Admin\AdminController@apikey');
 
     });
 Route::get('/researcher', 'Researcher\ResearcherController@index');
@@ -41,14 +42,22 @@ Route::get('/researcher', 'Researcher\ResearcherController@index');
 
 Route::group(['prefix' => 'api'], function () {
 
+    //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
     Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@acceptProject');
     Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
 
+    //api for university
     Route::get('university/projects','API\UniversityProjectApiController@getProjects');
     Route::post('university/accept-project/{id}','API\UniversityProjectApiController@acceptProject');
     Route::post('university/reject-project{id}','API\UniversityProjectApiController@rejectProject');
 
+    //api for researcher
+    Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
+    Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
+    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
+
+    //api for published projects
     Route::get('publish/projects','API\PublishProjectApiController@getProjects');
 
     Route::resource('faculty', 'API\FacultyApiController');
@@ -69,13 +78,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project.member', 'API\ProjectMemberApiController');
     Route::resource('project.image', 'API\ProjectImageApiController');
 
+    Route::resource('api-key', 'API\ApiKeyApiController');
+
     Route::get('project/{id}/previous-files','API\ProjectFileApiController@getPreviousFiles');
     Route::resource('project.file', 'API\ProjectFileApiController');
     Route::resource('project.status','API\ProjectProjectStatusApiController');
 
-    Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
-    Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
-    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
+
 
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');

@@ -17,7 +17,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/admin/project/_home.html",
             controller: "HomeCtrl",
             resolve: {
-                faculties: function (ProjectService) {
+                projects: function (ProjectService) {
                     return ProjectService.all();
                 }
             }
@@ -68,10 +68,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, faculties, ProjectService) {
+app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
     console.log("HomeCtrl Start...");
 
-    $scope.faculties = faculties.data;
+    $scope.projects = projects.data;
     $scope.project = {};
     $scope.delete_modal = false;
 
@@ -90,7 +90,7 @@ app.controller("HomeCtrl", function ($scope, $state, faculties, ProjectService) 
             ProjectService.delete(project).success(function (response) {
                 $scope.closeDeleteModal();
                 ProjectService.all().success(function (response) {
-                    $scope.faculties = response;
+                    $scope.projects = response;
                 })
             });
         } else {
