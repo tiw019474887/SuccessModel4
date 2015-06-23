@@ -10,11 +10,11 @@ namespace App\Models;
 
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
-class Video extends \NeoEloquent
+class Youtube extends Video
 {
     //use SoftDeletes;
 
-    protected $label = ['Video'];
+    protected $label = ['Youtube','Video'];
 
     protected $fillable = ['url'];
 

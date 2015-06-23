@@ -10,13 +10,11 @@ namespace App\Models;
 
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
-class Video extends \NeoEloquent
+class File extends \NeoEloquent
 {
     //use SoftDeletes;
 
-    protected $label = ['Video'];
-
-    protected $fillable = ['url'];
+    protected $label = ['File'];
 
     public function project(){
         return $this->morphTo('App\Models\Project','VIDEO');
