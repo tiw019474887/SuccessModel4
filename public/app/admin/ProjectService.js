@@ -93,16 +93,34 @@ angular.module('Project', [])
                     method: 'post',
                     data: $file
                 })
-            }
-            ,
+            },
             deleteFile: function ($id, $file) {
                 return $http({
                     url: '/api/project/' + $id + '/file/' + $file.id,
                     method: 'delete',
                     data: $file
                 })
+            },
+            getYoutubes : function($id){
+                return $http({
+                    url: '/api/project/' + $id + '/youtube',
+                    method: 'get'
+                })
+            },
+            addYoutube: function ($id, $youtube) {
+                return $http({
+                    url: '/api/project/' + $id + '/youtube',
+                    method: 'post',
+                    data: $youtube
+                })
+            },
+            deleteYoutube: function ($id, $youtube) {
+                return $http({
+                    url: '/api/project/' + $id + '/youtube/' + $youtube.id,
+                    method: 'delete',
+                    data: $youtube
+                })
             }
-
 
         }
     })

@@ -4,8 +4,10 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig',
     'angularify.semantic', 'flow', 'ngCookies',
-    'Faculty', 'User', 'Project', 'ProjectStatus'
+    'Faculty', 'User', 'Project', 'ProjectStatus','Youtube'
 ]);
+
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -63,6 +65,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 previousFiles: function (ProjectService, $stateParams) {
                     return ProjectService.getPreviousFiles($stateParams.id);
+                },
+                youtubes : function(ProjectService,$stateParams){
+                    return ProjectService.getYoutubes($stateParams.id);
                 }
             }
         })
@@ -185,7 +190,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
 app.controller("EditCtrl", function ($scope, $state, $timeout,
                                      UserService, UserSearchService, ProjectService,
-                                     statuses, faculties, project, images, members, file, previousFiles) {
+                                     statuses, faculties, project, images, members, file, previousFiles,youtubes) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
@@ -195,6 +200,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
     $scope.projectMembers = members.data;
     $scope.file = file.data;
     $scope.previousFiles = previousFiles.data;
+    $scope.youtubes = youtubes.data;
     $scope.keyword;
 
     $scope.mceOptions = {
@@ -460,12 +466,12 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
 
     }
 
-    $scope.initProjectPhotoController();
+       $scope.initProjectPhotoController();
 
 });
 
 app.controller("ProjectFileController", function ($scope, $state, $cookies, $timeout,
-                                                  ProjectService) {
+                                                     ProjectService) {
 
     var self = this;
     self.firstInit = false;
@@ -516,4 +522,79 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
     };
 
     $scope.initProjectFileController();
+});
+
+app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $timeout,
+                                                  ProjectService,YoutubeService) {
+
+    var self = this;
+    self.firstInit = false;
+    self.youtubes = [];
+    self.youtube = {};
+    $scope.initProjectYoutubeController = function () {
+        console.log("ProjectYoutubeController Start...");
+        self.project = $scope.project;
+        if (self.firstInit) {
+            ProjectService.getYoutubes($stateParams.id)
+                .success(function (response) {
+                    self.youtubes = response;
+                    self.youtube = [];
+                })
+        } else {
+            self.youtubes = $scope.youtubes;
+            console.log($scope.youtubes);
+        }
+
+    };
+
+    self.addYoutube = function(){
+
+        var vid = self.getParameterByName(self.youtube.url,'v');
+
+        YoutubeService.getVideoDetail(vid)
+            .success(function(response){
+                var result = response;
+                var vidsnipplet = result.items[0].snippet;
+                var title = vidsnipplet.title;
+                var description = vidsnipplet.description;
+
+                var thumbnail = vidsnipplet.thumbnails.default.url
+
+                self.youtube.title = title;
+                self.youtube.thumbnail_url = thumbnail;
+                self.youtube.description =  description;
+
+                console.log(self.youtube);
+
+                ProjectService.addYoutube(self.project.id,self.youtube)
+                    .success(function(resposne){
+                        self.youtubes.push(resposne);
+                    })
+            })
+
+
+    }
+
+    self.deleteYoutube = function(youtube){
+        ProjectService.deleteYoutube(self.project.id,youtube)
+            .success(function(response){
+                var i;
+                for(i=0;i<self.youtubes.length;i++){
+                    if(self.youtubes[i].id == youtube.id){
+                        self.youtubes.splice(i,1);
+                        break;
+                    }
+                }
+            })
+    }
+
+    self.getParameterByName = function(url, name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(url);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    };
+
+
+    $scope.initProjectYoutubeController();
 });
