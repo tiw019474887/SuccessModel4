@@ -274,7 +274,7 @@ class ProjectService extends Service
     }
 
     public function getYoutube($projectId){
-        return Project::find($projectId)->youtubes()->get();
+        return Project::find($projectId)->youtubes()->orderBy('created_at','desc')->get();
     }
 
     public function addYoutube($projectId,array $input){

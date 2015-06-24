@@ -547,7 +547,16 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
 
     };
 
+    self.validYT = function(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+
     self.addYoutube = function(){
+
+        if(self.validYT(self.youtube.url)){
+
+
 
         var vid = self.getParameterByName(self.youtube.url,'v');
 
@@ -569,9 +578,12 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
                 ProjectService.addYoutube(self.project.id,self.youtube)
                     .success(function(resposne){
                         self.youtubes.push(resposne);
+                        self.youtube = null;
                     })
             })
-
+        }else {
+            alert('Please enter valid youtube url.');
+        }
 
     }
 
