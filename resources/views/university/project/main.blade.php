@@ -1,4 +1,5 @@
-@extends('researcher.layout')
+@extends('university.layout')
+
 
 
 @section('content')

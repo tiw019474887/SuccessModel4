@@ -1,4 +1,4 @@
-@extends('researcher.layout')
+@extends('faculty.layout')
 
 
 @section('content')
