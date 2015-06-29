@@ -10,7 +10,9 @@
                 <div class="item" ng-repeat="user in pmc.member.users">
                     <div ng-if="!pmc.checkUser(user)" class="right floated compact ui button" ng-click="pmc.member.addMember(user)">Add</div>
                     <div ng-if="pmc.checkUser(user)" class="right floated negative compact ui button" ng-click="pmc.member.removeMember(user)">Remove</div>
-                    <img class="ui avatar image" src="/images/square-image.png">
+
+                    <img ng-if="!user.logo" class="ui avatar image" src="/images/square-image.png">
+                    <img ng-if="user.logo" class="ui avatar image" ng-src="{{user.logo.url}}">
 
                     <div class="content">
                         <div class="header">{{user.firstname}} {{user.lastname}}</div>
@@ -34,7 +36,9 @@
                     <div class="ui list">
                         <div class="item" ng-repeat="user in pmc.projectMembers">
                             <div class="right floated negative compact ui button" ng-click="pmc.member.removeMember(user)">Remove</div>
-                            <img class="ui top aligned avatar image" src="/images/daniel.jpg">
+
+                            <img ng-if="!user.logo" class="ui avatar image" src="/images/square-image.png">
+                            <img ng-if="user.logo" class="ui avatar image" ng-src="{{user.logo.url}}">
 
                             <div class="content">
                                 <div class="header">{{user.firstname}} {{user.lastname}}</div>

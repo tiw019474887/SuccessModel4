@@ -2,9 +2,9 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig',
-    'angularify.semantic', 'flow', 'ngCookies',
-    'Faculty', 'User', 'Project', 'ProjectStatus','Youtube'
+var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
+    ,'angularify.semantic', 'flow', 'ngCookies','btford.markdown'
+    ,'Faculty', 'User', 'Project', 'ProjectStatus','Youtube'
 ]);
 
 
@@ -44,6 +44,37 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/edit/:id",
             templateUrl: "/app/admin/project/_edit.html",
             controller: "EditCtrl",
+            resolve: {
+                project: function (ProjectService, $stateParams) {
+                    return ProjectService.edit($stateParams.id)
+                },
+                statuses: function (ProjectStatusService) {
+                    return ProjectStatusService.all();
+                },
+                faculties: function (FacultyService) {
+                    return FacultyService.all();
+                },
+                images: function (ProjectService, $stateParams) {
+                    return ProjectService.getImages($stateParams.id);
+                },
+                members: function (ProjectService, $stateParams) {
+                    return ProjectService.getMembers($stateParams.id);
+                },
+                file: function (ProjectService, $stateParams) {
+                    return ProjectService.getFile($stateParams.id);
+                },
+                previousFiles: function (ProjectService, $stateParams) {
+                    return ProjectService.getPreviousFiles($stateParams.id);
+                },
+                youtubes : function(ProjectService,$stateParams){
+                    return ProjectService.getYoutubes($stateParams.id);
+                }
+            }
+        })
+        .state('view', {
+            url: "/view/:id",
+            templateUrl: "/app/admin/project/_view.html",
+            controller: "ViewCtrl",
             resolve: {
                 project: function (ProjectService, $stateParams) {
                     return ProjectService.edit($stateParams.id)
@@ -185,10 +216,63 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
         $scope.project.created_by = null;
     }
 
-    $('.ui.dropdown').dropdown();
+    $scope.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    } ;
+
+
+
+    $timeout(function () {
+        $('.menu .item').tab();
+        $('.ui.dropdown').dropdown();
+        $('.search').bind('keypress',function(e){
+            if(e.keyCode == 13){
+                e.preventDefault();
+            }
+        })
+    }, 100);
 });
 
-app.controller("EditCtrl", function ($scope, $state, $timeout,
+app.controller("ViewCtrl", function ($scope, $state, $timeout,$sce,
+                                     UserService, UserSearchService, ProjectService,
+                                     statuses, faculties, project, images, members, file, previousFiles,youtubes) {
+    console.log("ViewCtrl Start...");
+
+    $scope.project = project.data;
+    $scope.images = images.data;
+    $scope.youtubes = youtubes.data;
+    $scope.project.content = $sce.trustAsHtml($scope.project.content);
+    $scope.showItem = null;
+    $scope.members = members.data;
+
+    $scope.setShowItem = function(item,type){
+        $scope.showItem = {item : item,type : type}
+    }
+
+    $scope.getYoutubeEmbedUrl = function(vid){
+        return $sce.trustAsResourceUrl('http://www.youtube.com/embed/'+vid+'?autoplay=0');
+    }
+
+    if($scope.youtubes.length>0){
+        $scope.setShowItem($scope.youtubes[0],'youtube');
+    }else if($scope.images.length>0) {
+        $scope.setShowItem($scope.images[0],'image');
+    }else {
+        $scope.showItem = null;
+    }
+
+});
+
+app.controller("EditCtrl", function ($scope, $state, $timeout,$filter,
                                      UserService, UserSearchService, ProjectService,
                                      statuses, faculties, project, images, members, file, previousFiles,youtubes) {
     console.log("EditCtrl Start...");
@@ -202,6 +286,8 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
     $scope.keyword;
+
+
 
     $scope.mceOptions = {
         inline: false,
@@ -311,10 +397,14 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
         $scope.project.created_by = null;
     }
 
-    $('.menu .item').tab();
-
     $timeout(function () {
+        $('.menu .item').tab();
         $('.ui.dropdown').dropdown();
+        $('.search').bind('keypress',function(e){
+            if(e.keyCode == 13){
+                e.preventDefault();
+            }
+        })
     }, 100);
 
 });
@@ -572,7 +662,7 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
                 self.youtube.title = title;
                 self.youtube.thumbnail_url = thumbnail;
                 self.youtube.description =  description;
-
+                self.youtube.vid = vid;
                 console.log(self.youtube);
 
                 ProjectService.addYoutube(self.project.id,self.youtube)
