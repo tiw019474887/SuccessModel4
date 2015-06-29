@@ -1,5 +1,8 @@
 @extends('dashboard_master')
 
+@section('header')
+    @yield('header')
+@stop
 
 @section('sidemenu')
     <div class="ui fluid vertical menu">
@@ -41,6 +44,14 @@
 
         <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
             Roles
+        </a>
+
+        <div class="header item">
+            Security Management
+        </div>
+
+        <a class=" <% Request::is('admin/api-key') ? 'active' : '' %> item" href="/admin/api-key">
+            Api Key
         </a>
     </div>
 @stop

@@ -1,6 +1,14 @@
 /**
  * Created by chaow on 4/12/2015 AD.
  */
+
+function getParameterByName(url, name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(url);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 angular.module('AppConfig', [])
     .config(function ($httpProvider, $provide) {
         $provide.factory('httpInterceptor', function ($q, $rootScope) {
@@ -48,4 +56,6 @@ angular.module('AppConfig', [])
         $scope.$on('httpResponseError', function (e) {
             $scope.active = false;
         });
+
     })
+

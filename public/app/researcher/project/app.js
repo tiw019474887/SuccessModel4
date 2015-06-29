@@ -27,6 +27,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_add.html",
             controller: "AddCtrl",
             resolve: {
+                project: function (ProjectService) {
+                    return {data: {}}
+                }
 
             }
         })
@@ -49,8 +52,18 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 });
 
-app.controller("AddCtrl", function ($scope) {
+app.controller("AddCtrl", function ($scope,projects,ProjectService) {
     console.log("AddCtrl Start...");
+    $scope.projects = projects.data;
+
+    $scope.save = function () {
+        ProjectService.store($scope.project).success(function (resposne) {
+            $state.go('home');
+            //$state.go("edit",{id:resposne.id});
+        }).error(function (response) {
+            alert(response.name_th);
+        });
+    }
 });
 
 app.controller("EditCtrl", function ($scope) {

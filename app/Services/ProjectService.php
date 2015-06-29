@@ -8,6 +8,7 @@ use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
 use App\Models\User;
+use App\Models\Youtube;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
@@ -270,6 +271,30 @@ class ProjectService extends Service
             return $file;
         }
         return response("Cannot Delete File",400);
+    }
+
+    public function getYoutube($projectId){
+        return Project::find($projectId)->youtubes()->orderBy('created_at','desc')->get();
+    }
+
+    public function addYoutube($projectId,array $input){
+        /* @var Project $project */
+        $youtube = new Youtube();
+        $youtube->fill($input);
+
+        $project = Project::find($projectId);
+        $project->youtubes()->save($youtube);
+
+        return $youtube;
+    }
+
+    public function deleteYoutube($projectId,$youtubeId){
+
+        /* @var Project $project */
+        $project = Project::find($projectId);
+        $youtube = Youtube::find($youtubeId);
+        $project->youtubes()->detach($youtube->id);
+        return [$youtube->delete()];
     }
 
 

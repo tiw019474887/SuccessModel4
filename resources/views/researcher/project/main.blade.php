@@ -1,8 +1,4 @@
-@extends('dashboard_master')
-
-@section('sidemenu')
-
-@stop
+@extends('researcher.layout')
 
 @section('content')
     <div ng-app="ResearcherProject">
