@@ -22,36 +22,39 @@ use \Auth;
 class CommentProjectService extends ProjectService
 {
 
-    public function addComment($id,array $input){
-
+    public function addCommentToProject($id,array $input){
+        $project = $this->get($id);
         $comment = new Comment();
         $comment->fill($input);
-        $comment->save();
-        $this->linkToProject($comment, $input);
-        $this->linkToCurrentUser($comment, $input);
 
+        $project->comments()->save($comment);
+        $this->linkToCurrentUser($comment);
 
         return $comment;
     }
 
-    private function linkToProject(Comment $comment,$id, array $input)
-    {
-        $project = Project::find($id);
-        if($project){
-            $comment->project()->associate($project)->save();
-        }
-        return $project;
-    }
 
-    private function  linkToCurrentUser(Comment $comment, array $input)
+    private function  linkToCurrentUser(Comment $comment)
     {
+
         $user = Auth::user();
         if($user){
+
             $comment->createdBy()->associate($user)->save();
         }
+
         return $comment;
     }
 
+    public function addCommentToComment($id,array $input){
+       $maincomment = Comment::find($id);
+        $comment = new Comment();
+        $comment->fill($input);
 
+        $maincomment->comments()->save($comment);
+        $this->linkToCurrentUser($comment);
+
+        return $comment;
+    }
 
 }

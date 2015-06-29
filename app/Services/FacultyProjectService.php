@@ -25,47 +25,54 @@ class FacultyProjectService extends ResearcherProjectService
     {
         $user = Auth::user();
         $fil_projects = [];
-        if($user){
+        if ($user) {
             /* @var User $user */
             /* @var Faculty $faculty */
             $faculty = $user->faculty;
-            if($faculty){
 
-                $projects = $faculty->projects()->with(['status','createdBy'])->get();
+            if ($faculty) {
+
+                $projects = $faculty->projects()->with(['status', 'createdBy'])->get();
+                return $projects;
                 foreach ($projects as $project) {
                     /* @var Project $project */
-                        if ($project->status->key = 'faculty'){
-                            array_push($fil_projects, $project);
-                        }
-                    }
+                       if ($project->status->key == 'faculty'){
+                    array_push($fil_projects, $project);
+                       }
                 }
             }
+        }
+
         return $fil_projects;
     }
 
-    public function acceptProject($id,array $input){
+    public function acceptProject($id, array $input)
+    {
         $project = Project::find($id);
-        if($project){
-            $this->linkToUniversityStatus($project,$input);
+        if ($project) {
+            $this->linkToUniversityStatus($project, $input);
         }
     }
 
     private function linkToUniversityStatus(Project $project, array $input)
     {
-        $university = ProjectStatus::where('key','=','university');
-        if($university){
+        $university = ProjectStatus::where('key', '=', 'university');
+        if ($university) {
             $project->status()->associate($university)->save();
         }
         return $project;
     }
 
-    public function rejectProject($id,array $input){
+    public function rejectProject($id, array $input)
+    {
         $project = Project::find($id);
-        if($project){
-            $this->linkToDraftStatus($project,$input);
+        if ($project) {
+            $this->linkToDraftStatus($project, $input);
         }
     }
-    public function comment($id){
+
+    public function comment($id)
+    {
 
     }
 

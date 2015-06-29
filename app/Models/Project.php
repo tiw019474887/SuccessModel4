@@ -63,8 +63,8 @@ class Project extends \NeoEloquent
     public function createdBy(){
         return $this->belongsTo("App\Models\User","CREATE");
     }
-    public function comment(){
-        return $this->belongsToMany("App\Models\Comment","ON");
+    public function comments(){
+        return $this->hasMany("App\Models\Comment","HAS_COMMENT");
     }
 
     public function current_file(){

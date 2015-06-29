@@ -21,7 +21,6 @@ use \Auth;
 class UniversityProjectService extends ResearcherProjectService
 {
 
-
     public function getProjects()
     {
         $user = Auth::user();
@@ -33,6 +32,7 @@ class UniversityProjectService extends ResearcherProjectService
             if($faculty){
 
                 $projects = $faculty->projects()->with(['status','createdBy'])->get();
+
                 foreach ($projects as $project) {
                     /* @var Project $project */
                     if ($project->status->key = 'university'){
