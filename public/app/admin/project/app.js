@@ -253,7 +253,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout,$sce,
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
     $scope.members = members.data;
-
     $scope.setShowItem = function(item,type){
         $scope.showItem = {item : item,type : type}
     }

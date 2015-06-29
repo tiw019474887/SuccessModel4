@@ -8,15 +8,18 @@
 </div>
 
 <div id="contents">
-    <h2>{{project.name}}</h2>
+    <div class="row">
+        <h2>{{project.name}}</h2>
+    </div>
 
     <div class="ui grid">
+
         <div class="row">
             <div class="ten wide column">
 
                 <div class="one column row" style="">
                     <div class="column">
-                        <div ng-if="showItem.item == youtube" class="ui image" ng-repeat="youtube in youtubes">
+                        <div ng-if="showItem.item == youtube" class="ui videoWrapper" ng-repeat="youtube in youtubes">
                             <iframe id="ytplayer" type="text/html" width="720" height="476"
                                     ng-src="{{getYoutubeEmbedUrl(youtube.vid)}}"
                                     frameborder="0"/>
@@ -25,6 +28,8 @@
                         <div ng-if="showItem.item == image" class="ui image" ng-repeat="image in images">
                             <img ng-src="{{image.url}}?w=720&h=480&fit=crop"/>
                         </div>
+
+
                     </div>
                     <div class="column" style="white-space: nowrap; overflow-x: auto;">
                         <div class="small images">
@@ -37,8 +42,19 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div clas="row" style="margin-bottom: 14px;">
 
+                </div>
+                <div class="row" style="margin-bottom: 14px;">
+                    <div class="wide column">
+                        <h3>รายละเอียดโครงการ</h3>
+
+                        <div class="ui segment" id="tinymce_content" style="padding: 14px;"
+                             ng-bind-html="project.content">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="six wide column">
@@ -52,35 +68,26 @@
 
                 <div class="ui segment">
                     <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
-                    <img ng-if="project.faculty.logo" class="ui avatar image" ng-src="{{project.faculty.logo.url}}"/>
+                    <img ng-if="project.faculty.logo" class="ui avatar image" ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
                     {{project.faculty.name_th}}
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div clas="row" style="margin-bottom: 14px;">
-    <div class="wide column">
-        <h3>นักวิจัย</h3>
+                <div class="wide column">
+                    <h3>นักวิจัย</h3>
 
-        <div class="" style="padding: 14px;">
-            <div class="ui four columns grid">
-                <div class="ui column" ng-repeat="member in members">
-                    <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
-                    <img ng-if="member.logo" class="ui avatar image" ng-src="{{member.logo.url}}"/>
-                    {{member.title}}{{member.firstname}} {{member.lastname}}
+                    <div class="ui segment" style="padding: 14px;">
+                        <div class="ui two columns grid">
+                            <div class="ui column" ng-repeat="member in members">
+                                <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
+                                <img ng-if="member.logo" class="ui avatar image" ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
+                                {{member.title}}{{member.firstname}} {{member.lastname}}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row" style="margin-bottom: 14px;">
-    <div class="wide column">
-        <h3>รายละเอียดโครงการ</h3>
 
-        <div class="ui" id="tinymce_content" style="padding: 14px;"
-             ng-bind-html="project.content">
-        </div>
-    </div>
-</div>
