@@ -24,7 +24,7 @@ use \Auth;
 class ProjectService extends Service
 {
 
-    var $withArr = ['faculty', 'createdBy', 'cover', 'logo', 'status'];
+    var $withArr = ['faculty','faculty.logo','current_file', 'createdBy', 'cover', 'logo', 'status'];
 
     function __construct(ProjectStatusService $projectStatusService)
     {

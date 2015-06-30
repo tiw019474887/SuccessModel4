@@ -104,7 +104,12 @@
     </div>
 </div>
 
+<div class="ui centered padded grid" style="">
 
+    <div class="column" style="text-align: left">
+        © 2015 University of Phayao. ALL Rights Reserved
+    </div>
+</div>
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 </script>

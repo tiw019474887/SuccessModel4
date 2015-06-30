@@ -2,11 +2,10 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig',
-    'angularify.semantic', 'flow', 'ngCookies',
-    'Faculty', 'User', 'Project', 'ProjectStatus','Youtube'
+var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
+    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
 ]);
-
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -66,7 +65,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 previousFiles: function (ProjectService, $stateParams) {
                     return ProjectService.getPreviousFiles($stateParams.id);
                 },
-                youtubes : function(ProjectService,$stateParams){
+                youtubes: function (ProjectService, $stateParams) {
+                    return ProjectService.getYoutubes($stateParams.id);
+                }
+            }
+        })
+        .state('view', {
+            url: "/view/:id",
+            templateUrl: "/app/admin/project/_view.html",
+            controller: "ViewCtrl",
+            resolve: {
+                project: function (ProjectService, $stateParams) {
+                    return ProjectService.edit($stateParams.id)
+                },
+                statuses: function (ProjectStatusService) {
+                    return ProjectStatusService.all();
+                },
+                faculties: function (FacultyService) {
+                    return FacultyService.all();
+                },
+                images: function (ProjectService, $stateParams) {
+                    return ProjectService.getImages($stateParams.id);
+                },
+                members: function (ProjectService, $stateParams) {
+                    return ProjectService.getMembers($stateParams.id);
+                },
+                file: function (ProjectService, $stateParams) {
+                    return ProjectService.getFile($stateParams.id);
+                },
+                previousFiles: function (ProjectService, $stateParams) {
+                    return ProjectService.getPreviousFiles($stateParams.id);
+                },
+                youtubes: function (ProjectService, $stateParams) {
                     return ProjectService.getYoutubes($stateParams.id);
                 }
             }
@@ -185,12 +215,85 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
         $scope.project.created_by = null;
     }
 
-    $('.ui.dropdown').dropdown();
+    $scope.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    };
+
+
+    $timeout(function () {
+        $('.menu .item').tab();
+        $('.ui.dropdown').dropdown();
+        $('.search').bind('keypress', function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        })
+    }, 100);
 });
 
-app.controller("EditCtrl", function ($scope, $state, $timeout,
+app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService,
-                                     statuses, faculties, project, images, members, file, previousFiles,youtubes) {
+                                     statuses, faculties, project, images, members, file, previousFiles, youtubes) {
+    console.log("ViewCtrl Start...");
+
+    $scope.project = project.data;
+    $scope.images = images.data;
+    $scope.youtubes = youtubes.data;
+    $scope.project.content = $sce.trustAsHtml($scope.project.content);
+    $scope.showItem = null;
+    $scope.members = members.data;
+    $scope.setShowItem = function (item, type) {
+        $scope.showItem = {item: item, type: type}
+    }
+
+    $scope.getYoutubeEmbedUrl = function (vid) {
+        return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + vid + '?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer');
+    }
+
+    if ($scope.youtubes.length > 0) {
+        $scope.setShowItem($scope.youtubes[0], 'youtube');
+    } else if ($scope.images.length > 0) {
+        $scope.setShowItem($scope.images[0], 'image');
+    } else {
+        $scope.showItem = null;
+    }
+    $timeout(function(){
+        $('.flexslider').flexslider({
+            slideshow: true,
+            video : true,
+            before: function(slider){
+                /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
+                playVideoAndPauseOthers($('.play3 iframe')[0]);
+            }
+        });
+
+        function playVideoAndPauseOthers(frame) {
+            $('iframe').each(function(i) {
+                var func = this === frame ? 'playVideo' : 'stopVideo';
+                this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+            });
+        }
+
+        /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
+        $('.flex-next, .flex-prev').click(function() {
+            playVideoAndPauseOthers($('.play3 iframe')[0]);
+        });
+    },10)
+
+});
+
+app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
+                                     UserService, UserSearchService, ProjectService,
+                                     statuses, faculties, project, images, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
@@ -203,6 +306,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
     $scope.youtubes = youtubes.data;
     $scope.keyword;
 
+
     $scope.mceOptions = {
         inline: false,
         content_css: '/packages/semantic-ui/dist/semantic.min.css',
@@ -214,7 +318,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
         "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
-    } ;
+    };
 
 
     $scope.myFlow = new Flow({
@@ -311,10 +415,14 @@ app.controller("EditCtrl", function ($scope, $state, $timeout,
         $scope.project.created_by = null;
     }
 
-    $('.menu .item').tab();
-
     $timeout(function () {
+        $('.menu .item').tab();
         $('.ui.dropdown').dropdown();
+        $('.search').bind('keypress', function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        })
     }, 100);
 
 });
@@ -466,12 +574,12 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
 
     }
 
-       $scope.initProjectPhotoController();
+    $scope.initProjectPhotoController();
 
 });
 
 app.controller("ProjectFileController", function ($scope, $state, $cookies, $timeout,
-                                                     ProjectService) {
+                                                  ProjectService) {
 
     var self = this;
     self.firstInit = false;
@@ -525,7 +633,7 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
 });
 
 app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $timeout,
-                                                  ProjectService,YoutubeService) {
+                                                     ProjectService, YoutubeService) {
 
     var self = this;
     self.firstInit = false;
@@ -547,60 +655,59 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
 
     };
 
-    self.validYT = function(url) {
+    self.validYT = function (url) {
         var p = /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?(?=.*v=((\w|-){11}))(?:\S+)?$/;
         return (url.match(p)) ? RegExp.$1 : false;
     }
 
-    self.addYoutube = function(){
+    self.addYoutube = function () {
 
-        if(self.validYT(self.youtube.url)){
+        if (self.validYT(self.youtube.url)) {
 
 
+            var vid = self.getParameterByName(self.youtube.url, 'v');
 
-        var vid = self.getParameterByName(self.youtube.url,'v');
+            YoutubeService.getVideoDetail(vid)
+                .success(function (response) {
+                    var result = response;
+                    var vidsnipplet = result.items[0].snippet;
+                    var title = vidsnipplet.title;
+                    var description = vidsnipplet.description;
 
-        YoutubeService.getVideoDetail(vid)
-            .success(function(response){
-                var result = response;
-                var vidsnipplet = result.items[0].snippet;
-                var title = vidsnipplet.title;
-                var description = vidsnipplet.description;
+                    var thumbnail = vidsnipplet.thumbnails.default.url
 
-                var thumbnail = vidsnipplet.thumbnails.default.url
+                    self.youtube.title = title;
+                    self.youtube.thumbnail_url = thumbnail;
+                    self.youtube.description = description;
+                    self.youtube.vid = vid;
+                    console.log(self.youtube);
 
-                self.youtube.title = title;
-                self.youtube.thumbnail_url = thumbnail;
-                self.youtube.description =  description;
-
-                console.log(self.youtube);
-
-                ProjectService.addYoutube(self.project.id,self.youtube)
-                    .success(function(resposne){
-                        self.youtubes.push(resposne);
-                        self.youtube = null;
-                    })
-            })
-        }else {
+                    ProjectService.addYoutube(self.project.id, self.youtube)
+                        .success(function (resposne) {
+                            self.youtubes.push(resposne);
+                            self.youtube = null;
+                        })
+                })
+        } else {
             alert('Please enter valid youtube url.');
         }
 
     }
 
-    self.deleteYoutube = function(youtube){
-        ProjectService.deleteYoutube(self.project.id,youtube)
-            .success(function(response){
+    self.deleteYoutube = function (youtube) {
+        ProjectService.deleteYoutube(self.project.id, youtube)
+            .success(function (response) {
                 var i;
-                for(i=0;i<self.youtubes.length;i++){
-                    if(self.youtubes[i].id == youtube.id){
-                        self.youtubes.splice(i,1);
+                for (i = 0; i < self.youtubes.length; i++) {
+                    if (self.youtubes[i].id == youtube.id) {
+                        self.youtubes.splice(i, 1);
                         break;
                     }
                 }
             })
     }
 
-    self.getParameterByName = function(url, name) {
+    self.getParameterByName = function (url, name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
             results = regex.exec(url);
