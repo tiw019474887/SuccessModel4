@@ -8,14 +8,14 @@ namespace App\Models;
  * Time: 12:59 PM
  */
 
-use Elasticquent\ElasticquentTrait;
+//use Elasticquent\ElasticquentTrait;
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
 class Project extends \NeoEloquent
 {
 
     use SoftDeletes;
-    use ElasticquentTrait;
+    //use ElasticquentTrait;
 
     protected $mappingProperties = [
         'name' => [

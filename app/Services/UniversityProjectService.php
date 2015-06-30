@@ -32,11 +32,11 @@ class UniversityProjectService extends ResearcherProjectService
             if($faculty){
 
                 $projects = $faculty->projects()->with(['status','createdBy'])->get();
-
+                return $projects;
                 foreach ($projects as $project) {
                     /* @var Project $project */
-                    if ($project->status->key = 'university'){
-                        array_push($fil_projects, $project);
+                        if ($project->status->key == 'university'){
+                            array_push($fil_projects, $project);
                     }
                 }
             }
@@ -64,8 +64,6 @@ class UniversityProjectService extends ResearcherProjectService
             $this->linkToFacultyStatus($project,$input);
         }
     }
-    public function comment($id){
 
-    }
 
 }

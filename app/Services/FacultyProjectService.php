@@ -25,19 +25,18 @@ class FacultyProjectService extends ResearcherProjectService
     {
         $user = Auth::user();
         $fil_projects = [];
-        if ($user) {
+        if($user){
             /* @var User $user */
             /* @var Faculty $faculty */
             $faculty = $user->faculty;
-
-            if ($faculty) {
+            if($faculty){
 
                 $projects = $faculty->projects()->with(['status', 'createdBy'])->get();
                 return $projects;
                 foreach ($projects as $project) {
                     /* @var Project $project */
                        if ($project->status->key == 'faculty'){
-                    array_push($fil_projects, $project);
+                            array_push($fil_projects, $project);
                        }
                 }
             }
@@ -71,9 +70,6 @@ class FacultyProjectService extends ResearcherProjectService
         }
     }
 
-    public function comment($id)
-    {
 
-    }
 
 }
