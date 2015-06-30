@@ -19,27 +19,19 @@
 
                 <div class="one column row" style="">
                     <div class="column">
-                        <div ng-if="showItem.item == youtube" class="ui videoWrapper" ng-repeat="youtube in youtubes">
-                            <iframe id="ytplayer" type="text/html" width="720" height="476"
-                                    ng-src="{{getYoutubeEmbedUrl(youtube.vid)}}"
-                                    frameborder="0"/>
-                        </div>
-
-                        <div ng-if="showItem.item == image" class="ui image" ng-repeat="image in images">
-                            <img ng-src="{{image.url}}?w=720&h=480&fit=crop"/>
-                        </div>
-
-
-                    </div>
-                    <div class="column" style="white-space: nowrap; overflow-x: auto;">
-                        <div class="small images">
-                            <div class="ui image" ng-repeat="youtube in youtubes">
-                                <img ng-src="{{youtube.thumbnail_url}}" ng-click="setShowItem(youtube,'youtube')">
-                            </div>
-
-                            <div class="ui image" ng-repeat="image in images">
-                                <img ng-src="{{image.url}}?w=150&fill=center" ng-click="setShowItem(image,'image')"/>
-                            </div>
+                        <div class="flexslider">
+                            <ul class="slides">
+                                <li ng-repeat="youtube in youtubes">
+                                    <div class="videoWrapper">
+                                        <iframe class="youtube" width="640" height="380"
+                                                ng-src="{{getYoutubeEmbedUrl(youtube.vid)}}">
+                                        </iframe>
+                                    </div>
+                                </li>
+                                <li ng-repeat="image in images">
+                                    <img ng-src="{{image.url}}?w=640&h=380&fit=stretch"/>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -68,7 +60,8 @@
 
                 <div class="ui segment">
                     <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
-                    <img ng-if="project.faculty.logo" class="ui avatar image" ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
+                    <img ng-if="project.faculty.logo" class="ui avatar image"
+                         ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
                     {{project.faculty.name_th}}
                 </div>
 
@@ -79,7 +72,8 @@
                         <div class="ui two columns grid">
                             <div class="ui column" ng-repeat="member in members">
                                 <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
-                                <img ng-if="member.logo" class="ui avatar image" ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
+                                <img ng-if="member.logo" class="ui avatar image"
+                                     ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
                                 {{member.title}}{{member.firstname}} {{member.lastname}}
                             </div>
                         </div>

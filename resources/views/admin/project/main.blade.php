@@ -16,7 +16,8 @@
             height: 100%;
         }
     </style>
-    <link rel="stylesheet" href="/packages/semantic-ui/dist/components/video.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
 @stop
 
 @section('content')
@@ -34,7 +35,8 @@
 
 
 @section('javascript')
-    <script type="text/javascript" src="/packages/semantic-ui/dist/components/video.min.js"></script>
+    <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
