@@ -43,6 +43,9 @@
                     <div class="wide column">
 
                         <div class="ui right aligned segment">
+                            <span style="font-weight: bold;">
+                                {{ project.current_file.origin_name | limitTo: 75}}{{project.current_file.origin_name.length > 75 ? '...' : ''}}
+                            </span>
                             <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}" class="ui positive button">เอกสารฉบับเต็ม</a>
                         </div>
 
