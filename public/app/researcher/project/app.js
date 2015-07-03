@@ -27,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_add.html",
             controller: "AddCtrl",
             resolve: {
-                projects: function (ResearcherService) {
+                project: function (ResearcherService) {
                     return {data: {}}
                 }
 
@@ -52,12 +52,12 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 });
 
-app.controller("AddCtrl", function ($scope,$state,$timeout,projects,ResearcherService) {
+app.controller("AddCtrl", function ($scope,$state,$timeout,project,ResearcherService) {
     console.log("AddCtrl Start...");
-    $scope.projects = projects.data;
+    $scope.project = project.data;
 
     $scope.addProject = function () {
-        ResearcherService.addProject($scope.projects).success(function (resposne) {
+        ResearcherService.addProject($scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
