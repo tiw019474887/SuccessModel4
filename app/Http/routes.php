@@ -45,12 +45,12 @@ Route::group(['prefix' => 'api'], function () {
 
     //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
-    Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@acceptProject');
+    Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@submit');
     Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
 
     //api for university
     Route::get('university/projects','API\UniversityProjectApiController@getProjects');
-    Route::post('university/accept-project/{id}','API\UniversityProjectApiController@acceptProject');
+    Route::post('university/accept-project/{id}','API\UniversityProjectApiController@submit');
     Route::post('university/reject-project/{id}','API\UniversityProjectApiController@rejectProject');
 
     //api for researcher
@@ -58,7 +58,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('researcher/get-project/{id}','API\ResearcherProjectApiController@get');
     Route::post('researcher/update-project/{id}','API\ResearcherProjectApiController@update');
     Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
-    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
+    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submit');
 
     //api for published projects
     Route::get('publish/projects','API\PublishProjectApiController@getProjects');

@@ -26,8 +26,8 @@ class UniversityProjectApiController extends Controller {
         return $this->universityProjectService->getUniversityStatusProjects();
     }
 
-    public function acceptProject($id){
-        return $this->universityProjectService->acceptProject($id,Input::all());
+    public function submit($id){
+        return $this->universityProjectService->submitProject($id,Input::all());
     }
     public function rejectProject($id){
         return $this->universityProjectService->rejectProject($id,Input::all());

@@ -33,7 +33,7 @@ class UniversityProjectService extends ResearcherProjectService
 
         return $projects;
     }
-    public function acceptProject($id,array $input){
+    public function submitProject($id,array $input){
         $project = Project::find($id);
         if($project){
             $this->linkToPublish($project,$input);

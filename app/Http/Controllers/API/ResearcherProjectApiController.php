@@ -28,7 +28,7 @@ class ResearcherProjectApiController extends Controller {
         return $this->researcherProjectService->getProjects();
     }
 
-    public function submitProject($id){
+    public function submit($id){
         return $this->researcherProjectService->submitProject($id,Input::all());
     }
 
