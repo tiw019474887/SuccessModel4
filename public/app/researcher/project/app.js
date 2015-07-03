@@ -27,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_add.html",
             controller: "AddCtrl",
             resolve: {
-                project: function (ProjectService) {
+                projects: function (ResearcherService) {
                     return {data: {}}
                 }
 
@@ -52,18 +52,21 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 });
 
-app.controller("AddCtrl", function ($scope,projects,ProjectService) {
+app.controller("AddCtrl", function ($scope,$state,$timeout,projects,ResearcherService) {
     console.log("AddCtrl Start...");
     $scope.projects = projects.data;
 
-    $scope.save = function () {
-        ProjectService.store($scope.project).success(function (resposne) {
-            $state.go('home');
-            //$state.go("edit",{id:resposne.id});
+    $scope.addProject = function () {
+        ResearcherService.addProject($scope.projects).success(function (resposne) {
+            $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
         });
     }
+    $timeout(function () {
+        $('.menu .item').tab();
+    }, 100);
+
 });
 
 app.controller("EditCtrl", function ($scope) {
