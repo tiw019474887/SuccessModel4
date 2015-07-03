@@ -21,27 +21,17 @@ use \Auth;
 class UniversityProjectService extends ResearcherProjectService
 {
 
-    public function getProjects()
+    public function getUniversityStatusProjects()
     {
-        $user = Auth::user();
-        $fil_projects = [];
-        if($user){
-            /* @var User $user */
-            /* @var Faculty $faculty */
-            $faculty = $user->faculty;
-            if($faculty){
 
-                $projects = $faculty->projects()->with(['status','createdBy'])->get();
-                return $projects;
-                foreach ($projects as $project) {
-                    /* @var Project $project */
-                        if ($project->status->key == 'university'){
-                            array_push($fil_projects, $project);
-                    }
-                }
-            }
-        }
-        return $fil_projects;
+        $projects = Project::with(['createdBy', 'faculty','status'])->whereHas('status', function($q)
+        {
+            $q->where('key', '=', 'university');
+
+        })->get();
+
+
+        return $projects;
     }
     public function acceptProject($id,array $input){
         $project = Project::find($id);

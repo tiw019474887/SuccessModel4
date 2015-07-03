@@ -55,6 +55,8 @@ Route::group(['prefix' => 'api'], function () {
 
     //api for researcher
     Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
+    Route::get('researcher/get-project/{id}','API\ResearcherProjectApiController@get');
+    Route::post('researcher/update-project/{id}','API\ResearcherProjectApiController@update');
     Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
 

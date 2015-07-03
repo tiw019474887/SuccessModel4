@@ -23,7 +23,7 @@ class UniversityProjectApiController extends Controller {
 
     public function getProjects()
     {
-        return $this->universityProjectService->getProjects();
+        return $this->universityProjectService->getUniversityStatusProjects();
     }
 
     public function acceptProject($id){

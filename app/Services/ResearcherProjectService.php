@@ -38,6 +38,10 @@ class ResearcherProjectService extends ProjectService
 
         return $fil_projects;
     }
+    public function get($id){
+        $project = Project::with(['createdBy', 'faculty','status'])->find($id);
+        return $project;
+    }
 
     public function addProject(array $input){
         $project = new Project();
