@@ -52,7 +52,7 @@ class ResearcherProjectService extends ProjectService
 
     protected  function linkToDraftStatus(Project $project, array $input)
     {
-        $draft = ProjectStatus::where('key','=','draft');
+        $draft = ProjectStatus::where('key','=','draft')->first();
         if($draft){
             $project->status()->associate($draft)->save();
         }
