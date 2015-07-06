@@ -17,7 +17,15 @@
 
 
 @section('javascript')
+    <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
+    <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
+    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
+    <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
+    <script type="text/javascript" src="/app/admin/UserService.js"></script>
+    <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
     <script src="/app/admin/loader.js"></script>
     <script src="/app/researcher/project/app.js"></script>
 
