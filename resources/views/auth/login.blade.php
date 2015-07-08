@@ -154,13 +154,21 @@
 
                 <div class="ui attached segment" ng-if="!loginComplete">
                     <form class="ui form" ng-submit="login()">
-                        <div class="ui fluid left icon input field">
-                            <i class="mail icon"></i>
-                            <input ng-model="user.email" name="email" type="text" placeholder="E-Mail Address">
+                        <div class="ui field">
+                            <label>Username or E-Mail</label>
+                            <div class="ui left icon input">
+                                <i class="mail icon"></i>
+                                <input ng-model="user.email" name="email" type="text" placeholder="Username & E-Mail">
+                            </div>
+
                         </div>
-                        <div class="ui fluid left icon input field">
-                            <i class="lock icon"></i>
-                            <input ng-model="user.password" name="password" type="password" placeholder="Password">
+                        <div class="ui field">
+                            <label>Password</label>
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input ng-model="user.password" name="password" type="password" placeholder="Password">
+                            </div>
+
                         </div>
                         <div class="ui grid">
                             <div class="row two column">
