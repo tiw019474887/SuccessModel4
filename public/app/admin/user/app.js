@@ -139,9 +139,12 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles, fa
     $timeout(function () {
         $('#roles_dropdown').dropdown({
             onAdd: onAddRole,
-            onRemove: onRemoveRole
+            onRemove: onRemoveRole,
+            direction: 'upward'
         });
-        $('#faculty_dropdown').dropdown();
+        $('#faculty_dropdown').dropdown({
+            direction: 'upward'
+        });
     }, 100)
 
 });
@@ -216,9 +219,11 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService, roles, f
     $timeout(function () {
         $('#roles_dropdown').dropdown({
             onAdd: onAddRole,
-            onRemove: onRemoveRole
+            onRemove: onRemoveRole,
+            direction: 'upward'
         });
-
-        $('#faculty_dropdown').dropdown();
+        $('#faculty_dropdown').dropdown({
+            direction: 'upward'
+        });
     }, 100)
 });

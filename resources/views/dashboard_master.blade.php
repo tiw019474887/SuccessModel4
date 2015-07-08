@@ -94,11 +94,11 @@
 <div class="ui grid" style="margin-top: 0px;">
     <div class="one column row">
         <div class="column">
-            <div id="main-content" class="pushable">
+            <div id="main-content" class="pushable" style="min-height: 480px;">
                 <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
                     @yield('sidemenu')
                 </div>
-                <div class="pusher">
+                <div class="pusher" style="min-height: inherit;">
                     <div class="ui container">
                         <div class="column">
                             @yield('content')
@@ -124,7 +124,7 @@
     $('#main-sidebar')
             .sidebar({
                 context: $('#main-content'),
-                transition: 'overlay'
+                transition: 'push'
             })
     ;
 
