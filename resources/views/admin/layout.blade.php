@@ -5,54 +5,69 @@
 @stop
 
 @section('sidemenu')
-    <div class="ui fluid vertical menu">
-        <div class="header item">
+    <div class="item">
+        <div class="header">
             Administrator
         </div>
-        <a class=" <% Request::is('admin/dashboard') ? 'active' : '' %> item" href="/admin">
-            <i class="home icon"></i>
-            Dashboard
-        </a>
+        <div class="menu">
+            <a class=" <% Request::is('admin/dashboard') ? 'active' : '' %> item" href="/admin">
+                <i class="home icon"></i>
+                Dashboard
+            </a>
+        </div>
+    </div>
 
-        <div class="header item">
+
+    <div class="item">
+        <div class="header">
             Faculty Management
         </div>
+        <div class="menu">
+            <a class=" <% Request::is('admin/faculty') ? 'active' : '' %> item" href="/admin/faculty">
+                Faculty
+            </a>
 
-        <a class=" <% Request::is('admin/faculty') ? 'active' : '' %> item" href="/admin/faculty">
-            Faculty
-        </a>
+        </div>
+    </div>
 
-        <div class="header item">
+    <div class="item">
+        <div class="header">
             Success Model Management
         </div>
+        <div class="menu">
+            <a class=" <% Request::is('admin/project') ? 'active' : '' %> item" href="/admin/project">
+                Projects
+            </a>
 
-        <a class=" <% Request::is('admin/project') ? 'active' : '' %> item" href="/admin/project">
-            Projects
-        </a>
+            <a class=" <% Request::is('admin/project-status') ? 'active' : '' %> item" href="/admin/project-status">
+                Project Status
+            </a>
+        </div>
+    </div>
 
-        <a class=" <% Request::is('admin/project-status') ? 'active' : '' %> item" href="/admin/project-status">
-            Project Status
-        </a>
-
-        <div class="header item">
+    <div class="item">
+        <div class="header">
             User Management
         </div>
+        <div class="menu">
+            <a class=" <% Request::is('admin/user') ? 'active' : '' %> item" href="/admin/user">
+                Users
+            </a>
+            <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
+                Roles
+            </a>
+        </div>
+    </div>
 
-        <a class=" <% Request::is('admin/user') ? 'active' : '' %> item" href="/admin/user">
-            Users
-        </a>
-
-        <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
-            Roles
-        </a>
-
-        <div class="header item">
+    <div class="item">
+        <div class="header">
             Security Management
         </div>
-
-        <a class=" <% Request::is('admin/api-key') ? 'active' : '' %> item" href="/admin/api-key">
-            Api Key
-        </a>
+        <div class="menu">
+            <a class=" <% Request::is('admin/api-key') ? 'active' : '' %> item" href="/admin/api-key">
+                Api Key
+            </a>
+        </div>
     </div>
 @stop
 
