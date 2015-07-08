@@ -15,6 +15,7 @@
             margin-top: -0.5em;
             margin-bottom: -0.5em;
         }
+
         .ui.inverted.purple.segment {
             background-color: #4c1d6e !important;
         }
@@ -28,7 +29,7 @@
 <body>
 
 <div class="ui grid">
-    <div class="one column row">
+    <div class="one column row" style="padding-bottom: 0px;">
         <div class="column" style="background-color: #4c1d6e">
             <div class="ui grid container">
                 <div class="column">
@@ -90,14 +91,23 @@
         </div>
     </div>
 </div>
+<div class="ui grid" style="margin-top: 0px;">
+    <div class="one column row">
+        <div class="column">
+            <div id="main-content" class="pushable">
+                <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
+                    @yield('sidemenu')
+                </div>
+                <div class="pusher">
+                    <div class="ui container">
+                        <div class="column">
+                            @yield('content')
+                        </div>
 
-<div id="main-content" class="pushable">
-    <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
-        @yield('sidemenu')
-    </div>
-    <div class="pusher">
-        <div class="ui container" style="padding-top: 14px;">
-            @yield('content')
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
