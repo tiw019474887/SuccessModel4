@@ -15,6 +15,9 @@
             margin-top: -0.5em;
             margin-bottom: -0.5em;
         }
+        .ui.inverted.purple.segment {
+            background-color: #4c1d6e !important;
+        }
     </style>
 
     @yield('header')
@@ -41,17 +44,15 @@
             </div>
         </div>
         <div class="column">
-            <div class="ui large menu " id="MainMenu" style="border-radius: 0px;">
-                <div class="ui container">
+            <div class="ui container">
+                <div class="ui large stackable menu " id="MainMenu" style="border-radius: 0px;">
+
                     <a id="main-sidebar-btn" class="item">
                         <i class="sidebar icon"></i>
                         Menu
                     </a>
                     <a class="item active">
                         <%$role_name%>
-                    </a>
-                    <a class="item">
-                        About Us
                     </a>
 
                     <div class="right menu">
@@ -83,16 +84,6 @@
 
 
                         </div>
-
-                        <div class="item">
-                            Support
-                        </div>
-                        <a class="item">
-                            FAQ
-                        </a>
-                        <a class="item" style="border-right: 1px solid rgba(34,36,38,.1);">
-                            E-mail Support
-                        </a>
                     </div>
                 </div>
             </div>
@@ -123,11 +114,11 @@
     $('#main-sidebar')
             .sidebar({
                 context: $('#main-content'),
-                transition :'overlay'
+                transition: 'overlay'
             })
     ;
 
-    $('#main-sidebar-btn').bind('click',function(){
+    $('#main-sidebar-btn').bind('click', function () {
         $('#main-sidebar').sidebar('toggle');
     })
 

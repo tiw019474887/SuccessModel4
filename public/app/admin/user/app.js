@@ -131,7 +131,7 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles,fac
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,faculties,$cookies) {
+app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,faculties,$cookies,$timeout) {
     console.log("EditCtrl Start...");
 
     $scope.user = user.data;
@@ -188,5 +188,36 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,fac
         });
     }
 
-    $('.ui.dropdown').dropdown();
-});
+    function onAddRole($label, value, text) {
+        for (var i = 0; i < $scope.roles.length; i++) {
+            if ($label == $scope.roles[i].id) {
+                $scope.user.roles.push($scope.roles[i]);
+            }
+        }
+    }
+
+    function onRemoveRole(removedValue, removedText, $removedChoice) {
+        for (var i = 0; i < $scope.user.roles.length; i++) {
+            if (removedValue == $scope.user.roles[i].id) {
+                $scope.user.roles.splice(i,1);
+            }
+        }
+    }
+
+    $scope.hasRole = function(role){
+
+        for (var i = 0; i < $scope.user.roles.length; i++) {
+            if (role.id == $scope.user.roles[i].id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    $timeout(function () {
+        $('#roles_dropdown').dropdown({
+            onAdd: onAddRole,
+            onRemove: onRemoveRole
+        });
+    }, 100)});

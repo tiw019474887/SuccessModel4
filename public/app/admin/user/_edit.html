@@ -65,18 +65,17 @@
     <div class="field">
         <label>Roles</label>
 
-        <div class="ui floating dropdown upward labeled icon button">
-            <i class="world icon"></i>
-            <span class="text">Select Roles</span>
+        <div id="roles_dropdown" class="ui fluid multiple search selection dropdown">
+            <input type="hidden" name="role">
+            <i class="dropdown icon"></i>
 
+            <a ng-repeat="role in user.roles | orderBy : role.id" class="ui label transition visible" data-value="{{role.id}}" style="display: inline-block !important;">{{role.name}}<i class="delete icon"></i></a>
+
+            <div class="default text">เลือกบทบาทหน้าที่</div>
             <div class="menu">
-                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
+                <div ng-class="{filtered : hasRole(role)}" class="item" data-value="{{role.id}}" ng-repeat="role in roles | orderBy : role.id">{{role.name}}</div>
             </div>
-        </div>
 
-        <div class="ui label" ng-repeat="role in user.roles">
-            {{role.name}}
-            <i class="delete icon" ng-click="removeRole(role)"></i>
         </div>
 
     </div>
