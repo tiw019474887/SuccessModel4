@@ -14,6 +14,7 @@
             margin-top: -0.5em;
             margin-bottom: -0.5em;
         }
+
         .ui.inverted.purple.segment {
             background-color: #4c1d6e !important;
         }
@@ -63,37 +64,36 @@
                 </div>
             </div>
             <div class="ui attached segment" ng-if="!loginComplete">
-                    <form class="ui form" ng-submit="login()">
-                        <div class="ui field">
-                            <label>Username or E-Mail</label>
-                            <div class="ui left icon input">
-                                <i class="mail icon"></i>
-                                <input ng-model="user.email" name="email" type="text" placeholder="Username & E-Mail">
-                            </div>
+                <form class="ui form" ng-submit="login()">
+                    <div class="ui field">
+                        <label>Username or E-Mail</label>
 
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input ng-model="user.email" name="email" type="text" placeholder="Username & E-Mail">
                         </div>
-                        <div class="ui field">
-                            <label>Password</label>
-                            <div class="ui left icon input">
-                                <i class="lock icon"></i>
-                                <input ng-model="user.password" name="password" type="password" placeholder="Password">
-                            </div>
 
+                    </div>
+                    <div class="ui field">
+                        <label>Password</label>
+
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input ng-model="user.password" name="password" type="password" placeholder="Password">
                         </div>
-                        <div class="ui grid">
-                            <div class="row two column">
-                                <div class="column">
-                                    <button type="submit" class="fluid ui primary button">User Login</button>
-                                </div>
-                                <div class="column">
-                                    <a href="#" class="fluid ui positive button">Register</a>
-                                </div>
 
+                    </div>
+                    <div class="ui grid">
+                        <div class="row two column">
+                            <div class="column">
+                                <button type="submit" class="fluid ui primary button">User Login</button>
                             </div>
+                            <div class="column">
+                                <a href="#" class="fluid ui positive button">Register</a>
+                            </div>
+
                         </div>
                     </div>
-
-
                 </form>
             </div>
             <div class="ui attached segment" ng-if="loginComplete">
@@ -129,6 +129,7 @@
 <script type="text/javascript" src="/app/admin/loader.js"></script>
 
 <script type="text/javascript">
+
     var app = angular.module("MainApp", ['Auth', 'AppConfig']);
     app.controller("LoginCtrl", function ($scope, AuthService) {
         $scope.user = {}
@@ -142,6 +143,7 @@
                 $scope.message = null;
                 $scope.loginComplete = true;
                 $scope.user = response;
+                console.log($scope.loginComplete);
             }).error(function (response) {
                 //console.log(response);
                 $scope.message = response;
