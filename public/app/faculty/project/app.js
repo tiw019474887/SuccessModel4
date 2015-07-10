@@ -95,7 +95,7 @@ app.controller("EditCtrl", function ($scope, $timeout, $filter,
             }
         }
     })
-    
+
     $timeout(function () {
         $('.menu .item').tab();
         $('.ui.dropdown').dropdown();
