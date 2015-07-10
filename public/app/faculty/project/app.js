@@ -29,7 +29,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "EditCtrl",
             resolve: {
                 project: function (FacultyService,$stateParams) {
-                    return FacultyService.getProjects($stateParams.id)
+                    return FacultyService.get($stateParams.id)
                 },
                 images: function (ProjectService, $stateParams) {
                     return ProjectService.getImages($stateParams.id);
@@ -95,89 +95,7 @@ app.controller("EditCtrl", function ($scope, $timeout, $filter,
             }
         }
     })
-
-
-    $scope.uploadFile = function () {
-        $scope.myFlow.upload();
-    }
-
-    $scope.cancelFile = function (file) {
-        var index = $scope.myFlow.files.indexOf(file)
-        $scope.myFlow.files.splice(index, 1);
-
-    }
-
-    $scope.save = function () {
-        ResearcherService.update($scope.project.id,$scope.project).success(function (resposne) {
-            $state.go("home")
-        }).error(function (response) {
-            alert(response.name_th);
-        });
-    }
-
-    $scope.updateStatus = function (status) {
-        $scope.project.status = status;
-    }
-
-    $scope.updateFaculty = function (faculty) {
-        $scope.project.faculty = faculty;
-    }
-
-    // search segment
-
-    $scope.createdBy = {};
-
-    $scope.createdBy.tempFilterText = '';
-    $scope.createdBy.filterTextTimeout;
-
-    $scope.createdBy.searchUser = function ($keyword) {
-        if ($scope.createdBy.filterTextTimeout) $timeout.cancel($scope.createdBy.filterTextTimeout);
-
-        $scope.createdBy.tempFilterText = $keyword;
-        $scope.createdBy.filterTextTimeout = $timeout(function () {
-            $scope.createdBy.filterText = $scope.createdBy.tempFilterText;
-            //console.log($scope.filterText);
-            if ($scope.createdBy.filterText.length == 0) {
-
-            } else {
-                UserService.search($scope.createdBy.filterText)
-                    .success(function (response) {
-                        $scope.createdBy.users = response;
-                    });
-            }
-
-        }, 250); // delay 250 ms
-    }
-    //end search segment
-
-    $scope.createdBy.checkUser = function (user) {
-
-        if (!$scope.project.created_by) {
-            $scope.project.created_by = null;
-        }
-        if ($scope.project.created_by) {
-            if ($scope.project.created_by && user) {
-                if ($scope.project.created_by.id == user.id) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-    }
-
-    $scope.createdBy.addUser = function (user) {
-        $scope.project.created_by = user;
-        $scope.createdBy.users = null;
-
-    }
-
-    $scope.createdBy.removeUser = function (user) {
-        $scope.project.created_by = null;
-    }
-
+    
     $timeout(function () {
         $('.menu .item').tab();
         $('.ui.dropdown').dropdown();
