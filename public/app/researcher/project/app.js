@@ -5,7 +5,8 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig', 'User', 'Researcher', 'Youtube'
+var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig', 'User', 'Researcher',
+    'Youtube','User','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -41,20 +42,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 project: function (ResearcherService, $stateParams) {
                     return ResearcherService.get($stateParams.id)
                 },
-                images: function (ResearcherService, $stateParams) {
-                    return ResearcherService.getImages($stateParams.id);
+                images: function (ProjectService, $stateParams) {
+                    return ProjectService.getImages($stateParams.id);
                 },
-                members: function (ResearcherService, $stateParams) {
-                    return ResearcherService.getMembers($stateParams.id);
+                members: function (ProjectService, $stateParams) {
+                    return ProjectService.getMembers($stateParams.id);
                 },
-                file: function (ResearcherService, $stateParams) {
-                    return ResearcherService.getFile($stateParams.id);
+                file: function (ProjectService, $stateParams) {
+                    return ProjectService.getFile($stateParams.id);
                 },
-                previousFiles: function (ResearcherService, $stateParams) {
-                    return ResearcherService.getPreviousFiles($stateParams.id);
+                previousFiles: function (ProjectService, $stateParams) {
+                    return ProjectService.getPreviousFiles($stateParams.id);
                 },
-                youtubes: function (ResearcherService, $stateParams) {
-                    return ResearcherService.getYoutubes($stateParams.id);
+                youtubes: function (ProjectService, $stateParams) {
+                    return ProjectService.getYoutubes($stateParams.id);
                 }
 
             }
@@ -81,14 +82,18 @@ app.controller("AddCtrl", function ($scope,$state,$timeout,project,ResearcherSer
             alert(response.name_th);
         });
     }
+
+
     $timeout(function () {
         $('.menu .item').tab();
     }, 100);
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
-    , project, images, members, file, previousFiles, youtubes ) {
+app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
+                                     UserService, UserSearchService, project,
+                                     images, members, file, previousFiles, youtubes
+    ) {
 
     console.log("EditCtrl Start...");
 
@@ -100,12 +105,113 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.youtubes = youtubes.data;
     $scope.keyword;
 
-    $scope.submit = function () {
-        ResearcherService.submit($scope.project).success(function (resposne) {
+
+    $scope.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    };
+
+
+    $scope.myFlow = new Flow({
+        target: '/api/project/' + $scope.project.id + '/logo',
+        singleFile: true,
+        method: 'post',
+        testChunks: false,
+        headers: function (file, chunk, isTest) {
+            return {
+                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')
+            }
+        }
+    })
+
+
+    $scope.uploadFile = function () {
+        $scope.myFlow.upload();
+    }
+
+    $scope.cancelFile = function (file) {
+        var index = $scope.myFlow.files.indexOf(file)
+        $scope.myFlow.files.splice(index, 1);
+
+    }
+
+    $scope.save = function () {
+        ResearcherService.update($scope.project.id,$scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
         });
+    }
+
+    $scope.updateStatus = function (status) {
+        $scope.project.status = status;
+    }
+
+    $scope.updateFaculty = function (faculty) {
+        $scope.project.faculty = faculty;
+    }
+
+    // search segment
+
+    $scope.createdBy = {};
+
+    $scope.createdBy.tempFilterText = '';
+    $scope.createdBy.filterTextTimeout;
+
+    $scope.createdBy.searchUser = function ($keyword) {
+        if ($scope.createdBy.filterTextTimeout) $timeout.cancel($scope.createdBy.filterTextTimeout);
+
+        $scope.createdBy.tempFilterText = $keyword;
+        $scope.createdBy.filterTextTimeout = $timeout(function () {
+            $scope.createdBy.filterText = $scope.createdBy.tempFilterText;
+            //console.log($scope.filterText);
+            if ($scope.createdBy.filterText.length == 0) {
+
+            } else {
+                UserService.search($scope.createdBy.filterText)
+                    .success(function (response) {
+                        $scope.createdBy.users = response;
+                    });
+            }
+
+        }, 250); // delay 250 ms
+    }
+    //end search segment
+
+    $scope.createdBy.checkUser = function (user) {
+
+        if (!$scope.project.created_by) {
+            $scope.project.created_by = null;
+        }
+        if ($scope.project.created_by) {
+            if ($scope.project.created_by && user) {
+                if ($scope.project.created_by.id == user.id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    $scope.createdBy.addUser = function (user) {
+        $scope.project.created_by = user;
+        $scope.createdBy.users = null;
+
+    }
+
+    $scope.createdBy.removeUser = function (user) {
+        $scope.project.created_by = null;
     }
 
     $timeout(function () {
@@ -117,16 +223,18 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
             }
         })
     }, 100);
+
 });
+
 app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $timeout,
-                                              UserSearchService, UserService, ResearcherService) {
+                                              UserSearchService, UserService, ProjectService) {
 
     var self = this;
     self.firstInit = false;
     $scope.initProjectMemberCtrl = function () {
         console.log("ProjectMemberCtrl Start...")
         if (self.firstInit) {
-            ResearcherService.getMembers($stateParams.id).success(function (resposne) {
+            ProjectService.getMembers($stateParams.id).success(function (resposne) {
                 self.projectMembers = resposne;
             });
         } else {
@@ -144,7 +252,7 @@ app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $tim
     }
 
     self.member.addMember = function (user) {
-        ResearcherService.addMember($scope.project.id, user)
+        ProjectService.addMember($scope.project.id, user)
             .success(function (response) {
                 //console.log(response);
                 //alert('view console');
@@ -154,7 +262,7 @@ app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $tim
 
     self.member.removeMember = function (user) {
         console.log(user);
-        ResearcherService.deleteMember($scope.project.id, user)
+        ProjectService.deleteMember($scope.project.id, user)
             .success(function (response) {
                 //console.log(response);
                 //alert('view console');
@@ -188,8 +296,9 @@ app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $tim
     }
 
 });
+
 app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $timeout,
-                                                   UserService, ResercherService) {
+                                                   UserService, ProjectService) {
 
     var self = this;
     self.firstInit = false;
@@ -216,7 +325,7 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
 
     self.loadImages = function () {
         if (self.firstInit) {
-            ResercherService.getImages(self.project.id)
+            ProjectService.getImages(self.project.id)
                 .success(function (response) {
                     self.images = response;
                     //console.log(response);
@@ -245,7 +354,7 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
     self.deleteImage = function (image) {
 
         if (confirm("Do you want to delete this image")) {
-            ResercherService.deleteImage(self.project.id, image)
+            ProjectService.deleteImage(self.project.id, image)
                 .success(function (response) {
                     var i = 0;
                     var index = -1;
@@ -269,7 +378,7 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
 });
 
 app.controller("ProjectFileController", function ($scope, $state, $cookies, $timeout,
-                                                  ResercherService) {
+                                                  ProjectService) {
 
     var self = this;
     self.firstInit = false;
@@ -278,7 +387,7 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
         console.log("ProjectFileController Start...");
         self.project = $scope.project;
         if (self.firstInit) {
-            ResercherService.getFiles($stateParams.id)
+            ProjectService.getFiles($stateParams.id)
                 .success(function (response) {
                     self.files = response;
                 })
@@ -323,7 +432,7 @@ app.controller("ProjectFileController", function ($scope, $state, $cookies, $tim
 });
 
 app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $timeout,
-                                                     ResercherService, YoutubeService) {
+                                                     ProjectService, YoutubeService) {
 
     var self = this;
     self.firstInit = false;
@@ -333,7 +442,7 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
         console.log("ProjectYoutubeController Start...");
         self.project = $scope.project;
         if (self.firstInit) {
-            ResercherService.getYoutubes($stateParams.id)
+            ProjectService.getYoutubes($stateParams.id)
                 .success(function (response) {
                     self.youtubes = response;
                     self.youtube = [];
@@ -372,7 +481,7 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
                     self.youtube.vid = vid;
                     console.log(self.youtube);
 
-                    ResercherService.addYoutube(self.project.id, self.youtube)
+                    ProjectService.addYoutube(self.project.id, self.youtube)
                         .success(function (resposne) {
                             self.youtubes.push(resposne);
                             self.youtube = null;
@@ -385,7 +494,7 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
     }
 
     self.deleteYoutube = function (youtube) {
-        ResercherService.deleteYoutube(self.project.id, youtube)
+        ProjectService.deleteYoutube(self.project.id, youtube)
             .success(function (response) {
                 var i;
                 for (i = 0; i < self.youtubes.length; i++) {
@@ -406,5 +515,4 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
 
 
     $scope.initProjectYoutubeController();
-
 });
