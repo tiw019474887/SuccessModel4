@@ -18,7 +18,7 @@
   ],
   "require": {
     "laravel/framework": "5.0.*",
-    "vinelab/neoeloquent": "1.2.*",
+    "vinelab/neoeloquent": "1.2.5",
     "barryvdh/laravel-ide-helper": "~2.0",
     "league/glide": "0.3.*",
     "spatie/laravel-glide": "~2.1",
