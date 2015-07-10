@@ -20,11 +20,19 @@ class CommentCommentApiController extends Controller {
         $this->commentProjectService = $commentProjectService;
     }
 
-    public function addCommentToComment()
+    public function index($commentId)
     {
-        return $this->CommentProjectService->addCommentToComment(Input::all());
+        /* @var Project $project */
+        $maincomment = $this->commentprojectService->get($commentId);
+        $comment = $maincomment->comments;
+
+        return $comment;
     }
 
+    public function store($commentId)
+    {
+        return $this->commentProjectService->save($commentId,Input::instance());
 
+    }
 
 }

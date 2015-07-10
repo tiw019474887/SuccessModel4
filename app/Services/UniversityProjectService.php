@@ -33,6 +33,12 @@ class UniversityProjectService extends ResearcherProjectService
 
         return $projects;
     }
+
+    public function get($id){
+        $project = Project::with(['createdBy', 'faculty','status'])->find($id);
+        return $project;
+    }
+
     public function submitProject($id,array $input){
         $project = Project::find($id);
         if($project){
