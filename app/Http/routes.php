@@ -45,11 +45,13 @@ Route::group(['prefix' => 'api'], function () {
 
     //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
+    Route::get('faculty/get-project/{id}','API\FacultyProjectApiController@get');
     Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@submit');
     Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
 
     //api for university
     Route::get('university/projects','API\UniversityProjectApiController@getProjects');
+    Route::get('university/get-project/{id}','API\UniversityProjectApiController@get');
     Route::post('university/accept-project/{id}','API\UniversityProjectApiController@submit');
     Route::post('university/reject-project/{id}','API\UniversityProjectApiController@rejectProject');
 
