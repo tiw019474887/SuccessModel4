@@ -22,26 +22,17 @@ class PublishProjectService extends ResearcherProjectService
 {
 
 
-    public function getProjects()
+    public function PublishProject()
     {
-        $user = Auth::user();
-        $fil_projects = [];
-        if($user){
-            /* @var User $user */
-            /* @var Faculty $faculty */
-            $faculty = $user->faculty;
-            if($faculty){
 
-                $projects = $faculty->projects()->with(['status','createdBy'])->get();
-                foreach ($projects as $project) {
-                    /* @var Project $project */
-                    if ($project->status->key = 'publish'){
-                        array_push($fil_projects, $project);
-                    }
-                }
-            }
-        }
-        return $fil_projects;
+        $projects = Project::with(['createdBy', 'faculty','status'])->whereHas('status', function($q)
+        {
+            $q->where('key', '=', 'publish');
+
+        })->get();
+
+
+        return $projects;
     }
 
 }

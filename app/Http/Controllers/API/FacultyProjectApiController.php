@@ -25,6 +25,10 @@ class FacultyProjectApiController extends Controller {
         return $this->facultyProjectService->getProjects();
     }
 
+    public function get($id){
+        return $this->facultyProjectService->get($id);
+    }
+
     public function submit($id){
         return $this->facultyProjectService->submitProject($id,Input::all());
     }
