@@ -27,8 +27,8 @@ angular.module('University',[])
             },
             get :  function($id,$project){
                 return $http({
-                    url : '/api/university/get-project'+ $id,
-                    method : 'post',
+                    url : '/api/university/get-project/'+ $id,
+                    method : 'get',
                     data : $project
                 })
             }

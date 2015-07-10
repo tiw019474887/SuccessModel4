@@ -25,7 +25,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('view', {
             url: "/view/:id",
             templateUrl: "/app/university/project/_edit.html",
-            controller: "EditCtrl",
+            controller: "ViewCtrl",
             resolve: {
                 project: function (UniversityService,$stateParams) {
                     return UniversityService.get($stateParams.id)
@@ -56,10 +56,10 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 });
 
-app.controller("EditCtrl", function ($scope, $timeout, $filter,
+app.controller("ViewCtrl", function ($scope, $timeout, $filter,
                                      UserService, UserSearchService, project,
                                      images, members, file, previousFiles, youtubes) {
-    console.log("EditCtrl Start...");
+    console.log("ViewCtrl Start...");
 
     $scope.project = project.data;
     $scope.images = images.data;
