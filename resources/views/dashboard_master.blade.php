@@ -2,18 +2,22 @@
 <html>
 <head>
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
-    <link rel="stylesheet" href="/packages/semantic-ui/dist/semantic.min.css"/>
-    <link rel="stylesheet" href="/packages/semantic-ui/dist/components/dropdown.min.css"/>
+    <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
+    <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
 
     <script src="/packages/jquery/dist/jquery.min.js"></script>
-    <script src="/packages/semantic-ui/dist/semantic.min.js" type="text/javascript"></script>
-    <script src="/packages/semantic-ui/dist/components/dropdown.min.js" type="text/javascript"></script>
+    <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
+    <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
     <style>
         .avatar-menu {
             height: 2em !important;
             width: 2em !important;
             margin-top: -0.5em;
             margin-bottom: -0.5em;
+        }
+
+        .ui.inverted.purple.segment {
+            background-color: #4c1d6e !important;
         }
     </style>
 
@@ -24,82 +28,86 @@
 
 <body>
 
-<div class="ui" style="background-color: #4c1d6e">
+<div class="ui grid">
+    <div class="one column row" style="padding-bottom: 0px;">
+        <div class="column" style="background-color: #4c1d6e">
+            <div class="ui grid container">
+                <div class="column">
+                    <h2 class="ui header inverted" style="padding: 10px;">
+                        <img src="/images/uplogo.png">
 
-    <h2 class="ui header inverted" style="padding: 10px;">
-        <img src="/images/uplogo.png">
-
-        <div class="content">
-            Success Model
-            <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
-        </div>
-    </h2>
-
-</div>
-
-<div class="ui">
-    <div class="row">
-        <div class="ui large menu " id="MainMenu">
-            <div class="left purple inverted menu">
-                <a class="item active">
-                    <%$role_name%>
-                </a>
-                <a class="item">
-                    About Us
-                </a>
-            </div>
-
-            <div class="right menu">
-                <div class="item ui dropdown" ng-controller="UserCtrl">
-                    @if(Auth::user()->logo)
-                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
-                    @else
-                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
-                    @endif
-                    @if(Auth::user())
-                        <span><%Auth::user()->email%></span>
-                    @endif
-                    <div class="menu">
-                        <div class="header">
-                            <i class="tags icon"></i>
-                            เลือกสิทธิ์การใช้งาน
+                        <div class="content">
+                            Success Model
+                            <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
                         </div>
-                        @foreach( Auth::user()->roles as $role)
-                            <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item" href="/<%$role->key%>">
-                                <% $role->name %>
-                            </a>
-                        @endforeach
-                        <div class="divider"></div>
-                        <a class="item">Change Profile</a>
-                        <a class="item" ng-click="logout()">Logout</a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui container">
+                <div class="ui large stackable menu " id="MainMenu" style="border-radius: 0px;">
+
+                    <a id="main-sidebar-btn" class="item">
+                        <i class="sidebar icon"></i>
+                        Menu
+                    </a>
+                    <a class="item active">
+                        <%$role_name%>
+                    </a>
+
+                    <div class="right menu">
+                        <div class="item ui dropdown" ng-controller="UserCtrl">
+                            @if(Auth::user()->logo)
+                                <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                            @else
+                                <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                            @endif
+                            @if(Auth::user())
+                                <span><%Auth::user()->email%></span>
+                            @endif
+                            <div class="menu">
+                                <div class="header">
+                                    <i class="tags icon"></i>
+                                    เลือกสิทธิ์การใช้งาน
+                                </div>
+                                @foreach( Auth::user()->roles as $role)
+                                    <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                                       href="/<%$role->key%>">
+                                        <% $role->name %>
+                                    </a>
+                                @endforeach
+                                <div class="divider"></div>
+                                <a class="item">Change Profile</a>
+                                <a class="item" ng-click="logout()">Logout</a>
+
+                            </div>
+
+
+                        </div>
                     </div>
-
-
                 </div>
-
-                <div class="item">
-                    Support
-                </div>
-                <a class="item">
-                    FAQ
-                </a>
-                <a class="item">
-                    E-mail Support
-                </a>
             </div>
         </div>
     </div>
-
 </div>
+<div class="ui grid" style="margin-top: 0px;">
+    <div class="one column row">
+        <div class="column">
+            <div id="main-content" class="pushable" style="min-height: 480px;">
+                <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
+                    @yield('sidemenu')
+                </div>
+                <div class="pusher" style="min-height: inherit;">
+                    <div class="ui container">
+                        <div class="column">
+                            @yield('content')
+                        </div>
 
 
-<div class="ui padded stackable grid">
-    <div class="ui row">
-        <div class="ui three wide column">
-            @yield('sidemenu')
-        </div>
-        <div class="ui thirteen wide column">
-            @yield('content')
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -112,6 +120,18 @@
 </div>
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
+
+    $('#main-sidebar')
+            .sidebar({
+                context: $('#main-content'),
+                transition: 'push'
+            })
+    ;
+
+    $('#main-sidebar-btn').bind('click', function () {
+        $('#main-sidebar').sidebar('toggle');
+    })
+
 </script>
 
 @include('admin.js')
