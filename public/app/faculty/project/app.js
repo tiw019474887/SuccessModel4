@@ -48,16 +48,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('reject', {
-            url: "/reject/:id",
-            templateUrl: "/app/faculty/project/...",
-            controller: "RejectCtrl",
-            resolve: {
-                projects: function (FacultyService) {
-                    return FacultyService.rejectProject();
-                }
-            }
-        })
+
 });
 
 app.controller("HomeCtrl", function ($scope,projects) {
@@ -114,13 +105,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
     },10)
-
-});
-
-app.controller("RejectCtrl", function ($scope,projects,FacultyService) {
-    console.log("RejectCtrl Start...");
-    $scope.projects = projects.data;
-
 
 });
 
