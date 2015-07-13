@@ -2,7 +2,6 @@
 
 use Rhumsaa\Uuid\Uuid;
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -39,31 +38,30 @@ Route::group([
 Route::get('/researcher', 'Researcher\ResearcherController@index');
 
 
-
 Route::group(['prefix' => 'api'], function () {
 
     //api for faculty
-    Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
-    Route::post('faculty/accept-project/{id}','API\FacultyProjectApiController@acceptProject');
-    Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
+    Route::get('faculty/projects', 'API\FacultyProjectApiController@getProjects');
+    Route::post('faculty/accept-project/{id}', 'API\FacultyProjectApiController@acceptProject');
+    Route::post('faculty/rejectProject/{id}', 'API\FacultyProjectApiController@rejectProject');
 
     //api for university
-    Route::get('university/projects','API\UniversityProjectApiController@getProjects');
-    Route::post('university/accept-project/{id}','API\UniversityProjectApiController@acceptProject');
-    Route::post('university/reject-project{id}','API\UniversityProjectApiController@rejectProject');
+    Route::get('university/projects', 'API\UniversityProjectApiController@getProjects');
+    Route::post('university/accept-project/{id}', 'API\UniversityProjectApiController@acceptProject');
+    Route::post('university/reject-project{id}', 'API\UniversityProjectApiController@rejectProject');
 
     //api for researcher
-    Route::get('researcher/projects','API\ResearcherProjectApiController@getProjects');
-    Route::post('researcher/add-project','API\ResearcherProjectApiController@addProject');
-    Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submitProject');
+    Route::get('researcher/projects', 'API\ResearcherProjectApiController@getProjects');
+    Route::post('researcher/add-project', 'API\ResearcherProjectApiController@addProject');
+    Route::post('researcher/submit-project/{id}', 'API\ResearcherProjectApiController@submitProject');
 
     //api for published projects
-    Route::get('publish/projects','API\PublishProjectApiController@getProjects');
+    Route::get('publish/projects', 'API\PublishProjectApiController@getProjects');
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
 
-    Route::post('faculty/{id}/saveLogo','Api\"FacultyApiController@saveLogo');
+    Route::post('faculty/{id}/saveLogo', 'Api\"FacultyApiController@saveLogo');
 
     Route::resource('faculty.user', 'API\FacultyUserApiController');
 
@@ -81,18 +79,16 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::resource('api-key', 'API\ApiKeyApiController');
 
-    Route::get('project/{id}/previous-files','API\ProjectFileApiController@getPreviousFiles');
+    Route::get('project/{id}/previous-files', 'API\ProjectFileApiController@getPreviousFiles');
     Route::resource('project.file', 'API\ProjectFileApiController');
-    Route::resource('project.status','API\ProjectProjectStatusApiController');
-
-
+    Route::resource('project.status', 'API\ProjectProjectStatusApiController');
 
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');
 
-    Route::get('chart/faculty-project','API\ChartApiController@facultyProjectChart');
+    Route::get('chart/faculty-project', 'API\ChartApiController@facultyProjectChart');
 
 });
 
@@ -100,20 +96,20 @@ Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Htt
     $server->outputImage($request);
 })->where('path', '.*');
 
-Route::get('/downloads/{name}/files/{path}',function($name,$path){
-    $filePath = storage_path().'/app/'.$path;
-    return Response::download($filePath,$name);
-})->where('path','.*');
+Route::get('/downloads/{name}/files/{path}', function ($name, $path) {
+    $filePath = storage_path() . '/app/' . $path;
+    return Response::download($filePath, $name);
+})->where('path', '.*');
 
-Route::get('/register','Guest\RegisterController@registerPage');
+Route::get('/register', 'Guest\RegisterController@registerPage');
 
-Route::get('test',function(){
+Route::get('test', function () {
 
     \App\Models\Project::reindex();
 
 });
 
-Route::post('tinymce-upload',function(){
+Route::post('tinymce-upload', function () {
     $uuid = Uuid::uuid4();
     $storage_path = "app/temp/";
     $destination_path = storage_path($storage_path);
