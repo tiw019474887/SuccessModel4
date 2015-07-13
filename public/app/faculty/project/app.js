@@ -25,7 +25,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         .state('view', {
             url: "/view/:id",
-            templateUrl: "/app/faculty/project/_edit.html",
+            templateUrl: "/app/faculty/project/_view.html",
             controller: "ViewCtrl",
             resolve: {
                 project: function (FacultyService,$stateParams) {
@@ -56,55 +56,54 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 
 });
-app.controller("ViewCtrl", function ($scope, $timeout, $filter,
-                                     UserService, UserSearchService, project,
-                                     images, members, file, previousFiles, youtubes) {
+app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
+                                     UserService, UserSearchService, ProjectService,
+                                     project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
     $scope.project = project.data;
     $scope.images = images.data;
-    $scope.projectMembers = members.data;
-    $scope.file = file.data;
-    $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
-    $scope.keyword;
+    $scope.project.content = $sce.trustAsHtml($scope.project.content);
+    $scope.showItem = null;
+    $scope.members = members.data;
+    $scope.setShowItem = function (item, type) {
+        $scope.showItem = {item: item, type: type}
+    }
 
+    $scope.getYoutubeEmbedUrl = function (vid) {
+        return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + vid + '?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer');
+    }
 
-    $scope.mceOptions = {
-        inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
-        plugins: "tinyflow image hr",
-        skin: 'lightgray',
-        theme: 'modern',
-        relative_urls: false,
-        height: 400,
-        menubar: true,
-        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
-        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
-    };
-
-
-    $scope.myFlow = new Flow({
-        target: '/api/project/' + $scope.project.id + '/logo',
-        singleFile: true,
-        method: 'post',
-        testChunks: false,
-        headers: function (file, chunk, isTest) {
-            return {
-                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')
+    if ($scope.youtubes.length > 0) {
+        $scope.setShowItem($scope.youtubes[0], 'youtube');
+    } else if ($scope.images.length > 0) {
+        $scope.setShowItem($scope.images[0], 'image');
+    } else {
+        $scope.showItem = null;
+    }
+    $timeout(function(){
+        $('.flexslider').flexslider({
+            slideshow: true,
+            video : true,
+            before: function(slider){
+                /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
+                playVideoAndPauseOthers($('.play3 iframe')[0]);
             }
+        });
+
+        function playVideoAndPauseOthers(frame) {
+            $('iframe').each(function(i) {
+                var func = this === frame ? 'playVideo' : 'stopVideo';
+                this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
+            });
         }
-    })
 
-    $timeout(function () {
-        $('.menu .item').tab();
-        $('.ui.dropdown').dropdown();
-        $('.search').bind('keypress', function (e) {
-            if (e.keyCode == 13) {
-                e.preventDefault();
-            }
-        })
-    }, 100);
+        /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
+        $('.flex-next, .flex-prev').click(function() {
+            playVideoAndPauseOthers($('.play3 iframe')[0]);
+        });
+    },10)
 
 });
 
