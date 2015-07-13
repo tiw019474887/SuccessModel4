@@ -42,6 +42,10 @@ Route::group([
     Route::get('/university', 'University\UniversityController@index');
 
 Route::group(['prefix' => 'api'], function () {
+    //api for comment
+    Route::get('comment/get-comment','API\ProjectCommentApiController@getComments');
+    Route::post('comment/add-projectcomment','API\ProjectCommentApiController@addProjectComments');
+    Route::post('comment/add-commentcomment','API\ProjectCommentApiController@addCommentComments');
 
     //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');

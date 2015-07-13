@@ -20,21 +20,27 @@ class ProjectCommentApiController extends Controller {
         $this->commentProjectService = $commentProjectService;
     }
 
-    public function index($projectId)
-    {
-        /* @var Project $project */
-        $project = $this->commentprojectService->get($projectId);
-        $comment = $project->comments;
+    public function getComments($id){
 
-        return $comment;
-    }
-
-    public function store($projectId)
-    {
-      return $this->commentProjectService->save($projectId,Input::instance());
+        return $this->commentProjectService->getCommentFromProject($id);
 
     }
 
+    public function addProjectComment($projectId)
+    {
+      return $this->commentProjectService->addCommentToProject($projectId,Input::all());
+
+    }
+
+    public function addCommentComment($commentId)
+    {
+        return $this->commentProjectService->addCommentToComment($commentId,Input::all());
+
+    }
+
+    public function delete($id){
+        return $this->commentProjectService->delete($id);
+    }
 
 
 }
