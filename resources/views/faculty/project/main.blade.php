@@ -1,5 +1,25 @@
 @extends('faculty.layout')
 
+@section('header')
+    <style>
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+        }
+        .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+@stop
+
 
 @section('content')
     <div ng-app="FacultyProject">

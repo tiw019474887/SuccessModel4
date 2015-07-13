@@ -24,6 +24,13 @@ angular.module('University',[])
                     method : 'post',
                     data : $project
                 })
+            },
+            get :  function($id,$project){
+                return $http({
+                    url : '/api/university/get-project/'+ $id,
+                    method : 'get',
+                    data : $project
+                })
             }
         }
 
