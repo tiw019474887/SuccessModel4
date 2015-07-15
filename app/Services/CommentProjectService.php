@@ -21,6 +21,15 @@ use \Auth;
  */
 class CommentProjectService extends ProjectService
 {
+    public  function  getCommentFromProject($id){
+
+        $project = Project::find($id);
+        if($project){
+            $comments = Comment::with($this->withArr)->get();
+
+            return $comments;
+            }
+        }
 
     public function addCommentToProject($id,array $input){
         $project = $this->get($id);
@@ -47,7 +56,7 @@ class CommentProjectService extends ProjectService
     }
 
     public function addCommentToComment($id,array $input){
-       $maincomment = Comment::find($id);
+        $maincomment = Comment::find($id);
         $comment = new Comment();
         $comment->fill($input);
 
@@ -57,4 +66,7 @@ class CommentProjectService extends ProjectService
         return $comment;
     }
 
+    public function delete($id){
+        return Comment::find($id)->delete();
+    }
 }
