@@ -1,7 +1,6 @@
 <?php
 
-use Rhumsaa\Uuid\Uuid;
-
+use Ramsey\Uuid\Uuid;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
