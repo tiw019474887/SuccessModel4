@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
+use App\Services\UserService;
 use \Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -10,6 +11,10 @@ use \Input;
 
 class AuthApiController extends Controller
 {
+
+    public function __construct(UserService $service){
+        $this->userService = $service;
+    }
 
     public function authenticate(LoginRequest $loginRequest)
     {
@@ -57,7 +62,8 @@ class AuthApiController extends Controller
                     if($user){
                         Auth::login($user);
                     }else {
-                        //create user by download data from soap
+                        $user = $this->userService->createUserFromSoap($username,$password);
+                        Auth::login($user);
                     }
                     return $user;
                 }

@@ -7,6 +7,8 @@ use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Rhumsaa\Uuid\Uuid;
+use App\Soaps\LoginSoap;
+use App\Soaps\UserInfoSoap;
 
 /**
  * Created by PhpStorm.
@@ -129,6 +131,58 @@ class UserService extends Service{
             }
         }
 
+        return $user;
+    }
+
+    public function getUserInfoFromSoap($username,$password){
+        $data = [
+            'Login' => [
+                'username' => base64_encode($username),
+                'password' => base64_encode($password),
+                'ProductName' => 'decaffair_student',
+            ]
+        ];
+
+        $loginSoap = new LoginSoap();
+        $result = $loginSoap->call('Login', $data);
+        $sid = $result->LoginResult;
+
+        $data2 = [
+            'GetStaffInfo' => [
+                'sessionID' => $sid
+            ]
+        ];
+
+
+        $userInfo = new UserInfoSoap();
+        $infoResult = $userInfo->call('GetStaffInfo', $data2)->GetStaffInfoResult;
+
+        return $infoResult;
+    }
+
+    public function createUserFromSoap($username,$password){
+
+        $infoResult = $this->getUserInfoFromSoap($username,$password);
+
+        $user = new User();
+        $user->username = $username;
+        $user->title = $infoResult->Title;
+        $user->firstname = $infoResult->FirstName_TH;
+        $user->lastname = $infoResult->LastName_TH;
+        $user->email = $username."@up.ac.th";
+        $user->save();
+
+        $faculty = Faculty::where('name_th','=',$infoResult->Faculty)->first();
+        if($faculty){
+            $user->faculty()->save($faculty);
+        }
+
+        $role = Role::where('key','=','researcher')->first();
+        if($role){
+            $user->roles()->sync([$role->id]);
+        }
+        $user->roles;
+        $user->faculty;
         return $user;
     }
 
