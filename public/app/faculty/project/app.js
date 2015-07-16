@@ -68,6 +68,8 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
     $scope.members = members.data;
+    $scope.reject_modal = false;
+    $scope.accept_modal = false;
     $scope.setShowItem = function (item, type) {
         $scope.showItem = {item: item, type: type}
     }
@@ -105,6 +107,26 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
     },10)
+
+    $scope.showRejectModal = function (project) {
+        $scope.project = project;
+        $scope.reject_modal = true;
+    }
+
+    $scope.closeRejectModal = function () {
+        $scope.reject_modal = false;
+    }
+
+    
+
+    $scope.showAcceptModal = function (project) {
+        $scope.project = project;
+        $scope.accept_modal = true;
+    }
+
+    $scope.closeAcceptModal = function () {
+        $scope.accept_modal = false;
+    }
 
 });
 
