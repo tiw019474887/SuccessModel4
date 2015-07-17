@@ -5,6 +5,9 @@
 angular.module('Faculty',[])
     .factory('FacultyService',function($http){
         return {
+            all: function () {
+                return $http.get('/api/faculty');
+            },
             getProjects : function (){
                 return $http({
                     url : '/api/faculty/projects',

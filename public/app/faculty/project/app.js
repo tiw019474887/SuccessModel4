@@ -58,7 +58,7 @@ app.controller("HomeCtrl", function ($scope,projects) {
 
 });
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService,
+                                     UserService, UserSearchService, ProjectService, FacultyService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -117,7 +117,23 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         $scope.reject_modal = false;
     }
 
-    
+
+    $scope.ajaxReject = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeRejectModal();
+                FacultyService.all().success(function (response) {
+                    $scope.projects = response;
+                })
+            });
+        } else {
+            $scope.closeRejectModal();
+        }
+
+    }
+
+
 
     $scope.showAcceptModal = function (project) {
         $scope.project = project;
@@ -126,6 +142,20 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
     $scope.closeAcceptModal = function () {
         $scope.accept_modal = false;
+    }
+    $scope.ajaxAccept = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            FacultyService.acceptProject($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeRejectModal();
+                FacultyService.all().success(function (response) {
+                    $scope.projects = response;
+                })
+            });
+        } else {
+            $scope.closeAcceptModal();
+        }
+
     }
 
 });
