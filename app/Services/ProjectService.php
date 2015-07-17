@@ -24,7 +24,9 @@ use \Auth;
 class ProjectService extends Service
 {
 
-    var $withArr = ['faculty','faculty.logo','current_file', 'createdBy', 'cover', 'logo', 'status'];
+    var $withArr = [
+    //    'faculty','current_file', 'createdBy', 'cover', 'logo', 'status'
+    ];
 
     function __construct(ProjectStatusService $projectStatusService)
     {
@@ -77,7 +79,6 @@ class ProjectService extends Service
         if (isset($input['faculty'])) {
             $id = $input['faculty']['id'];
             $faculty = Faculty::find($id);
-            $project->faculty()->dissociate();
             $project->faculty()->associate($faculty)->save();
         }
 
