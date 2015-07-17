@@ -51,7 +51,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
     Route::get('faculty/get-project/{id}','API\FacultyProjectApiController@get');
     Route::post('faculty/submit-project/{id}','API\FacultyProjectApiController@submit');
-    Route::post('faculty/rejectProject/{id}','API\FacultyProjectApiController@rejectProject');
+    Route::post('faculty/reject-project/{id}','API\FacultyProjectApiController@rejectProject');
 
     //api for university
     Route::get('university/projects','API\UniversityProjectApiController@getProjects');
