@@ -120,7 +120,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            UniversityService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+            UniversityService.rejectProject(project).success(function (response) {
                 $scope.closeRejectModal();
                 UniversityService.all().success(function (response) {
                     $scope.projects = response;
@@ -145,9 +145,9 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            UniversityService.submit($scope.project.id,$scope.project).success(function (response) {
+            UniversitySerice.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
-                UniversityService.all().success(function (response) {
+                UniversitySerice.all().success(function (response) {
                     $scope.projects = response;
                 })
             });

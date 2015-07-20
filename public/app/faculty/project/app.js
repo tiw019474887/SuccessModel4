@@ -121,7 +121,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.rejectProject(project).success(function (response) {
                 $scope.closeRejectModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;
