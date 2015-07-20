@@ -11,9 +11,9 @@ angular.module('University',[])
                     method : 'get'
             })
         },
-            acceptProject : function($id,$project){
+            submit : function($id,$project){
                 return $http({
-                    url : '/api/university/accept-project/'+$id,
+                    url : '/api/university/submit-project/'+$id,
                     method: 'post',
                     data : $project
                 })
