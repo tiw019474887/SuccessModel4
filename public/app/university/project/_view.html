@@ -86,10 +86,62 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="wide column">
+                    <h3>อนุมัติสถานะโปรเจ็ค</h3>
 
+                    <div class="ui segment" style="padding: 14px;">
+                        <div class="ui two columns grid">
+                            <div class="ui row">
+                                <button ng-click="showRejectModal(project)" class="ui primary button"> Reject </button>
+                                <button ng-click="showAcceptModal(project)" class="ui button"> Accept </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<modal ng-model="reject_modal">
+    <i ng-click="closeRejectModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <div class="content">
+        <textarea rows="5" required="required"></textarea>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxReject(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxReject(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
+
+<modal ng-model="accept_modal">
+    <i ng-click="closeAcceptModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <div class="content">
+        <textarea rows="5" required="required"></textarea>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxAccept(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
+
 
