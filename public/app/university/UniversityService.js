@@ -5,25 +5,22 @@
 angular.module('University',[])
     .factory('UniversityService',function($http){
         return {
-            all: function () {
-                return $http.get('/api/university');
-            },
             getProjects : function (){
                 return $http({
                     url : '/api/university/projects',
                     method : 'get'
             })
         },
-            submit : function($id,$project){
+            acceptProject : function($id,$project){
                 return $http({
-                    url : '/api/university/submit-project/'+$id,
+                    url : '/api/university/accept-project/'+$id,
                     method: 'post',
                     data : $project
                 })
             },
             rejectProject : function($id,$project){
                 return $http({
-                    url : '/api/university/reject-project/'+ $id,
+                    url : '/api/university/rejectProject/'+ $id,
                     method : 'post',
                     data : $project
                 })

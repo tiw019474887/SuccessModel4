@@ -67,8 +67,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
     $scope.members = members.data;
-    $scope.reject_modal = false;
-    $scope.accept_modal = false;
     $scope.setShowItem = function (item, type) {
         $scope.showItem = {item: item, type: type}
     }
@@ -120,11 +118,12 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            UniversityService.rejectProject(project).success(function (response) {
+            UniversityService.rejectProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeRejectModal();
                 UniversityService.all().success(function (response) {
                     $scope.projects = response;
                 })
+                $state.go('home');
             });
         } else {
             $scope.closeRejectModal();
@@ -142,14 +141,16 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.closeAcceptModal = function () {
         $scope.accept_modal = false;
     }
+
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            UniversitySerice.submit($scope.project.id,$scope.project).success(function (response) {
+            UniversityService.acceptProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
-                UniversitySerice.all().success(function (response) {
+                UniversityService.all().success(function (response) {
                     $scope.projects = response;
                 })
+                $state.go('home');
             });
         } else {
             $scope.closeAcceptModal();

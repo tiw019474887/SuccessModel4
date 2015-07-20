@@ -121,11 +121,12 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject(project).success(function (response) {
+            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeRejectModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;
                 })
+                $state.go('home');
             });
         } else {
             $scope.closeRejectModal();
@@ -143,14 +144,16 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.closeAcceptModal = function () {
         $scope.accept_modal = false;
     }
+
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.acceptProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;
                 })
+                $state.go('home');
             });
         } else {
             $scope.closeAcceptModal();

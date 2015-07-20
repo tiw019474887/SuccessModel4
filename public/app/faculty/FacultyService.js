@@ -6,7 +6,7 @@ angular.module('Faculty',[])
     .factory('FacultyService',function($http){
         return {
             all: function () {
-                return $http.get('/api/faculty');
+                return $http.get('/api/project');
             },
             getProjects : function (){
                 return $http({
@@ -14,16 +14,16 @@ angular.module('Faculty',[])
                     method : 'get'
             })
         },
-            submit : function($id,$project){
+            acceptProject : function($id,$project){
                 return $http({
-                    url : '/api/faculty/submit-project/'+$id,
+                    url : '/api/faculty/accept-project/'+$id,
                     method: 'post',
                     data : $project
                 })
             },
             rejectProject : function($id,$project){
                 return $http({
-                    url : '/api/faculty/reject-project/'+ $id,
+                    url : '/api/faculty/rejectProject/'+ $id,
                     method : 'post',
                     data : $project
                 })
