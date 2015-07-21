@@ -36,7 +36,8 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with($this->withArr)->orderBy('created_at','desc')->get();
+        return Project::with(['createdBy', 'faculty','status'])->get();
+        //return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
     public function get($id)
