@@ -114,56 +114,7 @@ app.controller("AddCtrl", function ($scope,$state,$timeout,project,ResearcherSer
     }, 100);
 
 });
-app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService,
-                                     project, images, members, file, previousFiles, youtubes) {
-    console.log("ViewCtrl Start...");
 
-    $scope.project = project.data;
-    $scope.images = images.data;
-    $scope.youtubes = youtubes.data;
-    $scope.project.content = $sce.trustAsHtml($scope.project.content);
-    $scope.showItem = null;
-    $scope.members = members.data;
-    $scope.setShowItem = function (item, type) {
-        $scope.showItem = {item: item, type: type}
-    }
-
-    $scope.getYoutubeEmbedUrl = function (vid) {
-        return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + vid + '?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer');
-    }
-
-    if ($scope.youtubes.length > 0) {
-        $scope.setShowItem($scope.youtubes[0], 'youtube');
-    } else if ($scope.images.length > 0) {
-        $scope.setShowItem($scope.images[0], 'image');
-    } else {
-        $scope.showItem = null;
-    }
-    $timeout(function(){
-        $('.flexslider').flexslider({
-            slideshow: true,
-            video : true,
-            before: function(slider){
-                /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
-                playVideoAndPauseOthers($('.play3 iframe')[0]);
-            }
-        });
-
-        function playVideoAndPauseOthers(frame) {
-            $('iframe').each(function(i) {
-                var func = this === frame ? 'playVideo' : 'stopVideo';
-                this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
-            });
-        }
-
-        /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
-        $('.flex-next, .flex-prev').click(function() {
-            playVideoAndPauseOthers($('.play3 iframe')[0]);
-        });
-    },10)
-
-});
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService,ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
