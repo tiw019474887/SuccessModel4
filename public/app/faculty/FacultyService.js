@@ -23,7 +23,7 @@ angular.module('Faculty',[])
             },
             rejectProject : function($id,$project){
                 return $http({
-                    url : '/api/faculty/rejectProject/'+ $id,
+                    url : '/api/faculty/reject-project/'+ $id,
                     method : 'post',
                     data : $project
                 })
