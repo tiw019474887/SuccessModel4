@@ -18,16 +18,16 @@ use \Auth;
  * Date: 4/7/2015
  * Time: 3:03 PM
  */
-class PublishProjectService extends ResearcherProjectService
+class PublishedProjectService extends ResearcherProjectService
 {
 
 
-    public function PublishProject()
+    public function PublishedProject()
     {
 
         $projects = Project::with(['createdBy', 'faculty','status'])->whereHas('status', function($q)
         {
-            $q->where('key', '=', 'publish');
+            $q->where('key', '=', 'published');
 
         })->get();
 

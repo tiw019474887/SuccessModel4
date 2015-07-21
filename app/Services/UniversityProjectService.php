@@ -47,20 +47,17 @@ class UniversityProjectService extends ResearcherProjectService
     }
     private function linkToPublish(Project $project, array $input)
     {
-        $publish = ProjectStatus::where('key','=','publish');
-        if($publish){
-            $project->status()->associate($publish)->save();
+        $published = ProjectStatus::where('key','=','published')->first();
+        if($published){
+            $project->status()->associate($published)->save();
         }
         return $project;
     }
 
     public function rejectProject($id,array $input){
-        
         $project = Project::find($id);
         if ($project) {
             $this->linkToFacultyStatus($project, $input);
         }
     }
-
-
 }
