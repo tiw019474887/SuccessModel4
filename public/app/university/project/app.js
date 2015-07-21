@@ -145,7 +145,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            UniversityService.acceptProject($scope.project.id,$scope.project).success(function (response) {
+            UniversityService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 UniversityService.all().success(function (response) {
                     $scope.projects = response;
