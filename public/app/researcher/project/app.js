@@ -165,7 +165,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 });
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService,
+                                     UserService, UserSearchService, ProjectService,ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -174,6 +174,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.youtubes = youtubes.data;
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
+    $scope.accept_modal = false;
     $scope.members = members.data;
     $scope.setShowItem = function (item, type) {
         $scope.showItem = {item: item, type: type}
@@ -213,6 +214,31 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         });
     },10)
 
+    $scope.showAcceptModal = function (project) {
+        $scope.project = project;
+        $scope.accept_modal = true;
+    }
+
+    $scope.closeAcceptModal = function () {
+        $scope.accept_modal = false;
+    }
+
+    $scope.ajaxAccept = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeAcceptModal();
+                ResearcherService.all().success(function (response) {
+                    $scope.projects = response;
+                })
+                $state.go('home');
+            });
+        } else {
+            $scope.closeAcceptModal();
+        }
+
+    }
+
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
                                      UserService, UserSearchService, project,
@@ -227,7 +253,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.file = file.data;
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
-    $scope.accept_modal = false;
     $scope.keyword;
 
 
@@ -349,30 +374,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
         })
     }, 100);
 
-    $scope.showAcceptModal = function (project) {
-        $scope.project = project;
-        $scope.accept_modal = true;
-    }
 
-    $scope.closeAcceptModal = function () {
-        $scope.accept_modal = false;
-    }
-
-    $scope.ajaxAccept = function (project, bool) {
-        $scope.project = project;
-        if (bool) {
-            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
-                $scope.closeAcceptModal();
-                ResearcherService.all().success(function (response) {
-                    $scope.projects = response;
-                })
-                $state.go('home');
-            });
-        } else {
-            $scope.closeAcceptModal();
-        }
-
-    }
 
 });
 
