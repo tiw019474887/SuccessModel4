@@ -55,9 +55,10 @@ class UniversityProjectService extends ResearcherProjectService
     }
 
     public function rejectProject($id,array $input){
+        
         $project = Project::find($id);
-        if($project){
-            $this->linkToFacultyStatus($project,$input);
+        if ($project) {
+            $this->linkToFacultyStatus($project, $input);
         }
     }
 

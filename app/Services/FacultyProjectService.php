@@ -56,8 +56,8 @@ class FacultyProjectService extends ResearcherProjectService
 
     private function linkToUniversityStatus(Project $project, array $input)
     {
-        $university = ProjectStatus::where('key', '=', 'university');
-        if ($university) {
+        $university = ProjectStatus::where('key','=','university')->first();
+        if($university){
             $project->status()->associate($university)->save();
         }
         return $project;
