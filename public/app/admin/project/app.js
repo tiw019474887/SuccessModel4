@@ -103,7 +103,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
+app.controller("HomeCtrl", function ($scope, $state, projects, ResearcherService) {
     console.log("HomeCtrl Start...");
 
     $scope.projects = projects.data;
@@ -122,9 +122,9 @@ app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
     $scope.ajaxDelete = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            ProjectService.delete(project).success(function (response) {
+            ResearcherService.delete(project).success(function (response) {
                 $scope.closeDeleteModal();
-                ProjectService.all().success(function (response) {
+                ResearcherService.all().success(function (response) {
                     $scope.projects = response;
                 })
             });

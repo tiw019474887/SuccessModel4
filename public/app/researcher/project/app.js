@@ -87,9 +87,34 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,projects) {
+app.controller("HomeCtrl", function ($scope,projects,ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
+    $scope.delete_modal = false;
+
+    $scope.showDeleteModal = function (project) {
+        $scope.project = project;
+        $scope.delete_modal = true;
+    }
+
+    $scope.closeDeleteModal = function () {
+        $scope.delete_modal = false;
+    }
+
+    $scope.ajaxDelete = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeDeleteModal();
+                ResearcherService.all().success(function (response) {
+                    $scope.projects = response;
+                })
+            });
+        } else {
+            $scope.closeDeleteModal();
+        }
+
+    }
 
 
 
