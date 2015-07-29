@@ -87,9 +87,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,projects,ResearcherService) {
+app.controller("HomeCtrl", function ($scope,projects,ProjectService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
+    $scope.project = {};
     $scope.delete_modal = false;
 
     $scope.showDeleteModal = function (project) {
@@ -104,9 +105,9 @@ app.controller("HomeCtrl", function ($scope,projects,ResearcherService) {
     $scope.ajaxDelete = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
+            ProjectService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeDeleteModal();
-                ResearcherService.all().success(function (response) {
+                ProjectService.all().success(function (response) {
                     $scope.projects = response;
                 })
             });
@@ -471,8 +472,8 @@ app.controller("ProjectPhotoController", function ($scope, $state, $cookies, $ti
     }
 
     self.addFileToList = function ($file, $message, $flow) {
-        //console.log($file);
-        //console.log($message);
+        console.log($file);
+        console.log($message);
 
         var file = JSON.parse($message);
         self.images.push(file);
