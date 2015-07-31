@@ -34,8 +34,8 @@ Route::group([
         Route::get('/admin/api-key', 'Admin\AdminController@apikey');
 
     });
-Route::get('/researcher', 'Researcher\ResearcherController@index');
 
+    Route::get('/user', 'User\UserController@index');
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
     Route::get('/university', 'University\UniversityController@index');
