@@ -8,7 +8,7 @@ class UserController  extends Controller {
 
     public function __construct()
     {
-        View::share('role_name', 'Faculty');
+        View::share('role_name', 'User');
     }
 
 	public function index()

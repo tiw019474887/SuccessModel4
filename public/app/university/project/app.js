@@ -4,7 +4,7 @@
 
 
 var app = angular.module('UniversityProject', ['ui.router', 'AppConfig', 'User', 'University',
-    'Youtube','User','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
+    'Youtube','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
