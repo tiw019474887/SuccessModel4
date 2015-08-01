@@ -6,7 +6,7 @@ use App\Models\Role;
 use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use App\Soaps\LoginSoap;
 use App\Soaps\UserInfoSoap;
 

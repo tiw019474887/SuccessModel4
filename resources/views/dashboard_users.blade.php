@@ -55,14 +55,16 @@
                     <a class="item active">
                         User
                     </a>
-                    <div class="column">
-                    <div class="ui search">
-                        <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Common passwords...">
-                            <i class="search icon"></i>
+                    <div class="right aligned right floated column">
+                        <div class="column">
+                            <div class="ui icon input">
+                                <input type="text" placeholder="Search...">
+                                <i class="circular search icon"></i>
+                             </div>
                         </div>
-                        <div class="results"></div>
                     </div>
+                    <div class="column">
+                        <button class="ui orange button">Login</button>
                     </div>
                 </div>
             </div>
