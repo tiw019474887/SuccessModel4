@@ -1,9 +1,7 @@
 /**
  * Created by tiwter on 6/8/2015.
  */
-/**
- * Created by chaow on 4/7/2015.
- */
+
 
 var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig', 'User', 'Researcher',
     'Youtube','User','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
