@@ -13,7 +13,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "/app/university/project/_home.html",
+            templateUrl: "/app/users/project/_home.html",
             controller: "HomeCtrl",
             resolve: {
                 projects: function (UsersService) {
