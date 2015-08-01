@@ -1,4 +1,4 @@
-@extends('dashboard_master')
+@extends('dashboard_users')
 
 @section('header')
     @yield('header')
@@ -8,10 +8,10 @@
 @section('sidemenu')
     <div class="item">
         <div class="header">
-            University
+            User
         </div>
         <div class="menu">
-            <a class=" <% Request::is('university/university') ? 'active' : '' %> item" href="/university">
+            <a class=" <% Request::is('users/users') ? 'active' : '' %> item" href="/users">
                 <i class="home icon"></i>
                 Home
             </a>

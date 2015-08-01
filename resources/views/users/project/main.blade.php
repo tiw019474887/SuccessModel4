@@ -1,4 +1,4 @@
-@extends('university.layout')
+@extends('users.layout')
 
 @section('header')
     <style>
