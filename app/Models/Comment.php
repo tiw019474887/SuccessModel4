@@ -24,7 +24,7 @@ class Comment extends \NeoEloquent
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
     public function comments(){
-        return $this->hasMany("App\Models\Comment","HAS_COMMENT");
+        return $this->belongsToMany("App\Models\Comment","HAS_COMMENT");
     }
 
 }

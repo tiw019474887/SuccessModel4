@@ -23,8 +23,6 @@ class Suggestion extends \NeoEloquent
     public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
-    public function suggestions(){
-        return $this->hasMany("App\Models\Suggestion","HAS_SUGGESTION");
-    }
+
 
 }
