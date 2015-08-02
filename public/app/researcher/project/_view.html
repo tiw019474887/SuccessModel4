@@ -91,9 +91,9 @@
                     <h3>อนุมัติสถานะโปรเจ็ค</h3>
 
                     <div class="ui segment" style="padding: 14px;">
-                        <div class="ui two columns grid">
+                        <div class="ui center aligned columns grid">
                             <div class="ui row">
-                                <button ng-click="showAcceptModal(project)" class="ui button"> Accept </button>
+                                <button ng-click="showAcceptModal(project)" class="ui olive button"> Accept </button>
                             </div>
                         </div>
                     </div>
@@ -110,9 +110,11 @@
     <div class="header">
         Comment Project
     </div>
-    <div class="content">
-        <textarea rows="5" required="required"></textarea>
-    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxAccept(null,false)">
             No

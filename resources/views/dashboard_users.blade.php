@@ -55,16 +55,18 @@
                     <a class="item active">
                         User
                     </a>
-                    <div class="right aligned right floated column">
-                        <div class="column">
+                    <div class="right floated column">
+                        <a class="item ">
                             <div class="ui icon input">
                                 <input type="text" placeholder="Search...">
                                 <i class="circular search icon"></i>
                              </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="column">
+                        <a class="item ">
                         <button class="ui orange button">Login</button>
+                        </a>
                     </div>
                 </div>
             </div>
