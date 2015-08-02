@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,projects,ProjectService) {
+app.controller("HomeCtrl", function ($scope,projects,$state,ProjectService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};
@@ -103,7 +103,7 @@ app.controller("HomeCtrl", function ($scope,projects,ProjectService) {
     $scope.ajaxDelete = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            ProjectService.submit($scope.project.id,$scope.project).success(function (response) {
+            ProjectService.delete($scope.project,$scope.project.id).success(function (response) {
                 $scope.closeDeleteModal();
                 ProjectService.all().success(function (response) {
                     $scope.projects = response;
