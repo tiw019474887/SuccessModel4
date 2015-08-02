@@ -32,10 +32,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller("HomeCtrl", function ($scope, $state ,areas, FacultyService) {
+app.controller("HomeCtrl", function ($scope,area) {
     console.log("HomeCtrl Start...");
 
-    $scope.areas = areas.data;
+    $scope.area = area.data;
     $scope.area = {};
     $scope.delete_modal = false;
 
@@ -47,24 +47,9 @@ app.controller("HomeCtrl", function ($scope, $state ,areas, FacultyService) {
     $scope.closeDeleteModal = function () {
         $scope.delete_modal = false;
     }
-
-    $scope.ajaxDelete = function (faculty, bool) {
-        $scope.faculty = faculty;
-        if (bool) {
-            FacultyService.delete(faculty).success(function (response) {
-                $scope.closeDeleteModal();
-                FacultyService.all().success(function (response) {
-                    $scope.faculties = response;
-                })
-            });
-        } else {
-            $scope.closeDeleteModal();
-        }
-
-    }
 });
 
-app.controller("AddCtrl", function ($scope, $state, AreaService) {
+app.controller("AddCtrl", function ($scope, $state,area, AreaService) {
     console.log("AddCtrl Start...");
 
     $scope.area = area.data;

@@ -52,20 +52,20 @@
                         <i class="sidebar icon"></i>
                         Menu
                     </a>
-                    <a class="item active">
+                    <a class="item ">
                         User
                     </a>
                     <div class="right aligned right floated column">
-                        <div class="column">
+                        <a class="item active">
                             <div class="ui icon input">
                                 <input type="text" placeholder="Search...">
                                 <i class="circular search icon"></i>
                              </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="column">
+                    <a class="item ">
                         <button class="ui orange button">Login</button>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
