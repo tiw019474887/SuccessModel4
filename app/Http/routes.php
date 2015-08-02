@@ -28,6 +28,7 @@ Route::group([
         Route::get('/admin/dashboard', 'Admin\AdminController@dashboard');
         Route::get('/admin/faculty', 'Admin\AdminController@faculty');
         Route::get('/admin/user', 'Admin\AdminController@user');
+        Route::get('/admin/area', 'Admin\AdminController@area');
         Route::get('/admin/role', 'Admin\AdminController@role');
         Route::get('/admin/project', 'Admin\AdminController@project');
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');

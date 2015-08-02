@@ -1,0 +1,52 @@
+<h2>Area Management</h2>
+
+<div ui-sref="add" class="ui primary button">
+    Add Area
+</div>
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned wide">Name(TH)</th>
+        <th class="center aligned four wide">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="faculty in faculties">
+        <td class="collapsing" ng-bind="faculty.id"></td>
+        <td ng-bind="faculty.name_th"></td>
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="edit({id:faculty.id})" class="ui positive button">Edit</button>
+                <button ng-click="showDeleteModal(faculty)" class="ui negative button">Delete</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<modal ng-model="delete_modal">
+    <i ng-click="closeDeleteModal()" class="close icon"></i>
+    <div class="header">
+        Delete Faculty
+    </div>
+    <div class="content">
+        <div class="ui medium image">
+            <img src="/images/square-image.png">
+        </div>
+        <div class="description">
+            <div class="ui header">Do you want to delete this faculty?</div>
+            <p>Faculty ID : <span ng-bind="faculty.id"></span></p>
+            <p ng-bind="faculty.name_th"></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxDelete(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(faculty,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
