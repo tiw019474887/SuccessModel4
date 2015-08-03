@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('AreaAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow', 'Area', 'User','Faculty']);
+var app = angular.module('AreaAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow','Area', 'Faculty', 'User']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -14,8 +14,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/admin/area/_home.html",
             controller: "HomeCtrl",
             resolve: {
-                faculties: function (FacultyService) {
-                    return FacultyService.all();
+                area: function (AreaService) {
+                    return AreaService.index();
                 }
             }
         })
@@ -24,15 +24,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/admin/area/_add.html",
             controller: "AddCtrl",
             resolve: {
-                faculty: function (AreaService) {
+                area: function (AreaService) {
                     return {data: {}}
                 }
             }
         })
-
 });
 
-app.controller("HomeCtrl", function ($scope,area) {
+app.controller("HomeCtrl", function ($scope, $state, area) {
     console.log("HomeCtrl Start...");
 
     $scope.area = area.data;
@@ -47,9 +46,11 @@ app.controller("HomeCtrl", function ($scope,area) {
     $scope.closeDeleteModal = function () {
         $scope.delete_modal = false;
     }
+
+
 });
 
-app.controller("AddCtrl", function ($scope, $state,area, AreaService) {
+app.controller("AddCtrl", function ($scope, $state, area, AreaService) {
     console.log("AddCtrl Start...");
 
     $scope.area = area.data;

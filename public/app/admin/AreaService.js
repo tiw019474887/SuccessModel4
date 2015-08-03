@@ -5,7 +5,13 @@
 angular.module('Area',[])
     .factory('AreaService',function($http){
         return {
-            get: function () {
+            index: function () {
+                return $http({
+                    url: '/api/area',
+                    method: 'get'
+                })
+            },
+            getID: function () {
                 return $http({
                     url: '/api/area/get/'+$id,
                     method: 'get'

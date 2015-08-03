@@ -64,7 +64,7 @@
                         </a>
                     </div>
                     <a class="item ">
-                        <button class="ui orange button">Login</button>
+                        <button class="ui orange button" href="/auth/login">Login</button>
                     </a>
                 </div>
             </div>
