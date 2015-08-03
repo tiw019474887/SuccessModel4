@@ -21,8 +21,10 @@ use App\Services\UserService;
 class AreaService extends Service{
 
 
+    var $withArr = ['createdBy'];
+
     public function getAll(){
-        return Area::with($this->withArr)->get();
+       return Area::with($this->withArr)->get();
     }
 
     public function get($id){
@@ -48,7 +50,7 @@ class AreaService extends Service{
     }
 
     public function delete($id){
-        return [Area::find($id)->delete()];
+        return Area::find($id)->delete();
     }
 
 
