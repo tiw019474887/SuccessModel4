@@ -27,7 +27,7 @@ class AreaApiController extends Controller {
 		return $this->areaService->store(Input::all());
 	}
 
-	public function get($id)
+	public function getID($id)
 	{
         return $this->areaService->get($id);
 	}

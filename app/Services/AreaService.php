@@ -22,11 +22,11 @@ class AreaService extends Service{
 
 
     public function getAll(){
-        return Area::with('name')->get();
+        return Area::with(['name'])->get();
     }
 
     public function get($id){
-        $area = Area::with('name')->find($id);
+        $area = Area::with(['name'])->find($id);
         return $area;
     }
 
