@@ -5,6 +5,9 @@
 angular.module('Area',[])
     .factory('AreaService',function($http){
         return {
+            all : function(){
+                return $http.get('/api/area');
+            },
             index: function () {
                 return $http({
                     url: '/api/area',
@@ -17,11 +20,15 @@ angular.module('Area',[])
                     method: 'get'
                 })
             },
-            addArea: function () {
+            addArea: function ($project) {
                 return $http({
                     url: '/api/area/add',
-                    method: 'post'
+                    method: 'post',
+                    data : $project
                 })
+            },
+            delete : function(area){
+                return $http.delete('/api/area/' + area.id);
             },
             update: function () {
                 return $http({
