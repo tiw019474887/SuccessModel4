@@ -4,8 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Area;
-use App\Models\Faculty;
-use App\Services\FacultyService;
+use App\Services\AreaService;
 use Illuminate\Http\Request;
 use \Input;
 
@@ -17,7 +16,6 @@ class AreaApiController extends Controller {
 
 	public function index()
 	{
-
 		return $this->areaService->getAll();
 	}
 

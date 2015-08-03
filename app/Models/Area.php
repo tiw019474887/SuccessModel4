@@ -29,8 +29,8 @@ class Area extends \NeoEloquent
 //
 
 //
-    public function users(){
-        return $this->belongsToMany("App\Models\User","WORK_IN");
+    public function createdBy(){
+        return $this->hasOne("App\Models\User","CREATE_BY");
     }
 
     public function projects(){
