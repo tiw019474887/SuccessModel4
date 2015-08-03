@@ -40,7 +40,7 @@ Route::group([
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
     Route::get('/university', 'University\UniversityController@index');
-
+    Route::get('/area', 'Area\AreaApiController@index');
 
 Route::group(['prefix' => 'api'], function () {
     //api for comment
@@ -68,7 +68,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submit');
 
     //api for area
-    Route::get('area', 'API\AreaApiController@index');
+
     Route::get('area/get/{id}', 'API\AreaApiController@getID');
     Route::post('area/add', 'API\AreaApiController@addArea');
     Route::get('area/update', 'API\AreaApiController@update');
