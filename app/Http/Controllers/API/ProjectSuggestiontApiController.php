@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Services\FacultyService;
 use App\Services\ProjectService;
 use App\Services\ResearcherProjectService;
+use App\Services\SuggestionProjectService;
 use Illuminate\Http\Request;
 use \Input;
 use Vinelab\NeoEloquent\Tests\Functional\Relations\HyperMorphTo\Comment;

@@ -19,16 +19,6 @@ class Area extends \NeoEloquent
 
     protected $fillable = ['name'];
 
-//    public function cover(){
-//        return $this->hasOne('Photo','COVER');
-//    }
-//
-//    public function photos(){
-//        return $this->hasMany('Photo','PHOTO');
-//    }
-//
-
-//
     public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
