@@ -40,9 +40,14 @@ Route::group([
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
     Route::get('/university', 'University\UniversityController@index');
-    Route::get('/area', 'Area\AreaApiController@index');
+
 
 Route::group(['prefix' => 'api'], function () {
+
+    //api for suggestion
+    Route::get('suggestion/get-suggestion','API\ProjectSuggestionApiController@getSuggestions');
+    Route::post('suggestion/add-projectsuggestion','API\ProjectSuggestionApiController@addProjectSuggestion');
+
     //api for comment
     Route::get('comment/get-comment','API\ProjectCommentApiController@getComments');
     Route::post('comment/add-projectcomment','API\ProjectCommentApiController@addProjectComments');
@@ -68,7 +73,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submit');
 
     //api for area
-
+    Route::get('area', 'API\AreaApiController@index');
     Route::get('area/get/{id}', 'API\AreaApiController@getID');
     Route::post('area/add', 'API\AreaApiController@addArea');
     Route::get('area/update', 'API\AreaApiController@update');
