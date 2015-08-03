@@ -29,17 +29,17 @@ class AreaApiController extends Controller {
 
 	public function get($id)
 	{
-        return $this->facultyService->get($id);
+        return $this->areaService->get($id);
 	}
 
 	public function update($id)
 	{
-        return $this->facultyService->save(Input::all());
+        return $this->areaService->save(Input::all());
 	}
 
 	public function deleteArea($id)
 	{
-		return [$this->facultyService->delete($id)];
+		return [$this->areaService->delete($id)];
 	}
 
 
