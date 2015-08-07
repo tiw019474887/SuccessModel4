@@ -89,7 +89,14 @@ class ResearcherProjectService extends ProjectService
     public function submitProject($id,array $input){
         $project = Project::find($id);
         if($project){
-            $this->linkToFacultyStatus($project,$input);
+            /* @var Project $project*/
+            if($project->status('Draft')){
+                $this->linkToFacultyStatus($project,$input);
+            }else{
+                return \Response::json([
+                    "error" => "There is something wrong, Please contact administrator."
+                ],400);
+            }
         }
     }
 

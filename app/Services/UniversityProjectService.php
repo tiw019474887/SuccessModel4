@@ -42,7 +42,14 @@ class UniversityProjectService extends ResearcherProjectService
     public function submitProject($id,array $input){
         $project = Project::find($id);
         if($project){
-            $this->linkToPublish($project,$input);
+            if($project->status('Draft')){
+                $this->linkToPublish($project,$input);
+            }else{
+                return \Response::json([
+                    "error" => "There is something wrong, Please contact administrator."
+                ],400);
+            }
+
         }
     }
     private function linkToPublish(Project $project, array $input)
@@ -57,7 +64,13 @@ class UniversityProjectService extends ResearcherProjectService
     public function rejectProject($id,array $input){
         $project = Project::find($id);
         if ($project) {
-            $this->linkToFacultyStatus($project, $input);
+            if($project->status('Draft')){
+                $this->linkToFacultyStatus($project, $input);
+            }else{
+                return \Response::json([
+                    "error" => "There is something wrong, Please contact administrator."
+                ],400);
+            }
         }
     }
 }
