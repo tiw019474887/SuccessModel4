@@ -28,9 +28,9 @@ class AreaSeeder extends Seeder
         ];
 
         foreach($areas as $area){
-            $f = new Area();
-            $f->name_th = $area;
-            $f->save();
+            $a = new Area();
+            $a->name_th = $area;
+            $a->save();
         }
 
 
