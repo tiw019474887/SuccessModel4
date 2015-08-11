@@ -10,17 +10,17 @@ namespace App\Models;
 
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
-class Comment extends \NeoEloquent
+class Suggestion extends \NeoEloquent
 {
 
     use SoftDeletes;
 
-    protected $label = ['Project'];
+    protected $label = ['Suggestion'];
 
-    protected $fillable = ['name','abstract','content'];
+    protected $fillable = ['suggestion'];
 
 
-    public function user(){
+    public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
 

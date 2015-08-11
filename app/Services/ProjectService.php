@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Youtube;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use \Auth;
 
 
@@ -24,7 +24,9 @@ use \Auth;
 class ProjectService extends Service
 {
 
-    var $withArr = ['faculty','faculty.logo','current_file', 'createdBy', 'cover', 'logo', 'status'];
+    var $withArr = [
+    //    'faculty','current_file', 'createdBy', 'cover', 'logo', 'status'
+    ];
 
     function __construct(ProjectStatusService $projectStatusService)
     {
@@ -34,7 +36,8 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with($this->withArr)->orderBy('created_at','desc')->get();
+        return Project::with(['createdBy', 'faculty','status'])->get();
+        //return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
     public function get($id)
@@ -77,7 +80,6 @@ class ProjectService extends Service
         if (isset($input['faculty'])) {
             $id = $input['faculty']['id'];
             $faculty = Faculty::find($id);
-            $project->faculty()->dissociate();
             $project->faculty()->associate($faculty)->save();
         }
 

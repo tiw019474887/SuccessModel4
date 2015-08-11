@@ -1,0 +1,31 @@
+<h2>University Review </h2>
+
+
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned wide">Project Name</th>
+        <th class="center aligned three wide">Faculty</th>
+        <th class="center aligned two wide">Create By</th>
+        <th class="center aligned two wide">Status</th>
+        <th class="center aligned three wide">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="project in projects">
+        <td class="center aligned collapsing" ng-bind="project.id"></td>
+        <td ng-bind="project.name"></td>
+        <td ng-bind="project.faculty.name_th"></td>
+        <td ng-bind="project.created_by.email"></td>
+        <td>{{project.status.name}}</td>
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="view({id:project.id})" class="ui positive button">View</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</modal>

@@ -15,6 +15,11 @@
                 Dashboard
             </a>
         </div>
+        <div class="menu">
+            <a class=" <% Request::is('admin/area') ? 'active' : '' %> item" href="/admin/area">
+                Area
+            </a>
+        </div>
     </div>
 
 

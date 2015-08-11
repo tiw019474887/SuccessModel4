@@ -23,11 +23,15 @@ class UniversityProjectApiController extends Controller {
 
     public function getProjects()
     {
-        return $this->universityProjectService->getProjects();
+        return $this->universityProjectService->getUniversityStatusProjects();
     }
 
-    public function acceptProject($id){
-        return $this->universityProjectService->acceptProject($id,Input::all());
+    public function get($id){
+        return $this->universityProjectService->get($id);
+    }
+
+    public function submit($id){
+        return $this->universityProjectService->submitProject($id,Input::all());
     }
     public function rejectProject($id){
         return $this->universityProjectService->rejectProject($id,Input::all());

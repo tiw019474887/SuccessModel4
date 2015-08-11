@@ -49,4 +49,8 @@ class AdminController extends Controller
     {
         return view('admin.apikey.main');
     }
+    public function area()
+    {
+        return view('admin.area.main');
+    }
 }

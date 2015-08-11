@@ -15,18 +15,16 @@ class Comment extends \NeoEloquent
 
     use SoftDeletes;
 
-    protected $label = ['Project'];
+    protected $label = ['Comment'];
 
-    protected $fillable = ['name','abstract','content'];
+    protected $fillable = ['comment'];
 
-    public function project(){
-        return $this->hasOne("App\Models\Project","ON");
-    }
-    public function user(){
+
+    public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
     }
     public function comments(){
-        return $this->hasMany("App\Models\Comments","HAS_COMMENT");
+        return $this->belongsToMany("App\Models\Comment","HAS_COMMENT");
     }
 
 }

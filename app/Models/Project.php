@@ -8,14 +8,14 @@ namespace App\Models;
  * Time: 12:59 PM
  */
 
-use Elasticquent\ElasticquentTrait;
+//use Elasticquent\ElasticquentTrait;
 use Vinelab\NeoEloquent\Eloquent\SoftDeletes;
 
 class Project extends \NeoEloquent
 {
 
     use SoftDeletes;
-    use ElasticquentTrait;
+    //use ElasticquentTrait;
 
     protected $mappingProperties = [
         'name' => [
@@ -63,8 +63,12 @@ class Project extends \NeoEloquent
     public function createdBy(){
         return $this->belongsTo("App\Models\User","CREATE");
     }
-    public function comment(){
-        return $this->belongsToMany("App\Models\Comment","ON");
+    public function comments(){
+        return $this->belongsToMany("App\Models\Comment","HAS_COMMENT");
+    }
+
+    public function suggestions(){
+        return $this->hasMany("App\Models\Suggestion","HAS_SUGGESTION");
     }
 
     public function current_file(){

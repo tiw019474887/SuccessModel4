@@ -38,6 +38,10 @@ class ResearcherProjectService extends ProjectService
 
         return $fil_projects;
     }
+    public function get($id){
+        $project = Project::with(['createdBy', 'faculty','status'])->find($id);
+        return $project;
+    }
 
     public function addProject(array $input){
         $project = new Project();
@@ -52,7 +56,7 @@ class ResearcherProjectService extends ProjectService
 
     protected  function linkToDraftStatus(Project $project, array $input)
     {
-        $draft = ProjectStatus::where('key','=','draft');
+        $draft = ProjectStatus::where('key','=','draft')->first();
         if($draft){
             $project->status()->associate($draft)->save();
         }
@@ -85,13 +89,20 @@ class ResearcherProjectService extends ProjectService
     public function submitProject($id,array $input){
         $project = Project::find($id);
         if($project){
-            $this->linkToFacultyStatus($project,$input);
+            /* @var Project $project*/
+            if($project->status('Draft')){
+                $this->linkToFacultyStatus($project,$input);
+            }else{
+                return \Response::json([
+                    "error" => "There is something wrong, Please contact administrator."
+                ],400);
+            }
         }
     }
 
     protected  function linkToFacultyStatus(Project $project, array $input)
     {
-        $faculty = ProjectStatus::where('key','=','faculty');
+        $faculty = ProjectStatus::where('key','=','faculty')->first();
         if($faculty){
             $project->status()->associate($faculty)->save();
         }
