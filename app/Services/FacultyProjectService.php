@@ -50,7 +50,8 @@ class FacultyProjectService extends ResearcherProjectService
     {
         $project = Project::find($id);
         if ($project) {
-            if($project->status('Draft')){
+            /* @var Project $project*/
+            if($project->status->key =='faculty'){
                 $this->linkToUniversityStatus($project, $input);
             }else{
                 return \Response::json([
@@ -73,7 +74,8 @@ class FacultyProjectService extends ResearcherProjectService
     {
         $project = Project::find($id);
         if ($project) {
-            if($project->status('Draft')){
+            /* @var Project $project*/
+            if($project->status->key == 'faculty'){
                 $this->linkToDraftStatus($project, $input);
             }else{
                 return \Response::json([
