@@ -30,7 +30,7 @@
                     <th class="center aligned three wide">Faculty</th>
                     <th class="center aligned two wide">Create By</th>
                     <th class="center aligned two wide">Status</th>
-                    <th class="center aligned three wide">Action</th>
+                    <th class="center aligned two wide">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,8 +42,12 @@
                     <td>{{project.status.name}}</td>
                     <td class="center aligned collapsing">
                         <div class="ui buttons">
-                            <button ui-sref="edit({id:project.id})" class="ui positive button">Edit</button>
-                            <button ng-click="showDeleteModal(project)" class="ui negative button">Delete</button>
+                            <button class="ui icon button" ui-sref="edit({id:project.id})">
+                                <i class="edit icon"></i>
+                            </button>
+                            <button ng-click="showDeleteModal(project)" class="ui icon negative button">
+                                <i class="delete icon"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>

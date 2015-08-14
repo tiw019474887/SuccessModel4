@@ -11,7 +11,7 @@
         <th class="center aligned two wide">E-Mail</th>
         <th class="center aligned four wide">Faculty</th>
         <th class="center aligned wide">Roles</th>
-        <th class="center aligned three wide">Action</th>
+        <th class="center aligned two wide">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -26,8 +26,12 @@
         </td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
-                <button ui-sref="edit({id:user.id})" class="ui positive button">Edit</button>
-                <button ng-click="showDeleteModal(user)" class="ui negative button">Delete</button>
+                <button class="ui icon button" ui-sref="edit({id:user.id})">
+                    <i class="edit icon"></i>
+                </button>
+                <button ng-click="showDeleteModal(user)" class="ui icon negative button">
+                    <i class="delete icon"></i>
+                </button>
             </div>
         </td>
     </tr>
