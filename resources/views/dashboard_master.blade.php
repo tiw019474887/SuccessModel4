@@ -100,7 +100,7 @@
                 </div>
                 <div class="pusher" style="min-height: inherit;">
                     <div class="ui container">
-                        <div class="column">
+                        <div class="column" style="margin-top:10px;">
                             @yield('content')
                         </div>
 
