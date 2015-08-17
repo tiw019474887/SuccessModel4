@@ -25,7 +25,7 @@ class ProjectService extends Service
 {
 
     var $withArr = [
-    //    'faculty','current_file', 'createdBy', 'cover', 'logo', 'status'
+        'faculty','current_file', 'createdBy', 'cover', 'logo', 'status','createdBy'
     ];
 
     function __construct(ProjectStatusService $projectStatusService)
