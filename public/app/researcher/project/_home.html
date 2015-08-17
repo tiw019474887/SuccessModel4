@@ -24,6 +24,7 @@
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
             <div class="ui buttons" ng-if="project.status.key == 'draft' ">
+                <button ng-click="showAcceptModal(project)" class="ui olive button"> Accept </button>
                 <button ui-sref="edit({id:project.id})" class="ui positive button">Edit</button>
                 <button ng-click="showDeleteModal(project)" class="ui negative button">Delete</button>
             </div>
@@ -59,4 +60,30 @@
         </div>
     </div>
 </modal>
+
+
+<modal ng-model="accept_modal">
+    <i ng-click="closeAcceptModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxAccept(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
+
+
+
 
