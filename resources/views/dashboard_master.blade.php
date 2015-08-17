@@ -4,22 +4,11 @@
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
     <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
-
+    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
-    <style>
-        .avatar-menu {
-            height: 2em !important;
-            width: 2em !important;
-            margin-top: -0.5em;
-            margin-bottom: -0.5em;
-        }
 
-        .ui.inverted.purple.segment {
-            background-color: #4c1d6e !important;
-        }
-    </style>
 
     @yield('header')
 
@@ -91,7 +80,7 @@
         </div>
     </div>
 </div>
-<div class="ui grid" style="margin-top: 0px;">
+<div class="ui grid" style="margin-top: 0px;min-height: calc(100% - 170px);">
     <div class="one column row">
         <div class="column">
             <div id="main-content" class="pushable" style="min-height: 480px;">
@@ -100,7 +89,7 @@
                 </div>
                 <div class="pusher" style="min-height: inherit;">
                     <div class="ui container">
-                        <div class="column">
+                        <div class="column" style="margin-top:10px;">
                             @yield('content')
                         </div>
 
