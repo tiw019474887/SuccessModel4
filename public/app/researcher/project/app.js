@@ -85,13 +85,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,projects,$state,ResearcherService,ProjectService) {
+app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};
     $scope.delete_modal = false;
     $scope.accept_modal = false;
-
     $scope.showDeleteModal = function (project) {
         $scope.project = project;
         $scope.delete_modal = true;
@@ -115,6 +114,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,ResearcherService,Pr
         }
 
     }
+
     $scope.showAcceptModal = function (project) {
         $scope.project = project;
         $scope.accept_modal = true;
