@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
+app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};

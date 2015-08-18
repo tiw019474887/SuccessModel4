@@ -22,9 +22,18 @@
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
             <div class="ui buttons" ng-if="project.status.key == 'faculty' ">
-                <button ng-click="showRejectModal(project)" class="ui primary button"> Reject </button>
-                <button ng-click="showAcceptModal(project)" class="ui olive button"> Accept </button>
-                <button ui-sref="view({id:project.id})" class="ui positive button">View</button>
+                <div class="ui buttons">
+                    <button ng-click="showRejectModal(project)"  class="ui icon olive button">
+                        <i class="reply icon"></i>
+                    </button>
+                    <button ng-click="showAcceptModal(project)" class="ui icon button">
+                        <i class="edit icon"></i>
+                    </button>
+                    <button ui-sref="view({id:project.id})" class="ui icon grey button">
+                        <i class="unhide icon"></i>
+                    </button>
+                </div>
+
             </div>
         </td>
     </tr>
