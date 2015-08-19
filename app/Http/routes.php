@@ -44,10 +44,6 @@ Route::group([
 
 Route::group(['prefix' => 'api'], function () {
 
-    //api for suggestion
-    Route::get('suggestion/get-suggestion','API\ProjectSuggestionApiController@getSuggestions');
-    Route::post('suggestion/add-projectsuggestion','API\ProjectSuggestionApiController@addProjectSuggestion');
-
     //api for comment
     Route::get('comment/get-comment','API\ProjectCommentApiController@getComments');
     Route::post('comment/add-projectcomment','API\ProjectCommentApiController@addProjectComments');
