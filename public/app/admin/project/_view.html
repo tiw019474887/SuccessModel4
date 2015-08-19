@@ -1,15 +1,6 @@
-<div class="ui two columns grid">
-
-    <div class="two column row" style="">
-        <div class="left aligned  column">
-            <h3 style="cursor: pointer;" ui-sref="edit({id:project.id})"><i class="arrow  left icon"></i> Back</h3>
-        </div>
-    </div>
-</div>
-
 <div id="contents">
     <div class="row">
-        <h2>{{project.name}}</h2>
+        <h2><i class="arrow  left icon" ui-sref="edit({id:project.id})"/> Preview - {{project.name}}</h2>
     </div>
 
     <div class="ui grid">
@@ -46,7 +37,8 @@
                             <span style="font-weight: bold;">
                                 {{ project.current_file.origin_name | limitTo: 75}}{{project.current_file.origin_name.length > 75 ? '...' : ''}}
                             </span>
-                            <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}" class="ui positive button">เอกสารฉบับเต็ม</a>
+                            <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}"
+                               class="ui positive button">เอกสารฉบับเต็ม</a>
                         </div>
 
                         <h3>รายละเอียดโครงการ</h3>
