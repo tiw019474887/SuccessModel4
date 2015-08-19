@@ -23,24 +23,6 @@
                             </ul>
                         </div>
 
-                <div clas="row" style="margin-bottom: 14px;">
-
-                </div>
-                <div class="row" style="margin-bottom: 14px;">
-                    <div class="wide column">
-
-                        <div class="ui right aligned segment">
-                            <span style="font-weight: bold;">
-                                {{ project.current_file.origin_name | limitTo: 75}}{{project.current_file.origin_name.length > 75 ? '...' : ''}}
-                            </span>
-                            <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}" class="ui positive button">เอกสารฉบับเต็ม</a>
-                        </div>
-
-                        <h3>รายละเอียดโครงการ</h3>
-
-                        <div class="ui segment" id="tinymce_content" style="padding: 14px;"
-                             ng-bind-html="project.content">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -67,7 +49,7 @@
         <div class="ui divider"></div>
         <div class="row">
             <div class="ten wide column">
-                <div class="row" style="margin-bottom: 2em;">
+                <div class="row" style="margin-bottom: 40px;">
                     <h3 class="condensed">รายละเอียดโครงการ</h3>
 
                     <div class="ui divider condensed"></div>
