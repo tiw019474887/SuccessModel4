@@ -104,7 +104,7 @@
 </div>
 
 
-<modal ng-model="accept_modal">
+<modal ng-model="accept_modal" >
     <i ng-click="closeAcceptModal()" class="close icon"></i>
 
     <div class="header">
@@ -112,14 +112,14 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+            <textarea ng-model="suggestion.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxAccept(null,false)">
             No
         </div>
-        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,suggestion,true)">
             Yes
             <i class="checkmark icon"></i>
         </div>

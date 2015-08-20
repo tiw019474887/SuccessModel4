@@ -25,7 +25,7 @@
         <td class="center aligned collapsing">
             <div class="ui buttons" ng-if="project.status.key == 'draft' ">
                     <div class="ui buttons">
-                        <button ng-click="showAcceptModal(project)" class="ui icon olive button">
+                        <button ng-click="showAcceptModal(project, suggestion)" class="ui icon olive button">
                             <i class="check square icon"></i>
                         </button>
                         <button class="ui icon button" ui-sref="edit({id:project.id})">
@@ -82,14 +82,14 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea placeholder="คำแนะนำ.........."></textarea>
+            <textarea ng-model="suggestion.suggestion" placeholder="คำแนะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxAccept(null,false)">
             No
         </div>
-        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,suggestion,true)">
             Yes
             <i class="checkmark icon"></i>
         </div>
