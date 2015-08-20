@@ -66,11 +66,10 @@ app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
         $scope.reject_modal = false;
     }
 
-
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject($scope.project.id).success(function (response) {
+            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeRejectModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;

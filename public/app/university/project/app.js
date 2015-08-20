@@ -65,12 +65,13 @@ app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
         $scope.reject_modal = false;
     }
 
+
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+            UniversityService.rejectProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeRejectModal();
-                FacultyService.all().success(function (response) {
+                UniversityService.all().success(function (response) {
                     $scope.projects = response;
                 })
                 $state.go('home');
@@ -95,9 +96,9 @@ app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
+            UniversityService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
-                FacultyService.all().success(function (response) {
+                UniversityService.all().success(function (response) {
                     $scope.projects = response;
                 })
                 $state.go('home');
