@@ -97,7 +97,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.submit($scope.project.id).success(function (response) {
+            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;
@@ -172,7 +172,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.closeRejectModal = function () {
         $scope.reject_modal = false;
     }
-
 
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;

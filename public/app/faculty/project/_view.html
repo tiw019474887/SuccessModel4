@@ -2,7 +2,7 @@
 
     <div class="two column row" style="">
         <div class="left aligned  column">
-            <h3 style="cursor: pointer;" ui-sref="home({id:project.id})"><i class="arrow  left icon"></i> Back</h3>
+            <h3 style="cursor: pointer;" ui-sref="edit({id:project.id})"><i class="arrow  left icon"></i> Back</h3>
         </div>
     </div>
 </div>
@@ -93,8 +93,8 @@
                     <div class="ui segment" style="padding: 14px;">
                         <div class="ui center aligned columns grid">
                             <div class="ui row">
-                            <button ng-click="showRejectModal(project)" class="ui primary button"> Reject </button>
-                            <button ng-click="showAcceptModal(project)" class="ui olive button"> Accept </button>
+                                <button ng-click="showRejectModal(project)" class="ui  button"> Reject </button>
+                                <button ng-click="showAcceptModal(project)" class="ui olive button"> Accept </button>
                             </div>
                         </div>
                     </div>
@@ -104,6 +104,7 @@
     </div>
 </div>
 
+
 <modal ng-model="reject_modal">
     <i ng-click="closeRejectModal()" class="close icon"></i>
 
@@ -112,7 +113,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea placeholder="คำแนะนำ.........."></textarea>
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
@@ -132,9 +133,11 @@
     <div class="header">
         Comment Project
     </div>
-    <div class="content">
-            <textarea rows="5" required="required"></textarea>
-    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxAccept(null,false)">
             No
@@ -145,5 +148,7 @@
         </div>
     </div>
 </modal>
+
+
 
 
