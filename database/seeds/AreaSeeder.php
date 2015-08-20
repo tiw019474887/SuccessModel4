@@ -1,3 +1,5 @@
+﻿
+
 <?php
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
@@ -24,7 +26,7 @@ class AreaSeeder extends Seeder
             "อำเภอเชียงคำ",
             "อำเภอเชียงม่วน",
             "อำเภอจุน",
-            "อำเภอปง",
+            "อำเภอปง"
         ];
 
         foreach($areas as $area){
@@ -37,3 +39,4 @@ class AreaSeeder extends Seeder
     }
 
 }
+
