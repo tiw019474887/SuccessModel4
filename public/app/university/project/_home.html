@@ -24,13 +24,13 @@
             <div class="ui buttons">
                 <div class="ui buttons" ng-if="project.status.key == 'university' ">
                     <div class="ui buttons">
-                        <button ng-click="showRejectModal(project)"  class="ui icon red button">
+                        <button ng-click="showRejectModal(project)"  class="ui icon red button" data-content="Reject">
                             <i class="reply icon"></i>
                         </button>
-                        <button ng-click="showAcceptModal(project)" class="ui icon olive button">
+                        <button ng-click="showAcceptModal(project)" class="ui icon olive button" data-content="Accept">
                             <i class="checkmark icon"></i>
                         </button>
-                        <button ui-sref="view({id:project.id})" class="ui icon grey button">
+                        <button ui-sref="view({id:project.id})" class="ui icon grey button" data-content="View">
                             <i class="unhide icon"></i>
                         </button>
                     </div>
@@ -50,7 +50,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำ�?นะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
@@ -72,7 +72,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            คุณต้องการอนุมัตโปรเจ็คหรือไม่
+            คุณต้อง�?ารอนุมัตโปรเจ็คหรือไม่
         </div>
     </form>
     <div class="actions">
