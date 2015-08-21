@@ -9,6 +9,7 @@ function getParameterByName(url, name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+
 angular.module('AppConfig', [])
     .config(function ($httpProvider, $provide) {
         $provide.factory('httpInterceptor', function ($q, $rootScope) {
@@ -40,21 +41,44 @@ angular.module('AppConfig', [])
         });
         $httpProvider.interceptors.push('httpInterceptor');
     })
-    .controller('loadCtrl', function ($scope) {
+    .controller('loadCtrl', function ($scope, $timeout) {
 
         $scope.active = false;
 
+        var self = this;
+        self.request_count = 0;
+
         $scope.$on('httpRequest', function (e) {
             $scope.active = true;
+            self.request_count++;
+            console.log(self.request_count);
         });
         $scope.$on('httpResponse', function (e) {
-            $scope.active = false;
+            self.request_count--;
+            if (self.request_count == 0) {
+                $timeout(function(){
+                    $scope.active = false;
+                },300)
+
+            }
         });
         $scope.$on('httpRequestError', function (e) {
-            $scope.active = false;
+            self.request_count--;
+            if (self.request_count == 0) {
+                $timeout(function(){
+                    $scope.active = false;
+                },300)
+
+            }
         });
         $scope.$on('httpResponseError', function (e) {
-            $scope.active = false;
+            self.request_count--;
+            if (self.request_count == 0) {
+                $timeout(function(){
+                    $scope.active = false;
+                },300)
+
+            }
         });
 
     })
