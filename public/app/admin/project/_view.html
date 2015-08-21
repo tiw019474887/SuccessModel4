@@ -28,14 +28,14 @@
             </div>
 
             <div class="six wide column">
-                <div class="row" style="margin-bottom: 2em;">
+                <div class="row preview">
                     <h3 class="condensed">บทคัดย่อ</h3>
 
                     <div class="ui divider condensed"></div>
                     <div btf-markdown="project.abstract"></div>
                 </div>
 
-                <div class="row">
+                <div class="row preview">
                     <h3 class="condensed">ดำเนินการโดย</h3>
 
                     <div class="ui divider condensed"></div>
@@ -49,15 +49,16 @@
         <div class="ui divider"></div>
         <div class="row">
             <div class="ten wide column">
-                <div class="row" style="margin-bottom: 40px;">
+                <div class="row preview">
                     <h3 class="condensed">รายละเอียดโครงการ</h3>
 
                     <div class="ui divider condensed"></div>
                     <div ng-bind-html="project.content"></div>
                 </div>
 
-                <div class="row">
+                <div class="row preview">
                     <h3 class="condensed">ความคิดเห็น</h3>
+
                     <div class="ui divider condensed"></div>
                 </div>
 
@@ -65,9 +66,17 @@
             </div>
 
             <div class="six wide column">
-                <div class="ui center aligned segment">
-                    <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}"
-                       class="ui positive button">ดาวน์โหลดเอกสาร</a>
+
+                <div class="row preview">
+                    <h3 class="condensed">ดาวน์โหลด</h3>
+
+                    <div class="ui divider condensed"></div>
+                    <div class="ui center aligned columns grid">
+                        <div class="ui row">
+                            <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}"
+                               class="ui positive button">เอกสารฉบับเต็ม</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -92,5 +101,4 @@
 
 </div>
 
-</div>
 
