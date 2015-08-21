@@ -213,8 +213,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         });
     },10)
 
-    $scope.showAcceptModal = function (project) {
-        $scope.project = project;
+    $scope.showAcceptModal = function () {
         $scope.accept_modal = true;
     }
 
@@ -223,7 +222,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     }
 
     $scope.ajaxAccept = function (project, bool) {
-        $scope.project = project;
         if (bool) {
             ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
