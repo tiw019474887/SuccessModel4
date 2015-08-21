@@ -127,6 +127,9 @@ angular.module('Researcher',[])
                     method: 'delete',
                     data: $youtube
                 })
+            },
+            delete: function (project) {
+                return $http.delete('/api/project/' + project.id);
             }
 
         }

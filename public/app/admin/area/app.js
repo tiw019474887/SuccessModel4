@@ -16,9 +16,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 areas: function (AreaService) {
                     return AreaService.index();
-                },
-                delete : function (AreaService){
-                    return AreaService.delete();
                 }
             }
         })
@@ -41,8 +38,8 @@ app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {
     $scope.area = {};
     $scope.delete_modal = false;
 
-    $scope.showDeleteModal = function (faculty) {
-        $scope.faculty = faculty;
+    $scope.showDeleteModal = function (area) {
+        $scope.area = area;
         $scope.delete_modal = true;
     }
 
@@ -53,7 +50,7 @@ app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {
     $scope.ajaxDelete = function (area, bool) {
         $scope.area = area;
         if (bool) {
-            AreaService.delete(area).success(function (response) {
+            AreaService.delete(areas).success(function (response) {
                 $scope.closeDeleteModal();
                 AreaService.all().success(function (response) {
                     $scope.areas = response;

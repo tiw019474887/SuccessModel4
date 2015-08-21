@@ -21,11 +21,66 @@
         <td ng-bind="project.created_by.email"></td>
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
-            <div class="ui buttons">
-                <button ui-sref="view({id:project.id})" class="ui positive button">View</button>
+            <div class="ui buttons" ng-if="project.status.key == 'faculty' ">
+                    <div class="ui buttons">
+                        <button ng-click="showRejectModal(project)"  class="ui icon red button">
+                            <i class="reply icon"></i>
+                        </button>
+                        <button ng-click="showAcceptModal(project)" class="ui icon olive button">
+                            <i class="checkmark icon"></i>
+                        </button>
+                        <button ui-sref="view({id:project.id})" class="ui icon grey button">
+                            <i class="unhide icon"></i>
+                        </button>
+                    </div>
             </div>
         </td>
     </tr>
     </tbody>
 </table>
+</modal>
+
+
+<modal ng-model="reject_modal">
+    <i ng-click="closeRejectModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxReject(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxReject(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
+
+<modal ng-model="accept_modal">
+    <i ng-click="closeAcceptModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxAccept(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
 </modal>

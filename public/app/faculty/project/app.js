@@ -51,9 +51,59 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller("HomeCtrl", function ($scope,projects) {
+app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
+    $scope.reject_modal = false;
+    $scope.accept_modal = false;
+
+    $scope.showRejectModal = function (project) {
+        $scope.project = project;
+        $scope.reject_modal = true;
+    }
+
+    $scope.closeRejectModal = function () {
+        $scope.reject_modal = false;
+    }
+
+    $scope.ajaxReject = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeRejectModal();
+                FacultyService.getProjects().success(function (response) {
+                    $scope.projects = response;
+                })
+                $state.go('home');
+            });
+        } else {
+            $scope.closeRejectModal();
+        }
+    }
+    $scope.showAcceptModal = function (project) {
+        $scope.project = project;
+        $scope.accept_modal = true;
+    }
+
+    $scope.closeAcceptModal = function () {
+        $scope.accept_modal = false;
+    }
+
+    $scope.ajaxAccept = function (project, bool) {
+        $scope.project = project;
+        if (bool) {
+            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
+                $scope.closeAcceptModal();
+                FacultyService.getProjects().success(function (response) {
+                    $scope.projects = response;
+                })
+                $state.go('home');
+            });
+        } else {
+            $scope.closeAcceptModal();
+        }
+
+    }
 
 
 });
@@ -117,7 +167,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.closeRejectModal = function () {
         $scope.reject_modal = false;
     }
-
 
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
