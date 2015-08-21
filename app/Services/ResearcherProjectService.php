@@ -5,10 +5,11 @@ use App\Models\Project;
 use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
+use App\Models\Suggestion;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 use \Auth;
 
 
@@ -76,6 +77,19 @@ class ResearcherProjectService extends ProjectService
         return $project;
     }
 
+//    private function  linkToCurrentUserSuggestion(Suggestion $suggestion, array $input)
+//    {
+//
+//        $user = Auth::user();
+//
+//        if($user){
+//
+//            $suggestion->createdBy()->associate($user)->save();
+//        }
+//
+//        return $suggestion;
+//    }
+
     private function linkToFaculty(Project $project, array $input)
     {
         $faculty = $project->createdBy->faculty;
@@ -90,8 +104,10 @@ class ResearcherProjectService extends ProjectService
         $project = Project::find($id);
         if($project){
             /* @var Project $project*/
-            if($project->status('Draft')){
+            //return $project->status;
+            if($project->status->key =='draft'){
                 $this->linkToFacultyStatus($project,$input);
+                $this->linkToSuggestion($project,$input);
             }else{
                 return \Response::json([
                     "error" => "There is something wrong, Please contact administrator."
@@ -111,6 +127,20 @@ class ResearcherProjectService extends ProjectService
 
     public function delete($id){
         return Project::find($id)->delete();
+    }
+
+    protected function linkToSuggestion($project,array $input){
+        //มีการตรวจสอบก่อนว่ามีคำแนะนำรึเปล่า
+
+
+        if(isset($input['suggestion'])){
+            $suggestion = new Suggestion();
+            $suggestion->fill($input);
+            $project->suggestion()->save($suggestion);
+            //$this->linkToCurrentUserSuggestion($suggestion, $input);
+        }
+
+        return $project;
     }
 
     public function update(array $input){
