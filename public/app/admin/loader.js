@@ -9,6 +9,12 @@ function getParameterByName(url, name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function doPopup(){
+    $('.button').popup({
+        inline: true,
+    });
+}
+
 
 angular.module('AppConfig', [])
     .config(function ($httpProvider, $provide) {

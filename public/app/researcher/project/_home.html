@@ -25,13 +25,13 @@
         <td class="center aligned collapsing">
             <div class="ui buttons" ng-if="project.status.key == 'draft' ">
                     <div class="ui buttons">
-                        <button ng-click="showAcceptModal(project)" class="ui icon olive button">
+                        <button ng-click="showAcceptModal(project)" class="ui icon olive button" data-content="Accept">
                             <i class="check square icon"></i>
                         </button>
-                        <button class="ui icon button" ui-sref="edit({id:project.id})">
+                        <button class="ui icon button" ui-sref="edit({id:project.id})" data-content="Edit">
                             <i class="edit icon"></i>
                         </button>
-                        <button ng-click="showDeleteModal(project)" class="ui icon negative button">
+                        <button ng-click="showDeleteModal(project)" class="ui icon negative button" data-content="Delete">
                             <i class="delete icon"></i>
                         </button>
                     </div>
@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="actions">
-        <div class="ui black button" ng-click="ajaxDelete(null,false)">
+        <div class="ui black button" ng-click="ajaxDelete(null,false)" >
             No
         </div>
         <div class="ui positive right labeled icon button" ng-click="ajaxDelete(project,true)">

@@ -4,7 +4,7 @@
 
 
 var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User', 'Faculty',
-    'Youtube','User','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -28,7 +28,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/faculty/project/_view.html",
             controller: "ViewCtrl",
             resolve: {
-                project: function (FacultyService,$stateParams) {
+                project: function (FacultyService, $stateParams) {
                     return FacultyService.get($stateParams.id)
                 },
                 images: function (ProjectService, $stateParams) {
@@ -51,7 +51,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
+app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, FacultyService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.reject_modal = false;
@@ -69,7 +69,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.rejectProject($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeRejectModal();
                 FacultyService.getProjects().success(function (response) {
                     $scope.projects = response;
@@ -92,7 +92,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.submit($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 FacultyService.getProjects().success(function (response) {
                     $scope.projects = response;
@@ -105,6 +105,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,FacultyService) {
 
     }
 
+    $timeout(doPopup, 200);
 
 });
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
@@ -136,28 +137,28 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     } else {
         $scope.showItem = null;
     }
-    $timeout(function(){
+    $timeout(function () {
         $('.flexslider').flexslider({
             slideshow: true,
-            video : true,
-            before: function(slider){
+            video: true,
+            before: function (slider) {
                 /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
                 playVideoAndPauseOthers($('.play3 iframe')[0]);
             }
         });
 
         function playVideoAndPauseOthers(frame) {
-            $('iframe').each(function(i) {
+            $('iframe').each(function (i) {
                 var func = this === frame ? 'playVideo' : 'stopVideo';
                 this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
             });
         }
 
         /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
-        $('.flex-next, .flex-prev').click(function() {
+        $('.flex-next, .flex-prev').click(function () {
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
-    },10)
+    }, 10)
 
     $scope.showRejectModal = function (project) {
         $scope.project = project;
@@ -171,7 +172,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.rejectProject($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.rejectProject($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeRejectModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;
@@ -183,7 +184,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         }
 
     }
-
 
 
     $scope.showAcceptModal = function (project) {
@@ -198,7 +198,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            FacultyService.submit($scope.project.id,$scope.project).success(function (response) {
+            FacultyService.submit($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 FacultyService.all().success(function (response) {
                     $scope.projects = response;

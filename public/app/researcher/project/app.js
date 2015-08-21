@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,ResearcherService) {
+app.controller("HomeCtrl", function ($scope, $state,$timeout, projects, ProjectService,ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};
@@ -139,6 +139,7 @@ app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,Re
         }
     }
 
+    $timeout(doPopup,200);
 
 
 });
