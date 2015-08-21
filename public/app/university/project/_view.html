@@ -1,11 +1,22 @@
+<div class="ui two columns grid">
+
+    <div class="two column row" style="">
+        <div class="left aligned  column">
+            <h3 style="cursor: pointer;" ui-sref="home({id:project.id})"><i class="arrow  left icon"></i> Back</h3>
+        </div>
+    </div>
+</div>
+
 <div id="contents">
     <div class="row">
         <h2><i class="arrow  left icon" ui-sref="home"/> Preview - {{project.name}}</h2>
     </div>
 
     <div class="ui grid">
+
         <div class="row">
             <div class="ten wide column">
+
                 <div class="one column row" style="">
                     <div class="column">
                         <div class="flexslider" style="margin-bottom: 0px;">
@@ -123,7 +134,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea placeholder="คำแนะนำ.........."></textarea>
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
@@ -143,9 +154,11 @@
     <div class="header">
         Comment Project
     </div>
-    <div class="content">
-        <textarea rows="5" required="required"></textarea>
-    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
     <div class="actions">
         <div class="ui black button" ng-click="ajaxAccept(null,false)">
             No
