@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use \View;
 
 
@@ -13,9 +14,14 @@ class UserController  extends Controller {
 
 	public function index()
 	{
-		return view('users.project.main');
+        $projects = Project::whereHas('status', function($q)
+    {
+        $q->where('key', '=', 'published');
+
+    })->get();
+
+		return view('users.project.main',[
+            'projects' => $projects
+        ]);
 	}
-
-
-
 }

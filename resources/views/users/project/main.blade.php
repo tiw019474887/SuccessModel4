@@ -8,6 +8,7 @@
             padding-top: 25px;
             height: 0;
         }
+
         .videoWrapper iframe {
             position: absolute;
             top: 0;
@@ -23,34 +24,36 @@
 
 
 @section('content')
-    <div ng-app="UsersProject">
-        <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
-            <div class="ui large text loader">
-                Loading
-            </div>
+    <h2>project</h2>
+
+    <div class="ui grid">
+        <div class="three column row">
+            @foreach($projects as $project)
+                <div class="column">
+                    <div class="ui fluid card" style="margin:1px;">
+                        <div class="image">
+                            <img src="<% $project->cover->url or '/images/daniel.jpg' %>">
+                        </div>
+                        <div class="content">
+                            <a class="header"><% $project->name %></a>
+
+                            <p>
+                                <% str_limit($project->abstract,100,'...') %>
+                            </p>
+                        </div>
+                        <div class="extra content">
+                            <% $project->faculty->name_th %>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 
-        <ui-view>
-
-        </ui-view>
     </div>
-
 @stop
 
 
 @section('javascript')
-    <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
-    <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
-    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
-    <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
-    <script type="text/javascript" src="/app/university/UniversityService.js"></script>
-    <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
-    <script type="text/javascript" src="/app/admin/UserService.js"></script>
-    <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
-    <script type="text/javascript" src="/app/users/UsersService.js"></script>
-    <script src="/app/admin/loader.js"></script>
-    <script src="/app/users/project/app.js"></script>
+
 
 @stop

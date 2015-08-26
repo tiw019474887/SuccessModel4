@@ -1,41 +1,28 @@
-<h2>Project</h2>
+<h2>project</h2>
 
-<div class="ui center aligned three column divided grid" ng-repeat="project in projects">
-    <div class="stretched row">
-        <div class="column">
-            <div class="ui segment">
-                <div class="description">
-                    <div class=" ui medium  image">
-                        <td ng-bind="project.name"></td>
-                    </div>
-                    <div class="header">Models</div>
-                    �?บบจำลองโมเดล
+<div class="ui grid">
+    <div class="three column row">
+        <div class="column"  ng-repeat="project in projects" ng-if="project.status.key == 'published'" >
+            <div class="ui fluid card">
+                <div class="image">
+                    <img ng-src="project.cover_url">
                 </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui segment">
-                <div class="description">
-                    <div class="ui medium  image">
-                        <img src="http://i.kapook.com/papas/8-2-55/bokeh8.jpg">
-                    </div>
-                    <div class="header">Models</div>
-                    �?บบจำลองโมเดล
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui segment">
-                <div class="description">
-                    <div class="ui medium  image">
-                        <img src="http://i.kapook.com/papas/8-2-55/bokeh8.jpg">
-                    </div>
-                    <div class="header">Models</div>
-                    �?บบจำลองโมเดล
+                <div class="content">
+                    <a class="header">{{project.name}}</a>
+                    <p>{{project.name}}</p>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+
+
+
+
+
+
+
 
 
