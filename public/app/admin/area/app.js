@@ -19,16 +19,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('add', {
-            url: "/add",
-            templateUrl: "/app/admin/area/_add.html",
-            controller: "AddCtrl",
-            resolve: {
-                area: function (AreaService) {
-                    return {data: {}}
-                }
-            }
-        })
 });
 
 app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {

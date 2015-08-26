@@ -17,8 +17,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/faculty/project/_home.html",
             controller: "HomeCtrl",
             resolve: {
-                projects: function (FacultyService) {
-                    return FacultyService.getProjects();
+                projects: function (ProjectService) {
+                    return ProjectService.getProjects();
                 }
             }
         })

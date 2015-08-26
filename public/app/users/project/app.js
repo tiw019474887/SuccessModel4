@@ -23,9 +23,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
     });
 
-app.controller("HomeCtrl", function ($scope,projects) {
+app.controller("HomeCtrl", function ($scope) {
     console.log("HomeCtrl Start...");
-    $scope.projects = projects.data;
+
 
 
 });
