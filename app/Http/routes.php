@@ -21,7 +21,7 @@ Route::get('/auth/login', function () {
 });
 
 Route::group([
-        'middleware' => 'App\Http\Middleware\Authenticate'
+        'middleware' => 'admin'
     ]
     , function () {
         Route::get('/admin', 'Admin\AdminController@index');

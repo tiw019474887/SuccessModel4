@@ -42,10 +42,10 @@
                     <td>{{project.status.name}}</td>
                     <td class="center aligned collapsing">
                         <div class="ui buttons">
-                            <button class="ui icon button" ui-sref="edit({id:project.id})">
+                            <button class="ui icon button" ui-sref="edit({id:project.id})" data-content="Edit">
                                 <i class="edit icon"></i>
                             </button>
-                            <button ng-click="showDeleteModal(project)" class="ui icon negative button">
+                            <button ng-click="showDeleteModal(project)" class="ui icon negative button" data-content="Delete">
                                 <i class="delete icon"></i>
                             </button>
                         </div>
@@ -55,9 +55,7 @@
             </table>
         </div>
     </div>
-
 </div>
-
 
 <modal ng-model="delete_modal">
     <i ng-click="closeDeleteModal()" class="close icon"></i>

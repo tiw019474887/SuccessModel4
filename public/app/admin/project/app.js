@@ -103,7 +103,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
+
+
+app.controller("HomeCtrl", function ($scope, $state,$timeout,
+                                     projects, ProjectService) {
     console.log("HomeCtrl Start...");
 
     $scope.projects = projects.data;
@@ -133,6 +136,9 @@ app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService) {
         }
 
     }
+
+    $timeout(doPopup,200);
+
 });
 
 app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
@@ -217,7 +223,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
     $scope.mceOptions = {
         inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        content_css: '/packages/semantic/dist/semantic.min.css',
         plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
@@ -231,7 +237,9 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
     $timeout(function () {
         $('.menu .item').tab();
-        $('.ui.dropdown').dropdown();
+        $('.ui.upward.dropdown').dropdown({
+            direction: 'upward'
+        });
         $('.search').bind('keypress', function (e) {
             if (e.keyCode == 13) {
                 e.preventDefault();
@@ -266,28 +274,30 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     } else {
         $scope.showItem = null;
     }
-    $timeout(function(){
+    $timeout(function () {
         $('.flexslider').flexslider({
             slideshow: true,
-            video : true,
-            before: function(slider){
+            video: true,
+            controlNav: false,
+            directionNav: true,
+            before: function (slider) {
                 /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
                 playVideoAndPauseOthers($('.play3 iframe')[0]);
             }
         });
 
         function playVideoAndPauseOthers(frame) {
-            $('iframe').each(function(i) {
+            $('iframe').each(function (i) {
                 var func = this === frame ? 'playVideo' : 'stopVideo';
                 this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
             });
         }
 
         /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
-        $('.flex-next, .flex-prev').click(function() {
+        $('.flex-next, .flex-prev').click(function () {
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
-    },10)
+    }, 10)
 
 });
 
@@ -309,7 +319,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
 
     $scope.mceOptions = {
         inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        content_css: '/packages/semantic/dist/semantic.min.css',
         plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
@@ -416,8 +426,12 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
     }
 
     $timeout(function () {
+
+
         $('.menu .item').tab();
-        $('.ui.dropdown').dropdown();
+        $('.ui.upward.dropdown').dropdown({
+            direction: 'upward'
+        });
         $('.search').bind('keypress', function (e) {
             if (e.keyCode == 13) {
                 e.preventDefault();

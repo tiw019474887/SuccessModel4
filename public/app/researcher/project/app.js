@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,ResearcherService) {
+app.controller("HomeCtrl", function ($scope, $state,$timeout, projects, ProjectService,ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};
@@ -129,7 +129,7 @@ app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,Re
         if (bool) {
             ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
-                ResearcherService.all().success(function (response) {
+                ResearcherService.getProjects().success(function (response) {
                     $scope.projects = response;
                 })
                 $state.go('home');
@@ -137,9 +137,9 @@ app.controller("HomeCtrl", function ($scope, $state, projects, ProjectService,Re
         } else {
             $scope.closeAcceptModal();
         }
-
     }
 
+    $timeout(doPopup,200);
 
 
 });
@@ -213,8 +213,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         });
     },10)
 
-    $scope.showAcceptModal = function (project) {
-        $scope.project = project;
+    $scope.showAcceptModal = function () {
         $scope.accept_modal = true;
     }
 
@@ -223,7 +222,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     }
 
     $scope.ajaxAccept = function (project, bool) {
-        $scope.project = project;
         if (bool) {
             ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();

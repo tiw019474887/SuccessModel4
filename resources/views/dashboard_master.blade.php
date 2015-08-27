@@ -4,22 +4,11 @@
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
     <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
-
+    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
-    <style>
-        .avatar-menu {
-            height: 2em !important;
-            width: 2em !important;
-            margin-top: -0.5em;
-            margin-bottom: -0.5em;
-        }
 
-        .ui.inverted.purple.segment {
-            background-color: #4c1d6e !important;
-        }
-    </style>
 
     @yield('header')
 
@@ -91,35 +80,53 @@
         </div>
     </div>
 </div>
-<div class="ui grid" style="margin-top: 0px;">
+<div id="resize-grid" class="ui grid" style="margin-top: 0px; height: calc(100% - 165px);">
     <div class="one column row">
-        <div class="column">
-            <div id="main-content" class="pushable" style="min-height: 480px;">
-                <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
-                    @yield('sidemenu')
-                </div>
-                <div class="pusher" style="min-height: inherit;">
-                    <div class="ui container">
-                        <div class="column" style="margin-top:10px;">
-                            @yield('content')
-                        </div>
-
-
+        <div id="main-content" class="column">
+            <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
+                @yield('sidemenu')
+            </div>
+            <div id="main-pusher" class="pusher">
+                <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
+                    <div class="column">
+                        @yield('content')
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="ui centered padded grid" style="">
-
-    <div class="column" style="text-align: left">
-        © 2015 University of Phayao. ALL Rights Reserved
+<div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
+    <div class="ui center aligned container">
+        <div class="ui horizontal inverted small divided link list">
+            © 2015 University of Phayao. ALL Rights Reserved
+        </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
+
+    function initialResizeWindows(){
+        var bodyheight = $(window).height();
+        var contentHeight = $("#real-content").height()+55;
+
+//        console.log("BodyHeight :"+ (bodyheight - 165));
+//        console.log("ContHeight :"+contentHeight);
+
+        if(contentHeight > bodyheight-165){
+            $("#resize-grid").height(contentHeight);
+        }else {
+            $("#resize-grid").height(bodyheight-165);
+        }
+        $("#main-pusher").height($("#resize-grid").height());
+    }
+    $(window).resize(function(){
+        initialResizeWindows();
+    })
+
 
     $('#main-sidebar')
             .sidebar({
@@ -132,6 +139,8 @@
         $('#main-sidebar').sidebar('toggle');
     })
 
+
+
 </script>
 
 @include('admin.js')
@@ -141,10 +150,6 @@
             .controller("UserCtrl", function ($scope, $http) {
                 $scope.current_user = {};
                 console.log("UserCtrl MainMenuApp Start...")
-
-//                $http.get('/api/auth/user').success(function (response) {
-//                    $scope.current_user = response;
-//                })
 
                 $scope.logout = function () {
                     var logout = $http.get('/api/auth/user');
@@ -161,6 +166,13 @@
 
 @yield('javascript')
 
+
+
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
 
 </body>
 </html>
