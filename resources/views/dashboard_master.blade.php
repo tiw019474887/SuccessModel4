@@ -87,7 +87,7 @@
                 @yield('sidemenu')
             </div>
             <div id="main-pusher" class="pusher">
-                <div class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
+                <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
                     <div class="column">
                         @yield('content')
                     </div>
@@ -111,7 +111,7 @@
 
     function initialResizeWindows(){
         var bodyheight = $(window).height();
-        var contentHeight = $("#main-pusher").height();
+        var contentHeight = $("#real-content").height()+55;
 
 //        console.log("BodyHeight :"+ (bodyheight - 165));
 //        console.log("ContHeight :"+contentHeight);
@@ -121,6 +121,7 @@
         }else {
             $("#resize-grid").height(bodyheight-165);
         }
+        $("#main-pusher").height($("#resize-grid").height());
     }
     $(window).resize(function(){
         initialResizeWindows();
