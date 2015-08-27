@@ -83,7 +83,7 @@
 <div id="resize-grid" class="ui grid" style="margin-top: 0px; height: calc(100% - 165px);">
     <div class="one column row">
         <div id="main-content" class="column">
-            <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
+            <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
                 @yield('sidemenu')
             </div>
             <div id="main-pusher" class="pusher">
@@ -150,10 +150,6 @@
             .controller("UserCtrl", function ($scope, $http) {
                 $scope.current_user = {};
                 console.log("UserCtrl MainMenuApp Start...")
-
-//                $http.get('/api/auth/user').success(function (response) {
-//                    $scope.current_user = response;
-//                })
 
                 $scope.logout = function () {
                     var logout = $http.get('/api/auth/user');
