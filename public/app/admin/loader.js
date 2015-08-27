@@ -68,9 +68,7 @@ angular.module('AppConfig', [])
         $scope.$on('httpRequest', function (e) {
             $scope.active = true;
             self.request_count++;
-            console.log(self.request_count);
-
-
+            //console.log(self.request_count);
         });
         $scope.$on('httpResponse', function (e) {
             self.response();
