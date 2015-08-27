@@ -9,7 +9,7 @@ function getParameterByName(url, name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function doPopup(){
+function doPopup() {
     $('.button').popup({
         inline: true,
     });
@@ -54,37 +54,32 @@ angular.module('AppConfig', [])
         var self = this;
         self.request_count = 0;
 
+        self.response = function () {
+            self.request_count--;
+            if (self.request_count == 0) {
+                $timeout(function () {
+                    $scope.active = false;
+                    initialResizeWindows();
+                }, 300)
+
+            }
+        }
+
         $scope.$on('httpRequest', function (e) {
             $scope.active = true;
             self.request_count++;
             console.log(self.request_count);
+
+
         });
         $scope.$on('httpResponse', function (e) {
-            self.request_count--;
-            if (self.request_count == 0) {
-                $timeout(function(){
-                    $scope.active = false;
-                },300)
-
-            }
+            self.response();
         });
         $scope.$on('httpRequestError', function (e) {
-            self.request_count--;
-            if (self.request_count == 0) {
-                $timeout(function(){
-                    $scope.active = false;
-                },300)
-
-            }
+            self.response();
         });
         $scope.$on('httpResponseError', function (e) {
-            self.request_count--;
-            if (self.request_count == 0) {
-                $timeout(function(){
-                    $scope.active = false;
-                },300)
-
-            }
+            self.response();
         });
 
     })
