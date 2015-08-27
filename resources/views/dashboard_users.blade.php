@@ -56,7 +56,7 @@
                         User
                     </a>
                     <div class="right aligned right floated column">
-                        <a class="item active">
+                        <a class="item">
                             <div class="ui icon input">
                                 <input type="text" placeholder="Search...">
                                 <i class="circular search icon"></i>
@@ -64,7 +64,7 @@
                         </a>
                     </div>
                     <a class="item ">
-                        <button class="ui orange button" href="/auth/login">Login</button>
+                        <button  class="ui orange button" >Login</button>
                     </a>
                 </div>
             </div>
@@ -98,6 +98,9 @@
         © 2015 University of Phayao. ALL Rights Reserved
     </div>
 </div>
+
+
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
@@ -115,6 +118,8 @@
 </script>
 
 @include('admin.js')
+
+
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
@@ -144,3 +149,6 @@
 
 </body>
 </html>
+
+
+
