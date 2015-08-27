@@ -32,7 +32,7 @@
                 <div class="column">
                     <div class="ui fluid card" style="margin:1px;">
                         <div class="image">
-                            <img src="<% $project->cover->url or '/images/daniel.jpg' %>">
+                            <img src="<% $project->cover->url or '/images/daniel.jpg'%>......">
                         </div>
                         <div class="content">
                             <a class="header"><% $project->name %></a>
