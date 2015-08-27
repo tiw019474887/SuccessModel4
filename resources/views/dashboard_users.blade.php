@@ -98,6 +98,9 @@
         © 2015 University of Phayao. ALL Rights Reserved
     </div>
 </div>
+
+
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
@@ -115,6 +118,8 @@
 </script>
 
 @include('admin.js')
+
+
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
