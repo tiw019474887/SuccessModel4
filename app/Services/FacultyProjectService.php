@@ -36,9 +36,11 @@ class FacultyProjectService extends ResearcherProjectService
                 {
                     $q->where('name_th', '=', $faculty->name_th);
                 })->get();
+
+                return $projects;
             }
 
-        return $projects;
+        return [];
     }
 
     public function get($id){

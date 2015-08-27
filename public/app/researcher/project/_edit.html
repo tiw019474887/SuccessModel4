@@ -1,17 +1,9 @@
 <div class="ui two columns grid">
 
-    <div class="two column row" style="padding-bottom: 0px;">
-        <div class="left aligned  column">
-            <h4 style="cursor: pointer;" ui-sref="home"><i  class="arrow  left icon"></i> Back</h4>
-        </div>
-
-        <div class="right floated right aligned column">
-            <h4 style="cursor: pointer;" ui-sref="view({id:project.id})">Preview<i class="arrow  right icon"></i> </h4>
-        </div>
-    </div>
     <div class="two column row">
         <div class="left aligned  column">
-            <h2>Edit Project</h2>
+
+            <h2><i ui-sref="home" class="arrow  left icon"></i> Edit Project</h2>
         </div>
     </div>
 </div>
@@ -23,6 +15,7 @@
     <a class="item" data-tab="member" ng-click="initProjectMemberCtrl()">Research Member</a>
     <a class="item" data-tab="photos" ng-click="initProjectPhotoController()">Photos</a>
     <a class="item" data-tab="youtubes" ng-click="initProjectYoutubeController()()">Youtube</a>
+    <a class="item" ui-sref="view({id:project.id})">Preview</a>
 </div>
 
 

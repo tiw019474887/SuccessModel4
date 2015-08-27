@@ -49,7 +49,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
+app.controller("HomeCtrl", function ($scope,$timeout,projects,$state,UniversityService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.reject_modal = false;
@@ -71,7 +71,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
         if (bool) {
             UniversityService.rejectProject($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeRejectModal();
-                UniversityService.all().success(function (response) {
+                UniversityService.getProjects().success(function (response) {
                     $scope.projects = response;
                 })
                 $state.go('home');
@@ -98,7 +98,7 @@ app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
         if (bool) {
             UniversityService.submit($scope.project.id,$scope.project).success(function (response) {
                 $scope.closeAcceptModal();
-                UniversityService.all().success(function (response) {
+                UniversityService.getProjects().success(function (response) {
                     $scope.projects = response;
                 })
                 $state.go('home');
@@ -108,6 +108,9 @@ app.controller("HomeCtrl", function ($scope,projects,$state,UniversityService) {
         }
 
     }
+
+    $timeout(doPopup,200);
+
 
 
 
