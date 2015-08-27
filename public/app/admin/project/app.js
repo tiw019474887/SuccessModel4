@@ -237,7 +237,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
     $timeout(function () {
         $('.menu .item').tab();
-        $('.ui.dropdown').dropdown({
+        $('.ui.upward.dropdown').dropdown({
             direction: 'upward'
         });
         $('.search').bind('keypress', function (e) {

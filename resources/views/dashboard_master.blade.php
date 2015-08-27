@@ -80,35 +80,52 @@
         </div>
     </div>
 </div>
-<div class="ui grid" style="margin-top: 0px;min-height: calc(100% - 170px);">
+<div id="resize-grid" class="ui grid" style="margin-top: 0px; height: calc(100% - 165px);">
     <div class="one column row">
-        <div class="column">
-            <div id="main-content" class="pushable" style="min-height: 480px;">
-                <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
-                    @yield('sidemenu')
-                </div>
-                <div class="pusher" style="min-height: inherit;">
-                    <div class="ui container">
-                        <div class="column" style="margin-top:10px;">
-                            @yield('content')
-                        </div>
-
-
+        <div id="main-content" class="column">
+            <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
+                @yield('sidemenu')
+            </div>
+            <div id="main-pusher" class="pusher">
+                <div class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
+                    <div class="column">
+                        @yield('content')
                     </div>
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="ui centered padded grid" style="">
-
-    <div class="column" style="text-align: left">
-        © 2015 University of Phayao. ALL Rights Reserved
+<div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
+    <div class="ui center aligned container">
+        <div class="ui horizontal inverted small divided link list">
+            © 2015 University of Phayao. ALL Rights Reserved
+        </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
+
+    function initialResizeWindows(){
+        var bodyheight = $(window).height();
+        var contentHeight = $("#main-pusher").height();
+
+//        console.log("BodyHeight :"+ (bodyheight - 165));
+//        console.log("ContHeight :"+contentHeight);
+
+        if(contentHeight > bodyheight-165){
+            $("#resize-grid").height(contentHeight);
+        }else {
+            $("#resize-grid").height(bodyheight-165);
+        }
+    }
+    $(window).resize(function(){
+        initialResizeWindows();
+    })
+
 
     $('#main-sidebar')
             .sidebar({
@@ -120,6 +137,8 @@
     $('#main-sidebar-btn').bind('click', function () {
         $('#main-sidebar').sidebar('toggle');
     })
+
+
 
 </script>
 
@@ -150,6 +169,13 @@
 
 @yield('javascript')
 
+
+
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
 
 </body>
 </html>
