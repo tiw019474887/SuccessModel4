@@ -24,4 +24,9 @@ class UserController  extends Controller {
             'projects' => $projects
         ]);
 	}
+
+    public function search(array $input)
+    {
+        $search = Project::with()->find(id);
+    }
 }
