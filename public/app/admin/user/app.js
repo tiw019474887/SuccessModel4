@@ -192,10 +192,9 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService, roles, f
     function onAddRole($label, value, text) {
         for (var i = 0; i < $scope.roles.length; i++) {
             if ($label == $scope.roles[i].id) {
-                $scope.user.roles.push($scope.roles[i])
+                $scope.user.roles.push($scope.roles[i]);
             }
         }
-        $scope.$apply();
     }
 
     function onRemoveRole(removedValue, removedText, $removedChoice) {
@@ -218,10 +217,10 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService, roles, f
 
 
     $timeout(function () {
-        x = $('#roles_dropdown').dropdown({
+        $('#roles_dropdown').dropdown({
             onAdd: onAddRole,
             onRemove: onRemoveRole,
-            direction: 'upward',
+            direction: 'upward'
         });
         $('#faculty_dropdown').dropdown({
             direction: 'upward'
