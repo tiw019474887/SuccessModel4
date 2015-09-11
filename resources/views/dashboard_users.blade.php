@@ -31,41 +31,39 @@
 <div class="ui grid">
     <div class="one column row" style="padding-bottom: 0px;">
         <div class="column" style="background-color: #4c1d6e">
+        <div class="ui menu">
+            <a id="main-sidebar-btn" class="item">
+                <i class="sidebar icon"></i>
+                Menu
+            </a>
+            <a class="item ">
+                User
+            </a>
+            <div class="right aligned right floated column">
+                <a class="item">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="circular search icon"></i>
+                    </div>
+                </a>
+            </div>
+            <a class="item ">
+                <button  class="ui orange button" >Login</button>
+            </a>
+        </div>
+        </div>
+        <div class="column" style="background-color: #4c1d6e">
             <div class="ui grid container">
                 <div class="column">
-                    <h2 class="ui header inverted" style="padding: 10px;">
-                        <img src="/images/uplogo.png">
-
+                    <h2 class="ui header inverted" style="padding: 20px;">
+                        <div class="ui small image">
+                        <img src="/images/fff.png">
+                        </div>
                         <div class="content">
                             Success Model
                             <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
                         </div>
                     </h2>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui container">
-                <div class="ui large stackable menu " id="MainMenu" style="border-radius: 0px;">
-
-                    <a id="main-sidebar-btn" class="item">
-                        <i class="sidebar icon"></i>
-                        Menu
-                    </a>
-                    <a class="item ">
-                        User
-                    </a>
-                    <div class="right aligned right floated column">
-                        <a class="item active">
-                            <div class="ui icon input">
-                                <input type="text" placeholder="Search...">
-                                <i class="circular search icon"></i>
-                             </div>
-                        </a>
-                    </div>
-                    <a class="item ">
-                        <button class="ui orange button" href="/auth/login">Login</button>
-                    </a>
                 </div>
             </div>
         </div>
@@ -91,13 +89,16 @@
         </div>
     </div>
 </div>
-
-<div class="ui centered padded grid" style="">
-
-    <div class="column" style="text-align: left">
-        © 2015 University of Phayao. ALL Rights Reserved
+<p></p>
+<div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
+    <div class="ui center aligned container">
+        <div class="ui horizontal inverted small divided link list">
+            © 2015 University of Phayao. ALL Rights Reserved
+        </div>
     </div>
 </div>
+
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
@@ -115,6 +116,8 @@
 </script>
 
 @include('admin.js')
+
+
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
@@ -144,3 +147,6 @@
 
 </body>
 </html>
+
+
+

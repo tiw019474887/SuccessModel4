@@ -36,11 +36,16 @@ Route::group([
 
     });
 
-    Route::get('/users', 'User\UserController@index');
     Route::get('/researcher', 'Researcher\ResearcherController@index');
     Route::get('/faculty', 'Faculty\FacultyController@index');
     Route::get('/university', 'University\UniversityController@index');
 
+Route::group(['prefix' => 'users'],function(){
+    Route::get('/', 'User\UserController@index');
+    Route::get('/project/{id}', 'User\UserController@project');
+
+
+});
 
 Route::group(['prefix' => 'api'], function () {
 

@@ -1,11 +1,9 @@
-/**
- * Created by tiwter on 6/10/2015.
- */
 
 
-var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User', 'Faculty',
-    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-]);
+
+var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User',
+    'Youtube','Project' ,'Faculty', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -48,7 +46,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-
 });
 
 app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, FacultyService) {
@@ -56,6 +53,7 @@ app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, Faculty
     $scope.projects = projects.data;
     $scope.reject_modal = false;
     $scope.accept_modal = false;
+
 
     $scope.showRejectModal = function (project) {
         $scope.project = project;
@@ -65,6 +63,7 @@ app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, Faculty
     $scope.closeRejectModal = function () {
         $scope.reject_modal = false;
     }
+
 
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
@@ -107,9 +106,11 @@ app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, Faculty
 
     $timeout(doPopup, 200);
 
+
 });
+
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService, FacultyService,
+                                     UserService, UserSearchService, ProjectService,FacultyService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -119,9 +120,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
     $scope.members = members.data;
-
-    $scope.reject_modal = false;
-    $scope.accept_modal = false;
     $scope.setShowItem = function (item, type) {
         $scope.showItem = {item: item, type: type}
     }
@@ -169,6 +167,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         $scope.reject_modal = false;
     }
 
+
     $scope.ajaxReject = function (project, bool) {
         $scope.project = project;
         if (bool) {
@@ -212,6 +211,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     }
 
 });
+
 
 app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $timeout,
                                               UserSearchService, UserService, ProjectService) {
@@ -503,6 +503,9 @@ app.controller("ProjectYoutubeController", function ($scope, $state, $cookies, $
 
     $scope.initProjectYoutubeController();
 });
+
+
+
 
 
 
