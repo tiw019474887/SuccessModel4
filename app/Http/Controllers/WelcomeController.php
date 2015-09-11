@@ -30,11 +30,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        if(\Auth::check()){
-            return view('auth.login');
-        }else {
-            return redirect('/auth/login');
-        }
+        return "index page";
 	}
 
 }
