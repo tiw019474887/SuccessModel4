@@ -1,13 +1,8 @@
 
 
-<<<<<<< HEAD
-var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User',
-    'Youtube','Project' ,'Faculty', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
-=======
 var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User', 'Faculty',
     'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
->>>>>>> 0ef42704a855e54ec33c7ccd3a75cec51ab3399b
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 

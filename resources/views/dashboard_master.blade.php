@@ -56,6 +56,8 @@
                                 <span><%Auth::user()->email%></span>
                             @endif
                             <div class="menu">
+                                <a class="item" href="/">หน้าหลัก</a>
+                                <div class="divider"></div>
                                 <div class="header">
                                     <i class="tags icon"></i>
                                     เลือกสิทธิ์การใช้งาน
@@ -71,8 +73,6 @@
                                 <a class="item" ng-click="logout()">Logout</a>
 
                             </div>
-
-
                         </div>
                     </div>
                 </div>

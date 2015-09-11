@@ -1,71 +1,75 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="column" style="max-width: 450px;">
-        <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
-            <div class="ui large text loader">
-                Loading
-            </div>
-        </div>
+    <div class="ui middle aligned center aligned grid">
 
-        <div ng-controller="LoginCtrl">
 
-            <div class="ui top attached purple inverted  segment">
-                <h4>เข้าใช้งานระบบ / Sign in</h4>
-            </div>
-            <div class="ui attached segment" ng-if="message">
-                <div class="ui negative message">
-                    <div class="header">We had some issues</div>
-                    <ul class="list" ng-if="message">
-                        <li ng-repeat="m in message" ng-bind="m"></li>
-                    </ul>
+        <div class="column" style="max-width: 450px;">
+            <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
+                <div class="ui large text loader">
+                    Loading
                 </div>
             </div>
-            <div class="ui attached segment" ng-if="!loginComplete">
-                <form class="ui form" ng-submit="login()">
-                    <div class="ui field">
-                        <label>Username or E-Mail</label>
 
-                        <div class="ui left icon input">
-                            <i class="mail icon"></i>
-                            <input ng-model="user.email" name="email" type="text" placeholder="Username & E-Mail">
-                        </div>
+            <div ng-controller="LoginCtrl">
 
+                <div class="ui top attached purple inverted  segment">
+                    <h4>เข้าใช้งานระบบ / Sign in</h4>
+                </div>
+                <div class="ui attached segment" ng-if="message">
+                    <div class="ui negative message">
+                        <div class="header">We had some issues</div>
+                        <ul class="list" ng-if="message">
+                            <li ng-repeat="m in message" ng-bind="m"></li>
+                        </ul>
                     </div>
-                    <div class="ui field">
-                        <label>Password</label>
+                </div>
+                <div class="ui attached segment" ng-if="!loginComplete">
+                    <form class="ui form" ng-submit="login()">
+                        <div class="ui field">
+                            <label>Username or E-Mail</label>
 
-                        <div class="ui left icon input">
-                            <i class="lock icon"></i>
-                            <input ng-model="user.password" name="password" type="password" placeholder="Password">
-                        </div>
-
-                    </div>
-                    <div class="ui grid">
-                        <div class="row two column">
-                            <div class="column">
-                                <button type="submit" class="fluid ui primary button">User Login</button>
-                            </div>
-                            <div class="column">
-                                <a href="#" class="fluid ui positive button">Register</a>
+                            <div class="ui left icon input">
+                                <i class="mail icon"></i>
+                                <input ng-model="user.email" name="email" type="text" placeholder="Username & E-Mail">
                             </div>
 
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="ui attached segment" ng-if="loginComplete">
-                <div class="ui green message">
-                    <b>ผู้ใช้งาน : </b> {{user.firstname}} {{user.lastname}}
-                </div>
+                        <div class="ui field">
+                            <label>Password</label>
 
-                <div class="ui vertical fluid menu">
-                    <a class="item">
-                        เลือกสิทธิ์การใช้งาน
-                    </a>
-                    <a class="item" ng-repeat="role in user.roles " href="/{{role.key}}">
-                        {{role.name}}
-                    </a>
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input ng-model="user.password" name="password" type="password" placeholder="Password">
+                            </div>
+
+                        </div>
+                        <div class="ui grid">
+                            <div class="row two column">
+                                <div class="column">
+                                    <button type="submit" class="fluid ui primary button">User Login</button>
+                                </div>
+                                <div class="column">
+                                    <a href="#" class="fluid ui positive button">Register</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="ui attached segment" ng-if="loginComplete">
+                    <div class="ui green message">
+                        <b>ผู้ใช้งาน : </b> {{user.firstname}} {{user.lastname}}
+                    </div>
+
+                    <div class="ui vertical fluid menu">
+                        <a class="item">
+                            เลือกสิทธิ์การใช้งาน
+                        </a>
+                        <a class="item" ng-repeat="role in user.roles " href="/{{role.key}}">
+                            {{role.name}}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,6 +116,4 @@
     <script type="text/javascript">
         $('.ui.dropdown').dropdown();
     </script>
-    @endsection
-    </body>
-    </html>
+@endsection
