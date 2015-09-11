@@ -4,24 +4,25 @@
     <div class="ui container grid">
         <div class="row" style="padding-top: 0px;">
             <div class="wide column">
-                <div class="ui menu">
+                <div class="ui stackable menu">
                     <a class="active item">
                         Home
                     </a>
                     <a class="item">
-                        Messages
+                        เกี่ยวกับโครงการหนึ่งคณะหนึ่งโมเดล
                     </a>
                     <a class="item">
-                        Friends
+                        เกี่ยวกับระบบฐานข้อมูลหนึ่งคณะหนึ่งโมเดล
                     </a>
 
                     <div class="right menu">
                         <div class="item">
-                            <div class="ui icon input">
+                            <div class="ui transparent icon input">
                                 <input type="text" placeholder="Search...">
                                 <i class="search link icon"></i>
                             </div>
                         </div>
+
                         <div class="item ui dropdown" ng-controller="UserCtrl">
                             @if(Auth::user()->logo)
                                 <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
