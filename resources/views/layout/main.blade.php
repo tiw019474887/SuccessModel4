@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/style.css"/>
 </head>
 
-<body>
+<body ng-app="MainApp">
 
 <div id="menu-grid" class="ui grid">
     <div class="one column row">
