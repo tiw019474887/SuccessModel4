@@ -29,7 +29,7 @@
 <body>
 
 <div class="ui grid">
-    <div class="one column row" style="padding-bottom: 0px;">
+    <div class="one column row" style="padding-bottom: 10 px;">
         <div class="column" style="background-color: #4c1d6e">
         <div class="ui menu">
             <a id="main-sidebar-btn" class="item">

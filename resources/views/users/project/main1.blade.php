@@ -23,6 +23,7 @@
 
 
 
+
 @section('content')
     <h2></h2>
 
@@ -148,23 +149,21 @@
                                     <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
                                     <img ng-if="member.logo" class="ui avatar image"
                                          ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
-                                    <% $member->title %><% $member->firstname %> <% $member->lastname %>
+                                    {{member.title }}{{member.firstname }}{{member.lastname}}
                                 </div>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
-            <div class="row">
-                <h2>แนะนำโปรเจค</h2>
-            </div>
             </div>
         </div>
     </div>
 @stop
 
 
-@section('javascript')
 
+
+@section('javascript')
 
 @stop
