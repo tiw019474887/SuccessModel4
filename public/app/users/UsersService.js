@@ -122,6 +122,26 @@ angular.module('Users', [])
                     method: 'delete',
                     data: $youtube
                 })
+            },
+            getComments : function (){
+                return $http({
+                    url : '/api/comment/get-comment',
+                    method : 'get'
+                })
+            },
+            addProjectComments : function ($project){
+                return $http({
+                    url : '/api/comment/add-projectcomment',
+                    method : 'post',
+                    data: $project
+                })
+            },
+            addCommentComments : function ($project){
+                return $http({
+                    url : '/api/comment/add-commentcomment',
+                    method : 'post',
+                    data : $project
+                })
             }
 
         }

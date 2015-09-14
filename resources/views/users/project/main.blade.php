@@ -31,11 +31,11 @@
             @foreach($projects as $project)
                 <div class="column">
                     <div class="ui fluid card" style="margin:1px;">
-                        <div class="image">
+                        <div class="ui medium image">
                             <?php if(isset($project->cover->url)) : ?>
                             <img src="<% $project->cover->url %>?w=300&h=300"/>
                             <?php else : ?>
-                            <img src="/images/daniel.jpg"/>
+                            <img src="/images/daniel.jpg?w=300&h=300"/>
                             <?php endif; ?>
                         </div>
                         <div class="content">
@@ -56,12 +56,10 @@
                 </div>
             @endforeach
         </div>
-
     </div>
 @stop
 
 
 @section('javascript')
-
 
 @stop
