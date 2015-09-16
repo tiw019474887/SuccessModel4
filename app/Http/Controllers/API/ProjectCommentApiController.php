@@ -27,15 +27,15 @@ class ProjectCommentApiController extends Controller {
 
     }
 
-    public function addProjectComment($projectId)
+    public function addProjectComment($id)
     {
-      return $this->commentProjectService->addCommentToProject($projectId,Input::all());
+      return $this->commentProjectService->addCommentToProject($id,Input::all());
 
     }
 
-    public function addCommentComment($commentId)
+    public function addCommentComment($id)
     {
-        return $this->commentProjectService->addCommentToComment($commentId,Input::all());
+        return $this->commentProjectService->addCommentToComment($id,Input::all());
 
     }
 

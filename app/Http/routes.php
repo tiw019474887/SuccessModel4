@@ -50,9 +50,9 @@ Route::group(['prefix' => 'users'],function(){
 Route::group(['prefix' => 'api'], function () {
 
     //api for comment
-    Route::get('comment/get-comment','API\ProjectCommentApiController@getComments');
-    Route::post('comment/add-projectcomment','API\ProjectCommentApiController@addProjectComments');
-    Route::post('comment/add-commentcomment','API\ProjectCommentApiController@addCommentComments');
+    Route::get('comment/get-comment/{id}','API\ProjectCommentApiController@getComments');
+    Route::post('comment/add-project-comment/{id}','API\ProjectCommentApiController@addProjectComments');
+    Route::post('comment/add-comment-comment/{id}','API\ProjectCommentApiController@addCommentComments');
 
     //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
