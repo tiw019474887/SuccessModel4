@@ -19,6 +19,8 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="jquery.flexslider.js"></script>
 @stop
 
 
@@ -29,34 +31,29 @@
 
     <div id="contents">
         <div class="row">
-            <h2><% $project->name %></h2>
+            <h2><% $project->name%></h2>
         </div>
-
         <div class="ui grid">
-
             <div class="row">
                 <div class="ten wide column">
-
-                    <div class="one column row" style="">
-                        <div class="column">
-                            <div class="flexslider">
-                                <ul class="slides">
-                                    <li ng-repeat="youtube in youtubes">
-                                        <div class="videoWrapper">
-                                            <iframe class="youtube" width="640" height="380"
-                                                    ng-src="{{getYoutubeEmbedUrl(youtube.vid)}}">
-                                            </iframe>
-                                        </div>
-                                    </li>
-                                    <li ng-repeat="image in images">
-                                        <img ng-src="{{image.url}}?w=640&h=380&fit=stretch"/>
-                                    </li>
-                                </ul>
+                        <div class="ten wide column">
+                            <div class="one column row" style="">
+                                <div class="column">
+                                    <div class="flexslider" style="margin-bottom: 0px;">
+                                        <ul class="slides">
+                                            <?php if(isset($project->images->url)) : ?>
+                                            <img src="<% $project->images->url %>?w=640&h=380"/>
+                                            <?php else : ?>
+                                            <img src="/images/fff.png?w=640&h=380"/>
+                                            <?php endif; ?>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div clas="row" style="margin-bottom: 14px;">
+
+                        <div clas="row" style="margin-bottom: 14px;">
 
                     </div>
                     <div class="row" style="margin-bottom: 14px;">
@@ -64,7 +61,7 @@
 
                             <div class="ui right aligned segment">
                             <span style="font-weight: bold;">
-                                {{ project.current_file.origin_name | limitTo: 75}}{{project.current_file.origin_name.length > 75 ? '...' : ''}}
+                                .................................
                             </span>
                             </div>
 
@@ -129,14 +126,17 @@
 
                     <div class="ui segment">
                         <% ($project->abstract) %>
-                        </div>
+                    </div>
                     </div>
                     <h3>ดำเนินการโดย</h3>
 
                     <div class="ui segment">
-                        <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
-                        <img ng-if="project.faculty.logo" class="ui avatar image"
-                             ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
+
+                        <?php if(isset($project->faculty->logo->url)) : ?>
+                        <img class="ui avatar image" src="<% $project->faculty->logo->url %>?w=300&h=300"/>
+                        <?php else : ?>
+                        <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
+                        <?php endif; ?>
                         <% $project->faculty->name_th %>
                     </div>
 
@@ -146,10 +146,19 @@
                         <div class="ui segment" style="padding: 14px;">
                             <div class="ui two columns grid">
                                 <div class="ui column" ng-repeat="member in members">
-                                    <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
-                                    <img ng-if="member.logo" class="ui avatar image"
-                                         ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
-                                    {{member.title }}{{member.firstname }}{{member.lastname}}
+                                    <?php if(isset($project->member->logo->url)) : ?>
+                                    <img class="ui avatar image" src="<% $project->member->logo->url %>?w=300&h=300"/>
+                                    <?php else : ?>
+                                    <div></div>
+                                    <?php endif; ?>
+                                   <?php if (isset ($project->members->title,$project->members->firstname,$project->members->lastname)) :?>
+                                     <div>
+                                    <%$project->members->title%><%$project->members->firstname%><%$project->members->lastname%>
+                                     </div>
+                                    <?php else : ?>
+                                    <div></div>
+                                    <?php endif; ?>
+
                                 </div>
                             </div>
                         </div>
@@ -165,5 +174,9 @@
 
 
 @section('javascript')
-
+    <script type='text/javascript'>
+        $(window).load(function() {
+        $(‘.flexslider’).flexslider();
+        });
+    </script>
 @stop

@@ -40,13 +40,12 @@
                         </div>
                         <div class="content">
                             <a class="header"><% $project->name %></a>
-
                             <p>
                                 <% str_limit($project->abstract,100,'...') %>
                             </p>
-                            <% $project->id %>
+                            <?php echo $project->id ?>
                             <p>
-                                <a href = "/project/{id}" >อ่านต่อ>>>></a>
+                                <a href = "/users/project/<%$project->id%>" >อ่านต่อ>>>></a>
                             </p>
                         </div>
                         <div class="extra content">
