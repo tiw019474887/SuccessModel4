@@ -41,7 +41,19 @@ class UserController  extends Controller {
 
     public function search(array $input)
     {
-        $search = Project::with()->find(id);
+        //return Input::all();
+        $name_keyword = Input::get('name');
+
+        $project = Project::with('facalty')
+
+            ->where(function($q) use ($name_keyword){
+                return $q->where('name','LIKE',"%$name_keyword%");
+            })
+            ->get();
+
+        return $project;
+
+
     }
 
 }

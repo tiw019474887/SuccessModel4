@@ -42,7 +42,7 @@
             <div class="right aligned right floated column">
                 <a class="item">
                     <div class="ui icon input">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" class="form-control" ng-model="keyword.name" type="text" placeholder="Search...">
                         <i class="circular search icon"></i>
                     </div>
                 </a>
