@@ -46,7 +46,7 @@
                             </p>
                             <% $project->id %>
                             <p>
-                                <a href = "" >อ่านต่อ>>>></a>
+                                <a href = "/project/{id}" >อ่านต่อ>>>></a>
                             </p>
                         </div>
                         <div class="extra content">
