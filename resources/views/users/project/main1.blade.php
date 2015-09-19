@@ -19,8 +19,6 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script src="jquery.flexslider.js"></script>
 @stop
 
 
@@ -36,13 +34,14 @@
         <div class="ui grid">
             <div class="row">
                 <div class="ten wide column">
+                    @foreach($project->images as $project->image)
                         <div class="ten wide column">
                             <div class="one column row" style="">
                                 <div class="column">
                                     <div class="flexslider" style="margin-bottom: 0px;">
                                         <ul class="slides">
-                                            <?php if(isset($project->images->url)) : ?>
-                                            <img src="<% $project->images->url %>?w=640&h=380"/>
+                                            <?php if(isset($project->image->url)) : ?>
+                                            <img src="<% $project->image->url %>?w=640&h=380"/>
                                             <?php else : ?>
                                             <img src="/images/fff.png?w=640&h=380"/>
                                             <?php endif; ?>
@@ -51,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-
+                    @endforeach
 
                         <div clas="row" style="margin-bottom: 14px;">
 
@@ -142,27 +141,27 @@
 
                     <div class="six wide column">
                         <h3>นักวิจัย</h3>
-
+                        <?php
+                            //print_r($project->members);
+                        ?>
                         <div class="ui segment" style="padding: 14px;">
+                            @foreach($project->members as $project->member)
                             <div class="ui two columns grid">
-                                <div class="ui column" ng-repeat="member in members">
+                                <div class="ui column">
                                     <?php if(isset($project->member->logo->url)) : ?>
                                     <img class="ui avatar image" src="<% $project->member->logo->url %>?w=300&h=300"/>
                                     <?php else : ?>
-                                    <div></div>
+                                    <div>//</div>
                                     <?php endif; ?>
-                                   <?php if (isset ($project->members->title,$project->members->firstname,$project->members->lastname)) :?>
-                                     <div>
-                                    <%$project->members->title%><%$project->members->firstname%><%$project->members->lastname%>
-                                     </div>
-                                    <?php else : ?>
-                                    <div></div>
-                                    <?php endif; ?>
-
+                                      <?php if (isset ($project->member->title,$project->member->firstname,$project->member->lastname)) : ?>
+                                          <% $project->member->title %>.<% $project->member->firstname %><% $project->member->lastname %>
+                                        <?php else : ?>
+                                          <div>----</div>
+                                      <?php endif; ?>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>
@@ -174,9 +173,5 @@
 
 
 @section('javascript')
-    <script type='text/javascript'>
-        $(window).load(function() {
-        $(‘.flexslider’).flexslider();
-        });
-    </script>
+
 @stop

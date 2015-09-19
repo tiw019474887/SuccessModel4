@@ -43,7 +43,7 @@
                             <p>
                                 <% str_limit($project->abstract,100,'...') %>
                             </p>
-                            <?php echo $project->id ?>
+                            <% $project->id %>
                             <p>
                                 <a href = "/users/project/<%$project->id%>" >อ่านต่อ>>>></a>
                             </p>
@@ -57,7 +57,6 @@
         </div>
     </div>
 @stop
-
 
 @section('javascript')
 
