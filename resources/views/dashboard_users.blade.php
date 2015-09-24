@@ -47,7 +47,9 @@
                     </div>
                 </a>
             </div>
-            ............
+            <a class="item ">
+                <button href="/auth/login" class="ui orange button" >Login</button>
+            </a>
         </div>
         </div>
         <div class="column" style="background-color: #4c1d6e">

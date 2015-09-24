@@ -1,15 +1,6 @@
-
-
-<<<<<<< HEAD
-
-var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User',
-    'Youtube','Project' ,'Faculty', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
-
-=======
 var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User', 'Faculty',
-    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-]);
->>>>>>> pchaow/master
+    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 

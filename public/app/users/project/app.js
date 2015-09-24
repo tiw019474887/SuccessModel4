@@ -1,6 +1,3 @@
-/**
- * Created by tiwter on 6/10/2015.
- */
 
 
 var app = angular.module('UsersProject', ['ui.router', 'AppConfig','Users','Project',
@@ -13,7 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "/app/users/project/_home.html",
+            templateUrl: "/resources/views/users/project/main1.blade.php",
             controller: "HomeCtrl",
             resolve: {
                 projects: function (UsersService) {

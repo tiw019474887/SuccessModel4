@@ -19,38 +19,58 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+
 @stop
 
 
 
 
 @section('content')
+
+
+
     <h2></h2>
 
     <div id="contents">
         <div class="row">
             <h2><% $project->name%></h2>
         </div>
-        <div class="ui grid">
+        <div class="ui grid"  ng-app="UsersProject">
             <div class="row">
                 <div class="ten wide column">
-                    @foreach($project->images as $project->image)
                         <div class="ten wide column">
                             <div class="one column row" style="">
                                 <div class="column">
-                                    <div class="flexslider" style="margin-bottom: 0px;">
+                                    <div  id="slider" class="flexslider" style="margin-bottom: 0px;">
                                         <ul class="slides">
+                                            @foreach($project->images as $project->image)
+                                            <li>
                                             <?php if(isset($project->image->url)) : ?>
                                             <img src="<% $project->image->url %>?w=640&h=380"/>
                                             <?php else : ?>
                                             <img src="/images/fff.png?w=640&h=380"/>
                                             <?php endif; ?>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div id="carousel" class="flexslider">
+                                        <ul class="slides">
+                                            @foreach($project->images as $project->image)
+                                                <li>
+                                                    <?php if(isset($project->image->url)) : ?>
+                                                    <img src="<% $project->image->url %>?w=640&h=380"/>
+                                                    <?php else : ?>
+                                                    <img src="/images/fff.png?w=640&h=380"/>
+                                                    <?php endif; ?>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+
 
                         <div clas="row" style="margin-bottom: 14px;">
 
@@ -108,7 +128,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="ui reply form">
+                        <form class="ui reply form" ng-app="Users">
                             <div class="field">
                                 <textarea></textarea>
                             </div>
@@ -117,7 +137,6 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
                 <div class="six wide column">
                     <div class="column">
@@ -173,5 +192,40 @@
 
 
 @section('javascript')
+    <script type="text/javascript">
+        $(window).load(function() {
+            // The slider being synced must be initialized first
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 210,
+                itemMargin: 5,
+                asNavFor: '#slider'
+            });
 
+            $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                sync: "#carousel"
+            });
+        });
+
+    </script>
+
+
+
+
+    <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
+    <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
+    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
+    <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
+    <script type="text/javascript" src="/app/users/UsersService.js"></script>
+    <script src="/app/admin/loader.js"></script>
+    <script src="/app/users/project/app.js"></script>
 @stop
