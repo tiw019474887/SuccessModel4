@@ -35,7 +35,7 @@
         <div class="row">
             <h2><% $project->name%></h2>
         </div>
-        <div class="ui grid"  ng-app="UsersProject">
+        <div class="ui grid">
             <div class="row">
                 <div class="ten wide column">
                         <div class="ten wide column">
