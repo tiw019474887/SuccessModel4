@@ -19,6 +19,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+    <link rel="stylesheet" type="text/css" href="/packages/fullPage/jquery.fullPage.css">
 
 @stop
 
@@ -43,10 +44,23 @@
                                 <div class="column">
                                     <div  id="slider" class="flexslider" style="margin-bottom: 0px;">
                                         <ul class="slides">
-                                            @foreach($project->images as $project->image)
+
+                                            @foreach($project->youtubes as $youtube)
                                             <li>
-                                            <?php if(isset($project->image->url)) : ?>
-                                            <img src="<% $project->image->url %>?w=640&h=380"/>
+                                                <?php if(isset($youtube->vid)) : ?>
+                                                    <div class="videoWrapper">
+                                                        <iframe class="youtube" width="640" height="380"
+                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                        </iframe>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </li>
+                                            @endforeach
+
+                                            @foreach($project->images as $image)
+                                            <li>
+                                            <?php if(isset($image->url)) : ?>
+                                            <img src="<% $image->url %>?w=640&h=380"/>
                                             <?php else : ?>
                                             <img src="/images/fff.png?w=640&h=380"/>
                                             <?php endif; ?>
@@ -56,10 +70,22 @@
                                     </div>
                                     <div id="carousel" class="flexslider">
                                         <ul class="slides">
-                                            @foreach($project->images as $project->image)
+                                            @foreach($project->youtubes as $youtube)
                                                 <li>
-                                                    <?php if(isset($project->image->url)) : ?>
-                                                    <img src="<% $project->image->url %>?w=640&h=380"/>
+                                                    <?php if(isset($youtube->vid)) : ?>
+                                                    <div class="videoWrapper">
+                                                        <iframe class="youtube" width="640" height="380"
+                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                        </iframe>
+                                                    </div>
+                                                    <?php endif; ?>
+                                                </li>
+                                            @endforeach
+
+                                            @foreach($project->images as $image)
+                                                <li>
+                                                    <?php if(isset($image->url)) : ?>
+                                                    <img src="<% $image->url %>?w=640&h=380"/>
                                                     <?php else : ?>
                                                     <img src="/images/fff.png?w=640&h=380"/>
                                                     <?php endif; ?>
@@ -216,9 +242,16 @@
 
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage();
+        });
+    </script>
 
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/packages/fullPage/vendors/jquery.easings.min.js"></script>
+    <script type="text/javascript" src="/packages/fullPage/jquery.fullPage.min.js"></script>
     <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>

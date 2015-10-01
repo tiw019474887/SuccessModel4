@@ -35,39 +35,42 @@
             <div class="ui link cards">
             <div class="ui recent-works vertical segment">
             <div class="fourteen wide column">
+                <div id="fullpage">
+                    <div class="section">
             <div class="ui three column aligned stackable  grid">
-
-            @foreach($projects as $project)
-                <div class="column">
-                    <div class="ui fluid card" style="margin:1px;">
-                        <div class="image">
-                            <?php if(isset($project->cover->url)) : ?>
-                            <img src="<% $project->cover->url %>?w=300&h=300"/>
-                            <?php else : ?>
-                            <img src="/images/fff.png?w=300&h=300"/>
-                            <?php endif; ?>
-                        </div>
-                        <div class="content">
-                            <a class="header"><h2><% $project->name %></h2></a>
-                            <p>
-                                <% str_limit($project->abstract,100,'...') %>
-                            </p>
-                        </div>
-                        <div class="extra content">
-                            <% $project->faculty->name_th %>
-                        </div>
-                        <a href = "/users/project/<%$project->id%>" >
-                        <div class="ui two bottom attached buttons">
-                            <div class="ui inverted violet button">
-                                <p>
-                                 อ่านต่อ
-                                </p>
+                        @foreach($projects as $project)
+                            <div class="column">
+                                <div class="ui fluid card" style="margin:1px;">
+                                    <div class="image">
+                                        <?php if(isset($project->cover->url)) : ?>
+                                        <img src="<% $project->cover->url %>?w=300&h=300"/>
+                                        <?php else : ?>
+                                        <img src="/images/fff.png?w=300&h=300"/>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="content">
+                                        <a class="header"><h2><% $project->name %></h2></a>
+                                        <p>
+                                            <% str_limit($project->abstract,100,'...') %>
+                                        </p>
+                                    </div>
+                                    <div class="extra content">
+                                        <% $project->faculty->name_th %>
+                                    </div>
+                                    <a href = "/users/project/<%$project->id%>" >
+                                        <div class="ui two bottom attached buttons">
+                                            <div class="ui inverted violet button">
+                                                <p>
+                                                    อ่านต่อ
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        </a>
+                        @endforeach
                     </div>
                 </div>
-            @endforeach
             </div>
             </div>
             </div>
