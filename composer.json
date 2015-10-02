@@ -14,11 +14,15 @@
     {
       "type": "vcs",
       "url": "https://github.com/sw-double/Elasticquent"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/pchaow/NeoEloquent"
     }
   ],
   "require": {
     "laravel/framework": "5.0.*",
-    "vinelab/neoeloquent": "1.2.5",
+    "vinelab/neoeloquent": "1.2.5.1",
     "barryvdh/laravel-ide-helper": "~2.0",
     "league/glide": "0.3.*",
     "spatie/laravel-glide": "~2.1",

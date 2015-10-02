@@ -6,6 +6,12 @@ use App\Models\Project;
 use \View;
 
 
+
+
+
+
+
+
 class UserController  extends Controller {
 
     public function __construct()
@@ -19,14 +25,13 @@ class UserController  extends Controller {
     {
         $q->where('key', '=', 'published');
 
-    })->get();
+    })->paginate(6);
 
 		return view('users.project.main',[
-            'projects' => $projects
+            'projects' => $projects,
+
         ]);
 	}
-
-
 
     public function project($id)
     {
@@ -55,5 +60,8 @@ class UserController  extends Controller {
 
 
     }
+
+
+
 
 }
