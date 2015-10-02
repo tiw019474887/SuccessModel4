@@ -19,7 +19,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
-    <link rel="stylesheet" type="text/css" href="/packages/fullPage/jquery.fullPage.css">
+
 
 @stop
 
@@ -241,17 +241,6 @@
         });
 
     </script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#fullpage').fullpage();
-        });
-    </script>
-
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/packages/fullPage/vendors/jquery.easings.min.js"></script>
-    <script type="text/javascript" src="/packages/fullPage/jquery.fullPage.min.js"></script>
     <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>

@@ -24,7 +24,10 @@
 
 
 @section('content')
+
+
     <h2 class="condensed container" >โมเดลที่สำเร็จ</h2>
+
     <div class="ui divider condensed"></div>
     <div class=" column container">
     <div class="ui grid">
@@ -35,8 +38,7 @@
             <div class="ui link cards">
             <div class="ui recent-works vertical segment">
             <div class="fourteen wide column">
-                <div id="fullpage">
-                    <div class="section">
+
             <div class="ui three column aligned stackable  grid">
                         @foreach($projects as $project)
                             <div class="column">
@@ -69,13 +71,34 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                </div>
             </div>
             </div>
             </div>
             </div>
         </div>
+            <div class="ui pagination menu">
+                <a class="icon item">
+                    <i class="left arrow icon"></i>
+                </a>
+                <a class="active item">
+                    1
+                </a>
+                <div class="disabled item">
+                    ...
+                </div>
+                <a class="item">
+                    10
+                </a>
+                <a class="item">
+                    11
+                </a>
+                <a class="item">
+                    12
+                </a>
+                <a class="icon item">
+                    <i class="right arrow icon"></i>
+                </a>
+            </div>
         </div>
             <div class="three wide right floated column container">
                 <div class="clounm">
@@ -101,18 +124,14 @@
                             </a>
                         </div>
                         <div class="ui divider condensed"></div>
-
                     </div>
-
-
-
-
                 </div>
             </div>
+         </div>
+        </div>
     </div>
     </div>
 
-    </div>
 
 
 
@@ -120,6 +139,9 @@
 @stop
 
 @section('javascript')
+
+
+
     <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
