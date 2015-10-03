@@ -9,16 +9,7 @@
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
     <style>
-        .avatar-menu {
-            height: 2em !important;
-            width: 2em !important;
-            margin-top: -0.5em;
-            margin-bottom: -0.5em;
-        }
 
-        .ui.inverted.purple.segment {
-            background-color: #4c1d6e !important;
-        }
     </style>
 
     @yield('header')
@@ -71,21 +62,20 @@
         </div>
     </div>
 </div>
-<div class="ui grid" style="margin-top: 0px;">
+<div id="resize-grid" class="ui grid" style="margin-top: 0px; height: calc(100% - 165px);">
     <div class="one column row">
-        <div class="column">
-            <div id="main-content" class="pushable" style="min-height: 480px;">
-                <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu">
-                    @yield('sidemenu')
-                </div>
-                <div class="pusher" style="min-height: inherit;">
-                    <div class="ui container">
-                        <div class="column">
-                            @yield('content')
-                        </div>
-
-
+        <div id="main-content" class="column">
+            <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
+                @yield('sidemenu')
+            </div>
+            <div id="main-pusher" class="pusher">
+                <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
+                    <div class="column">
+                        @yield('content')
                     </div>
+
+
+                </div>
                 </div>
             </div>
         </div>
@@ -104,6 +94,25 @@
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
+    function initialResizeWindows(){
+        var bodyheight = $(window).height();
+        var contentHeight = $("#real-content").height()+55;
+
+//        console.log("BodyHeight :"+ (bodyheight - 165));
+//        console.log("ContHeight :"+contentHeight);
+
+        if(contentHeight > bodyheight-165){
+            $("#resize-grid").height(contentHeight);
+        }else {
+            $("#resize-grid").height(bodyheight-165);
+        }
+        $("#main-pusher").height($("#resize-grid").height());
+    }
+    $(window).resize(function(){
+        initialResizeWindows();
+    })
+
+
     $('#main-sidebar')
             .sidebar({
                 context: $('#main-content'),
@@ -115,21 +124,17 @@
         $('#main-sidebar').sidebar('toggle');
     })
 
+
+
 </script>
 
 @include('admin.js')
-
-
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
             .controller("UserCtrl", function ($scope, $http) {
                 $scope.current_user = {};
                 console.log("UserCtrl MainMenuApp Start...")
-
-//                $http.get('/api/auth/user').success(function (response) {
-//                    $scope.current_user = response;
-//                })
 
                 $scope.logout = function () {
                     var logout = $http.get('/api/auth/user');
@@ -138,7 +143,7 @@
                         window.location = '/auth/login';
                     })
                 }
-            })
+            })z
 
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 
@@ -147,8 +152,11 @@
 @yield('javascript')
 
 
+
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
+
 </body>
-</html>
-
-
-
