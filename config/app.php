@@ -138,6 +138,7 @@ return [
         'Vinelab\NeoEloquent\NeoEloquentServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Artisaninweb\SoapWrapper\ServiceProvider',
+
         /*
          * Application Service Providers...
          */
