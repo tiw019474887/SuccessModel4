@@ -126,17 +126,17 @@ class ProjectService extends Service
         return [Project::find($id)->delete()];
     }
 
-    public function saveLogo($id, Request $input)
+    public function saveLogo($projectId, Request $input)
     {
         /* @var Project $project */
-        $project = $this->get($id);
+        $project = $this->get($projectId);
         $uuid = Uuid::uuid4();
-        $storage_path = "app/projects/$id/logo/";
+        $storage_path = "app/projects/$projectId/logo/";
         $destination_path = storage_path($storage_path);
         $input->file('file')->move($destination_path, $uuid);
 
         $logo = $this->getLogoFromModel($project);
-        $logo->url = "/img/projects/$id/logo/$uuid";
+        $logo->url = "/img/projects/$projectId/logo/$uuid";
         $project->logo()->save($logo);
         return $logo;
     }

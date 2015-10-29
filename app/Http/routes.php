@@ -85,8 +85,8 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
+    Route::post('faculty/{id}/saveLogo', 'Api\FacultyApiController@saveLogo');
 
-    Route::post('faculty/{id}/saveLogo', 'Api\"FacultyApiController@saveLogo');
 
     Route::resource('faculty.user', 'API\FacultyUserApiController');
 
@@ -100,7 +100,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.member', 'API\ProjectMemberApiController');
     Route::resource('project.image', 'API\ProjectImageApiController');
+    Route::resource('project.cover', 'API\ProjectCoverApiController');
     Route::resource('project.youtube', 'API\ProjectYoutubeApiController');
+    Route::resource('project.logo', 'API\ProjectLogoApiController');
+    Route::post('project/{id}/saveLogo', 'Api\ProjectApiController@saveLogo');
+
 
     Route::resource('api-key', 'API\ApiKeyApiController');
 

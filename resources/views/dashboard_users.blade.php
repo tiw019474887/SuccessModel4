@@ -4,7 +4,6 @@
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
     <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
-
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
@@ -143,7 +142,7 @@
                         window.location = '/auth/login';
                     })
                 }
-            })z
+            })
 
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 

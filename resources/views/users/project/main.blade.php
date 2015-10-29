@@ -45,8 +45,8 @@
                                             <div class="column">
                                                 <div class="ui fluid card" style="margin:1px;">
                                                     <div class="image">
-                                                        <?php if(isset($project->cover->url)) : ?>
-                                                        <img src="<% $project->cover->url %>">
+                                                        <?php if(isset($project->logo->url)) : ?>
+                                                        <img src="<% $project->logo->url %>">
                                                         <?php else : ?>
                                                         <img src="/images/fff.png?w=300&h=300"/>
                                                         <?php endif; ?>
