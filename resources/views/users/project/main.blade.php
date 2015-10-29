@@ -26,8 +26,6 @@
 @section('content')
 
 
-
-
     <h2 class="condensed container">โมเดลที่สำเร็จ</h2>
 
     <div class="ui divider condensed"></div>

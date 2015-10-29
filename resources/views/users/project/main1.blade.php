@@ -28,11 +28,9 @@
 
 @section('content')
 
-
-
     <h2></h2>
 
-    <div id="contents">
+    <div id="contents" ng-app = "ProjectApp">
         <div class="row">
             <h2><% $project->name%></h2>
         </div>
@@ -154,14 +152,18 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="ui reply form" ng-app="Users">
+
+
+                        <form class="ui reply form"  ng-submit="save()">
                             <div class="field">
-                                <textarea></textarea>
+                                <textarea ng-model="project.comment" required="required" ></textarea>
                             </div>
-                            <div class="ui yellow button">
-                                Comment
-                            </div>
+                            <button type="submit" class="ui yellow button">Comment</button>
                         </form>
+
+
+
+
                     </div>
                 </div>
                 <div class="six wide column">
@@ -241,6 +243,64 @@
         });
 
     </script>
+
+
+<script>
+    var app = angular.module('ProjectAdd', ['ui.router', 'ui.tinymce', 'AppConfig'
+        , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+        , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
+    ]);
+
+
+    app.config(function ($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise("/");
+
+        $stateProvider
+                .state('add', {
+                    url: "/add",
+                    templateUrl:"/app/admin/project/main1.blade.php",
+                    controller: "AddCtrl",
+                    resolve: {
+                        project: function (ProjectService) {
+                            return {data: {}}
+                        }
+                    }
+                })
+
+    });
+
+    app.controller("ViewCtrl", function () {
+    });
+
+    app.controller("AddCtrl", function ($scope, $state, $timeout, $cookies, $filter,
+                                         UserService, UserSearchService, ProjectService,
+                                         statuses, faculties, project) {
+        console.log("AddCtrl Start...");
+
+        $scope.project = project.data;
+
+        $scope.save = function () {
+            ProjectService.save($scope.project).success(function (resposne) {
+                $state.go("home")
+            }).error(function (response) {
+                $scope.message = response;
+            });
+        }
+
+    });
+
+
+
+
+
+
+
+</script>
+
+
+
+
     <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
