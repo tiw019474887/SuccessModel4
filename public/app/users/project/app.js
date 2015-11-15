@@ -1,30 +1,46 @@
 
+var app = angular.module('UsersProject', ['ui.router', 'ui.tinymce', 'AppConfig'
+    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
+]);
 
-var app = angular.module('UsersProject', ['ui.router', 'AppConfig','Users','Project',
-    'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('home', {
-            url: "/",
-            templateUrl: "/resources/views/users/project/main1.blade.php",
-            controller: "HomeCtrl",
+        .state('add', {
+            url: "/add",
+            templateUrl:"/app/admin/project/main1.blade.php",
+            controller: "AddCtrl",
             resolve: {
-                projects: function (UsersService) {
-                    return UsersService.all();
+                project: function (UsersService) {
+                    return {data: {}}
                 }
             }
         })
-    });
-
-app.controller("HomeCtrl", function ($scope, projects) {
-    console.log("HomeCtrl Start...");
-    $scope.projects = projects.data;
-
-
 
 });
+
+app.controller("ViewCtrl", function () {
+});
+
+app.controller("AddCtrl", function ($scope, $state, $timeout, $cookies, $filter,
+                                    UserService, UserSearchService, ProjectService,
+                                    statuses, faculties, project) {
+    console.log("AddCtrl Start...");
+
+    $scope.project = project.data;
+
+    $scope.save = function () {
+        ProjectService.addProjectComments($scope.project).success(function (resposne) {
+            $state.go("home")
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
+
+});
+
 

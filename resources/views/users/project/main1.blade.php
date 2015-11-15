@@ -30,7 +30,7 @@
 
     <h2></h2>
 
-    <div id="contents" ng-app = "ProjectApp">
+    <div id="contents">
         <div class="row">
             <h2><% $project->name%></h2>
         </div>
@@ -64,10 +64,12 @@
                                             <?php endif; ?>
                                             </li>
                                             @endforeach
+
                                         </ul>
                                     </div>
                                     <div id="carousel" class="flexslider">
                                         <ul class="slides">
+
                                             @foreach($project->youtubes as $youtube)
                                                 <li>
                                                     <?php if(isset($youtube->vid)) : ?>
@@ -94,11 +96,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div clas="row" style="margin-bottom: 14px;">
-
-                    </div>
+                    <div clas="row" style="margin-bottom: 14px;"></div>
                     <div class="row" style="margin-bottom: 14px;">
                         <div class="wide column">
 
@@ -136,14 +134,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="comment">
                             <a class="avatar">
                                 <img src="/images/daniel.jpg">
                             </a>
-
                             <div class="content">
                                 <a class="author">Christian Rocha</a>
-
                                 <div class="metadata">
                                     <div class="date">2 days ago</div>
                                 </div>
@@ -153,18 +150,15 @@
                             </div>
                         </div>
 
-
-                        <form class="ui reply form"  ng-submit="save()">
+                        <form class="ui reply form">
                             <div class="field">
                                 <textarea ng-model="project.comment" required="required" ></textarea>
                             </div>
                             <button type="submit" class="ui yellow button">Comment</button>
                         </form>
 
-
-
-
                     </div>
+
                 </div>
                 <div class="six wide column">
                     <div class="column">
@@ -214,12 +208,16 @@
             </div>
         </div>
     </div>
+
 @stop
 
 
 
 
+
+
 @section('javascript')
+
     <script type="text/javascript">
         $(window).load(function() {
             // The slider being synced must be initialized first
@@ -243,61 +241,6 @@
         });
 
     </script>
-
-
-<script>
-    var app = angular.module('ProjectAdd', ['ui.router', 'ui.tinymce', 'AppConfig'
-        , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-        , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
-    ]);
-
-
-    app.config(function ($stateProvider, $urlRouterProvider) {
-
-        $urlRouterProvider.otherwise("/");
-
-        $stateProvider
-                .state('add', {
-                    url: "/add",
-                    templateUrl:"/app/admin/project/main1.blade.php",
-                    controller: "AddCtrl",
-                    resolve: {
-                        project: function (ProjectService) {
-                            return {data: {}}
-                        }
-                    }
-                })
-
-    });
-
-    app.controller("ViewCtrl", function () {
-    });
-
-    app.controller("AddCtrl", function ($scope, $state, $timeout, $cookies, $filter,
-                                         UserService, UserSearchService, ProjectService,
-                                         statuses, faculties, project) {
-        console.log("AddCtrl Start...");
-
-        $scope.project = project.data;
-
-        $scope.save = function () {
-            ProjectService.save($scope.project).success(function (resposne) {
-                $state.go("home")
-            }).error(function (response) {
-                $scope.message = response;
-            });
-        }
-
-    });
-
-
-
-
-
-
-
-</script>
-
 
 
 

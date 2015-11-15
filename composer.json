@@ -31,7 +31,8 @@
     "sboo/multiauth" : "4.0.*",
     "artisaninweb/laravel-soap": "0.2.5.10",
     "ramsey/uuid": "dev-master",
-    "eduard44/foundation-pagination": "2.0.*"
+    "eduard44/foundation-pagination": "2.0.*",
+    "landish/pagination": "~1.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",

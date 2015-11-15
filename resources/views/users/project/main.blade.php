@@ -76,7 +76,9 @@
                             </div>
                         </div>
                     </div>
-                    <?php echo $projects->render(); ?>
+                    <div class="ui center">
+                    <?php echo (new App\Pagination($projects))->render(); ?>
+                    </div>
                 </div>
                 <div class="three wide right floated column container">
                     <div class="clounm">

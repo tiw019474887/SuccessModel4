@@ -32,7 +32,16 @@
             <div class="right aligned right floated column">
                 <a class="item">
                     <div class="ui icon input">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" placeholder="Search..." value="
+                        <?php
+                        if(isset($project)){ ?>
+                        @foreach($projects as $project)
+                        <% $project->name %>
+                      @endforeach
+                        <?php } else {
+                            echo "products not set";
+                        }
+                        ?> ">
                         <i class="circular search icon"></i>
                     </div>
                 </a>

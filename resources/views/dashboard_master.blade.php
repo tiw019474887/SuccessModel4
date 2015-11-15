@@ -158,7 +158,7 @@
                         window.location = '/auth/login';
                     })
                 }
-            })z
+            })
 
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 
