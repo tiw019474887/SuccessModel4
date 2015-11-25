@@ -31,13 +31,9 @@
             </a>
             <div class="right aligned right floated column">
                 <a class="item">
-                    <div class="ui search">
-                        <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Search countries...">
-                            <i class="search icon"></i>
-                        </div>
-                        <div class="results"></div>
-                    </div>
+                    <form class="ui form" method="get" action="/users/search">
+                            <input type="text" name="keyword" placeholder="ค้นหา">
+                    </form>
                 </a>
             </div>
             <a class="item ">

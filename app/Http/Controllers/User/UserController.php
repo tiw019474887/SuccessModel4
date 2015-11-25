@@ -5,6 +5,7 @@ use App\Models\Image;
 use App\Models\Project;
 use \View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Request;
 
 
 
@@ -46,22 +47,18 @@ class UserController  extends Controller {
     }
 
 
-    public function search(array $input)
-    {
-        //return Input::all();
-        $name_keyword = Input::get('name');
+    public function getSearch(){
 
-        $project = Project::with('facalty')
+        $keyword = \Input::get('keyword');
 
-            ->where(function($q) use ($name_keyword){
-                return $q->where('name','LIKE',"%$name_keyword%");
-            })
-            ->get();
-
-        return $project;
-
-
+        $projects = Project::where('name','=~',".*$keyword.*")->paginate(3);
+        $projects->appends(['keyword'=>$keyword]);
+        return view('users.project.main')
+            ->with('projects',$projects)
+            ->with('keyword',$keyword);
     }
+
+
 
 
 
