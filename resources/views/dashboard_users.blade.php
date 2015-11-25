@@ -37,7 +37,9 @@
                 </a>
             </div>
             <a class="item ">
-                <button href="/auth/login" class="ui orange button" >Login</button>
+                <form class="ui form"  action="/auth/login">
+                <button  class="ui orange button" >Login</button>
+                </form>
             </a>
         </div>
         </div>

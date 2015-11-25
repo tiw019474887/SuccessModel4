@@ -51,6 +51,7 @@
                                                     </div>
                                                     <div class="content">
                                                         <a class="header"><h2><% $project->name %></h2></a>
+                                                        <div class="meta"><% $project->updated_at->diffForHumans() %></div>
 
                                                         <p>
                                                             <% str_limit($project->abstract,100,'...') %>
