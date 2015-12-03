@@ -21,27 +21,50 @@
 <div class="ui grid">
     <div class="one column row" style="padding-bottom: 10 px;">
         <div class="column" style="background-color: #4c1d6e">
-        <div class="ui menu">
-            <a id="main-sidebar-btn" class="item">
-                <i class="sidebar icon"></i>
-                Menu
-            </a>
-            <a class="item " href ="/users">
-                User
-            </a>
-            <div class="right aligned right floated column">
-                <a class="item">
-                    <form class="ui form" method="get" action="/users/search">
-                            <input type="text" name="keyword" placeholder="ค้นหา">
-                    </form>
+            <div class="ui menu">
+                <a id="main-sidebar-btn" class="item">
+                    <i class="sidebar icon"></i>
+                    Menu
                 </a>
+                <a class="item " href ="/users">
+                    User
+                </a>
+                <div class="right aligned right floated column">
+                    <a class="item">
+                        <form class="ui form" method="get" action="/users/search">
+                            <input type="text" name="keyword" placeholder="ค้นหา">
+                        </form>
+                    </a>
+                </div>
+                <div class="item ui dropdown" ng-controller="UserCtrl">
+                    @if(Auth::user()->logo)
+                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                    @else
+                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                    @endif
+                    @if(Auth::user())
+                        <span><%Auth::user()->email%></span>
+                    @endif
+                    <div class="menu">
+                        <a class="item" href="/">หน้าหลัก</a>
+                        <div class="divider"></div>
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            เลือกสิทธิ์การใช้งาน
+                        </div>
+                        @foreach( Auth::user()->roles as $role)
+                            <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                               href="/<%$role->key%>">
+                                <% $role->name %>
+                            </a>
+                        @endforeach
+                        <div class="divider"></div>
+                        <a class="item">Change Profile</a>
+                        <a class="item" ng-click="logout()">Logout</a>
+                    </div>
+                </div>
+
             </div>
-            <a class="item ">
-                <form class="ui form"  action="/auth/login">
-                <button  class="ui orange button" >Login</button>
-                </form>
-            </a>
-        </div>
         </div>
         <div class="column" style="background-color: #4c1d6e">
             <div class="ui grid container">
@@ -76,10 +99,10 @@
 
 
                 </div>
-                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <p></p>
 <div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
@@ -127,43 +150,7 @@
 
 </script>
 
-<script type="text/javascript">
-    var content = [
-        { title: 'Andorra' },
-        { title: 'United Arab Emirates' },
-        { title: 'Afghanistan' },
-        { title: 'Antigua' },
-        { title: 'Anguilla' },
-        { title: 'Albania' },
-        { title: 'Armenia' },
-        { title: 'Netherlands Antilles' },
-        { title: 'Angola' },
-        { title: 'Argentina' },
-        { title: 'American Samoa' },
-        { title: 'Austria' },
-        { title: 'Australia' },
-        { title: 'Aruba' },
-        { title: 'Aland Islands' },
-        { title: 'Azerbaijan' },
-        { title: 'Bosnia' },
-        { title: 'Barbados' },
-        { title: 'Bangladesh' },
-        { title: 'Belgium' },
-        { title: 'Burkina Faso' },
-        { title: 'Bulgaria' },
-        { title: 'Bahrain' },
-        { title: 'Burundi' }
-        // etc
-    ];
-    $('.ui.search').search({
-        type: 'standard',
-        source : content,
-        searchFields   : [
-            'title'
-        ],
-        searchFullText: false
-    });
-</script>
+
 
 @include('admin.js')
 
