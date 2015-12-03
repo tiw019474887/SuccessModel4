@@ -28,7 +28,7 @@ class UserController  extends Controller {
     {
         $q->where('key', '=', 'published');
 
-    })->paginate(6);
+    })->paginate(12);
 
 		return view('users.project.main',[
             'projects' => $projects,
@@ -51,7 +51,7 @@ class UserController  extends Controller {
 
         $keyword = \Input::get('keyword');
 
-        $projects = Project::where('name','=~',".*$keyword.*")->paginate(3);
+        $projects = Project::where('name','=~',".*$keyword.*")->paginate(6);
         $projects->appends(['keyword'=>$keyword]);
         return view('users.project.main')
             ->with('projects',$projects)
