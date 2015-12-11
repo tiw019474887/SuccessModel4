@@ -1,5 +1,4 @@
 
-
 var app = angular.module('FacultyProject', ['ui.router', 'AppConfig', 'User', 'Faculty',
     'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);

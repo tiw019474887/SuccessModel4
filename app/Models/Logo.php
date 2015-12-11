@@ -24,4 +24,8 @@ class Logo extends \NeoEloquent
         return $this->morphTo('Faculty','HAS');
     }
 
+    public function project(){
+        return $this->morphTo('App\Models\Project','HAS');
+    }
+
 }

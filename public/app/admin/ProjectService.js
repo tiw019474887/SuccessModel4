@@ -68,6 +68,26 @@ angular.module('Project', [])
                     data: $image
                 })
             },
+            getLogo: function ($id) {
+                return $http({
+                    url: '/api/project/' + $id + '/image',
+                    method: 'get'
+                })
+            },
+            addLogo: function ($id, $image) {
+                return $http({
+                    url: '/api/project/' + $id + '/image',
+                    method: 'post',
+                    data: $image
+                })
+            },
+            deleteLogo: function ($id, $image) {
+                return $http({
+                    url: '/api/project/' + $id + '/image/' + $image.id,
+                    method: 'delete',
+                    data: $image
+                })
+            },
             deleteImage: function ($id, $image) {
                 return $http({
                     url: '/api/project/' + $id + '/image/' + $image.id,

@@ -34,6 +34,7 @@ Route::group([
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
         Route::get('/admin/api-key', 'Admin\AdminController@apikey');
 
+
     });
 
     Route::get('/researcher', 'Researcher\ResearcherController@index');
@@ -43,6 +44,8 @@ Route::group([
 Route::group(['prefix' => 'users'],function(){
     Route::get('/', 'User\UserController@index');
     Route::get('/project/{id}', 'User\UserController@project');
+    Route::get('/search','User\UserController@getSearch');
+
 
 
 });
@@ -72,9 +75,9 @@ Route::group([
 Route::group(['prefix' => 'api'], function () {
 
     //api for comment
-    Route::get('comment/get-comment','API\ProjectCommentApiController@getComments');
-    Route::post('comment/add-projectcomment','API\ProjectCommentApiController@addProjectComments');
-    Route::post('comment/add-commentcomment','API\ProjectCommentApiController@addCommentComments');
+    Route::get('comment/get-comment/{id}','API\ProjectCommentApiController@getComments');
+    Route::post('comment/add-project-comment/{id}','API\ProjectCommentApiController@addProjectComments');
+    Route::post('comment/add-comment-comment/{id}','API\ProjectCommentApiController@addCommentComments');
 
     //api for faculty
     Route::get('faculty/projects','API\FacultyProjectApiController@getProjects');
@@ -106,8 +109,8 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
+    Route::post('faculty/{id}/saveLogo', 'Api\FacultyApiController@saveLogo');
 
-    Route::post('faculty/{id}/saveLogo', 'Api\"FacultyApiController@saveLogo');
 
     Route::resource('faculty.user', 'API\FacultyUserApiController');
 
@@ -121,7 +124,11 @@ Route::group(['prefix' => 'api'], function () {
     Route::resource('project', 'API\ProjectApiController');
     Route::resource('project.member', 'API\ProjectMemberApiController');
     Route::resource('project.image', 'API\ProjectImageApiController');
+    Route::resource('project.cover', 'API\ProjectCoverApiController');
     Route::resource('project.youtube', 'API\ProjectYoutubeApiController');
+    Route::resource('project.logo', 'API\ProjectLogoApiController');
+    Route::post('project/{id}/saveLogo', 'Api\ProjectApiController@saveLogo');
+
 
     Route::resource('api-key', 'API\ApiKeyApiController');
 

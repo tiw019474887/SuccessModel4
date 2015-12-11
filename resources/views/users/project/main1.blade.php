@@ -19,51 +19,90 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+
+
 @stop
 
 
 
+
 @section('content')
+
     <h2></h2>
 
     <div id="contents">
         <div class="row">
-            <h2><% $project->name %></h2>
+            <h2><% $project->name%></h2>
         </div>
-
         <div class="ui grid">
-
             <div class="row">
                 <div class="ten wide column">
+                        <div class="ten wide column">
+                            <div class="one column row" style="">
+                                <div class="column">
+                                    <div  id="slider" class="flexslider" style="margin-bottom: 0px;">
+                                        <ul class="slides">
 
-                    <div class="one column row" style="">
-                        <div class="column">
-                            <div class="flexslider">
-                                <ul class="slides">
-                                    <li ng-repeat="youtube in youtubes">
-                                        <div class="videoWrapper">
-                                            <iframe class="youtube" width="640" height="380"
-                                                    ng-src="{{getYoutubeEmbedUrl(youtube.vid)}}">
-                                            </iframe>
-                                        </div>
-                                    </li>
-                                    <li ng-repeat="image in images">
-                                        <img ng-src="{{image.url}}?w=640&h=380&fit=stretch"/>
-                                    </li>
-                                </ul>
+                                            @foreach($project->youtubes as $youtube)
+                                            <li>
+                                                <?php if(isset($youtube->vid)) : ?>
+                                                    <div class="videoWrapper">
+                                                        <iframe class="youtube" width="640" height="380"
+                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                        </iframe>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </li>
+                                            @endforeach
+
+                                            @foreach($project->images as $image)
+                                            <li>
+                                            <?php if(isset($image->url)) : ?>
+                                            <img src="<% $image->url %>?w=640&h=380"/>
+                                            <?php else : ?>
+                                            <img src="/images/fff.png?w=640&h=380"/>
+                                            <?php endif; ?>
+                                            </li>
+                                            @endforeach
+
+                                        </ul>
+                                    </div>
+                                    <div id="carousel" class="flexslider">
+                                        <ul class="slides">
+
+                                            @foreach($project->youtubes as $youtube)
+                                                <li>
+                                                    <?php if(isset($youtube->vid)) : ?>
+                                                    <div class="videoWrapper">
+                                                        <iframe class="youtube" width="640" height="380"
+                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                        </iframe>
+                                                    </div>
+                                                    <?php endif; ?>
+                                                </li>
+                                            @endforeach
+
+                                            @foreach($project->images as $image)
+                                                <li>
+                                                    <?php if(isset($image->url)) : ?>
+                                                    <img src="<% $image->url %>?w=640&h=380"/>
+                                                    <?php else : ?>
+                                                    <img src="/images/fff.png?w=640&h=380"/>
+                                                    <?php endif; ?>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div clas="row" style="margin-bottom: 14px;">
-
-                    </div>
+                    <div clas="row" style="margin-bottom: 14px;"></div>
                     <div class="row" style="margin-bottom: 14px;">
                         <div class="wide column">
 
                             <div class="ui right aligned segment">
                             <span style="font-weight: bold;">
-                                {{ project.current_file.origin_name | limitTo: 75}}{{project.current_file.origin_name.length > 75 ? '...' : ''}}
+                                .................................
                             </span>
                             </div>
 
@@ -95,14 +134,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="comment">
                             <a class="avatar">
                                 <img src="/images/daniel.jpg">
                             </a>
-
                             <div class="content">
                                 <a class="author">Christian Rocha</a>
-
                                 <div class="metadata">
                                     <div class="date">2 days ago</div>
                                 </div>
@@ -111,14 +149,14 @@
                                 </div>
                             </div>
                         </div>
+
                         <form class="ui reply form">
                             <div class="field">
-                                <textarea></textarea>
+                                <textarea ng-model="project.comment" required="required" ></textarea>
                             </div>
-                            <div class="ui yellow button">
-                                Comment
-                            </div>
+                            <button type="submit" class="ui yellow button">Comment</button>
                         </form>
+
                     </div>
 
                 </div>
@@ -128,43 +166,91 @@
 
                     <div class="ui segment">
                         <% ($project->abstract) %>
-                        </div>
+                    </div>
                     </div>
                     <h3>ดำเนินการโดย</h3>
 
                     <div class="ui segment">
-                        <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
-                        <img ng-if="project.faculty.logo" class="ui avatar image"
-                             ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
+
+                        <?php if(isset($project->faculty->logo->url)) : ?>
+                        <img class="ui avatar image" src="<% $project->faculty->logo->url %>?w=300&h=300"/>
+                        <?php else : ?>
+                        <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
+                        <?php endif; ?>
                         <% $project->faculty->name_th %>
                     </div>
 
                     <div class="six wide column">
                         <h3>นักวิจัย</h3>
-
+                        <?php
+                            //print_r($project->members);
+                        ?>
                         <div class="ui segment" style="padding: 14px;">
+                            @foreach($project->members as $project->member)
                             <div class="ui two columns grid">
-                                <div class="ui column" ng-repeat="member in members">
-                                    <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
-                                    <img ng-if="member.logo" class="ui avatar image"
-                                         ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
-                                    <% $member->title %><% $member->firstname %> <% $member->lastname %>
+                                <div class="ui column">
+                                    <?php if(isset($project->member->logo->url)) : ?>
+                                    <img class="ui avatar image" src="<% $project->member->logo->url %>?w=300&h=300"/>
+                                    <?php else : ?>
+                                    <div>//</div>
+                                    <?php endif; ?>
+                                      <?php if (isset ($project->member->title,$project->member->firstname,$project->member->lastname)) : ?>
+                                          <% $project->member->title %>.<% $project->member->firstname %><% $project->member->lastname %>
+                                        <?php else : ?>
+                                          <div>----</div>
+                                      <?php endif; ?>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
-                    </div>
                 </div>
-            <div class="row">
-                <h2>แนะนำโปรเจค</h2>
-            </div>
             </div>
         </div>
     </div>
+
 @stop
+
+
+
+
 
 
 @section('javascript')
 
+    <script type="text/javascript">
+        $(window).load(function() {
+            // The slider being synced must be initialized first
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 210,
+                itemMargin: 5,
+                asNavFor: '#slider'
+            });
 
+            $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                sync: "#carousel"
+            });
+        });
+
+    </script>
+
+
+
+    <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
+    <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
+    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
+    <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
+    <script type="text/javascript" src="/app/users/UsersService.js"></script>
+    <script src="/app/admin/loader.js"></script>
+    <script src="/app/users/project/app.js"></script>
 @stop

@@ -25,21 +25,21 @@ class CommentProjectService extends ProjectService
 
         $project = Project::find($id);
         if($project){
-            $comments = Comment::with($this->withArr)->get();
+            $comments = Comment::all('*')->get($id);
 
             return $comments;
             }
         }
 
     public function addCommentToProject($id,array $input){
-        $project = $this->get($id);
-        $comment = new Comment();
-        $comment->fill($input);
+        $project = Project::find($id);
+        $mainComment = new Comment();
+        $mainComment->fill($input);
 
-        $project->comments()->save($comment);
-        $this->linkToCurrentUser($comment);
+        $project->comments()->save($mainComment);
+        $this->linkToCurrentUser($mainComment);
 
-        return $comment;
+        return $mainComment;
     }
 
 
@@ -56,11 +56,11 @@ class CommentProjectService extends ProjectService
     }
 
     public function addCommentToComment($id,array $input){
-        $maincomment = Comment::find($id);
+        $comments = Comment::find($id);
         $comment = new Comment();
         $comment->fill($input);
 
-        $maincomment->comments()->save($comment);
+        $comments->comments()->save($comment);
         $this->linkToCurrentUser($comment);
 
         return $comment;

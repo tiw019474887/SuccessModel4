@@ -301,7 +301,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
+app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter,
                                      UserService, UserSearchService, ProjectService,
                                      statuses, faculties, project, images, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
@@ -314,6 +314,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
     $scope.file = file.data;
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
+    $scope.upload = {};
     $scope.keyword;
 
 
@@ -331,36 +332,39 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $filter,
     };
 
 
-    $scope.myFlow = new Flow({
+    $scope.upload.myFlow = new Flow({
         target: '/api/project/' + $scope.project.id + '/logo',
         singleFile: true,
         method: 'post',
         testChunks: false,
         headers: function (file, chunk, isTest) {
             return {
-                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')
+                'X-XSRF-TOKEN': $cookies.get('XSRF-TOKEN')// call func for getting a cookie
             }
         }
     })
 
 
-    $scope.uploadFile = function () {
-        $scope.myFlow.upload();
+    $scope.upload.uploadFile = function () {
+        $scope.upload.myFlow.upload();
     }
 
-    $scope.cancelFile = function (file) {
-        var index = $scope.myFlow.files.indexOf(file)
-        $scope.myFlow.files.splice(index, 1);
+    $scope.upload.cancelFile = function (file) {
+        var index = $scope.upload.myFlow.files.indexOf(file)
+        $scope.upload.myFlow.files.splice(index, 1);
 
     }
+
 
     $scope.save = function () {
         ProjectService.save($scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
-            alert(response.name_th);
+            $scope.message = response;
         });
     }
+
+
 
     $scope.updateStatus = function (status) {
         $scope.project.status = status;
