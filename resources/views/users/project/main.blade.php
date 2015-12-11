@@ -24,7 +24,7 @@
 
 
 @section('content')
-    <h2>project</h2>
+    <h2></h2>
 
     <div class="ui grid">
         <div class="three column row">
@@ -32,13 +32,21 @@
                 <div class="column">
                     <div class="ui fluid card" style="margin:1px;">
                         <div class="image">
-                            <img src="<% $project->cover->url or '/images/daniel.jpg'%>">
+                            <?php if(isset($project->cover->url)) : ?>
+                            <img src="<% $project->cover->url %>?w=300&h=300"/>
+                            <?php else : ?>
+                            <img src="/images/daniel.jpg"/>
+                            <?php endif; ?>
                         </div>
                         <div class="content">
                             <a class="header"><% $project->name %></a>
 
                             <p>
                                 <% str_limit($project->abstract,100,'...') %>
+                            </p>
+                            <% $project->id %>
+                            <p>
+                                <a href = "" >อ่านต่อ>>>></a>
                             </p>
                         </div>
                         <div class="extra content">

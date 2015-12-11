@@ -24,4 +24,23 @@ class UserController  extends Controller {
             'projects' => $projects
         ]);
 	}
+
+
+
+    public function project($id)
+    {
+        $project = Project::find($id);
+
+
+        return view('users.project.main1',[
+            'project' => $project
+        ]);
+    }
+
+
+    public function search(array $input)
+    {
+        $search = Project::with()->find(id);
+    }
+
 }
