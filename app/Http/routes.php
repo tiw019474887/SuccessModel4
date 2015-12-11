@@ -42,11 +42,24 @@ Route::get('/university', 'University\UniversityController@index');
 
 Route::group([
     'prefix' => 'm1',
-    'middleware' => 'CORS'
 ], function () {
-    Route::post('auth/login', 'API\AuthApiController@authenticate');
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Methods: GET, POST');
+    header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
+    Route::post('auth/login', 'API\AuthApiController@mobileAuth');
     Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');
+
+
+    Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Http\Request $request) {
+        $server->outputImage($request);
+    })->where('path', '.*');
+
+    Route::get('/downloads/{name}/files/{path}', function ($name, $path) {
+        $filePath = storage_path() . '/app/' . $path;
+        return Response::download($filePath, $name);
+    })->where('path', '.*');
 
 });
 

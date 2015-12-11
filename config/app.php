@@ -137,7 +137,6 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Vinelab\NeoEloquent\NeoEloquentServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
-        'Barryvdh\Cors\ServiceProvider',
         'Artisaninweb\SoapWrapper\ServiceProvider',
         /*
          * Application Service Providers...
