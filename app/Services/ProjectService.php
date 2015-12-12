@@ -145,7 +145,7 @@ class ProjectService extends Service
     {
         /* @var Project $project */
         $project = $this->get($id);
-        $uuid = Uuid::uuid4();
+         $uuid = Uuid::uuid4();
         $storage_path = "app/projects/$id/cover/";
         $destination_path = storage_path($storage_path);
         $input->file('file')->move($destination_path, $uuid);
