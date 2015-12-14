@@ -22,7 +22,7 @@ class AuthApiController extends Controller
         try{
             $user->logo;
             $user->faculty;
-        }finally{
+        }catch(\Exception $e){
 
         }
         return $user;

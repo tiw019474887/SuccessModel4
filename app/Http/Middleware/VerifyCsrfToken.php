@@ -8,7 +8,10 @@ class VerifyCsrfToken extends BaseVerifier
 
 
 //add an array of Routes to skip CSRF check
-    private $openRoutes = ['m1/auth/login'];
+    private $openRoutes = [
+        'm1/auth/login',
+        'm1/*'
+    ];
 
 //modify this function
     public function handle($request, Closure $next)
