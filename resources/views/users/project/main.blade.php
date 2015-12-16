@@ -50,7 +50,7 @@
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="content">
-                                                        <a class="header"><h2><% $project->name %></h2></a>
+                                                        <a class="header"><h2><% $project->name %></h2><h3><% $project->nameEN %></h3></a>
                                                         <div class="meta"><% $project->updated_at->diffForHumans() %></div>
 
                                                         <p>

@@ -32,7 +32,7 @@
 
     <div id="contents">
         <div class="row">
-            <h2><% $project->name%></h2>
+            <h2><% $project->name%></h2><h3><% $project->nameEN%></h3>
         </div>
         <div class="ui grid">
             <div class="row">
@@ -111,8 +111,12 @@
                             <div class="ui segment" id="tinymce_content" style="padding: 14px;">
                                 <% $project->content %>
                             </div>
+                            <div class="ui segment" id="tinymce_content" style="padding: 14px;">
+                                <% $project->contentEN %>
+                            </div>
                         </div>
                     </div>
+                    <br>
                     <div class="ui comments">
                         <div class="comment">
                             <a class="avatar">
@@ -166,6 +170,9 @@
 
                     <div class="ui segment">
                         <% ($project->abstract) %>
+                    </div>
+                    <div class="ui segment">
+                        <% ($project->abstractEN) %>
                     </div>
                     </div>
                     <h3>ดำเนินการโดย</h3>
