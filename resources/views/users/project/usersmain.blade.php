@@ -27,8 +27,7 @@
 
 
     <h2 class="condensed container">โมเดลที่สำเร็จ</h2>
-
-    <div class="ui divider condensed"></div>
+  <div class="ui divider condensed"></div>
     <div class=" column container">
         <div class="ui grid">
             <div class=" row container">
@@ -50,7 +49,7 @@
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="content">
-                                                        <a class="header"><h2><% $project->name %></h2><h3><% $project->nameEN %></h3></a>
+                                                        <a class="header"><h2><% $project->name %></h2></a>
                                                         <div class="meta"><% $project->updated_at->diffForHumans() %></div>
 
                                                         <p>
@@ -60,7 +59,7 @@
                                                     <div class="extra content">
                                                         <% $project->faculty->name_th %>
                                                     </div>
-                                                    <a href="/users/project/<%$project->id%>">
+                                                    <a ui-sref="home">
                                                         <div class="ui two bottom attached buttons">
                                                             <div class="ui inverted violet button">
                                                                 <p>
@@ -112,7 +111,7 @@
             </div>
         </div>
     </div>
-    </div>
+ </div>
 @stop
 
 @section('javascript')
@@ -126,6 +125,6 @@
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script src="/app/admin/loader.js"></script>
-    <script src="/app/users/project/app.js"></script>
+    <script src="/app/university/project/app.js"></script>
 
 @stop

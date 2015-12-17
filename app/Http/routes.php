@@ -45,7 +45,7 @@ Route::group(['prefix' => 'users'],function(){
     Route::get('/', 'User\UserController@index');
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search','User\UserController@getSearch');
-
+    Route::get('/view', 'User\UserController@viewusers');
 
 
 });

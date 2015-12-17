@@ -1,15 +1,7 @@
-<div class="ui two columns grid">
-
-    <div class="two column row" style="">
-        <div class="left aligned  column">
-            <h3 style="cursor: pointer;" ui-sref="edit({id:project.id})"><i class="arrow  left icon"></i> Back</h3>
-        </div>
-    </div>
-</div>
-
 <div id="contents">
     <div class="row">
         <h2>{{project.name}}</h2>
+        <h2>{{project.nameEN}}</h2>
     </div>
 
     <div class="ui grid">
@@ -62,6 +54,8 @@
 
                 <div class="ui segment">
                     <div btf-markdown="project.abstract">
+                    </div>
+                    <div btf-markdown="project.abstractEN">
                     </div>
                 </div>
                 <h3>ดำเนินการโดย</h3>

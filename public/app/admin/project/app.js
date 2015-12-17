@@ -228,7 +228,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
-        height: 400,
+        height: 150,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
         "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
@@ -325,7 +325,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
-        height: 400,
+        height: 150,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
         "bullist numlist outdent indent | hr | link unlink | image tinyflow |"

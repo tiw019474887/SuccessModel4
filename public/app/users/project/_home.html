@@ -1,21 +1,78 @@
 <h2>project</h2>
 
 <div class="ui grid">
-    <div class="three column row">
-        <div class="column"  ng-repeat="project in projects" ng-if="project.status.key == 'published'" >
-            <div class="ui fluid card">
-                <div class="image">
-                    <img ng-src="project.cover_url">
-                </div>
-                <div class="content">
-                    <a class="header">{{project.name}}</a>
-                    <p>{{project.name}}</p>
+    <div class=" row container">
+        <div class="ui divider condensed"></div>
+        <div class="thirteen wide column">
+        <div class="three column row">
+            <div class="ui link cards">
+                <div class="ui recent-works vertical segment">
+                     <div class="fourteen wide column">
+                         <div class="ui three column aligned stackable  grid">
+                            <div class="column"  ng-repeat="project in projects" ng-if="project.status.key == 'published'" >
+                                 <div class="ui fluid card">
+                                     <div class="image">
+                                        <img ng-src="{{project.logo.url}}">
+                                     </div>
+                                         <div class="content">
+                                            <a class="header">{{project.name}}</a>
+                                             <p>{{project.name}}</p>
+                                             <p>
+                                                 <% str_limit($project->abstract,100,'...') %>
+                                             </p>
+                                         </div>
+                                     <div class="extra content">
+                                         {{project.faculty.name_th}}
+                                     </div>
+                                     <a ui-sref="view">
+                                         <div class="ui two bottom attached buttons">
+                                             <div class="ui inverted violet button">
+                                                 <p>
+                                                     More...
+                                                 </p>
+                                             </div>
+                                         </div>
+                                     </a>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+        </div>
+        <div class="three wide right floated column container">
+            <div class="clounm">
+                <h3 class="condensed">Like</h3>
+
+                <div class="ui divider condensed"></div>
+
+                <div class="clounm">
+                    <div class="image">
+                        <a href="http://www.up.ac.th">
+                            <img class="ui medium image" src="/images/UP.jpg">
+                        </a>
+                    </div>
+                    <div class="ui divider condensed"></div>
+                    <div class="image">
+                        <a href="http://www.up.ac.th/V7/Pkynews.aspx">
+                            <img class="ui medium image" src="/images/PKYN.jpg">
+                        </a>
+                    </div>
+                    <div class="ui divider condensed"></div>
+                    <div class="image">
+                        <a href="https://www.youtube.com/channel/UCeVCgKGfBPhR68INbfcL4vg?feature=watch">
+                            <img class="ui medium image" src="/images/UPCH.jpg">
+                        </a>
+                    </div>
+                    <div class="ui divider condensed"></div>
                 </div>
             </div>
         </div>
+        </div>
     </div>
-
 </div>
+
 
 
 

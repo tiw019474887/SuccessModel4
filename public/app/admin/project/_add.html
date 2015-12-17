@@ -18,13 +18,22 @@
         <h4 class="ui dividing header">Project Information</h4>
 
         <div class="field">
-            <label>Project Name</label>
-            <input ng-model="project.name" type="text" name="name" placeholder="Project Name" required="required">
+            <label>Project NameTH</label>
+            <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
+        </div>
+        <div class="field">
+            <label>Project NameEN</label>
+            <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required">
         </div>
 
+
         <div class="field">
-            <label>Project Abstract</label>
-            <textarea rows="5" ng-model="project.abstract" required="required"></textarea>
+            <label>Project AbstractTH</label>
+            <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
+        </div>
+        <div class="field">
+            <label>Project AbstractEN</label>
+            <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"></textarea>
         </div>
         <div class="two fields">
             <div class="field">
@@ -109,13 +118,18 @@
 </div>
 
 <div class="ui tab" data-tab="detail">
-    <form class="ui form" ng-submit="save()">
+            <form class="ui form" ng-submit="save()">
 
-        <div class="field">
-            <label>Project Content</label>
-            <textarea ui-tinymce="mceOptions" ng-model="project.content"></textarea>
+            <div class="field">
+                <label>Project ContentTH</label>
+                <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
 
-        </div>
+            </div>
+            <div class="field">
+                <label>Project ContentEN</label>
+                <textarea ui-tinymce="mceOptions" ng-model="project.contentEN" placeholder="Content English"></textarea>
+
+            </div>
 
         <button type="submit" class="ui primary submit button">Save</button>
         <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
