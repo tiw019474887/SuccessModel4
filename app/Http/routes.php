@@ -64,6 +64,8 @@ Route::group([
     Route::get('faculty','API\FacultyApiController@index');
 
     Route::get('faculty/{id}/project', 'API\ProjectApiController@facultyProject');
+    Route::get('project', 'API\ProjectApiController@mobileIndex');
+    Route::get('project/{id}', 'API\ProjectApiController@show');
 
     Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Http\Request $request) {
         $server->outputImage($request);
