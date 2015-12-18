@@ -64,7 +64,7 @@ class Project extends \NeoEloquent
         return $this->belongsTo("App\Models\User","CREATE");
     }
     public function comments(){
-        return $this->belongsToMany("App\Models\Comment","HAS_COMMENT");
+        return $this->hasMany("App\Models\Comment","HAS_COMMENT");
     }
 
     public function suggestion(){

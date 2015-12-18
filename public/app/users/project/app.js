@@ -20,10 +20,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 
         .state('view', {
-            url: "/view/:id",
+            url: "/:id",
             templateUrl: "/app/users/project/_view.html",
             controller: "ViewCtrl",
             resolve: {
+                project: function (ResearcherService, $stateParams) {
+                    return ResearcherService.get($stateParams.id)
+                },
                 addProjectComments: function (UsersService) {
                     return {data: {}}
                 }
@@ -31,7 +34,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope,$timeout,projects,$state,UsersService) {
+app.controller("HomeCtrl", function ($scope,$timeout,projects,$state,ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
 

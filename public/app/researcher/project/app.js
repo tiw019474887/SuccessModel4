@@ -373,6 +373,8 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
 
 
 
+
+
 });
 
 app.controller("ProjectMemberCtrl", function ($scope, $stateParams, $state, $timeout,

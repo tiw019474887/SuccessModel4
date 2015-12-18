@@ -32,70 +32,72 @@
 
     <div id="contents">
         <div class="row">
-            <h2><% $project->name%></h2><h3><% $project->nameEN%></h3>
+            <h2><% $project->name%></h2>
+
+            <h3><% $project->nameEN%></h3>
         </div>
         <div class="ui grid">
             <div class="row">
                 <div class="ten wide column">
-                        <div class="ten wide column">
-                            <div class="one column row" style="">
-                                <div class="column">
-                                    <div  id="slider" class="flexslider" style="margin-bottom: 0px;">
-                                        <ul class="slides">
+                    <div class="ten wide column">
+                        <div class="one column row" style="">
+                            <div class="column">
+                                <div id="slider" class="flexslider" style="margin-bottom: 0px;">
+                                    <ul class="slides">
 
-                                            @foreach($project->youtubes as $youtube)
+                                        @foreach($project->youtubes as $youtube)
                                             <li>
                                                 <?php if(isset($youtube->vid)) : ?>
-                                                    <div class="videoWrapper">
-                                                        <iframe class="youtube" width="640" height="380"
-                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
-                                                        </iframe>
-                                                    </div>
+                                                <div class="videoWrapper">
+                                                    <iframe class="youtube" width="640" height="380"
+                                                            src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                    </iframe>
+                                                </div>
                                                 <?php endif; ?>
                                             </li>
-                                            @endforeach
+                                        @endforeach
 
-                                            @foreach($project->images as $image)
+                                        @foreach($project->images as $image)
                                             <li>
-                                            <?php if(isset($image->url)) : ?>
-                                            <img src="<% $image->url %>?w=640&h=380"/>
-                                            <?php else : ?>
-                                            <img src="/images/fff.png?w=640&h=380"/>
-                                            <?php endif; ?>
+                                                <?php if(isset($image->url)) : ?>
+                                                <img src="<% $image->url %>?w=640&h=380"/>
+                                                <?php else : ?>
+                                                <img src="/images/fff.png?w=640&h=380"/>
+                                                <?php endif; ?>
                                             </li>
-                                            @endforeach
+                                        @endforeach
 
-                                        </ul>
-                                    </div>
-                                    <div id="carousel" class="flexslider">
-                                        <ul class="slides">
+                                    </ul>
+                                </div>
+                                <div id="carousel" class="flexslider">
+                                    <ul class="slides">
 
-                                            @foreach($project->youtubes as $youtube)
-                                                <li>
-                                                    <?php if(isset($youtube->vid)) : ?>
-                                                    <div class="videoWrapper">
-                                                        <iframe class="youtube" width="640" height="380"
-                                                                src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
-                                                        </iframe>
-                                                    </div>
-                                                    <?php endif; ?>
-                                                </li>
-                                            @endforeach
+                                        @foreach($project->youtubes as $youtube)
+                                            <li>
+                                                <?php if(isset($youtube->vid)) : ?>
+                                                <div class="videoWrapper">
+                                                    <iframe class="youtube" width="640" height="380"
+                                                            src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
+                                                    </iframe>
+                                                </div>
+                                                <?php endif; ?>
+                                            </li>
+                                        @endforeach
 
-                                            @foreach($project->images as $image)
-                                                <li>
-                                                    <?php if(isset($image->url)) : ?>
-                                                    <img src="<% $image->url %>?w=640&h=380"/>
-                                                    <?php else : ?>
-                                                    <img src="/images/fff.png?w=640&h=380"/>
-                                                    <?php endif; ?>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+                                        @foreach($project->images as $image)
+                                            <li>
+                                                <?php if(isset($image->url)) : ?>
+                                                <img src="<% $image->url %>?w=640&h=380"/>
+                                                <?php else : ?>
+                                                <img src="/images/fff.png?w=640&h=380"/>
+                                                <?php endif; ?>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     <div clas="row" style="margin-bottom: 14px;"></div>
                     <div class="row" style="margin-bottom: 14px;">
                         <div class="wide column">
@@ -117,46 +119,36 @@
                         </div>
                     </div>
                     <br>
+
                     <div class="ui comments">
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="/images/daniel.jpg">
-                            </a>
 
-                            <div class="content">
-                                <a class="author">Joe Henderson</a>
+                        @foreach($project->comments as $comment)
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="/images/daniel.jpg">
+                                </a>
+                                <div class="content">
+                                    <?php if(isset($comment->createdBy)) : ?>
+                                        <a class="author"><% $comment->createdBy->firstname %></a>
+                                    <?php else : ?>
+                                        <a class="author">Unknown</a>
+                                    <?php endif; ?>
 
-                                <div class="metadata">
-                                    <div class="date">1 day ago</div>
-                                </div>
-                                <div class="text">
-                                    <p>The hours, minutes and seconds stand as visible reminders that your effort put
-                                        them all there. </p>
-
-                                    <p>Preserve until your next run, when the watch lets you see how Impermanent your
-                                        efforts are.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="comment">
-                            <a class="avatar">
-                                <img src="/images/daniel.jpg">
-                            </a>
-                            <div class="content">
-                                <a class="author">Christian Rocha</a>
-                                <div class="metadata">
-                                    <div class="date">2 days ago</div>
-                                </div>
-                                <div class="text">
-                                    I re-tweeted this.
+                                    <div class="metadata">
+                                        <div class="date"><% $comment->updated_at->diffForHumans() %></div>
+                                    </div>
+                                    <div class="text">
+                                        <p><% $comment->comment %></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
 
-                        <form class="ui reply form">
+                        <form class="ui reply form" method="post" action="/users/project/<% $project->id %>/comment">
+                            <input type="hidden" name="_token" value="<?php echo csrf_token()?>"/>
+
                             <div class="field">
-                                <textarea ng-model="project.comment" required="required" ></textarea>
+                                <textarea name="comment" required="required"></textarea>
                             </div>
                             <button type="submit" class="ui yellow button">Comment</button>
                         </form>
@@ -166,14 +158,14 @@
                 </div>
                 <div class="six wide column">
                     <div class="column">
-                    <h3>บทคัดย่อ</h3>
+                        <h3>บทคัดย่อ</h3>
 
-                    <div class="ui segment">
-                        <% ($project->abstract) %>
-                    </div>
-                    <div class="ui segment">
-                        <% ($project->abstractEN) %>
-                    </div>
+                        <div class="ui segment">
+                            <% ($project->abstract) %>
+                        </div>
+                        <div class="ui segment">
+                            <% ($project->abstractEN) %>
+                        </div>
                     </div>
                     <h3>ดำเนินการโดย</h3>
 
@@ -184,30 +176,32 @@
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                         <?php endif; ?>
-                        <% $project->faculty->name_th %>
+
                     </div>
 
                     <div class="six wide column">
                         <h3>นักวิจัย</h3>
                         <?php
-                            //print_r($project->members);
+                        //print_r($project->members);
                         ?>
                         <div class="ui segment" style="padding: 14px;">
                             @foreach($project->members as $project->member)
-                            <div class="ui two columns grid">
-                                <div class="ui column">
-                                    <?php if(isset($project->member->logo->url)) : ?>
-                                    <img class="ui avatar image" src="<% $project->member->logo->url %>?w=300&h=300"/>
-                                    <?php else : ?>
-                                    <div>//</div>
-                                    <?php endif; ?>
-                                      <?php if (isset ($project->member->title,$project->member->firstname,$project->member->lastname)) : ?>
-                                          <% $project->member->title %>.<% $project->member->firstname %><% $project->member->lastname %>
+                                <div class="ui two columns grid">
+                                    <div class="ui column">
+                                        <?php if(isset($project->member->logo->url)) : ?>
+                                        <img class="ui avatar image"
+                                             src="<% $project->member->logo->url %>?w=300&h=300"/>
                                         <?php else : ?>
-                                          <div>----</div>
-                                      <?php endif; ?>
+                                        <div>//</div>
+                                        <?php endif; ?>
+                                        <?php if (isset ($project->member->title, $project->member->firstname, $project->member->lastname)) : ?>
+                                        <% $project->member->title %>
+                                        .<% $project->member->firstname %><% $project->member->lastname %>
+                                        <?php else : ?>
+                                        <div>----</div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -226,7 +220,7 @@
 @section('javascript')
 
     <script type="text/javascript">
-        $(window).load(function() {
+        $(window).load(function () {
             // The slider being synced must be initialized first
             $('#carousel').flexslider({
                 animation: "slide",

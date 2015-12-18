@@ -46,6 +46,7 @@ Route::group(['prefix' => 'users'],function(){
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search','User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');
+    Route::post('/project/{id}/comment','User\UserController@addComment');
 
 
 });
