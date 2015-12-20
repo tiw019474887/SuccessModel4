@@ -9,7 +9,6 @@
 
 <div class="ui secondary pointing menu">
     <a class="active item" data-tab="information">Project Information</a>
-    <a class="item" data-tab="detail">Project Detail</a>
     <a class="item" data-tab="informationEN">Project InformationEN</a>
 </div>
 
@@ -28,6 +27,12 @@
             <label>บทคัดย่อ/Project Abstract</label>
             <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
         </div>
+
+        <div class="field">
+            <label>รายละเอียดโครงการ/Project Content</label>
+            <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+        </div>
+
         <div class="two fields">
             <div class="field">
                 <label>Status</label>
@@ -113,10 +118,7 @@
 <div class="ui tab" data-tab="detail">
     <form class="ui form" ng-submit="save()">
         <h4 class="ui dividing header">Project Detail Thai</h4>
-        <div class="field">
-            <label>Project Content</label>
-            <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
-        </div>
+
 
         <button type="submit" class="ui primary submit button">Save</button>
         <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
