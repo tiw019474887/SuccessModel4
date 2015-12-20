@@ -11,30 +11,23 @@
     <a class="active item" data-tab="information">Project Information</a>
     <a class="item" data-tab="informationEN">Project InformationEN</a>
     <a class="item" data-tab="detail">Project Detail</a>
+    <a class="item" data-tab="detailEN">Project DetailEN</a>
 </div>
 
 <div class="ui active tab" data-tab="information">
 
     <form class="ui form" ng-submit="save()">
-        <h4 class="ui dividing header">Project Information</h4>
+        <h4 class="ui dividing header">Project Information Thai</h4>
 
         <div class="field">
             <label>Project Name</label>
             <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
         </div>
-        <div class="field">
-            <label>Project NameEN</label>
-            <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required">
-        </div>
 
 
         <div class="field">
-            <label>Project AbstractTH</label>
+            <label>Project Abstract</label>
             <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
-        </div>
-        <div class="field">
-            <label>Project AbstractEN</label>
-            <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"></textarea>
         </div>
         <div class="two fields">
             <div class="field">
@@ -118,23 +111,18 @@
 
 </div>
 
-<div class="ui active tab" data-tab="informationEN">
+<div class="ui tab" data-tab="informationEN">
 
     <form class="ui form" ng-submit="save()">
         <h4 class="ui dividing header">Project Information English</h4>
 
         <div class="field">
-            <label>Project NameEN</label>
+            <label>Project Name</label>
             <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required">
         </div>
 
-
         <div class="field">
-            <label>Project AbstractTH</label>
-            <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
-        </div>
-        <div class="field">
-            <label>Project AbstractEN</label>
+            <label>Project Abstract</label>
             <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"></textarea>
         </div>
         <div class="two fields">
@@ -220,18 +208,25 @@
 </div>
 
 <div class="ui tab" data-tab="detail">
-            <form class="ui form" ng-submit="save()">
+    <form class="ui form" ng-submit="save()">
+        <h4 class="ui dividing header">Project Detail Thai</h4>
+        <div class="field">
+            <label>Project Content</label>
+            <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+        </div>
 
-            <div class="field">
-                <label>Project ContentTH</label>
-                <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+        <button type="submit" class="ui primary submit button">Save</button>
+        <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+    </form>
+</div>
 
-            </div>
-            <div class="field">
-                <label>Project ContentEN</label>
-                <textarea ui-tinymce="mceOptions" ng-model="project.contentEN" placeholder="Content English"></textarea>
-
-            </div>
+<div class="ui tab" data-tab="detailEN">
+    <form class="ui form" ng-submit="save()">
+        <h4 class="ui dividing header">Project Detail English</h4>
+        <div class="field">
+            <label>Project ContentEN</label>
+            <textarea ui-tinymce="mceOptions" ng-model="project.contentEN" placeholder="Content English"></textarea>
+        </div>
 
         <button type="submit" class="ui primary submit button">Save</button>
         <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
