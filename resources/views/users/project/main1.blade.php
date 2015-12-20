@@ -32,9 +32,7 @@
 
     <div id="contents">
         <div class="row">
-            <h2><% $project->name%></h2>
-
-            <h3><% $project->nameEN%></h3>
+            <h2><% $project->name%>/<% $project->nameEN%></h2>
         </div>
         <div class="ui grid">
             <div class="row">
@@ -108,13 +106,11 @@
                             </span>
                             </div>
 
-                            <h3>รายละเอียดโครงการ</h3>
+                            <h3>รายละเอียดโครงการ/Description</h3>
 
                             <div class="ui segment" id="tinymce_content" style="padding: 14px;">
-                                <% $project->content %>
-                            </div>
-                            <div class="ui segment" id="tinymce_content" style="padding: 14px;">
-                                <% $project->contentEN %>
+                                <p><% $project->content %></P>
+                                <p><% $project->contentEN %></p>
                             </div>
                         </div>
                     </div>
@@ -158,16 +154,14 @@
                 </div>
                 <div class="six wide column">
                     <div class="column">
-                        <h3>บทคัดย่อ</h3>
+                        <h3>บทคัดย่อ/Abstract</h3>
 
                         <div class="ui segment">
-                            <% ($project->abstract) %>
-                        </div>
-                        <div class="ui segment">
-                            <% ($project->abstractEN) %>
+                            <p><% ($project->abstract) %></p>
+                            <p><% ($project->abstractEN) %></p>
                         </div>
                     </div>
-                    <h3>ดำเนินการโดย</h3>
+                    <h3>ดำเนินการโดย/Operator</h3>
 
                     <div class="ui segment">
 
@@ -180,7 +174,7 @@
                     </div>
 
                     <div class="six wide column">
-                        <h3>นักวิจัย</h3>
+                        <h3>นักวิจัย/Researcher</h3>
                         <?php
                         //print_r($project->members);
                         ?>
@@ -195,8 +189,7 @@
                                         <div>//</div>
                                         <?php endif; ?>
                                         <?php if (isset ($project->member->title, $project->member->firstname, $project->member->lastname)) : ?>
-                                        <% $project->member->title %>
-                                        .<% $project->member->firstname %><% $project->member->lastname %>
+                                        <% $project->member->title %>.<% $project->member->firstname %> <% $project->member->lastname %>
                                         <?php else : ?>
                                         <div>----</div>
                                         <?php endif; ?>
