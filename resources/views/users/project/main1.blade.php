@@ -124,7 +124,7 @@
                                     <img src="/images/daniel.jpg">
                                 </a>
                                 <div class="content">
-                                    <?php if(isset($comment->createdBy)) : ?>
+                                    <?php if(isset($comment->createdBy->firstname)) : ?>
                                         <a class="author"><% $comment->createdBy->firstname %></a>
                                     <?php else : ?>
                                         <a class="author">Unknown</a>
