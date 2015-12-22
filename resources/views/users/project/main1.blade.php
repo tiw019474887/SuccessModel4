@@ -117,7 +117,6 @@
                     <br>
 
                     <div class="ui comments">
-
                         @foreach($project->comments as $comment)
                             <div class="comment">
                                 <a class="avatar">
@@ -152,19 +151,17 @@
                             </div>
                             <button type="submit" class="ui yellow button">Comment</button>
                         </form>
-
                     </div>
-
                 </div>
                 <div class="six wide column">
                     <div class="column">
                         <h3>บทคัดย่อ/Abstract</h3>
-
                         <div class="ui segment">
                             <p><% ($project->abstract) %></p>
                             <p><% ($project->abstractEN) %></p>
                         </div>
                     </div>
+
                     <h3>ดำเนินการโดย/Operator</h3>
 
                     <div class="ui segment">
@@ -237,7 +234,6 @@
                 sync: "#carousel"
             });
         });
-
     </script>
 
 
@@ -251,4 +247,5 @@
     <script type="text/javascript" src="/app/users/UsersService.js"></script>
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
+
 @stop

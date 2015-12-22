@@ -91,15 +91,15 @@
             <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
                 @yield('sidemenu')
             </div>
+
             <div id="main-pusher" class="pusher">
                 <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
                     <div class="column">
                         @yield('content')
                     </div>
-
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -113,6 +113,14 @@
     </div>
 </div>
 
+@include('admin.js')
+@yield('javascript')
+
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
 
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
@@ -150,10 +158,6 @@
 
 </script>
 
-
-
-@include('admin.js')
-
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
             .controller("UserCtrl", function ($scope, $http) {
@@ -173,14 +177,10 @@
 
 </script>
 
-@yield('javascript')
 
 
 
-<script>
-    $(document).ready(function () {
-        initialResizeWindows();
-    })
-</script>
+
+
 
 </body>
