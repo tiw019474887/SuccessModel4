@@ -121,7 +121,11 @@
                         @foreach($project->comments as $comment)
                             <div class="comment">
                                 <a class="avatar">
-                                    <img src="/images/daniel.jpg">
+                                    <?php if(Auth::user()->logo) : ?>
+                                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                                    <?php else : ?>
+                                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                                    <?php endif; ?>
                                 </a>
                                 <div class="content">
                                     <?php if(isset($comment->createdBy->firstname)) : ?>

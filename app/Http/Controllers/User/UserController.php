@@ -66,7 +66,6 @@ class UserController extends Controller
         $comment-> comment = \Input::get("comment");
         $project = Project::find($projectId);
         $project->comments()->save($comment);
-
         $comment->createdBy()->save($user);
 
         return redirect("/users/project/$projectId");
