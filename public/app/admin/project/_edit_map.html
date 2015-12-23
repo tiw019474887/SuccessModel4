@@ -1,12 +1,13 @@
 <form class="ui form" ng-submit="save()">
 
-    <!--<div ng-app="demoapp">-->
-        <!--<script>-->
-            <!--var app = angular.module('demoapp', ['openlayers-directive']);-->
-        <!--</script>-->
-        <!--<openlayers lat="-33.86" lon="151.20" zoom="9" height="400"></openlayers>-->
+    <div ng-app="demoapp">
 
-    <!--</div>-->
+        <openlayers width="100%" height="400px"></openlayers>
+        <form>
+            Lat : <input type="number" step="any" ng-model="project.lat" />
+            Long : <input type="number" step="any" ng-model="project.long" />
+        </form>
+    </div>
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
