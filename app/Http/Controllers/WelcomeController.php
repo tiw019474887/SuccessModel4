@@ -14,7 +14,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        return view("users.project.mains");
+        return view("main.main");
 	}
 
 }

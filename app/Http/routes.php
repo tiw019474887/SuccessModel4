@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
 \Blade::setContentTags('<%', '%>'); // for variables and all things Blade
 \Blade::setEscapedContentTags('<%%', '%%>'); // for escaped data
 
-Route::get('/', 'User\UserController@index');
+Route::get('/', 'WelcomeController@index');
 
 Route::get('/auth/login', function () {
     return view('auth.login');
