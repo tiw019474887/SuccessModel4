@@ -42,13 +42,11 @@
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
-    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
     <script type="text/javascript" src="/app/admin/UserService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/FacultyService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectStatusService.js"></script>
     <script type="text/javascript" src="/app/admin/project/app.js"></script>
+
 @stop
