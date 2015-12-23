@@ -2,7 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
+var app = angular.module('ProjectAdmin','demoapp',['openlayers-directive'], ['ui.router', 'ui.tinymce', 'AppConfig'
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
     , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
 ]);
