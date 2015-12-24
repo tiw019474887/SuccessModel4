@@ -49,9 +49,4 @@
     <script type="text/javascript" src="/app/admin/ProjectStatusService.js"></script>
     <script type="text/javascript" src="/app/admin/project/app.js"></script>
 
-    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
-    <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
-
 @stop

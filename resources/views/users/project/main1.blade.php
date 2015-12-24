@@ -121,7 +121,7 @@
                                     Lat : <input type="number" step="any" ng-model="project.lat" />
                                     Long : <input type="number" step="any" ng-model="project.long" />
                                 </form>
-                            </div>
+                            </div
 
 
 
