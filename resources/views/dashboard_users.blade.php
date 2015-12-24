@@ -113,15 +113,29 @@
     </div>
 </div>
 
-@include('admin.js')
-@yield('javascript')
 
-<script>
-    $(document).ready(function () {
-        initialResizeWindows();
-    })
+
+@include('admin.js')
+<script type="text/javascript">
+    angular.module("MainMenuApp", ['AppConfig'])
+            .controller("UserCtrl", function ($scope, $http) {
+                $scope.current_user = {};
+                console.log("UserCtrl MainMenuApp Start...")
+
+                $scope.logout = function () {
+                    var logout = $http.get('/api/auth/user');
+
+                    logout.success(function () {
+                        window.location = '/auth/login';
+                    })
+                }
+            })
+
+    angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
+
 </script>
 
+@yield('javascript')
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
@@ -129,11 +143,11 @@
         var bodyheight = $(window).height();
         var contentHeight = $("#real-content").height()+55;
 
-//        console.log("BodyHeight :"+ (bodyheight - 165));
-//        console.log("ContHeight :"+contentHeight);
+        console.log("BodyHeight :"+ (bodyheight));
+        console.log("ContHeight :"+contentHeight);
 
         if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight);
+            $("#resize-grid").height(contentHeight+230);
         }else {
             $("#resize-grid").height(bodyheight-165);
         }
@@ -158,24 +172,13 @@
 
 </script>
 
-<script type="text/javascript">
-    angular.module("MainMenuApp", ['AppConfig'])
-            .controller("UserCtrl", function ($scope, $http) {
-                $scope.current_user = {};
-                console.log("UserCtrl MainMenuApp Start...")
-
-                $scope.logout = function () {
-                    var logout = $http.get('/api/auth/user');
-
-                    logout.success(function () {
-                        window.location = '/auth/login';
-                    })
-                }
-            })
-
-    angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
-
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
 </script>
+
+
 
 
 

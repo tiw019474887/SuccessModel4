@@ -84,11 +84,8 @@
     <script type="text/javascript" src="/packages/angular-semantic-ui/dist/angular-semantic-ui.min.js"></script>
     <script type="text/javascript" src="/packages/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="/packages/ng-flow/dist/ng-flow.min.js"></script>
-
-
     <script type="text/javascript" src="/app/admin/AuthService.js"></script>
     <script type="text/javascript" src="/app/admin/loader.js"></script>
-
     <script type="text/javascript">
 
         var app = angular.module("MainApp", ['Auth', 'AppConfig']);

@@ -126,7 +126,7 @@
 //        console.log("ContHeight :"+contentHeight);
 
         if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight);
+            $("#resize-grid").height(contentHeight+200);
         }else {
             $("#resize-grid").height(bodyheight-165);
         }
