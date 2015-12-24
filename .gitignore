@@ -1,5 +1,7 @@
+/conf
 /vendor
 /node_modules
 .env
 .idea
 composer.lock
+auth.json

@@ -8,12 +8,24 @@ use \Auth;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 use \Input;
+use League\Flysystem\Exception;
 
 class AuthApiController extends Controller
 {
 
     public function __construct(UserService $service){
         $this->userService = $service;
+    }
+
+    public function mobileAuth(LoginRequest $loginRequest){
+        $user = $this->authenticate($loginRequest);
+        try{
+            $user->logo;
+            $user->faculty;
+        }catch(\Exception $e){
+
+        }
+        return $user;
     }
 
     public function authenticate(LoginRequest $loginRequest)

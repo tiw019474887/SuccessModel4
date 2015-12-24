@@ -95,4 +95,19 @@ class ProjectApiController extends Controller {
         return $this->projectService->getCurrentResearcherProjects();
     }
 
+	public function facultyProject($faculty_id){
+
+		$projects = Project::with(['logo','faculty'])
+			->whereHas('faculty',function($q) use ($faculty_id){
+				$q->where('id','=',$faculty_id);
+			})
+			->get();
+		return $projects;
+	}
+
+	public function mobileIndex()
+	{
+		return Project::with(['logo','faculty'])->get();
+	}
+
 }
