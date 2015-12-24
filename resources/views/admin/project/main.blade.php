@@ -15,6 +15,7 @@
             width: 100%;
             height: 100%;
         }
+
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">

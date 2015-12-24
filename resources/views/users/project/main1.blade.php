@@ -19,7 +19,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
-
+    <link rel="stylesheet" href="/packges/openlayers3/build/ol.css" />
 
 @stop
 
@@ -106,22 +106,7 @@
                             </span>
                             </div>
 
-                            <div ng-app="demoapp">
-                                <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-                                <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-                                <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
-                                <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
-                                <link rel="stylesheet" href="/packges/openlayers3/build/ol.css" />
-                                <script>
-                                    var app = angular.module('demoapp', ['openlayers-directive']);
-                                </script>
-                                <openlayers width="100%" height="400px"></openlayers>
-                                <form>
 
-                                    Lat : <input type="number" step="any" ng-model="project.lat" />
-                                    Long : <input type="number" step="any" ng-model="project.long" />
-                                </form>
-                            </div>
 
 
 
@@ -220,6 +205,19 @@
                                 </div>
                             @endforeach
                         </div>
+                    </div>
+                    <div ng-app="demoapp" >
+
+                        <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
+                        <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+                        <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+                        <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+
+                        <script>
+                            var app = angular.module('demoapp', ['openlayers-directive']);
+                        </script>
+                        <openlayers lat="$project->lat" lon="$project->lon" zoom="$project->zoom" height="200px"></openlayers>
+
                     </div>
                 </div>
             </div>

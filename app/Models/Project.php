@@ -34,7 +34,7 @@ class Project extends \NeoEloquent
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN', 'lat', 'long'];
+    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN', 'lat', 'lon', 'zoom'];
 
     public function cover(){
         return $this->hasOne('App\Models\Image','COVER');

@@ -1,15 +1,16 @@
 <form class="ui form" ng-submit="save()">
 
-    <div>
+    <div class="field">
         
-        <openlayers width="100%" height="400px"></openlayers>
-        <form>
+        <openlayers lat="19.2154367" lon="100.2023692" zoom="9" ol-center="project" height="400px"></openlayers>
 
-            Lat : <input type="number" step="any" ng-model="project.lat" />
-            Long : <input type="number" step="any" ng-model="project.long" />
-        </form>
+        Latitude : <input type="number" step="any" ng-model="project.lat" />
+        Longitude : <input type="number" step="any" ng-model="project.lon" />
+        Zoom : <input type="number" step="any" ng-model="project.zoom" />
+
     </div>
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+
 </form>

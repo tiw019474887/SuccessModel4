@@ -8,6 +8,7 @@ var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
 ]);
 
 
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise("/");
