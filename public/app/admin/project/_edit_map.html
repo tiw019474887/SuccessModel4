@@ -1,6 +1,14 @@
 <form class="ui form" ng-submit="save()">
 
+    <div>
+        
+        <openlayers width="100%" height="400px"></openlayers>
+        <form>
 
+            Lat : <input type="number" step="any" ng-model="project.lat" />
+            Long : <input type="number" step="any" ng-model="project.long" />
+        </form>
+    </div>
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
