@@ -214,9 +214,9 @@
                         <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
 
                         <script>
-                            var app = angular.module('demoapp', ['openlayers-directive']);
+                            var app = angular.module("demoapp", ['openlayers-directive']);
                         </script>
-                        <openlayers lat="$project->lat" lon="$project->lon" zoom="$project->zoom" height="200px"></openlayers>
+                        <openlayers  height="200px"></openlayers>
 
                     </div>
                 </div>
