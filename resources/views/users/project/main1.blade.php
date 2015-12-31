@@ -19,7 +19,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
-    <link rel="stylesheet" href="/packges/openlayers3/build/ol.css" />
+
 
 @stop
 
@@ -107,16 +107,11 @@
                             </div>
 
 
-
-
-
-
-
-
                             <h3>รายละเอียดโครงการ/Description</h3>
 
                             <div class="ui segment" id="tinymce_content" style="padding: 14px;">
                                 <p><% $project->content %></P>
+
                                 <p><% $project->contentEN %></p>
                             </div>
                         </div>
@@ -128,16 +123,17 @@
                             <div class="comment">
                                 <a class="avatar">
                                     <?php if(Auth::user()->logo) : ?>
-                                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                                    <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
                                     <?php else : ?>
-                                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                                    <img class="ui avatar avatar-menu image" src="/images/square-image.png">
                                     <?php endif; ?>
                                 </a>
+
                                 <div class="content">
                                     <?php if(isset($comment->createdBy->firstname)) : ?>
-                                        <a class="author"><% $comment->createdBy->firstname %></a>
+                                    <a class="author"><% $comment->createdBy->firstname %></a>
                                     <?php else : ?>
-                                        <a class="author">Unknown</a>
+                                    <a class="author">Unknown</a>
                                     <?php endif; ?>
 
                                     <div class="metadata">
@@ -163,8 +159,10 @@
                 <div class="six wide column">
                     <div class="column">
                         <h3>บทคัดย่อ/Abstract</h3>
+
                         <div class="ui segment">
                             <p><% ($project->abstract) %></p>
+
                             <p><% ($project->abstractEN) %></p>
                         </div>
                     </div>
@@ -197,7 +195,8 @@
                                         <div>//</div>
                                         <?php endif; ?>
                                         <?php if (isset ($project->member->title, $project->member->firstname, $project->member->lastname)) : ?>
-                                        <% $project->member->title %>.<% $project->member->firstname %> <% $project->member->lastname %>
+                                        <% $project->member->title %>
+                                        .<% $project->member->firstname %> <% $project->member->lastname %>
                                         <?php else : ?>
                                         <div>----</div>
                                         <?php endif; ?>
@@ -206,19 +205,49 @@
                             @endforeach
                         </div>
                     </div>
-                    <div ng-app="demoapp" >
 
-                        <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-                        <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-                        <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
-                        <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+                    <h3>แผนที่/Map</h3>
 
-                        <script>
-                            var app = angular.module("demoapp", ['openlayers-directive']);
-                        </script>
-                        <openlayers  height="200px"></openlayers>
-
+                    <div class="six wide column">
+                        <div class="column">
+                            <div class="ui segment">
+                                <div ng-app="Demoapp">
+                                    <div ng-contller="DemoController">
+                                        <openlayers ol-center="center" height="300px" width="100%">
+                                            <ol-marker name="Phayao"
+                                                       <?php if (isset ($project->lat , $project->lon)): ?>
+                                                       lat="<% $project->lat %>"
+                                                       lon="<% $project->lon %>" message="Phayao">
+                                                <?php else : ?>
+                                                <div>................</div>
+                                                <?php endif; ?>
+                                            </ol-marker>
+                                        </openlayers>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
+                    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+                    <script type="text/javascript"
+                            src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+                    <script type="text/javascript"
+                            src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+                    <link rel="stylesheet" href="/packges/openlayers3/build/ol.css"/>
+
+                    <script>
+                        var app = angular.module("Demoapp", ["openlayers-directive"]);
+                        app.controller("DemoController", ['$scope', function ($scope) {
+                            angular.extend($scope, {
+                                center: {
+                                    zoom: 10
+                                }
+                            });
+                        }]);
+
+                    </script>
+
                 </div>
             </div>
         </div>
@@ -264,6 +293,7 @@
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
+    <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
     <script type="text/javascript" src="/app/users/UsersService.js"></script>
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
