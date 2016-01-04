@@ -4,7 +4,6 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
-
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>

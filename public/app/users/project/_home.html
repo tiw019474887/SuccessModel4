@@ -12,7 +12,7 @@
                             <div class="column"  ng-repeat="project in projects" ng-if="project.status.key == 'published'" >
                                  <div class="ui fluid card">
                                      <div class="image">
-                                        <img ng-src="{{project.logo.url}}">
+                                        <img src="project.logo.url?w=240&h=180&fit=stretch"/>
                                      </div>
                                          <div class="content">
                                             <a class="header">{{project.name}}</a>

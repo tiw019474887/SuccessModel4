@@ -26,9 +26,10 @@
                     <i class="sidebar icon"></i>
                     Menu
                 </a>
-                <a class="item " href ="/users">
+                <a class="item " href="/users">
                     User
                 </a>
+
                 <div class="right aligned right floated column">
                     <a class="item">
                         <form class="ui form" method="get" action="/users/search">
@@ -61,6 +62,7 @@
                         <div class="divider"></div>
                         <a class="item">Change Profile</a>
                         <a class="item" ng-click="logout()">Logout</a>
+
                     </div>
                 </div>
 
@@ -70,8 +72,8 @@
             <div class="ui grid container">
                 <div class="column">
                     <h2 class="ui header inverted" style="padding: 20px;">
-                        <div class="ui small image" >
-                            <a href ="/users">
+                        <div class="ui small image">
+                            <a href="/users">
                                 <img src="/images/fff.png">
                             </a>
                         </div>
@@ -91,20 +93,21 @@
             <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
                 @yield('sidemenu')
             </div>
+
             <div id="main-pusher" class="pusher">
                 <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
                     <div class="column">
                         @yield('content')
                     </div>
-
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 </div>
 <p></p>
+
 <div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
     <div class="ui center aligned container">
         <div class="ui horizontal inverted small divided link list">
@@ -114,24 +117,26 @@
 </div>
 
 
+@include('admin.js')
+@yield('javascript')
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
-    function initialResizeWindows(){
+    function initialResizeWindows() {
         var bodyheight = $(window).height();
-        var contentHeight = $("#real-content").height()+55;
+        var contentHeight = $("#real-content").height() + 55;
 
-//        console.log("BodyHeight :"+ (bodyheight - 165));
-//        console.log("ContHeight :"+contentHeight);
+        console.log("BodyHeight :" + (bodyheight));
+        console.log("ContHeight :" + contentHeight);
 
-        if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight);
-        }else {
-            $("#resize-grid").height(bodyheight-165);
+        if (contentHeight > bodyheight - 165) {
+            $("#resize-grid").height(contentHeight + 230);
+        } else {
+            $("#resize-grid").height(bodyheight - 165);
         }
         $("#main-pusher").height($("#resize-grid").height());
     }
-    $(window).resize(function(){
+    $(window).resize(function () {
         initialResizeWindows();
     })
 
@@ -150,10 +155,11 @@
 
 </script>
 
-
-
-@include('admin.js')
-
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
             .controller("UserCtrl", function ($scope, $http) {
@@ -171,16 +177,6 @@
 
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 
-</script>
-
-@yield('javascript')
-
-
-
-<script>
-    $(document).ready(function () {
-        initialResizeWindows();
-    })
 </script>
 
 </body>

@@ -4,8 +4,9 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-    , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube'
+    , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
 ]);
+
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {

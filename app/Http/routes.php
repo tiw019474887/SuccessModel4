@@ -14,7 +14,8 @@ use Ramsey\Uuid\Uuid;
 \Blade::setContentTags('<%', '%>'); // for variables and all things Blade
 \Blade::setEscapedContentTags('<%%', '%%>'); // for escaped data
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'User\UserController@index');
+//Route::get('/', 'WelcomeController@index');
 
 Route::get('/auth/login', function () {
     return view('auth.login');
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'users'],function(){
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search','User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');
+    Route::post('/project/{id}/comment','User\UserController@addComment');
 
 
 });

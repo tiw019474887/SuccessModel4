@@ -1,9 +1,6 @@
 /**
  * Created by tiwter on 8/1/2015.
  */
-
-
-
 angular.module('Users', [])
     .factory('UsersService', function ($http) {
         return {

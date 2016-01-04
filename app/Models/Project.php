@@ -34,7 +34,7 @@ class Project extends \NeoEloquent
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN'];
+    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN', 'lat', 'lon', 'zoom'];
 
     public function cover(){
         return $this->hasOne('App\Models\Image','COVER');
@@ -64,7 +64,7 @@ class Project extends \NeoEloquent
         return $this->belongsTo("App\Models\User","CREATE");
     }
     public function comments(){
-        return $this->belongsToMany("App\Models\Comment","HAS_COMMENT");
+        return $this->hasMany("App\Models\Comment","HAS_COMMENT");
     }
 
     public function suggestion(){

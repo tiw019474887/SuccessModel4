@@ -92,7 +92,6 @@
                         @yield('content')
                     </div>
 
-
                 </div>
             </div>
         </div>
@@ -106,6 +105,16 @@
     </div>
 </div>
 
+@include('admin.js')
+@yield('javascript')
+
+
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
+
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
@@ -117,7 +126,7 @@
 //        console.log("ContHeight :"+contentHeight);
 
         if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight);
+            $("#resize-grid").height(contentHeight+200);
         }else {
             $("#resize-grid").height(bodyheight-165);
         }
@@ -140,10 +149,7 @@
     })
 
 
-
 </script>
-
-@include('admin.js')
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
@@ -164,15 +170,9 @@
 
 </script>
 
-@yield('javascript')
 
 
 
-<script>
-    $(document).ready(function () {
-        initialResizeWindows();
-    })
-</script>
 
 </body>
 </html>
