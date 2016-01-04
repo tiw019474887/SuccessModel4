@@ -4,7 +4,7 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-    , 'Faculty', 'User', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
+    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
 ]);
 
 
@@ -37,6 +37,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 faculties: function (FacultyService) {
                     return FacultyService.all();
+                },
+                areas: function (AreaService) {
+                    return AreaService.all();
                 }
             }
         })
@@ -68,6 +71,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 youtubes: function (ProjectService, $stateParams) {
                     return ProjectService.getYoutubes($stateParams.id);
+                },
+                areas: function (AreaService) {
+                    return AreaService.all();
                 }
             }
         })
@@ -142,11 +148,12 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, areas, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
     $scope.faculties = faculties.data;
+    $scope.areas = areas.data;
 
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
@@ -165,6 +172,10 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
 
     $scope.updateFaculty = function (faculty) {
         $scope.project.faculty = faculty;
+    }
+
+    $scope.updateArea = function (area) {
+        $scope.project.area = area;
     }
 
     // search segment
@@ -304,12 +315,13 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter,
                                      UserService, UserSearchService, ProjectService,
-                                     statuses, faculties, project, images, members, file, previousFiles, youtubes) {
+                                     statuses, faculties, project, areas, images, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
     $scope.images = images.data;
     $scope.statuses = statuses.data;
+    $scope.areas = areas.data;
     $scope.faculties = faculties.data;
     $scope.projectMembers = members.data;
     $scope.file = file.data;
@@ -373,6 +385,10 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
 
     $scope.updateFaculty = function (faculty) {
         $scope.project.faculty = faculty;
+    }
+
+    $scope.updateArea = function (areas) {
+        $scope.project.areas = areas;
     }
 
     // search segment

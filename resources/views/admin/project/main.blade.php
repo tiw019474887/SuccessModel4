@@ -45,6 +45,7 @@
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
     <script type="text/javascript" src="/app/admin/UserService.js"></script>
+    <script type="text/javascript" src="/app/admin/AreaService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/FacultyService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectStatusService.js"></script>
