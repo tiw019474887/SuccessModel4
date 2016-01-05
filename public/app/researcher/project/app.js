@@ -4,7 +4,7 @@
 
 
 var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig', 'User', 'Researcher',
-    'Youtube','User','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -63,7 +63,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/researcher/project/_view.html",
             controller: "ViewCtrl",
             resolve: {
-                project: function (ResearcherService,$stateParams) {
+                project: function (ResearcherService, $stateParams) {
                     return ResearcherService.get($stateParams.id)
                 },
                 images: function (ProjectService, $stateParams) {
@@ -85,7 +85,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state,$timeout, projects, ProjectService,ResearcherService) {
+app.controller("HomeCtrl", function ($scope, $state, $timeout, projects, ProjectService, ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
     $scope.project = {};
@@ -127,7 +127,7 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout, projects, ProjectS
     $scope.ajaxAccept = function (project, bool) {
         $scope.project = project;
         if (bool) {
-            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
+            ResearcherService.submit($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 ResearcherService.getProjects().success(function (response) {
                     $scope.projects = response;
@@ -139,12 +139,12 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout, projects, ProjectS
         }
     }
 
-    $timeout(doPopup,200);
+    $timeout(doPopup, 200);
 
 
 });
 
-app.controller("AddCtrl", function ($scope,$state,$timeout,project,ResearcherService) {
+app.controller("AddCtrl", function ($scope, $state, $timeout, project, ResearcherService) {
     console.log("AddCtrl Start...");
     $scope.project = project.data;
 
@@ -164,7 +164,7 @@ app.controller("AddCtrl", function ($scope,$state,$timeout,project,ResearcherSer
 });
 
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService,ResearcherService,
+                                     UserService, UserSearchService, ProjectService, ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -190,28 +190,28 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
     } else {
         $scope.showItem = null;
     }
-    $timeout(function(){
+    $timeout(function () {
         $('.flexslider').flexslider({
             slideshow: true,
-            video : true,
-            before: function(slider){
+            video: true,
+            before: function (slider) {
                 /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
                 playVideoAndPauseOthers($('.play3 iframe')[0]);
             }
         });
 
         function playVideoAndPauseOthers(frame) {
-            $('iframe').each(function(i) {
+            $('iframe').each(function (i) {
                 var func = this === frame ? 'playVideo' : 'stopVideo';
                 this.contentWindow.postMessage('{"event":"command","func":"' + func + '","args":""}', '*');
             });
         }
 
         /* ------------------ PREV & NEXT BUTTON FOR FLEXSLIDER (YOUTUBE) ------------------ */
-        $('.flex-next, .flex-prev').click(function() {
+        $('.flex-next, .flex-prev').click(function () {
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
-    },10)
+    }, 10)
 
     $scope.showAcceptModal = function () {
         $scope.accept_modal = true;
@@ -223,7 +223,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
     $scope.ajaxAccept = function (project, bool) {
         if (bool) {
-            ResearcherService.submit($scope.project.id,$scope.project).success(function (response) {
+            ResearcherService.submit($scope.project.id, $scope.project).success(function (response) {
                 $scope.closeAcceptModal();
                 ResearcherService.all().success(function (response) {
                     $scope.projects = response;
@@ -239,8 +239,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
                                      UserService, UserSearchService, project,
-                                     images, members, file, previousFiles, youtubes
-    ) {
+                                     images, members, file, previousFiles, youtubes) {
 
     console.log("EditCtrl Start...");
 
@@ -291,7 +290,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     }
 
     $scope.save = function () {
-        ResearcherService.update($scope.project.id,$scope.project).success(function (resposne) {
+        ResearcherService.update($scope.project.id, $scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
@@ -370,9 +369,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
             }
         })
     }, 100);
-
-
-
 
 
 });
