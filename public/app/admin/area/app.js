@@ -34,11 +34,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/app/admin/area/_edit.html",
             controller: "EditCtrl",
             resolve: {
-                area: function (AreaService) {
-                    return {data: {}}
-                },
                 area: function (AreaService, $stateParams) {
-                    return AreaService.edit($stateParams.id)
+                    return AreaService.getID($stateParams.id)
                 }
             }
         })
@@ -92,11 +89,18 @@ app.controller("AddCtrl", function ($scope, $state, area, AreaService) {
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, area, users, facultyUsers, FacultyService, UserService, $timeout, $cookies) {
+app.controller("EditCtrl", function ($scope, $state, area, AreaService) {
     console.log("EditCtrl Start...");
     $scope.area = area.data;
-    //console.log($scope.users);
 
+
+    $scope.save = function () {
+        AreaService.update($scope.project.id, $scope.project).success(function (resposne) {
+            $state.go("home")
+        }).error(function (response) {
+            alert(response.name_th);
+        });
+    }
 
 
 });

@@ -14,10 +14,11 @@ angular.module('Area',[])
                     method: 'get'
                 })
             },
-            getID: function () {
+            getID : function($id,$project){
                 return $http({
-                    url: '/api/area/get/'+$id,
-                    method: 'get'
+                    url : '/api/area/get/'+ $id,
+                    method : 'get',
+                    data : $project
                 })
             },
             addArea: function ($project) {
@@ -33,10 +34,12 @@ angular.module('Area',[])
             delete : function(area){
                 return $http.delete('/api/area/' + area.id);
             },
-            update: function () {
+
+            update: function ($id,$project) {
                 return $http({
-                    url: '/api/area/update',
-                    method: 'get'
+                    url: '/api/area/update'+$id,
+                    method: 'post',
+                    data: $project
                 })
             }
         }
