@@ -27,9 +27,9 @@ angular.module('Area',[])
                     data : $project
                 })
             },
-            //edit : function(id){
-            //    return  $http.get('/api/area/'+id);
-            //},
+            edit : function(id){
+                return  $http.get('/api/area/'+id);
+            },
             delete : function(area){
                 return $http.delete('/api/area/' + area.id);
             },
