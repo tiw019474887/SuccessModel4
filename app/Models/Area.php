@@ -24,7 +24,7 @@ class Area extends \NeoEloquent
     }
 
     public function projects(){
-        return $this->hasMany("App\Models\Project","HAS");
+        return $this->hasMany("App\Models\Project","HAS_AREA");
     }
 
 }

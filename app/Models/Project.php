@@ -63,6 +63,7 @@ class Project extends \NeoEloquent
     public function createdBy(){
         return $this->belongsTo("App\Models\User","CREATE");
     }
+
     public function comments(){
         return $this->hasMany("App\Models\Comment","HAS_COMMENT");
     }
@@ -72,7 +73,7 @@ class Project extends \NeoEloquent
     }
 
     public function current_file(){
-        return $this->hasOne('App\Models\File',"CURRENT_FILE");
+        return $this->hasOne("App\Models\File","CURRENT_FILE");
     }
 
     public function files(){
@@ -87,4 +88,7 @@ class Project extends \NeoEloquent
         return $this->hasMany("App\Models\Youtube","VIDEO");
     }
 
+    public  function area(){
+        return $this->belongsTo("App\Models\Area","HAS_AREA");
+    }
 }

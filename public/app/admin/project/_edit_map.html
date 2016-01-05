@@ -6,9 +6,22 @@
             <ol-marker name="Phayao" lat="19.2154367" lon="100.2023692" zoom="9"></ol-marker>
         </openlayers>
 
-        Latitude : <input type="number" step="any" ng-model="project.lat" />
-        Longitude : <input type="number" step="any" ng-model="project.lon" />
-        Zoom : <input type="number" step="any" ng-model="project.zoom" />
+        <label>Latitude :</label> <input type="number" step="any" ng-model="project.lat" />
+        <label>Longitude :</label> <input type="number" step="any" ng-model="project.lon" />
+        <label>Zoom :</label> <input type="number" step="any" ng-model="project.zoom" />
+
+        <label>Area :</label>
+        <div class="ui fluid selection upward dropdown">
+            <i class="dropdown icon"></i>
+            <span ng-if="!project.area" class="text">Select Area</span>
+            <span ng-if="project.area" class="text">{{project.area.name_th}}</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="area in areas" ng-click="updateArea(area)">
+                    {{area.name_th}}
+                </div>
+            </div>
+        </div>
 
     </div>
 
