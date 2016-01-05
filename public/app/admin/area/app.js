@@ -36,8 +36,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 area: function (AreaService) {
                     return {data: {}}
-                }
-                ,
+                },
                 area: function (AreaService, $stateParams) {
                     return AreaService.edit($stateParams.id)
                 }

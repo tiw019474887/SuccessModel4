@@ -53,5 +53,14 @@ class AreaService extends Service{
         return Area::find($id)->delete();
     }
 
+    public function update(array $input){
+        if(array_has($input,'id')){
+            $id = $input['id'];
+            $area = Area::find($id);
+            $area->fill($input);
+            $area->save();
+            return $area;
+        }
+    }
 
 }
