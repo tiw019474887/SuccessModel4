@@ -171,7 +171,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
         $scope.project.faculty = faculty;
     }
 
-    
+
 
     // search segment
 

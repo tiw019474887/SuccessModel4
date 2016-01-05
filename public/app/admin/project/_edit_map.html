@@ -1,14 +1,10 @@
 <form class="ui form" ng-submit="save()">
 
     <div class="field">
-        
-        <openlayers  ol-center="project" height="400px">
-            <ol-marker name="Phayao" lat="19.2154367" lon="100.2023692" zoom="9"></ol-marker>
-        </openlayers>
 
-        <label>Latitude :</label> <input type="number" step="any" ng-model="project.lat" />
-        <label>Longitude :</label> <input type="number" step="any" ng-model="project.lon" />
-        <label>Zoom :</label> <input type="number" step="any" ng-model="project.zoom" />
+        <openlayers  ol-center="project" height="400px">
+            <ol-marker lat="project.area.lat" lon="project.area.lon" zoom="project.area.zoom"></ol-marker>
+        </openlayers>
 
         <label>Area :</label>
         <div class="ui fluid selection upward dropdown">
@@ -22,6 +18,11 @@
                 </div>
             </div>
         </div>
+        <label>Latitude :</label> <input type="number" step="any" ng-model="project.area.lat" />
+        <label>Longitude :</label> <input type="number" step="any" ng-model="project.area.lon" />
+        <label>Zoom :</label> <input type="number" step="any" ng-model="project.area.zoom" />
+
+
 
     </div>
 
