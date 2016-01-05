@@ -3,7 +3,7 @@
  */
 
 
-var app = angular.module('ResearcherProject', ['ui.router', 'AppConfig', 'User', 'Researcher',
+var app = angular.module('ResearcherProject', ['ui.router', 'ui.tinymce', 'AppConfig', 'User', 'Researcher',
     'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
 
@@ -156,6 +156,29 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
         });
     }
 
+    $scope.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 150,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    };
+    $timeout(function () {
+        $('.menu .item').tab();
+        $('.ui.upward.dropdown').dropdown({
+            direction: 'upward'
+        });
+        $('.search').bind('keypress', function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        })
+    }, 100);
 
     $timeout(function () {
         $('.menu .item').tab();
