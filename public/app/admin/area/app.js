@@ -30,16 +30,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
         .state('edit', {
-            url: "/edit/:id",
+            url: "/",
             templateUrl: "/app/admin/area/_edit.html",
             controller: "EditCtrl",
             resolve: {
                 area: function (AreaService) {
                     return {data: {}}
-                },
-                area: function (AreaService, $stateParams) {
-                    return AreaService.edit($stateParams.id)
                 }
+                //,
+                //area: function (AreaService, $stateParams) {
+                //    return AreaService.edit($stateParams.id)
+                //}
             }
         })
 });

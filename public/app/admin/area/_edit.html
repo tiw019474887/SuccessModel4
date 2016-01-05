@@ -3,17 +3,17 @@
 <form class="ui form" ng-submit="save()" >
     <div class="field">
 
-        <openlayers  ol-center="project" height="400px">
-            <ol-marker lat="project.area.lat" lon="project.area.lon" zoom="project.area.zoom"></ol-marker>
+        <openlayers  ol-center="area" height="400px">
+            <ol-marker lat="area.lat" lon="area.lon" zoom="area.zoom"></ol-marker>
         </openlayers>
 
         <div class="field">
             <label>Name (TH)</label>
             <input ng-model="area.name_th" type="text" name="name" placeholder="Area Name" required="required">
         </div>
-        <label>Latitude :</label> <input type="number" step="any" ng-model="project.area.lat" />
-        <label>Longitude :</label> <input type="number" step="any" ng-model="project.area.lon" />
-        <label>Zoom :</label> <input type="number" step="any" ng-model="project.area.zoom" />
+        <label>Latitude :</label> <input type="number" step="any" ng-model="area.lat" />
+        <label>Longitude :</label> <input type="number" step="any" ng-model="area.lon" />
+        <label>Zoom :</label> <input type="number" step="any" ng-model="area.zoom" />
 
 
 

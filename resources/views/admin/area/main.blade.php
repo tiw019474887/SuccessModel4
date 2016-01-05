@@ -1,5 +1,6 @@
 @extends('admin.layout')
 
+        <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
 
 @section('content')
     <div ng-app="AreaAdmin">
@@ -20,4 +21,9 @@
     <script type="text/javascript" src="/app/admin/FacultyService.js"></script>
     <script type="text/javascript" src="/app/admin/AreaService.js"></script>
     <script type="text/javascript" src="/app/admin/area/app.js"></script>
+
+    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
+    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
 @stop
