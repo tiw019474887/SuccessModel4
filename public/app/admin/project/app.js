@@ -37,9 +37,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 faculties: function (FacultyService) {
                     return FacultyService.all();
-                },
-                areas: function (AreaService) {
-                    return AreaService.all();
                 }
             }
         })
@@ -148,12 +145,12 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, areas, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
     $scope.faculties = faculties.data;
-    $scope.areas = areas.data;
+
 
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
@@ -174,9 +171,7 @@ app.controller("AddCtrl", function ($scope, $state, project, areas, statuses, fa
         $scope.project.faculty = faculty;
     }
 
-    $scope.updateArea = function (area) {
-        $scope.project.area = area;
-    }
+    
 
     // search segment
 
