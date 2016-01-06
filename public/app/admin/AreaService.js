@@ -34,16 +34,9 @@ angular.module('Area',[])
             delete : function(area){
                 return $http.delete('/api/area/' + area.id);
             },
-            submit : function($id,$project){
-                return $http({
-                    url : '/api/area/submit-area/'+ $id,
-                    method : 'post',
-                    data : $project
-                })
-            },
             update: function ($id,$project) {
                 return $http({
-                    url: '/api/area/update'+$id,
+                    url: '/api/area/update-area'+$id,
                     method: 'post',
                     data: $project
                 })

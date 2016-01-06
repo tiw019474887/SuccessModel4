@@ -30,10 +30,6 @@ class AreaApiController extends Controller {
         return $this->areaService->get($id);
 	}
 
-    public function submit($id){
-        return $this->areaService->save($id,Input::all());
-    }
-
 	public function update($id)
 	{
         return $this->areaService->save(Input::all());
