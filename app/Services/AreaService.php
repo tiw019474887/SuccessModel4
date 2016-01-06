@@ -38,7 +38,7 @@ class AreaService extends Service{
         $area->save();
         return $area;
     }
-    public function save(array $input){
+    public function submit(array $input){
         if (array_has($input,'id')){
             $id = $input['id'];
             /* @var Area $area */
