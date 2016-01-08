@@ -107,6 +107,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('researcher/submit-project/{id}','API\ResearcherProjectApiController@submit');
 
     //api for area
+    Route::resource('area', 'API\AreaApiController');
     Route::get('area', 'API\AreaApiController@index');
     Route::get('area/get/{id}', 'API\AreaApiController@getID');
     Route::post('area/update-area/{id}','API\AreaApiController@update');

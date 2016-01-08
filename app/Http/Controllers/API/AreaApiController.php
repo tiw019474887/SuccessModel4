@@ -32,7 +32,7 @@ class AreaApiController extends Controller {
 
 	public function update($id)
 	{
-        return $this->areaService->save(Input::all());
+        return $this->areaService->update(Input::all());
 	}
 
 	public function deleteArea($id)

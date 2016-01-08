@@ -95,7 +95,7 @@ app.controller("EditCtrl", function ($scope, $state, area, AreaService) {
 
 
     $scope.save = function () {
-        AreaService.update($scope.area.id, $scope.project).success(function (resposne) {
+        AreaService.save($scope.area).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);

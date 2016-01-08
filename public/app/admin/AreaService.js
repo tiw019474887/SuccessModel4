@@ -8,6 +8,33 @@ angular.module('Area',[])
             all : function(){
                 return $http.get('/api/area');
             },
+            get : function(id){
+                return  $http.get('/api/area/'+id);
+            },
+            edit : function(id){
+                return  $http.get('/api/area/'+id);
+            },
+            create : function(){
+                return $http.get('/api/area/create');
+            },
+            store : function(area){
+
+                return $http({
+                    url : '/api/area',
+                    method : 'post',
+                    data : area
+                })
+            },
+            delete : function(area){
+                return $http.delete('/api/area/' + area.id);
+            },
+            save : function(area){
+                return $http({
+                    url : '/api/area/' + area.id,
+                    method : 'put',
+                    data : area
+                })
+            },
             index: function () {
                 return $http({
                     url: '/api/area',
@@ -28,18 +55,13 @@ angular.module('Area',[])
                     data : $project
                 })
             },
-            edit : function(id){
-                return  $http.get('/api/area/'+id);
-            },
-            delete : function(area){
-                return $http.delete('/api/area/' + area.id);
-            },
-            update: function ($id,$project) {
+            update: function ($id,$area) {
                 return $http({
                     url: '/api/area/update-area'+$id,
                     method: 'post',
-                    data: $project
+                    data: $area
                 })
             }
+
         }
     })
