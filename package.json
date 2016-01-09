@@ -5,6 +5,7 @@
     "laravel-elixir": "*"
   },
   "dependencies": {
-    "angular-openlayers-directive": "^1.5.0"
+    "angular-openlayers-directive": "^1.5.0",
+    "lodash": "^3.10.1"
   }
 }

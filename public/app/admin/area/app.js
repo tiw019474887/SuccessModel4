@@ -3,7 +3,7 @@
  */
 
 var app = angular.module('AreaAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow','Area', 'Faculty',
-    'User','openlayers-directive']);
+    'User','openlayers-directive','uiGmapgoogle-maps']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -37,6 +37,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 area: function (AreaService, $stateParams) {
                     return AreaService.getID($stateParams.id)
+                }
+            }
+        })
+        .state('test', {
+            url: "/",
+            templateUrl: "/app/admin/area/_test.html",
+            controller: "AddCtrl",
+            resolve: {
+                area: function (AreaService) {
+                    return {data: {}}
                 }
             }
         })
@@ -79,6 +89,7 @@ app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {
 app.controller("AddCtrl", function ($scope, $state, area, AreaService) {
     console.log("AddCtrl Start...");
     $scope.area = area.data;
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
     $scope.save = function () {
         AreaService.addArea($scope.area).success(function (resposne) {
@@ -102,6 +113,7 @@ app.controller("EditCtrl", function ($scope, $state, area, AreaService) {
             alert(response.name_th);
         });
     }
+
 
 
 });
