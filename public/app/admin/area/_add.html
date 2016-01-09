@@ -7,6 +7,9 @@
         <label>Name (TH)</label>
         <input ng-model="area.name_th" type="text" name="name" placeholder="Area Name" required="required">
     </div>
+    <label>Latitude :</label> <input type="number" step="any" ng-model="area.lat" />
+    <label>Longitude :</label> <input type="number" step="any" ng-model="area.lon" />
+    <label>Zoom :</label> <input type="number" step="any" ng-model="area.zoom" />
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
