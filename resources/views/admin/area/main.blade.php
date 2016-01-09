@@ -1,6 +1,10 @@
 @extends('admin.layout')
 
-        <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
+@section('header')
+
+    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
+
+@stop
 
 @section('content')
     <div ng-app="AreaAdmin">

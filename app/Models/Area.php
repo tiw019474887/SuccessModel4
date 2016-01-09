@@ -17,7 +17,7 @@ class Area extends \NeoEloquent
 
     protected $label = ['Area'];
 
-    protected $fillable = ['name_th'];
+    protected $fillable = ['name_th','lat', 'lon', 'zoom'];
 
     public function createdBy(){
         return $this->hasOne("App\Models\User","CREATE_BY");
