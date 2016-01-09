@@ -382,8 +382,8 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
         $scope.project.faculty = faculty;
     }
 
-    $scope.updateArea = function (areas) {
-        $scope.project.areas = areas;
+    $scope.updateArea = function (area) {
+        $scope.project.area = area;
     }
 
     // search segment
