@@ -3,7 +3,15 @@
  */
 
 var app = angular.module('AreaAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow','Area', 'Faculty',
-    'User','openlayers-directive','uiGmapgoogle-maps']);
+    'User','openlayers-directive','uiGmapgoogle-maps'])
+    .config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyCyb1w6ezK3C0k64_1AiB0vK-qjmQkCrcI',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
+});
+
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
