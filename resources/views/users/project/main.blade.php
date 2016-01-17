@@ -125,6 +125,11 @@
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
+    <script type="text/javascript" src="/app/admin/UserService.js"></script>
+    <script type="text/javascript" src="/app/admin/RoleService.js"></script>
+    <script type="text/javascript" src="/app/admin/FacultyService.js"></script>
+
+
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
 

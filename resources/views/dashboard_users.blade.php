@@ -4,11 +4,12 @@
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
     <link rel="stylesheet" href="/packages/semantic/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/packages/semantic/dist/components/dropdown.min.css"/>
-    <link rel="stylesheet" href="/css/style.css"/>
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/semantic/dist/semantic.min.js" type="text/javascript"></script>
     <script src="/packages/semantic/dist/components/dropdown.min.js" type="text/javascript"></script>
+    <style>
 
+    </style>
 
     @yield('header')
 
@@ -18,63 +19,70 @@
 <body>
 
 <div class="ui grid">
-    <div class="one column row" style="padding-bottom: 0px;">
+    <div class="one column row" style="padding-bottom: 10px;">
+        <div class="column" style="background-color: #4c1d6e">
+            <div class="ui menu" id="MainMenu">
+                <a id="main-sidebar-btn"  class="item">
+                    <i class="sidebar icon"></i>
+                    Menu
+                </a>
+                <a class="item " href="/users">
+                    User
+                </a>
+
+                <div class="right menu">
+                    <div class="right aligned right floated column">
+                        <a class="item">
+                            <form class="ui form" method="get" action="/users/search">
+                                <input type="text" name="keyword" placeholder="ค้นหา">
+                            </form>
+                        </a>
+                    </div>
+                    <div class="item ui dropdown" ng-controller="UserCtrl">
+                        @if(Auth::user()->logo)
+                            <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                        @else
+                            <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                        @endif
+                        @if(Auth::user())
+                            <span><%Auth::user()->email%></span>
+                        @endif
+                        <div class="menu">
+                            <a class="item" href="/">หน้าหลัก</a>
+
+                            <div class="divider"></div>
+                            <div class="header">
+                                <i class="tags icon"></i>
+                                เลือกสิทธิ์การใช้งาน
+                            </div>
+                            @foreach( Auth::user()->roles as $role)
+                                <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                                   href="/<%$role->key%>">
+                                    <% $role->name %>
+                                </a>
+                            @endforeach
+                            <div class="divider"></div>
+                            <a class="item" ng-click="cheng()">Change Profile</a>
+                            <a class="item" ng-click="logout()">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="column" style="background-color: #4c1d6e">
             <div class="ui grid container">
                 <div class="column">
-                    <h2 class="ui header inverted" style="padding: 10px;">
-                        <img src="/images/uplogo.png">
-
+                    <h2 class="ui header inverted" style="padding: 20px;">
+                        <div class="ui small image">
+                            <a href="/users">
+                                <img src="/images/fff.png">
+                            </a>
+                        </div>
                         <div class="content">
                             Success Model
                             <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
                         </div>
                     </h2>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="ui container">
-                <div class="ui large stackable menu " id="MainMenu" style="border-radius: 0px;">
-
-                    <a id="main-sidebar-btn" class="item">
-                        <i class="sidebar icon"></i>
-                        Menu
-                    </a>
-                    <a class="item active">
-                        <%$role_name%>
-                    </a>
-
-                    <div class="right menu">
-                        <div class="item ui dropdown" ng-controller="UserCtrl">
-                            @if(Auth::user()->logo)
-                                <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
-                            @else
-                                <img class="ui avatar avatar-menu image" src="/images/square-image.png">
-                            @endif
-                            @if(Auth::user())
-                                <span><%Auth::user()->email%></span>
-                            @endif
-                            <div class="menu">
-                                <a class="item" href="/">หน้าหลัก</a>
-                                <div class="divider"></div>
-                                <div class="header">
-                                    <i class="tags icon"></i>
-                                    เลือกสิทธิ์การใช้งาน
-                                </div>
-                                @foreach( Auth::user()->roles as $role)
-                                    <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
-                                       href="/<%$role->key%>">
-                                        <% $role->name %>
-                                    </a>
-                                @endforeach
-                                <div class="divider"></div>
-                                <a class="item">Change Profile</a>
-                                <a class="item" ng-click="logout()">Logout</a>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -86,17 +94,21 @@
             <div id="main-sidebar" class="ui inverted labeled vertical sidebar menu" style="padding-left:15px;">
                 @yield('sidemenu')
             </div>
+
             <div id="main-pusher" class="pusher">
                 <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
                     <div class="column">
                         @yield('content')
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
+</div>
+<p></p>
+
 <div class="ui inverted vertical footer segment" style="background-color: #4c1d6e">
     <div class="ui center aligned container">
         <div class="ui horizontal inverted small divided link list">
@@ -105,34 +117,27 @@
     </div>
 </div>
 
+
 @include('admin.js')
 @yield('javascript')
-
-
-<script>
-    $(document).ready(function () {
-        initialResizeWindows();
-    })
-</script>
-
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
-    function initialResizeWindows(){
+    function initialResizeWindows() {
         var bodyheight = $(window).height();
-        var contentHeight = $("#real-content").height()+55;
+        var contentHeight = $("#real-content").height() + 55;
 
-//        console.log("BodyHeight :"+ (bodyheight - 165));
-//        console.log("ContHeight :"+contentHeight);
+        console.log("BodyHeight :" + (bodyheight));
+        console.log("ContHeight :" + contentHeight);
 
-        if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight+200);
-        }else {
-            $("#resize-grid").height(bodyheight-165);
+        if (contentHeight > bodyheight - 165) {
+            $("#resize-grid").height(contentHeight + 230);
+        } else {
+            $("#resize-grid").height(bodyheight - 165);
         }
         $("#main-pusher").height($("#resize-grid").height());
     }
-    $(window).resize(function(){
+    $(window).resize(function () {
         initialResizeWindows();
     })
 
@@ -151,6 +156,11 @@
 
 </script>
 
+<script>
+    $(document).ready(function () {
+        initialResizeWindows();
+    })
+</script>
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
             .controller("UserCtrl", function ($scope, $http) {
@@ -164,15 +174,18 @@
                         window.location = '/auth/login';
                     })
                 }
+
+                $scope.cheng = function () {
+                    var cheng = $http.get('/admin/user');
+
+                    cheng.success(function () {
+                        window.location = '/admin/user/{user.id}';
+                    })
+                }
             })
 
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 
 </script>
 
-
-
-
-
 </body>
-</html>
