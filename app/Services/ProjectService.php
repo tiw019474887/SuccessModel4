@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Area;
 use App\Models\File;
 use App\Models\Image;
 use App\Models\Project;
@@ -25,7 +26,7 @@ class ProjectService extends Service
 {
 
     var $withArr = [
-        'faculty','current_file', 'createdBy', 'cover', 'logo', 'status','createdBy'
+        'faculty','current_file', 'createdBy', 'cover', 'logo', 'area', 'status'
     ];
 
     function __construct(ProjectStatusService $projectStatusService)
@@ -86,6 +87,17 @@ class ProjectService extends Service
         return $project;
     }
 
+    private function linkToArea(Project $project, array $input)
+    {
+        if (isset($input['area'])) {
+            $id = $input['area']['id'];
+            $area = Area::find($id);
+            $project->area()->associate($area)->save();
+        }
+
+        return $project;
+    }
+
     public function store(array $input)
     {
 
@@ -107,6 +119,7 @@ class ProjectService extends Service
             $project = Project::find($id);
             $project->fill($input);
             $project->save();
+            $this->linkToArea($project, $input);
             $this->linkToFaculty($project, $input);
             $this->linkToStatus($project, $input);
             $this->linkToUser($project, $input);
