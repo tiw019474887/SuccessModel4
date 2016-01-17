@@ -211,9 +211,9 @@
                     <div class="six wide column">
                         <div class="column">
                             <div class="ui segment">
-                                <div>
-                                    <div ng-contller="DemoController">
-                                        <openlayers ol-center="center" height="300px" width="100%">
+                                <div ng-app="demoapp">
+                                    <div ng-controller="DemoController"></div>
+                                        <openlayers ol-center="center" height="300%">
                                             <ol-marker name="Phayao"
                                                        <?php if (isset ($project->area->lat , $project->area->lon, $project->area->zoom)): ?>
                                                        lat="<% $project->area->lat %>"
@@ -224,7 +224,6 @@
                                                 <?php endif; ?>
                                             </ol-marker>
                                         </openlayers>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,11 +237,11 @@
                     <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
 
                     <script>
-                        var app = angular.module("openlayers-directive");
-                        app.controller("DemoController", ['$scope', function ($scope) {
+                        var app = angular.module("demoapp",["openlayers-directive"]);
+                        app.controller('DemoController', [ '$scope', function($scope) {
                             angular.extend($scope, {
                                 center: {
-                                    zoom: 10
+                                    zoom: 6
                                 }
                             });
                         }]);
