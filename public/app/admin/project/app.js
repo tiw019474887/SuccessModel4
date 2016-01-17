@@ -326,6 +326,13 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
     $scope.keyword;
 
 
+    $scope.center = {
+            lat: 19.2154367,
+            lon: 100.2023692,
+            zoom: 9
+    };
+
+
     $scope.mceOptions = {
         inline: false,
         content_css: '/packages/semantic/dist/semantic.min.css',
