@@ -211,13 +211,14 @@
                     <div class="six wide column">
                         <div class="column">
                             <div class="ui segment">
-                                <div ng-app="Demoapp">
+                                <div>
                                     <div ng-contller="DemoController">
                                         <openlayers ol-center="center" height="300px" width="100%">
                                             <ol-marker name="Phayao"
-                                                       <?php if (isset ($project->lat , $project->lon)): ?>
-                                                       lat="<% $project->lat %>"
-                                                       lon="<% $project->lon %>" message="Phayao">
+                                                       <?php if (isset ($project->area->lat , $project->area->lon, $project->area->zoom)): ?>
+                                                       lat="<% $project->area->lat %>"
+                                                       lon="<% $project->area->lon %>"
+                                                       zoom="<% $project->area->zoom %>" message="Phayao">
                                                 <?php else : ?>
                                                 <div>................</div>
                                                 <?php endif; ?>
@@ -234,10 +235,10 @@
                             src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
                     <script type="text/javascript"
                             src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
-                    <link rel="stylesheet" href="/packges/openlayers3/build/ol.css"/>
+                    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
 
                     <script>
-                        var app = angular.module("Demoapp", ["openlayers-directive"]);
+                        var app = angular.module("openlayers-directive");
                         app.controller("DemoController", ['$scope', function ($scope) {
                             angular.extend($scope, {
                                 center: {
