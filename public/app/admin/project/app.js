@@ -331,7 +331,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
             lon: 100.2023692,
             zoom: 9
     };
-
+    
 
     $scope.mceOptions = {
         inline: false,

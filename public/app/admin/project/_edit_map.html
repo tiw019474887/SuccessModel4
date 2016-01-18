@@ -2,8 +2,8 @@
 
     <div class="field">
 
-        <openlayers  ol-center="center" height="400px">
-            <ol-marker lat="project.area.lat" lon="project.area.lon" zoom="project.area.zoom"></ol-marker>
+        <openlayers ol-center="project.area" height="400px">
+            <ol-marker ol-marker-properties="project.area"></ol-marker>
         </openlayers>
 
         <label>Area :</label>
@@ -13,7 +13,7 @@
             <span ng-if="project.area" class="text">{{project.area.name_th}}</span>
 
             <div class="menu">
-                <div class="item" ng-repeat="area in areas" ng-click="updateArea(area)">
+                <div class="item" ng-repeat="area in areas"  ng-click="updateArea(area)">
                     {{area.name_th}}
                 </div>
             </div>
