@@ -212,18 +212,11 @@
                         <div class="column">
                             <div class="ui segment">
                                 <div ng-app="demoapp">
-                                    <div ng-controller="DemoController"></div>
-                                        <openlayers ol-center="center" height="300%">
-                                            <ol-marker name="Phayao"
-                                                       <?php if (isset ($project->area->lat , $project->area->lon, $project->area->zoom)): ?>
-                                                       lat="<% $project->area->lat %>"
-                                                       lon="<% $project->area->lon %>"
-                                                       zoom="<% $project->area->zoom %>" message="Phayao">
-                                                <?php else : ?>
-                                                <div>................</div>
-                                                <?php endif; ?>
-                                            </ol-marker>
+                                    <div ng-controller="DemoController">
+                                        <openlayers ol-center="phayao" height="300%">
+
                                         </openlayers>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -240,10 +233,13 @@
                         var app = angular.module("demoapp",["openlayers-directive"]);
                         app.controller('DemoController', [ '$scope', function($scope) {
                             angular.extend($scope, {
-                                center: {
-                                    zoom: 6
+                                phayao: {
+                                    lat: 51.505,
+                                    lon: -0.09,
+                                    zoom: 8
                                 }
                             });
+
                         }]);
 
                     </script>
