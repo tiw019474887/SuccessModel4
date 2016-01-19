@@ -50,7 +50,10 @@
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="content">
-                                                        <a class="header"><h2><% $project->name %></h2><h3><% $project->nameEN %></h3></a>
+                                                        <a class="header"><h2><% $project->name %></h2>
+
+                                                            <h3><% $project->nameEN %></h3></a>
+
                                                         <div class="meta"><% $project->updated_at->diffForHumans() %></div>
 
                                                         <p>
@@ -58,7 +61,11 @@
                                                         </p>
                                                     </div>
                                                     <div class="extra content">
-                                                        <% $project->faculty->name_th %>
+                                                        <?php if(isset($project->faculty->name_th)) : ?>
+                                                            <% $project->faculty->name_th %>
+                                                        <?php else : ?>
+                                                        
+                                                        <?php endif; ?>
                                                     </div>
                                                     <a href="/users/project/<%$project->id%>">
                                                         <div class="ui two bottom attached buttons">
@@ -78,7 +85,7 @@
                         </div>
                     </div>
                     <div class="ui center">
-                    <?php echo (new App\Pagination($projects))->render(); ?>
+                        <?php echo (new App\Pagination($projects))->render(); ?>
                     </div>
                 </div>
                 <div class="three wide right floated column container">
@@ -128,8 +135,6 @@
     <script type="text/javascript" src="/app/admin/UserService.js"></script>
     <script type="text/javascript" src="/app/admin/RoleService.js"></script>
     <script type="text/javascript" src="/app/admin/FacultyService.js"></script>
-
-
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
 

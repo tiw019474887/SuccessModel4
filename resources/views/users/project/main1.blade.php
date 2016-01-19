@@ -176,7 +176,7 @@
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                         <?php endif; ?>
-
+                        <% $project->faculty->name_th %>
                     </div>
 
                     <div class="six wide column">

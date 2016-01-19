@@ -36,7 +36,6 @@
         <div class="column">
             <div class="ui container">
                 <div class="ui large stackable menu " id="MainMenu" style="border-radius: 0px;">
-
                     <a id="main-sidebar-btn" class="item">
                         <i class="sidebar icon"></i>
                         Menu
