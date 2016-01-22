@@ -213,8 +213,7 @@
                             <div class="ui segment">
                                 <div ng-app="demoapp">
                                     <div ng-controller="DemoController">
-                                        <openlayers ol-center="phayao" height="300%">
-
+                                        <openlayers  ol-center="phayao" height="300px" width="100%">
                                         </openlayers>
                                     </div>
                                 </div>
@@ -230,15 +229,15 @@
                     <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
 
                     <script>
-                        var app = angular.module("demoapp",["openlayers-directive"]);
+                        var app = angular.module('demoapp',['Project','Area','openlayers-directive']);
                         app.controller('DemoController', [ '$scope', function($scope) {
                             angular.extend($scope, {
-                                phayao: {
-                                    lat: 51.505,
-                                    lon: -0.09,
-                                    zoom: 8
-                                }
-                            });
+                                    phayao: {
+                                        lat=project.area.lat,
+                                        lon=project.area.lon,
+                                        zoom=project.area.zoom
+                                    }
+                                });
 
                         }]);
 

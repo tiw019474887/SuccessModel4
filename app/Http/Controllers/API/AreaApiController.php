@@ -35,9 +35,9 @@ class AreaApiController extends Controller {
         return $this->areaService->update(Input::all());
 	}
 
-	public function deleteArea($id)
+	public function delete($id)
 	{
-		return [$this->areaService->delete($id)];
+		return $this->areaService->delete($id);
 	}
 
 

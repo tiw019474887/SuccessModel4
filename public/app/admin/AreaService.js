@@ -1,7 +1,3 @@
-/**
- * Created by chaow on 4/7/2015.
- */
-
 angular.module('Area',[])
     .factory('AreaService',function($http){
         return {

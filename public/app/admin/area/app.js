@@ -1,6 +1,3 @@
-/**
- * Created by chaow on 4/7/2015.
- */
 
 var app = angular.module('AreaAdmin', ['ui.router', 'ngCookies', 'AppConfig', 'angularify.semantic', 'flow','Area', 'Faculty',
     'User','openlayers-directive','uiGmapgoogle-maps'])
@@ -24,7 +21,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "HomeCtrl",
             resolve: {
                 areas: function (AreaService) {
-                    return AreaService.index();
+                    return AreaService.all();
                 }
             }
         })
@@ -65,28 +62,28 @@ app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {
 
     $scope.areas = areas.data;
     $scope.area = {};
-    $scope.delete_modal = false;
+    $scope.delete_model = false;
 
-    $scope.showDeleteModal = function (area) {
+    $scope.showDeleteModel = function (area) {
         $scope.area = area;
-        $scope.delete_modal = true;
+        $scope.delete_model = true;
     }
 
-    $scope.closeDeleteModal = function () {
-        $scope.delete_modal = false;
+    $scope.closeDeleteModel = function () {
+        $scope.delete_model = false;
     }
 
     $scope.ajaxDelete = function (area, bool) {
         $scope.area = area;
         if (bool) {
-            AreaService.delete(areas).success(function (response) {
-                $scope.closeDeleteModal();
+            AreaService.delete(area).success(function (response) {
+                $scope.closeDeleteModel();
                 AreaService.all().success(function (response) {
                     $scope.areas = response;
                 })
             });
         } else {
-            $scope.closeDeleteModal();
+            $scope.closeDeleteModel();
         }
 
     }
