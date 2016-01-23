@@ -64,7 +64,7 @@
                                                         <?php if(isset($project->faculty->name_th)) : ?>
                                                             <% $project->faculty->name_th %>
                                                         <?php else : ?>
-                                                        
+
                                                         <?php endif; ?>
                                                     </div>
                                                     <a href="/users/project/<%$project->id%>">

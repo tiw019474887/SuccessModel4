@@ -57,37 +57,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, areas, AreaService) {
+app.controller("HomeCtrl", function ($scope, $state, areas,$timeout ,AreaService) {
     console.log("HomeCtrl Start...");
 
     $scope.areas = areas.data;
     $scope.area = {};
-    $scope.delete_model = false;
+    $scope.delete_modal = false;
 
-    $scope.showDeleteModel = function (area) {
+    $scope.showDeleteModal = function (area) {
         $scope.area = area;
-        $scope.delete_model = true;
+        $scope.delete_modal = true;
     }
 
-    $scope.closeDeleteModel = function () {
-        $scope.delete_model = false;
+    $scope.closeDeleteModal = function () {
+        $scope.delete_modal = false;
     }
 
     $scope.ajaxDelete = function (area, bool) {
         $scope.area = area;
         if (bool) {
             AreaService.delete(area).success(function (response) {
-                $scope.closeDeleteModel();
+                $scope.closeDeleteModal();
                 AreaService.all().success(function (response) {
                     $scope.areas = response;
                 })
             });
         } else {
-            $scope.closeDeleteModel();
+            $scope.closeDeleteModal();
         }
 
     }
 
+    $timeout(doPopup,200);
 
 });
 

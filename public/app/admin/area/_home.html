@@ -23,7 +23,7 @@
                 <button class="ui icon button" ui-sref="edit({id:area.id})" >
                     <i class="edit icon"></i>
                 </button>
-                <button ng-click="showDeleteModal(area)" class="ui icon negative button" >
+                <button ng-click="showDeleteModal(area)" class="ui icon negative button" data-content="Delete">
                     <i class="delete icon"></i>
                 </button>
             </div>
@@ -48,7 +48,7 @@
         <div class="ui black button" ng-click="ajaxDelete(null,false)">
             No
         </div>
-        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(faculty,true)">
+        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(area,true)">
             Yes
             <i class="checkmark icon"></i>
         </div>
