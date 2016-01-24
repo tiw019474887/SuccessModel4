@@ -21,7 +21,7 @@ angular.module('Area',[])
                     data : area
                 })
             },
-            delete : function(area){
+            delete: function (area) {
                 return $http.delete('/api/area/' + area.id);
             },
             save : function(area){
