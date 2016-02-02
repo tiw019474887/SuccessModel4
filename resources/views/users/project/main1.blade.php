@@ -42,7 +42,6 @@
                             <div class="column">
                                 <div id="slider" class="flexslider" style="margin-bottom: 0px;">
                                     <ul class="slides">
-
                                         @foreach($project->youtubes as $youtube)
                                             <li>
                                                 <?php if(isset($youtube->vid)) : ?>
@@ -54,22 +53,10 @@
                                                 <?php endif; ?>
                                             </li>
                                         @endforeach
-
-                                        @foreach($project->images as $image)
-                                            <li>
-                                                <?php if(isset($image->url)) : ?>
-                                                <img src="<% $image->url %>?w=640&h=380"/>
-                                                <?php else : ?>
-                                                <img src="/images/fff.png?w=640&h=380"/>
-                                                <?php endif; ?>
-                                            </li>
-                                        @endforeach
-
                                     </ul>
                                 </div>
                                 <div id="carousel" class="flexslider">
                                     <ul class="slides">
-
                                         @foreach($project->youtubes as $youtube)
                                             <li>
                                                 <?php if(isset($youtube->vid)) : ?>
@@ -78,16 +65,6 @@
                                                             src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
                                                     </iframe>
                                                 </div>
-                                                <?php endif; ?>
-                                            </li>
-                                        @endforeach
-
-                                        @foreach($project->images as $image)
-                                            <li>
-                                                <?php if(isset($image->url)) : ?>
-                                                <img src="<% $image->url %>?w=640&h=380"/>
-                                                <?php else : ?>
-                                                <img src="/images/fff.png?w=640&h=380"/>
                                                 <?php endif; ?>
                                             </li>
                                         @endforeach
@@ -170,13 +147,11 @@
                     <h3>ดำเนินการโดย/Operator</h3>
 
                     <div class="ui segment">
-
                         <?php if(isset($project->faculty->logo->url)) : ?>
                         <img class="ui avatar image" src="<% $project->faculty->logo->url %>?w=300&h=300"/>
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                         <?php endif; ?>
-                        <% $project->faculty->name_th %>
                     </div>
 
                     <div class="six wide column">
@@ -207,56 +182,37 @@
                     </div>
 
                     <h3>แผนที่/Map</h3>
-
                     <div class="six wide column">
                         <div class="column">
                             <div class="ui segment">
                                 <div ng-app="demoapp">
                                     <div ng-controller="DemoController">
-                                        <openlayers  ol-center="phayao" height="300px" width="100%">
+                                        <openlayers  lat="<% $project->area->lat %>" lon="<% $project->area->lon %>" zoom="<% $project->area->zoom%>" height="400px">
+                                            <ol-marker lat="<% $project->area->lat %>" lon="<% $project->area->lon %>"  ></ol-marker>
                                         </openlayers>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-                    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-                    <script type="text/javascript"
-                            src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
-                    <script type="text/javascript"
-                            src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
-                    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
-
-                    <script>
-                        var app = angular.module('demoapp',['Project','Area','openlayers-directive']);
-                        app.controller('DemoController', [ '$scope', function($scope) {
-                            angular.extend($scope, {
-                                    phayao: {
-                                        lat=project.area.lat,
-                                        lon=project.area.lon,
-                                        zoom=project.area.zoom
-                                    }
-                                });
-
-                        }]);
-
-                    </script>
 
                 </div>
             </div>
         </div>
     </div>
-
 @stop
 
-
-
-
-
-
 @section('javascript')
+    <script>
+        var app = angular.module('demoapp', ['Project', 'Area', 'openlayers-directive']);
+        app.controller('DemoController', ['$scope', function ($scope) {
+            angular.extend($scope, {
+                
+            });
 
+        }]);
+
+    </script>
     <script type="text/javascript">
         $(window).load(function () {
             // The slider being synced must be initialized first
@@ -290,7 +246,17 @@
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
     <script type="text/javascript" src="/app/users/UsersService.js"></script>
+    <script type="text/javascript" src="/app/admin/AreaService.js"></script>
+    <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
+
+    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
+    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+    <script type="text/javascript"
+            src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript"
+            src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+    <link rel="stylesheet" href="/packages/openlayers/build/ol.css"/>
 
 @stop
