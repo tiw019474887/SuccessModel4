@@ -1,0 +1,27 @@
+<form class="ui form" ng-submit="save()">
+
+    <div class="field">
+
+        <openlayers ol-center="project.area" height="400px">
+            <ol-marker ol-marker-properties="project.area"></ol-marker>
+        </openlayers>
+
+        <label>Area :</label>
+        <div class="ui fluid selection upward dropdown">
+            <i class="dropdown icon"></i>
+            <span ng-if="!project.area" class="text">Select Area</span>
+            <span ng-if="project.area" class="text">{{project.area.name_th}}</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="area in areas"  ng-click="updateArea(area)">
+                    {{area.name_th}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+
+</form>
