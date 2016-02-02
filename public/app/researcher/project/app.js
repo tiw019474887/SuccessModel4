@@ -4,7 +4,7 @@
 
 
 var app = angular.module('ResearcherProject', ['ui.router', 'ui.tinymce', 'AppConfig', 'User', 'Researcher',
-    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    'Youtube', 'User','Area', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -54,6 +54,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 youtubes: function (ProjectService, $stateParams) {
                     return ProjectService.getYoutubes($stateParams.id);
+                },
+                areas: function (AreaService) {
+                    return AreaService.all();
                 }
 
             }
@@ -261,7 +264,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
-                                     UserService, UserSearchService, project,
+                                     UserService, UserSearchService, project,areas,
                                      images, members, file, previousFiles, youtubes) {
 
     console.log("EditCtrl Start...");
@@ -273,6 +276,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
     $scope.keyword;
+    $scope.areas = areas.data;
 
 
     $scope.mceOptions = {
@@ -326,6 +330,10 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
 
     $scope.updateFaculty = function (faculty) {
         $scope.project.faculty = faculty;
+    }
+
+    $scope.updateArea = function (area) {
+        $scope.project.area = area;
     }
 
     // search segment
