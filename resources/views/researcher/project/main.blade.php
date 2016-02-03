@@ -18,6 +18,7 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
 @stop
 
 
@@ -46,6 +47,7 @@
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
     <script type="text/javascript" src="/app/admin/UserService.js"></script>
+    <script type="text/javascript" src="/app/admin/AreaService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
     <script src="/app/admin/loader.js"></script>

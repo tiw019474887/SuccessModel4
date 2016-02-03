@@ -4,7 +4,7 @@
 
 
 var app = angular.module('ResearcherProject', ['ui.router', 'ui.tinymce', 'AppConfig', 'User', 'Researcher',
-    'Youtube', 'User', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
+    'Youtube', 'User','Area', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','openlayers-directive'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -54,6 +54,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 youtubes: function (ProjectService, $stateParams) {
                     return ProjectService.getYoutubes($stateParams.id);
+                },
+                areas: function(AreaService){
+                    return AreaService.all();
                 }
 
             }
@@ -148,7 +151,7 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
     console.log("AddCtrl Start...");
     $scope.project = project.data;
 
-    $scope.addProject = function () {
+    $scope.save = function () {
         ResearcherService.addProject($scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
@@ -187,7 +190,7 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
 });
 
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ProjectService, ResearcherService,
+                                     UserService, UserSearchService, ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -261,13 +264,14 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
-                                     UserService, UserSearchService, project,
-                                     images, members, file, previousFiles, youtubes) {
+                                     UserService, UserSearchService,ProjectService, project,
+                                     images, areas, members, file, previousFiles, youtubes) {
 
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;
     $scope.images = images.data;
+    $scope.areas = areas.data;
     $scope.projectMembers = members.data;
     $scope.file = file.data;
     $scope.previousFiles = previousFiles.data;
@@ -313,7 +317,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     }
 
     $scope.save = function () {
-        ResearcherService.update($scope.project.id, $scope.project).success(function (resposne) {
+        ResearcherService.update($scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);
@@ -326,6 +330,10 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
 
     $scope.updateFaculty = function (faculty) {
         $scope.project.faculty = faculty;
+    }
+
+    $scope.updateArea = function (area) {
+        $scope.project.area = area;
     }
 
     // search segment

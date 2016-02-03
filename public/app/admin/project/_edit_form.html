@@ -1,17 +1,18 @@
 <form class="ui form" ng-submit="save()">
 
     <div class="field">
-        <label>Project Name</label>
+        <label>ชื่อโปรเจค/Project Name</label>
         <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
     </div>
 
+
     <div class="field">
-        <label>Project Abstract</label>
-        <textarea rows="5" ng-model="project.abstract"  placeholder="Abstract Thai" required="required"></textarea>
+        <label>บทคัดย่อ/Project Abstract</label>
+        <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
     </div>
 
     <div class="field">
-        <label>Project Content</label>
+        <label>รายละเอียดโครงการ/Project Content</label>
         <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
     </div>
 
