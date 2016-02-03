@@ -50,12 +50,14 @@
     <script type="text/javascript" src="/app/admin/AreaService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
+    <script type="text/javascript" src="/app/admin/project/app.js"></script>
+    <script type="text/javascript" src="/app/researcher/project/app.js"></script>
     <script src="/app/admin/loader.js"></script>
-    <script src="/app/researcher/project/app.js"></script>
 
     <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
     <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+
 
 @stop

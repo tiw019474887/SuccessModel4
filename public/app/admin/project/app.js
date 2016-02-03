@@ -310,7 +310,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 
 app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter,
                                      UserService, UserSearchService, ProjectService,
-                                     statuses, faculties, project, areas, images, members, file, previousFiles, youtubes) {
+                                     statuses, faculties, project, images, areas, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
 
     $scope.project = project.data;

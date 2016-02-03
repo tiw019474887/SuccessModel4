@@ -190,7 +190,7 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
 });
 
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
-                                     UserService, UserSearchService, ResearcherService,
+                                     UserService, UserSearchService, ProjectService, ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
 
@@ -279,6 +279,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.keyword;
 
 
+
     $scope.mceOptions = {
         inline: false,
         content_css: '/packages/semantic-ui/dist/semantic.min.css',
@@ -317,7 +318,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     }
 
     $scope.save = function () {
-        ResearcherService.update($scope.project).success(function (resposne) {
+        ProjectService.save($scope.project).success(function (resposne) {
             $state.go("home")
         }).error(function (response) {
             alert(response.name_th);

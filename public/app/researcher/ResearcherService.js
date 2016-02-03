@@ -42,6 +42,13 @@ angular.module('Researcher',[])
                     data : $project
                 })
             },
+            save: function (project) {
+                return $http({
+                    url: '/api/project/' + project.id,
+                    method: 'put',
+                    data: project
+                })
+            },
             getMembers: function ($id) {
                 return $http({
                     url: '/api/project/' + $id + '/member',
