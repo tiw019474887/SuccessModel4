@@ -2,133 +2,19 @@
 
     <div class="field">
         <label>Project Name</label>
-        <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
+        <input ng-model="project.name" type="text" name="name" placeholder="Project Name" required="required">
+    </div>
+    <div class="field">
+        <label>Project NameEN</label>
+        <input ng-model="project.name" type="text" name="name" placeholder="Project Name" required="required">
     </div>
 
     <div class="field">
         <label>Project Abstract</label>
-        <textarea rows="5" ng-model="project.abstract"  placeholder="Abstract Thai" required="required"></textarea>
-    </div>
-
-    <div class="field">
-        <label>Project Content</label>
-        <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
-    </div>
-
-    <div class="two fields">
-        <div class="field">
-            <label>Status</label>
-
-            <div class="ui fluid dropdown upward labeled icon button">
-                <i class="world icon"></i>
-                <span ng-if="!project.status" class="text">Select Status</span>
-                <span ng-if="project.status" class="text">{{project.status.name}}</span>
-
-                <div class="menu">
-                    <div class="item" ng-repeat="status in statuses" ng-click="updateStatus(status)">{{status.name}}
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="field">
-            <label>Faculty</label>
-
-            <div class="ui fluid selection upward dropdown">
-                <i class="dropdown icon"></i>
-                <span ng-if="!project.faculty" class="text">Select Faculty</span>
-                <span ng-if="project.faculty" class="text">{{project.faculty.name_th}}</span>
-
-                <div class="menu">
-                    <div class="item" ng-repeat="faculty in faculties" ng-click="updateFaculty(faculty)">
-                        {{faculty.name_th}}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <textarea rows="5" ng-model="project.abstract" required="required"></textarea>
     </div>
 
 
-
-    <div class="field">
-        <label>Created By</label>
-
-        <div class="ui divided list">
-            <div class="item" ng-if="project.created_by != null">
-                <div ng-if="createdBy.checkUser(project.created_by)" class="right floated negative compact ui button" ng-click="createdBy.removeUser(project.created_by)">Remove</div>
-                <img class="ui avatar image" src="/images/square-image.png">
-                <div class="content">
-                    <div class="header">{{project.created_by.firstname}} {{project.created_by.lastname}}</div>
-                    {{project.user.email}}
-                </div>
-            </div>
-        </div>
-
-        <div ng-if="project.created_by == null" class="ui left icon input">
-            <input ng-change="createdBy.searchUser(keyword)" ng-model="keyword" type="text" placeholder="Search users...">
-            <i class="users icon"></i>
-        </div>
-
-        <div class="ui divided list">
-            <div class="item" ng-repeat="user in createdBy.users">
-                <div ng-if="!createdBy.checkUser(user)" class="right floated compact ui button" ng-click="createdBy.addUser(user)">Select</div>
-                <div ng-if="createdBy.checkUser(user)" class="right floated negative compact ui button" ng-click="createdBy.removeUser(user)">Remove</div>
-                <img class="ui avatar image" src="/images/square-image.png">
-                <div class="content">
-                    <div class="header">{{user.firstname}} {{user.lastname}}</div>
-                    {{user.email}}
-                </div>
-            </div>
-        </div>
-
-        <div class="field" flow-init flow-object="upload.myFlow"
-             flow-file-success="$file.msg = $message"
-             flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
-             flow-file-success="flowSuccess($file,$message)">
-
-            <div flow-drop class="ui bordered medium" style="border: 1px dotted;">
-
-                Drag and Drop Image to change<br/>
-
-                <div ng-if="$flow.files.length==0 && !project.logo" class="ui bordered  small image">
-                    <img src="/images/square-image.png"/>
-                </div>
-
-
-                <div ng-if="$flow.files.length==0 && project.logo" class="ui bordered  small image">
-                    <img ng-src="{{project.logo.url}}?h=200"/>
-                </div>
-
-                <div ng-repeat="file in upload.myFlow.files">
-                    <div class="ui small bordered image">
-                        <a ng-if="file.isComplete()" href="#" class="ui label left corner">
-                            <i class="checkmark green icon"></i>
-                        </a>
-                        <img flow-img="file"/>
-
-                        <div class="ui bottom attached progress" ng-if="file.isUploading()">
-                            <div class="bar" data-percent="{{file.progress() * 100}}"></div>
-                        </div>
-                    </div>
-
-                    <br/>
-
-                    <button ng-if="!file.isComplete()" ng-click="upload.uploadFile()" type="button"
-                            class="ui positive submit button">
-                        Apply Image
-                    </button>
-
-                    <button ng-if="!file.isComplete()" ng-click="upload.cancelFile(file)" type="button"
-                            class="ui default submit button">
-                        Remove
-                    </button>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
