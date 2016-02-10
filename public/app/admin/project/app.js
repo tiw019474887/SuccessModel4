@@ -394,6 +394,10 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
         $scope.project.area = area;
     }
 
+    $scope.updateYear = function (year){
+        $scope.project.year = year;
+    }
+
     // search segment
 
     $scope.createdBy = {};

@@ -34,20 +34,19 @@
         </div>
 
         <div class="field">
-            <label>ปีโครงการ/Year</label>
+            <label>Year</label>
 
             <div class="ui fluid selection upward dropdown">
                 <i class="dropdown icon"></i>
-                <span ng-if="!project.yearProject" class="year">Select Year</span>
-                <span ng-if="project.yearProject" class="year">{{project.yearProject}}</span>
+                <span ng-if="!project.year" class="text">Select Year</span>
+                <span ng-if="project.year" class="text">{{project.yearProject}}</span>
 
                 <div class="menu">
-                    <div class="item" ng- >
-                        {{project.yearProject}}
+                    <div class="item" ng-repeat="year in years" ng-click="updateYear(year)">
+                        {{year.name_th}}
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="two fields">
