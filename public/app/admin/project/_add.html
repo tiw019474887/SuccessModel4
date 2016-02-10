@@ -34,6 +34,10 @@
         </div>
 
         <div class="field">
+            <select ng-model="project.yearProject" ng-options="opt as opt for opt in months" ng-init="selected='March'"></select>
+        </div>
+
+        <div class="field">
             <label>Year</label>
 
             <div class="ui fluid selection upward dropdown">

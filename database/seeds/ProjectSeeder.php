@@ -17,9 +17,9 @@ class ProjectSeeder extends Seeder
         ];
 
         foreach($years as $year){
-            $f = new Project();
-            $f->yearProject = $year;
-            $f->save();
+            $y = new \App\Models\Project();
+            $y->yearProject = $year;
+            $y->save();
         }
     }
 }
