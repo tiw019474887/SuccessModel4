@@ -13,7 +13,7 @@ angular.module('Researcher',[])
                     url : '/api/researcher/projects',
                     method : 'get'
             })
-        },
+            },
             addProject : function($project){
                 return $http({
                     url : '/api/researcher/add-project',

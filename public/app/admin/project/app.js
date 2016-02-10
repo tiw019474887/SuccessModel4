@@ -145,12 +145,13 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, year, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
     $scope.faculties = faculties.data;
 
+    $scope.years = 2013;
 
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
