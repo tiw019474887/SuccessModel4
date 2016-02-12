@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Faculty;
 use App\Models\Image;
 use App\Models\Project;
 use \View;
@@ -51,7 +52,10 @@ class UserController extends Controller
 
         $keyword = \Input::get('keyword');
 
-        $projects = Project::where('name', '=~', ".*$keyword.*")->paginate(6);
+        $projects = Project::where('name', '=~', ".*$keyword.*")
+            ->whereHas('status', function ($t) {
+            $t->where('key', '=', 'published');
+        })->paginate(6);
         $projects->appends(['keyword' => $keyword]);
         return view('users.project.main')
             ->with('projects', $projects)

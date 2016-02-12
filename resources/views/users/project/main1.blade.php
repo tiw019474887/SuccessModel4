@@ -152,12 +152,14 @@
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                         <?php endif; ?>
+                        <% $project->faculty->name_th%>
                     </div>
+
 
                     <div class="six wide column">
                         <h3>นักวิจัย/Researcher</h3>
                         <?php
-                        //print_r($project->members);
+
                         ?>
                         <div class="ui segment" style="padding: 14px;">
                             @foreach($project->members as $project->member)
@@ -167,7 +169,7 @@
                                         <img class="ui avatar image"
                                              src="<% $project->member->logo->url %>?w=300&h=300"/>
                                         <?php else : ?>
-                                        <div>//</div>
+                                        <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                                         <?php endif; ?>
                                         <?php if (isset ($project->member->title, $project->member->firstname, $project->member->lastname)) : ?>
                                         <% $project->member->title %>
@@ -182,37 +184,95 @@
                     </div>
 
                     <h3>แผนที่/Map</h3>
+
                     <div class="six wide column">
                         <div class="column">
                             <div class="ui segment">
                                 <div ng-app="demoapp">
                                     <div ng-controller="DemoController">
-                                        <openlayers  lat="<% $project->area->lat %>" lon="<% $project->area->lon %>" zoom="<% $project->area->zoom%>" height="400px">
-                                            <ol-marker lat="<% $project->area->lat %>" lon="<% $project->area->lon %>"  ></ol-marker>
+                                        <openlayers lat="<% $project->area->lat %>" lon="<% $project->area->lon %>"
+                                                    zoom="<% $project->area->zoom%>" height="300px">
+                                            <ol-marker lat="<% $project->area->lat %>"
+                                                       lon="<% $project->area->lon %>"></ol-marker>
                                         </openlayers>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <a class="item" id="logIn">
+                        <i class="user icon"></i> Log In
+                    </a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modaldiv" class="ui modal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Profile Picture
+        </div>
+        <div id="slider" class="flexslider" style="margin-bottom: 400px;">
+            <ul class="slides">
+                @foreach($project->images as $image)
+                    <li>
+                        <?php if(isset($image->url)) : ?>
+                        <img src="<% $image->url %>?w=640&h=380"/>
+                        <?php else : ?>
+                        <img src="/images/fff.png?w=640&h=380"/>
+                        <?php endif; ?>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        <div id="carousel" class="flexslider">
+            <ul class="slides">
+                @foreach($project->images as $image)
+                    <li>
+                        <?php if(isset($image->url)) : ?>
+                        <img src="<% $image->url %>?w=640&h=380"/>
+                        <?php else : ?>
+                        <img src="/images/fff.png?w=640&h=380"/>
+                        <?php endif; ?>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+
+
+        <div class="actions">
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
             </div>
         </div>
     </div>
 @stop
 
 @section('javascript')
+
+    <script type="text/javascript">
+
+        $('#logIn').click(function () {
+            $('#modaldiv').modal('show');
+        });
+
+    </script>
+
     <script>
         var app = angular.module('demoapp', ['Project', 'Area', 'openlayers-directive']);
         app.controller('DemoController', ['$scope', function ($scope) {
-            angular.extend($scope, {
-                
-            });
+            angular.extend($scope, {});
 
         }]);
 
     </script>
+
+
+
     <script type="text/javascript">
         $(window).load(function () {
             // The slider being synced must be initialized first
