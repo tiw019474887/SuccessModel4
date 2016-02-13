@@ -145,13 +145,13 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, months, UserService, UserSearchService, ProjectService, $timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
     $scope.faculties = faculties.data;
 
-    $scope.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
 
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
@@ -161,6 +161,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
             alert(response.name_th);
         });
     }
+    $scope.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
     $scope.statuses = statuses.data;
 
@@ -332,7 +333,8 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
             lon: 100.2023692,
             zoom: 9
     };
-    
+
+    $scope.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
     $scope.mceOptions = {
         inline: false,
