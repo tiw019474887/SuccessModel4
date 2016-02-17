@@ -68,7 +68,7 @@ class UniversityProjectService extends ResearcherProjectService
         if ($project) {
             /* @var Project $project*/
             if($project->status->key == 'university'){
-                $this->linkToFacultyStatus($project, $input);
+                $this->linkToDraftStatus($project, $input);
                 $this->linkToSuggestion($project, $input);
             }else{
                 return \Response::json([
