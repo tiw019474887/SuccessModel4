@@ -161,7 +161,7 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
             alert(response.name_th);
         });
     }
-    $scope.months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    $scope.months = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.statuses = statuses.data;
 
@@ -334,7 +334,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
             zoom: 9
     };
 
-    $scope.months = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565',];
+    $scope.months = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.mceOptions = {
         inline: false,
