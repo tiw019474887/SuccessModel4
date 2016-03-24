@@ -1,0 +1,90 @@
+<h2>Add User</h2>
+
+<form class="ui form" ng-submit="save()">
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
+    <h4 class="ui dividing header">User Information</h4>
+
+    <div class="three fields">
+        <div class="field">
+            <label>Title</label>
+            <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+        </div>
+
+        <div class="field">
+            <label>First Name</label>
+            <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name"
+                   required="required">
+        </div>
+
+        <div class="field">
+            <label>Last Name</label>
+            <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name"
+                   required="required">
+        </div>
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label>E-mail</label>
+            <input ng-model="user.email" type="text" name="email" placeholder="User E-mail" required="required">
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input ng-model="user.password" type="password" name="password" placeholder="User Password"
+                   required="required">
+        </div>
+
+        <div class="field">
+            <label>Verify Password</label>
+            <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password"
+                   required="required">
+        </div>
+    </div>
+
+    <div class="field">
+        <label>Faculty</label>
+
+        <div id="faculty_dropdown" class="ui floating fluid search selection dropdown labeled icon button">
+            <i class="world icon"></i>
+            <span ng-if="!user.faculty" class="text">Select Faculty</span>
+            <span ng-if="user.faculty" class="text">{{user.faculty.name_th}}</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="faculty in faculties" ng-click="user.faculty = faculty">
+                    {{faculty.name_th}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="field">
+        <label>Roles</label>
+
+        <div id="roles_dropdown" class="ui fluid multiple search selection dropdown">
+            <input type="hidden" name="role">
+            <i class="dropdown icon"></i>
+
+            <a ng-repeat="role in user.roles | orderBy : role.id" class="ui label transition visible" data-value="{{role.id}}" style="display: inline-block !important;">{{role.name}}<i class="delete icon"></i></a>
+
+            <div class="default text">เลือกบทบาทหน้าที่</div>
+            <div class="menu">
+                <div ng-class="{filtered : hasRole(role)}" class="item" data-value="{{role.id}}" ng-repeat="role in roles | orderBy : role.id">{{role.name}}</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>

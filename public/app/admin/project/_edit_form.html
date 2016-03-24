@@ -16,20 +16,22 @@
         <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
     </div>
 
-    <div class="field">
-        <label>Year</label>
-        <div class="ui fluid selection upward dropdown">
-
-            <span ng-if="!project.yearProject" class="text">Select Year</span>
-            <span ng-if="project.yearProject" class="text">{{project.yearProject}}</span>
-
-            <div class="item">
-
-                <select  ng-model="project.yearProject" ng-options="opt as opt for opt in months" ></select>
+    <div class="two fields">
+        <div class="field">
+            <label>Year</label>
+            <div class="ui fluid selection upward dropdown">
+                <i class="dropdown icon"></i>
+                <span ng-if="!project.yearProject" class="text">Select Year</span>
+                <span ng-if="project.yearProject" class="text">{{project.yearProject}}</span>
+                <div class="menu">
+                    <div class="item">
+                        <select  ng-model="project.yearProject" ng-options="opt as opt for opt in months" ></select>
+                    </div>
+                </div>
 
             </div>
         </div>
-    </div>
+        </div>
 
 
     <div class="two fields">

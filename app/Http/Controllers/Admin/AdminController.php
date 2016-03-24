@@ -53,4 +53,16 @@ class AdminController extends Controller
     {
         return view('admin.area.main');
     }
+
+    public function getSearch()
+    {
+
+        $keyword = \Input::get('keyword');
+
+        $projects = Project::where('name', '=~', ".*$keyword.*")->paginate(6);
+        $projects->appends(['keyword' => $keyword]);
+        return view('admin.project.main')
+            ->with('projects', $projects)
+            ->with('keyword', $keyword);
+    }
 }

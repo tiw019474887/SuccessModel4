@@ -10,9 +10,12 @@
                 Add Project
             </div>
         </div>
+
         <div class="right aligned right floated column">
             <div class="ui icon input">
-                <input type="text" placeholder="Search...">
+                <form class="ui form" method="get" action="/admin/search">
+                    <input type="text" name="keyword" placeholder="?????">
+                </form>
                 <i class="circular search icon"></i>
             </div>
         </div>
@@ -28,6 +31,7 @@
                     <th class="center aligned one wide">ID</th>
                     <th class="center aligned wide">Project Name</th>
                     <th class="center aligned three wide">Faculty</th>
+                    <th class="center aligned three wide">Year</th>
                     <th class="center aligned two wide">Create By</th>
                     <th class="center aligned two wide">Status</th>
                     <th class="center aligned two wide">Action</th>
@@ -38,6 +42,7 @@
                     <td class="center aligned collapsing" ng-bind="project.id"></td>
                     <td ng-bind="project.name"></td>
                     <td ng-bind="project.faculty.name_th"></td>
+                    <td></td>
                     <td ng-bind="project.created_by.email"></td>
                     <td>{{project.status.name}}</td>
                     <td class="center aligned collapsing">

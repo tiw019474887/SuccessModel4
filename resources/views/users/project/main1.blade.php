@@ -40,23 +40,17 @@
                     <div class="ten wide column">
                         <div class="one column row" style="">
                             <div class="column">
-                                <div id="slider" class="flexslider" style="margin-bottom: 0px;">
+                                <div class="flexslider">
                                     <ul class="slides">
-                                        @foreach($project->youtubes as $youtube)
+                                        @foreach($project->images as $image)
                                             <li>
-                                                <?php if(isset($youtube->vid)) : ?>
-                                                <div class="videoWrapper">
-                                                    <iframe class="youtube" width="640" height="380"
-                                                            src="http://www.youtube.com/embed/<?php echo $youtube->vid ?>?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer">
-                                                    </iframe>
-                                                </div>
+                                                <?php if(isset($image->url)) : ?>
+                                                <img src="<% $image->url %>?w=640&h=380"/>
+                                                <?php else : ?>
+                                                <img src="/images/fff.png?w=640&h=380"/>
                                                 <?php endif; ?>
                                             </li>
                                         @endforeach
-                                    </ul>
-                                </div>
-                                <div id="carousel" class="flexslider">
-                                    <ul class="slides">
                                         @foreach($project->youtubes as $youtube)
                                             <li>
                                                 <?php if(isset($youtube->vid)) : ?>
@@ -76,14 +70,6 @@
                     <div clas="row" style="margin-bottom: 14px;"></div>
                     <div class="row" style="margin-bottom: 14px;">
                         <div class="wide column">
-
-                            <div class="ui right aligned segment">
-                            <span style="font-weight: bold;">
-                                .................................
-                            </span>
-                            </div>
-
-
                             <h3>รายละเอียดโครงการ/Description</h3>
 
                             <div class="ui segment" id="tinymce_content" style="padding: 14px;">
@@ -158,9 +144,6 @@
 
                     <div class="six wide column">
                         <h3>นักวิจัย/Researcher</h3>
-                        <?php
-
-                        ?>
                         <div class="ui segment" style="padding: 14px;">
                             @foreach($project->members as $project->member)
                                 <div class="ui two columns grid">
@@ -200,67 +183,13 @@
                             </div>
                         </div>
                     </div>
-                    <a class="item" id="logIn">
-                        <i class="user icon"></i> Log In
-                    </a>
                 </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="modaldiv" class="ui modal">
-        <i class="close icon"></i>
-
-        <div class="header">
-            Profile Picture
-        </div>
-        <div id="slider" class="flexslider" style="margin-bottom: 400px;">
-            <ul class="slides">
-                @foreach($project->images as $image)
-                    <li>
-                        <?php if(isset($image->url)) : ?>
-                        <img src="<% $image->url %>?w=640&h=380"/>
-                        <?php else : ?>
-                        <img src="/images/fff.png?w=640&h=380"/>
-                        <?php endif; ?>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-        <div id="carousel" class="flexslider">
-            <ul class="slides">
-                @foreach($project->images as $image)
-                    <li>
-                        <?php if(isset($image->url)) : ?>
-                        <img src="<% $image->url %>?w=640&h=380"/>
-                        <?php else : ?>
-                        <img src="/images/fff.png?w=640&h=380"/>
-                        <?php endif; ?>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-
-
-        <div class="actions">
-            <div class="ui positive right labeled icon button">
-                Yep, that's me
-                <i class="checkmark icon"></i>
             </div>
         </div>
     </div>
 @stop
 
 @section('javascript')
-
-    <script type="text/javascript">
-
-        $('#logIn').click(function () {
-            $('#modaldiv').modal('show');
-        });
-
-    </script>
 
     <script>
         var app = angular.module('demoapp', ['Project', 'Area', 'openlayers-directive']);
@@ -271,27 +200,18 @@
 
     </script>
 
+    <script type="text/javascript">
 
+        $('#logIn').click(function () {
+            $('#modaldiv').modal('show');
+        });
+
+    </script>
 
     <script type="text/javascript">
         $(window).load(function () {
-            // The slider being synced must be initialized first
-            $('#carousel').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                itemWidth: 210,
-                itemMargin: 5,
-                asNavFor: '#slider'
-            });
-
-            $('#slider').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                sync: "#carousel"
+            $('.flexslider').flexslider({
+                animation: "slide"
             });
         });
     </script>

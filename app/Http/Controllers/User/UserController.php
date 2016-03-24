@@ -18,11 +18,6 @@ class UserController extends Controller
         View::share('role_name', 'User');
     }
 
-    public function viewusers()
-    {
-        return view('users.project.mains');
-    }
-
     public function index()
     {
         $projects = Project::whereHas('status', function ($q) {
@@ -55,7 +50,7 @@ class UserController extends Controller
         $projects = Project::where('name', '=~', ".*$keyword.*")
             ->whereHas('status', function ($t) {
             $t->where('key', '=', 'published');
-        })->paginate(6);
+            })->paginate(6);
         $projects->appends(['keyword' => $keyword]);
         return view('users.project.main')
             ->with('projects', $projects)
@@ -74,6 +69,11 @@ class UserController extends Controller
 
         return redirect("/users/project/$projectId");
 
+    }
+
+    public function edituser()
+    {
+        return view('admin.user.main2');
     }
 
 

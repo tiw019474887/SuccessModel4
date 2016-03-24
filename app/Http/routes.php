@@ -35,6 +35,7 @@ Route::group([
         Route::get('/admin/project', 'Admin\AdminController@project');
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
         Route::get('/admin/api-key', 'Admin\AdminController@apikey');
+        Route::get('/search', 'User\UserController@getSearch');
 
 
     });
@@ -42,6 +43,8 @@ Route::group([
 Route::get('/researcher', 'Researcher\ResearcherController@index');
 Route::get('/faculty', 'Faculty\FacultyController@index');
 Route::get('/university', 'University\UniversityController@index');
+Route::get('/user/edituser/', 'User\UserController@edituser');
+
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'User\UserController@index');

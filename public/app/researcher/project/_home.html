@@ -10,9 +10,11 @@
         <th class="center aligned one wide">ID</th>
         <th class="center aligned wide">Project Name</th>
         <th class="center aligned three wide">Faculty</th>
+        <th class="center aligned three wide">Year</th>
         <th class="center aligned two wide">Create By</th>
         <th class="center aligned two wide">Status</th>
         <th class="center aligned three wide">Action</th>
+
     </tr>
     </thead>
     <tbody>
@@ -20,6 +22,7 @@
         <td class="center aligned collapsing" ng-bind="project.id"></td>
         <td ng-bind="project.name"></td>
         <td ng-bind="project.faculty.name_th"></td>
+        <td></td>
         <td ng-bind="project.created_by.email"></td>
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
@@ -34,9 +37,11 @@
                         <button ng-click="showDeleteModal(project)" class="ui icon negative button" data-content="Delete">
                             <i class="delete icon"></i>
                         </button>
-                    </div>
 
+                    </div>
             </div>
+
+
         </td>
     </tr>
     </tbody>

@@ -62,7 +62,7 @@
                                 </a>
                             @endforeach
                             <div class="divider"></div>
-                            <a class="item" ng-click="cheng()">Change Profile</a>
+                            <a class="item" href="/user/edituser"  >Change Profile</a>
                             <a class="item" ng-click="logout()">Logout</a>
                         </div>
                     </div>
@@ -174,7 +174,6 @@
                         window.location = '/auth/login';
                     })
                 }
-
                 $scope.cheng = function () {
                     var cheng = $http.get('/admin/user');
 
