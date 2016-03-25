@@ -1,0 +1,27 @@
+<h2>Suggestion Management/({{projects.suggestion.length}})</h2>
+
+<div ui-sref="add" class="ui primary button">
+    Add Project
+</div>
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned two wide">Suggestion</th>
+        <th class="center aligned three wide">Create By</th>
+        <th class="center aligned one wide">Reject/Accept</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="project in projects">
+        <td class="center aligned collapsing" ng-bind="project.id"></td>
+        <td ng-bind="project.suggestion.suggestion"></td>
+        <td ng-bind="project.suggestion.createdBy"></td>
+        <td></td>
+
+    </tr>
+    </tbody>
+</table>
+
