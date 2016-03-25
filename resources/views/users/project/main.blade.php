@@ -26,7 +26,7 @@
 @section('content')
 
 
-    <h2 class="condensed container">โมเดลที่สำเร็จ</h2>
+    <h2 class="condensed container">โมเดลที่สำเร็จ/(<% count($projects)%>)</h2>
 
     <div class="ui divider condensed"></div>
     <div class=" column container">

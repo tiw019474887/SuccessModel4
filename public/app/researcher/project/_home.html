@@ -12,9 +12,8 @@
         <th class="center aligned three wide">Faculty</th>
         <th class="center aligned one wide">Year</th>
         <th class="center aligned two wide">Create By</th>
-        <th class="center aligned two wide">Status</th>
-        <th class="center aligned wide">Progress</th>
-        <th class="center aligned wide">Action</th>
+        <th class="center aligned three wide">Status</th>
+        <th class="center aligned two wide">Action</th>
 
     </tr>
     </thead>
@@ -25,7 +24,6 @@
         <td ng-bind="project.faculty.name_th"></td>
         <td ng-bind="project.yearProject"></td>
         <td ng-bind="project.created_by.email"></td>
-        <td>{{project.status.name}}</td>
         <td>
             <div class="progress">
                 <div class="progress-bar progress-bar-info" ng-if="project.status.name == 'Draft'" role="progressbar" aria-valuenow="25"
