@@ -6,11 +6,12 @@
     <thead>
     <tr>
         <th class="center aligned one wide">ID</th>
-        <th class="center aligned wide">Project Name</th>
+        <th class="center aligned three wide">Project Name</th>
         <th class="center aligned three wide">Faculty</th>
+        <th class="center aligned one wide">Year</th>
         <th class="center aligned two wide">Create By</th>
         <th class="center aligned two wide">Status</th>
-        <th class="center aligned three wide">Action</th>
+        <th class="center aligned two wide">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
         <td class="center aligned collapsing" ng-bind="project.id"></td>
         <td ng-bind="project.name"></td>
         <td ng-bind="project.faculty.name_th"></td>
+        <td ng-bind="project.yearProject"></td>
         <td ng-bind="project.created_by.email"></td>
         <td>{{project.status.name}}</td>
         <td class="center aligned collapsing">
@@ -50,7 +52,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea ng-model="project.suggestion" required="required" placeholder="คำ�?นะนำ.........."></textarea>
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำ�?นะนำ.........."></textarea>
         </div>
     </form>
     <div class="actions">
@@ -72,7 +74,7 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            คุณต้อง�?ารอนุมัตโปรเจ็คหรือไม่
+            คุณต้อง�?ารอนุมัตโปรเจ็คหรือไม่
         </div>
     </form>
     <div class="actions">
