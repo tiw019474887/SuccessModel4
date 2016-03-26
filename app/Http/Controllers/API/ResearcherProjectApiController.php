@@ -39,6 +39,10 @@ class ResearcherProjectApiController extends Controller {
         return $this->researcherProjectService->get($id);
     }
 
+    public function getSuggestion($id){
+        return $this->researcherProjectService->getSuggestion($id);
+    }
+
     public function update($id){
         return $this->researcherProjectService->update(Input::all());
 

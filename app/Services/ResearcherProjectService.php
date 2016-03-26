@@ -44,6 +44,11 @@ class ResearcherProjectService extends ProjectService
         return $project;
     }
 
+    public function getSuggestion($id){
+        $project = Project::with(['suggestion'])->find($id);
+
+        return $project;
+    }
     public function addProject(array $input){
         $project = new Project();
         $project->fill($input);
