@@ -26,8 +26,8 @@
 @section('content')
 
 
-    <h2 class="condensed container">โมเดลที่สำเร็จ/(<% count($projects)%>)</h2>
-
+    <h2 class="condensed container">โมเดลที่สำเร็จ</h2>
+    <h4 class="condensed container">จำนวนโมเดลทั้งหมด <% count($projects)%> โมเดล</h4>
     <div class="ui divider condensed"></div>
     <div class=" column container">
         <div class="ui grid">
