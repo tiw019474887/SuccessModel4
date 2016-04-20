@@ -82,8 +82,10 @@
                     <br>
 
                     <div class="ui comments">
+                        <h3 class="ui dividing header">ความคิดเห็น</h3>
+
                         @foreach($project->comments as $comment)
-                            <div class="comment">
+                            <div class="comment" style="background-color: #E8E8E8">
                                 <a class="avatar">
                                     <?php if(Auth::user()->logo) : ?>
                                     <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
@@ -105,6 +107,9 @@
                                     <div class="text">
                                         <p><% $comment->comment %></p>
                                     </div>
+                                    <div class="actions">
+                                        <a class="reply" type="submit">ลบ</a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -115,6 +120,7 @@
                             <div class="field">
                                 <textarea name="comment" required="required"></textarea>
                             </div>
+
                             <button type="submit" class="ui yellow button">Comment</button>
                         </form>
                     </div>
@@ -138,12 +144,13 @@
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                         <?php endif; ?>
-                        <% $project->faculty->name_th%>
+
                     </div>
 
 
                     <div class="six wide column">
                         <h3>นักวิจัย/Researcher</h3>
+
                         <div class="ui segment" style="padding: 14px;">
                             @foreach($project->members as $project->member)
                                 <div class="ui two columns grid">

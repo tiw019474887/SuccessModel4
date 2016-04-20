@@ -24,8 +24,19 @@
 
 
 @section('content')
-
-
+    <div class="ui attached stackable menu">
+        <div class="ui container">
+            <a class="item" href="/users">
+                โครการทั้งหมด
+            </a>
+            <a class="item" href="/users/district">
+                อำเภอ
+            </a>
+            <a class="item" href="/users/faculty ">
+                คณะ
+            </a>
+        </div>
+    </div>
     <h2 class="condensed container">โมเดลที่สำเร็จ</h2>
     <h4 class="condensed container">จำนวนโมเดลทั้งหมด <% count($projects)%> โมเดล</h4>
     <div class="ui divider condensed"></div>

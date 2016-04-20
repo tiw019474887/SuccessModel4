@@ -31,6 +31,32 @@ class UserController extends Controller
         ]);
     }
 
+    public function indexdistrict()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexfaculty()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty', [
+            'projects' => $projects,
+
+        ]);
+    }
+
     public function project($id)
     {
         $project = Project::find($id);
@@ -75,6 +101,18 @@ class UserController extends Controller
     {
         return view('admin.user.main2');
     }
+    public function delComment($projectId)
+    {
+        $user = \Auth::user();
 
+        $comment = new Comment();
+        $comment-> comment = \Input::get("comment");
+        $project = Project::find($projectId);
+        $project->comments()->save($comment);
+        $comment->createdBy()->save($user);
+
+        return redirect("/users/project/$projectId");
+
+    }
 
 }

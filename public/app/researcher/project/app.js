@@ -19,6 +19,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 projects: function (ResearcherService) {
                     return ResearcherService.getProjects();
+                },
+                suggestion : function (ResearcherService, $stateParams) {
+                    return ResearcherService.getSuggestion($stateParams.id)
                 }
             }
         })
@@ -88,12 +91,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, $timeout, projects, ProjectService, ResearcherService) {
+app.controller("HomeCtrl", function ($scope, $state, $timeout, projects,suggestion,  ProjectService, ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
+    $scope.suggestion = suggestion.data;
     $scope.project = {};
     $scope.delete_modal = false;
     $scope.accept_modal = false;
+    $scope.suggestion_modal = false;
     $scope.showDeleteModal = function (project) {
         $scope.project = project;
         $scope.delete_modal = true;
@@ -141,6 +146,17 @@ app.controller("HomeCtrl", function ($scope, $state, $timeout, projects, Project
             $scope.closeAcceptModal();
         }
     }
+
+    $scope.showSuggestionModal = function (project) {
+        $scope.project = project;
+        $scope.suggestion_modal = true;
+    }
+
+    $scope.closeSuggestionModal = function () {
+        $scope.suggestion_modal = false;
+    }
+
+
 
     $timeout(doPopup, 200);
 

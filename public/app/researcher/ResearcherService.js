@@ -137,8 +137,14 @@ angular.module('Researcher',[])
             },
             delete: function (project) {
                 return $http.delete('/api/project/' + project.id);
-            }
+            },
 
+            getSuggestion : function ($id) {
+                return $http({
+                    url: '/api/researcher/get-suggestion/' + $id,
+                    method: 'get'
+                })
+            }
         }
 
 
