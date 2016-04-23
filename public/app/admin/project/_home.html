@@ -1,7 +1,12 @@
 <div class="ui grid">
 
     <div class="one column row">
-        <div class="column"><h2>Project Management</h2> <h4> Project All {{projects.length}}</h4></div>
+        <div class="column"><h2>Project Management</h2> <h4> Project All {{projects.length}}</h4>
+            <h4 >Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h4>
+            <h4 >Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h4>
+            <h4 >University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h4>
+            <h4 >Published:{{(projects | filter:project.status.name = 'Published').length}}</h4>
+        </div>
     </div>
 
     <div class="two column row" style="padding: 0px;">
