@@ -1,8 +1,9 @@
 <h2>Project Management/({{projects.length}})</h2>
-<h4 ng-repeat="project in Draft = (projects | filter:project.status.name = 'Draft')">Draft:{{Draft.length}}</h4>
-<h4 ng-repeat="project in Faculty = (projects | filter:project.status.name = 'Faculty Review Pending')">Faculty:{{Faculty.length}}</h4>
-<h4 ng-repeat="project in University = (projects | filter:project.status.name = 'University Review Pending')">University:{{University.length}}</h4>
-<h4 ng-repeat="project in Published = (projects | filter:project.status.name = 'Published')">Published:{{Published.length}}</h4>
+<h4 >Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h4>
+<h4 >Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h4>
+<h4 >University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h4>
+<h4 >Published:{{(projects | filter:project.status.name = 'Published').length}}</h4>
+
 <div ui-sref="add" class="ui primary button">
     Add Project
 </div>
