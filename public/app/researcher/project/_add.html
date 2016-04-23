@@ -20,7 +20,7 @@
 <div class="ui active tab" data-tab="information">
 
     <form class="ui form" ng-submit="save()">
-        <h4 class="ui dividing header">Project Information</h4>
+        <h4 class="ui dividing header">ข้อมูลโปรเจคภาษาไทย/Project Information Thai</h4>
 
         <div class="field">
             <label>ชื่อโปรเจค/Project Name</label>
@@ -35,6 +35,21 @@
         <div class="field">
             <label>รายละเอียดโครงการ/Project Content</label>
             <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+        </div>
+
+        <div class="field">
+            <label>Year</label>
+            <div class="ui fluid selection upward dropdown">
+
+                <span ng-if="!project.yearProject" class="text">Select Year</span>
+                <span ng-if="project.yearProject" class="text">{{project.yearProject}}</span>
+
+                <div class="item">
+
+                    <select  ng-model="project.yearProject" ng-options="opt as opt for opt in months" ></select>
+
+                </div>
+            </div>
         </div>
 
         <button type="submit" class="ui primary submit button">Save</button>
