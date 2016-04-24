@@ -43,7 +43,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="project in projects | orderBy: 'status.id'">
+                <tr ng-repeat="project in projects | orderBy: ['status.id','yearProject']">
                     <td class="center aligned collapsing" ng-bind="project.id"></td>
                     <td ng-bind="project.name"></td>
                     <td ng-bind="project.faculty.name_th"></td>
