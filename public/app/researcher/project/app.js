@@ -175,6 +175,8 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
         });
     }
 
+    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
+
     $scope.mceOptions = {
         inline: false,
         content_css: '/packages/semantic/dist/semantic.min.css',
@@ -294,7 +296,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.youtubes = youtubes.data;
     $scope.keyword;
 
-
+    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.mceOptions = {
         inline: false,
