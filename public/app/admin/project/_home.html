@@ -2,10 +2,10 @@
 
     <div class="one column row">
         <div class="column"><h2>Project Management</h2> <h4> Project All {{projects.length}}</h4>
-            <h4 >Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h4>
-            <h4 >Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h4>
-            <h4 >University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h4>
-            <h4 >Published:{{(projects | filter:project.status.name = 'Published').length}}</h4>
+            <h4>Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h4>
+            <h4>Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h4>
+            <h4>University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h4>
+            <h4>Published:{{(projects | filter:project.status.name = 'Published').length}}</h4>
         </div>
     </div>
 
@@ -18,7 +18,7 @@
 
         <div class="right aligned right floated column">
             <div class="ui icon input">
-                    <input type="text"  ng-model="search" placeholder="Search">
+                <input type="text" ng-model="search" placeholder="Search">
             </div>
         </div>
     </div>
@@ -47,19 +47,23 @@
                     <td ng-bind="project.created_by.email"></td>
                     <td>
                         <div class="progress">
-                            <div class="progress-bar" ng-if="project.status.name == 'Draft'" role="progressbar" aria-valuenow="25"
+                            <div class="progress-bar" ng-if="project.status.name == 'Draft'" role="progressbar"
+                                 aria-valuenow="25"
                                  aria-valuemin="0" aria-valuemax="100" style="width:25%; background-color:#cccc00;">
                                 {{project.status.name}}
                             </div>
-                            <div class="progress-bar" ng-if="project.status.name == 'Faculty Review Pending'" role="progressbar" aria-valuenow="50"
+                            <div class="progress-bar" ng-if="project.status.name == 'Faculty Review Pending'"
+                                 role="progressbar" aria-valuenow="50"
                                  aria-valuemin="0" aria-valuemax="100" style="width:50%; background-color:#49d049;">
                                 {{project.status.name}}
                             </div>
-                            <div class="progress-bar" ng-if="project.status.name == 'University Review Pending'" role="progressbar" aria-valuenow="75"
+                            <div class="progress-bar" ng-if="project.status.name == 'University Review Pending'"
+                                 role="progressbar" aria-valuenow="75"
                                  aria-valuemin="0" aria-valuemax="100" style="width:75%; background-color:#009900;">
                                 {{project.status.name}}
                             </div>
-                            <div class="progress-bar" ng-if="project.status.name == 'Published'" role="progressbar" aria-valuenow="100"
+                            <div class="progress-bar" ng-if="project.status.name == 'Published'" role="progressbar"
+                                 aria-valuenow="100"
                                  aria-valuemin="0" aria-valuemax="100" style="width:100%; background-color:#006600;">
                                 {{project.status.name}}
                             </div>
@@ -70,7 +74,8 @@
                             <button class="ui icon button" ui-sref="edit({id:project.id})" data-content="Edit">
                                 <i class="edit icon"></i>
                             </button>
-                            <button ng-click="showDeleteModal(project)" class="ui icon negative button" data-content="Delete">
+                            <button ng-click="showDeleteModal(project)" class="ui icon negative button"
+                                    data-content="Delete">
                                 <i class="delete icon"></i>
                             </button>
                         </div>

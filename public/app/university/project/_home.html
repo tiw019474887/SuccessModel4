@@ -1,11 +1,11 @@
 <div class="ui grid">
 
-<h2>University Review/({{projects.length}})</h2>
+    <h2>University Review/({{projects.length}})</h2>
 
     <div class="two column row" style="padding: 0px;">
         <div class="right aligned right floated column">
             <div class="ui icon input">
-                <input type="text"  ng-model="search" placeholder="Search">
+                <input type="text" ng-model="search" placeholder="Search">
             </div>
         </div>
     </div>
@@ -32,9 +32,10 @@
                     <td ng-bind="project.faculty.name_th"></td>
                     <td ng-bind="project.yearProject"></td>
                     <td ng-bind="project.created_by.email"></td>
-                    <td >
+                    <td>
                         <div class="progress">
-                            <div class="progress-bar" ng-if="project.status.name == 'University Review Pending'" role="progressbar" aria-valuenow="75"
+                            <div class="progress-bar" ng-if="project.status.name == 'University Review Pending'"
+                                 role="progressbar" aria-valuenow="75"
                                  aria-valuemin="0" aria-valuemax="100" style="width:75%; background-color:#009900;">
                                 {{project.status.name}}
                             </div>
@@ -44,13 +45,16 @@
                         <div class="ui buttons">
                             <div class="ui buttons" ng-if="project.status.key == 'university' ">
                                 <div class="ui buttons">
-                                    <button ng-click="showRejectModal(project)"  class="ui icon red button" data-content="Reject">
+                                    <button ng-click="showRejectModal(project)" class="ui icon red button"
+                                            data-content="Reject">
                                         <i class="reply icon"></i>
                                     </button>
-                                    <button ng-click="showAcceptModal(project)" class="ui icon olive button" data-content="Accept">
+                                    <button ng-click="showAcceptModal(project)" class="ui icon olive button"
+                                            data-content="Accept">
                                         <i class="checkmark icon"></i>
                                     </button>
-                                    <button ui-sref="view({id:project.id})" class="ui icon grey button" data-content="View">
+                                    <button ui-sref="view({id:project.id})" class="ui icon grey button"
+                                            data-content="View">
                                         <i class="unhide icon"></i>
                                     </button>
                                 </div>
