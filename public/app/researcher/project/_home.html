@@ -1,3 +1,4 @@
+<div class="ui grid">
 
 <div class="one column row">
     <div class="column"><h2>Project Management</h2> <h4> Project All {{projects.length}}</h4>
@@ -12,6 +13,12 @@
     <div class="left floated column">
         <div ui-sref="add" class="ui primary button">
             Add Project
+        </div>
+    </div>
+
+    <div class="right aligned right floated column">
+        <div class="ui icon input">
+            <input type="text"  ng-model="search" placeholder="search">
         </div>
     </div>
 </div>
@@ -32,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="project in projects | orderBy: ['status.id','yearProject']">
+                <tr ng-repeat="project in projects | filter:search | orderBy: ['status.id','yearProject']">
                     <td class="center aligned collapsing" ng-bind="project.id"></td>
                     <td ng-bind="project.name"></td>
                     <td ng-bind="project.faculty.name_th"></td>
@@ -78,8 +85,7 @@
             </table>
         </div>
     </div>
-</modal>
-
+</div>
 
 <modal ng-model="delete_modal">
     <i ng-click="closeDeleteModal()" class="close icon"></i>
