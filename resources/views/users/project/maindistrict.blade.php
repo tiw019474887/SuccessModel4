@@ -48,6 +48,7 @@
                 <div class="ui divider condensed"></div>
                 <div class="thirteen wide column">
                     <h3 class="condensed container"><a name="1">อำเภอเมือง</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -79,9 +80,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -102,6 +103,7 @@
                         </div>
                     </div>
                     <h3 class="condensed container"><a name="2">อำเภอแม่ใจ</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -133,9 +135,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -156,6 +158,7 @@
                         </div>
                     </div>
                     <h3 class="condensed container"><a name="3">อำเภอเชียงม่วน</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -187,9 +190,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -209,7 +212,8 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="condensed container" ><a name="4" >อำเภอดอกคำใต</a>้</h3>
+                    <h3 class="condensed container"><a name="4">อำเภอดอกคำใต</a>้</h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -241,9 +245,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -263,7 +267,8 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="condensed container" ><a name="5">อำเภอภูกามยาว</a></h3>
+                    <h3 class="condensed container"><a name="5">อำเภอภูกามยาว</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -295,9 +300,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -317,7 +322,8 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="condensed container" ><a name="6"> อำเภอภูซาง</a></h3>
+                    <h3 class="condensed container"><a name="6"> อำเภอภูซาง</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -349,9 +355,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -372,6 +378,7 @@
                         </div>
                     </div>
                     <h3 class="condensed container"><a name="7">อำเภอเชียงคำ</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -403,9 +410,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -425,7 +432,8 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="condensed container" ><a name="8"> อำเภอจุน</a></h3>
+                    <h3 class="condensed container"><a name="8"> อำเภอจุน</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -457,9 +465,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -480,6 +488,7 @@
                         </div>
                     </div>
                     <h3 class="condensed container"><a name="9"> อำเภอปง</a></h3>
+
                     <div class="ui divider condensed"></div>
                     <div class=" column container">
                         <div class="three column row">
@@ -511,9 +520,9 @@
                                                         <div class="extra content">
                                                             <?php if(isset($project->faculty->name_th)) : ?>
 
-                                                      <?php else : ?>
+                                                            <?php else : ?>
 
-                                                        <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <a href="/users/project/<%$project->id%>">
                                                             <div class="ui two bottom attached buttons">
@@ -535,7 +544,6 @@
                     </div>
 
 
-
                     <div class="ui center">
                         <?php echo (new App\Pagination($projects))->render(); ?>
                     </div>
@@ -543,6 +551,7 @@
                 <div class="three wide right floated column container">
                     <div class="clounm">
                         <h3 class="condensed">อำเภอ</h3>
+
                         <div><a href="#1">อำเภอเมือง</a></div>
                         <div><a href="#2">อำเภอแม่ใจ</a></div>
                         <div><a href="#3">อำเภอเชียงม่วน</a></div>

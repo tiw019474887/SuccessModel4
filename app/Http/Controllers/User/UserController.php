@@ -33,10 +33,141 @@ class UserController extends Controller
 
     public function indexdistrict()
     {
-        $projects = Project::whereHas('status', function ($q) {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอเมือง');
+
+        },'status', function ($q) {
             $q->where('key', '=', 'published');
 
-        })->paginate(12);
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexMaeChai()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอแม่ใจ');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexChiangMuan()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอเชียงม่วน');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexDokKhamtai()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอดอกคำใต้');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexPhuKamyao()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอภูกามยาว');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexPhuSang()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอภูซาง');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexChiangKham()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอเชียงคำ');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexChun()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอจุน');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexPong()
+    {
+        $projects = Project::whereHas('area',function($a){
+            $a->where('name_th','=','อำเภอปง');
+
+        },'status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate();
 
         return view('users.project.maindistrict', [
             'projects' => $projects,

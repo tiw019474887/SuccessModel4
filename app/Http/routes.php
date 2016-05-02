@@ -48,8 +48,21 @@ Route::get('/user/edituser/', 'User\UserController@edituser');
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'User\UserController@index');
+
+    //district
     Route::get('/district', 'User\UserController@indexdistrict');
+    Route::get('/district', 'User\UserController@indexMaeChai');
+    Route::get('/district', 'User\UserController@indexChiangMuan');
+    Route::get('/district', 'User\UserController@indexDokKhamtai');
+    Route::get('/district', 'User\UserController@indexPhuKamyao');
+    Route::get('/district', 'User\UserController@indexPhuSang');
+    Route::get('/district', 'User\UserController@indexChiangKham');
+    Route::get('/district', 'User\UserController@indexChun');
+    Route::get('/district', 'User\UserController@indexPong');
+
+    //faculty
     Route::get('/faculty', 'User\UserController@indexfaculty');
+
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search', 'User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');
