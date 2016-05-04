@@ -1,39 +1,48 @@
-<h2>Area Management</h2>
-<div class="two column row" style="padding: 0px;">
-    <div class="left floated column">
-        <div ui-sref="add" class="ui primary button">
-            Add Area
+<div class="ui grid">
+    <h2>Area Management</h2>
+
+    <div class="two column row" style="padding: 0px;">
+        <div class="left floated column">
+            <div ui-sref="add" class="ui primary button">
+                Add Area
+            </div>
+        </div>
+
+        <div class="right aligned right floated column">
+            <div class="ui icon input">
+                <input type="text" ng-model="search" placeholder="Search">
+            </div>
         </div>
     </div>
+    <table class="ui celled striped table">
+        <thead>
+        <tr>
+            <th class="center aligned one wide">ID</th>
+            <th class="center aligned wide">Name(TH)</th>
+            <th class="center aligned two wide">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="area in areas |filter:search">
+            <td class="collapsing" ng-bind="area.id"></td>
+            <td ng-bind="area.name_th"></td>
+            <td class="center aligned collapsing">
+                <div class="ui buttons">
+                    <button class="ui icon button" ui-sref="edit({id:area.id})">
+                        <i class="edit icon"></i>
+                    </button>
+                    <button ng-click="showDeleteModal(area)" class="ui icon negative button" data-content="Delete">
+                        <i class="delete icon"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<table class="ui celled striped table">
-    <thead>
-    <tr>
-        <th class="center aligned one wide">ID</th>
-        <th class="center aligned wide">Name(TH)</th>
-        <th class="center aligned two wide">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="area in areas">
-        <td class="collapsing" ng-bind="area.id"></td>
-        <td ng-bind="area.name_th"></td>
-        <td class="center aligned collapsing">
-            <div class="ui buttons">
-                <button class="ui icon button" ui-sref="edit({id:area.id})" >
-                    <i class="edit icon"></i>
-                </button>
-                <button ng-click="showDeleteModal(area)" class="ui icon negative button" data-content="Delete">
-                    <i class="delete icon"></i>
-                </button>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
 <modal ng-model="delete_modal">
     <i ng-click="closeDeleteModal()" class="close icon"></i>
+
     <div class="header">
         Delete Area
     </div>
@@ -41,6 +50,7 @@
         <div class="description">
             <div class="ui header">Do you want to delete this area?</div>
             <p>Area ID : <span ng-bind="area.id"></span></p>
+
             <p ng-bind="area.name_th"></p>
         </div>
     </div>
