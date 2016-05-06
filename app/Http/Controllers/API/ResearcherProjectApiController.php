@@ -19,32 +19,34 @@ class ResearcherProjectApiController extends Controller {
         $this->researcherProjectService = $researcherProjectService;
     }
 
-    public function addProject()
+    public function index(){
+        return $this->researcherProjectService->getProjects();
+    }
+
+    public function store()
     {
         return $this->researcherProjectService->addProject(Input::all());
     }
 
-    public function getProjects(){
-        return $this->researcherProjectService->getProjects();
+    public function show($id){
+        return $this->researcherProjectService->get($id);
     }
 
-    public function submit($id){
-        return $this->researcherProjectService->submitProject($id,Input::all());
+    public function update($id){
+        return $this->researcherProjectService->update(Input::all());
     }
 
-    public function delete($id){
+    public function destroy($id){
         return $this->researcherProjectService->delete($id);
     }
-    public function get($id){
-        return $this->researcherProjectService->get($id);
+
+    public function acceptProject($id){
+        return $this->researcherProjectService->submitProject($id,Input::all());
     }
 
     public function getSuggestion($id){
         return $this->researcherProjectService->getSuggestion($id);
     }
 
-    public function update($id){
-        return $this->researcherProjectService->update(Input::all());
 
-    }
 }

@@ -22,7 +22,7 @@ class PublishProjectApiController extends Controller {
         $this->publishProjectService = $publishProjectService;
     }
 
-    public function getProjects()
+    public function index()
     {
         return $this->publishProjectService->PublishProject();
     }

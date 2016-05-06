@@ -107,35 +107,34 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('comment/add-comment-comment/{id}', 'API\ProjectCommentApiController@addCommentComments');
 
     //api for faculty
-    Route::get('faculty/projects', 'API\FacultyProjectApiController@getProjects');
-    Route::get('faculty/get-project/{id}', 'API\FacultyProjectApiController@get');
-    Route::post('faculty/submit-project/{id}', 'API\FacultyProjectApiController@submit');
+    Route::get('faculty/projects', 'API\FacultyProjectApiController@index');
+    Route::get('faculty/get-project/{id}', 'API\FacultyProjectApiController@show');
+    Route::post('faculty/submit-project/{id}', 'API\FacultyProjectApiController@acceptProject');
     Route::post('faculty/reject-project/{id}', 'API\FacultyProjectApiController@rejectProject');
 
     //api for university
-    Route::get('university/projects', 'API\UniversityProjectApiController@getProjects');
-    Route::get('university/get-project/{id}', 'API\UniversityProjectApiController@get');
-    Route::post('university/submit-project/{id}', 'API\UniversityProjectApiController@submit');
+    Route::get('university/projects', 'API\UniversityProjectApiController@index');
+    Route::get('university/get-project/{id}', 'API\UniversityProjectApiController@show');
+    Route::post('university/submit-project/{id}', 'API\UniversityProjectApiController@acceptProject');
     Route::post('university/reject-project/{id}', 'API\UniversityProjectApiController@rejectProject');
 
     //api for researcher
-    Route::get('researcher/projects', 'API\ResearcherProjectApiController@getProjects');
-    Route::get('researcher/get-project/{id}', 'API\ResearcherProjectApiController@get');
+    Route::get('researcher/projects', 'API\ResearcherProjectApiController@index');
+    Route::get('researcher/get-project/{id}', 'API\ResearcherProjectApiController@show');
     Route::get('researcher/get-suggestion/{id}', 'API\ResearcherProjectApiController@getSuggestion');
     Route::post('researcher/update-project/{id}', 'API\ResearcherProjectApiController@update');
-    Route::post('researcher/add-project', 'API\ResearcherProjectApiController@addProject');
-    Route::post('researcher/submit-project/{id}', 'API\ResearcherProjectApiController@submit');
+    Route::post('researcher/add-project', 'API\ResearcherProjectApiController@store');
+    Route::post('researcher/submit-project/{id}', 'API\ResearcherProjectApiController@acceptProject');
 
     //api for area
     Route::resource('area', 'API\AreaApiController');
     Route::get('area', 'API\AreaApiController@index');
-    Route::get('area/get/{id}', 'API\AreaApiController@getID');
+    Route::get('area/get/{id}', 'API\AreaApiController@show');
     Route::post('area/update-area/{id}', 'API\AreaApiController@update');
-    Route::post('area/add', 'API\AreaApiController@addArea');
-    Route::post('area/submit-area/{id}', 'API\AreaApiController@submit');
+    Route::post('area/add', 'API\AreaApiController@store');
 
     //api for published projects
-    Route::get('publish/projects', 'API\PublishProjectApiController@getProjects');
+    Route::get('publish/projects', 'API\PublishProjectApiController@index');
 
     Route::resource('faculty', 'API\FacultyApiController');
     Route::resource('faculty.logo', 'API\FacultyLogoApiController');
