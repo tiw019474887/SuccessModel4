@@ -48,21 +48,23 @@ Route::get('/user/edituser/', 'User\UserController@edituser');
 
 Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'User\UserController@index');
+    Route::get('/logout', 'User\UserController@logout');
 
     //district
     Route::get('/district', 'User\UserController@indexdistrict');
-//    Route::get('/district', 'User\UserController@indexMaeChai');
-//    Route::get('/district', 'User\UserController@indexChiangMuan');
-//    Route::get('/district', 'User\UserController@indexDokKhamtai');
-//    Route::get('/district', 'User\UserController@indexPhuKamyao');
-//    Route::get('/district', 'User\UserController@indexPhuSang');
-//    Route::get('/district', 'User\UserController@indexChiangKham');
-//    Route::get('/district', 'User\UserController@indexChun');
-//    Route::get('/district', 'User\UserController@indexPong');
+    Route::get('/maung', 'User\UserController@indexMaung');
+    Route::get('/maeChai', 'User\UserController@indexMaeChai');
+    Route::get('/chiangMuan', 'User\UserController@indexChiangMuan');
+    Route::get('/dokKhamtai', 'User\UserController@indexDokKhamtai');
+    Route::get('/phuKamyao', 'User\UserController@indexPhuKamyao');
+    Route::get('/phuSang', 'User\UserController@indexPhuSang');
+    Route::get('/chiangKham', 'User\UserController@indexChiangKham');
+    Route::get('/chun', 'User\UserController@indexChun');
+    Route::get('/pong', 'User\UserController@indexPong');
+
 
     //faculty
     Route::get('/faculty', 'User\UserController@indexfaculty');
-
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search', 'User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');

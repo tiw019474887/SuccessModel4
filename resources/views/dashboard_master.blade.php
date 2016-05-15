@@ -69,7 +69,7 @@
                                 @endforeach
                                 <div class="divider"></div>
                                 <a class="item">Change Profile</a>
-                                <a class="item" ng-click="logout()">Logout</a>
+                                <a class="item">Logout</a>
 
                             </div>
                         </div>

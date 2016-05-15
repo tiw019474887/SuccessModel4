@@ -33,6 +33,19 @@ class UserController extends Controller
 
     public function indexdistrict()
     {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+           // 'projects' => $projects,
+
+        ]);
+    }
+
+    public function indexMaung()
+    {
         $projects = Project::whereHas('area',function($a){
             $a->where('name_th','=','อำเภอเมือง');
 
@@ -41,7 +54,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainmaung', [
             'projects' => $projects,
 
         ]);
@@ -57,7 +70,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainmaechai', [
             'projects' => $projects,
 
         ]);
@@ -73,7 +86,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainchiangmuan', [
             'projects' => $projects,
 
         ]);
@@ -89,7 +102,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.maindkkhamtai', [
             'projects' => $projects,
 
         ]);
@@ -105,7 +118,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainphukamyao', [
             'projects' => $projects,
 
         ]);
@@ -121,7 +134,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainphusang', [
             'projects' => $projects,
 
         ]);
@@ -137,7 +150,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainchiangkham', [
             'projects' => $projects,
 
         ]);
@@ -153,7 +166,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainchun', [
             'projects' => $projects,
 
         ]);
@@ -169,7 +182,7 @@ class UserController extends Controller
 
         })->paginate();
 
-        return view('users.project.maindistrict', [
+        return view('users.maindistrict.mainpong', [
             'projects' => $projects,
 
         ]);
@@ -244,6 +257,12 @@ class UserController extends Controller
 
         return redirect("/users/project/$projectId");
 
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/auth/login');
     }
 
 }

@@ -1,28 +1,49 @@
-<div class="ui grid">
-
+<div class="ui  container">
+    <h3>Project Management</h3>
     <div class="one column row">
-        <div class="column"><h2>Project Management</h2> <h4> Project All {{projects.length}}</h4>
-            <h4>Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h4>
-            <h4>Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h4>
-            <h4>University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h4>
-            <h4>Published:{{(projects | filter:project.status.name = 'Published').length}}</h4>
-        </div>
-    </div>
-
-    <div class="two column row" style="padding: 0px;">
-        <div class="left floated column">
-            <div ui-sref="add" class="ui primary button">
-                Add Project
+        <div class="ui attached stackable menu">
+            <div class="ui attached stackable menu">
+                <a class="item">
+                    <h5> Status</h5>
+                </a>
+                <div class="ui container">
+                    <a class="item">
+                        <h5> Project All {{projects.length}}</h5>
+                    </a>
+                    <a class="item">
+                        <h5>Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h5>
+                    </a>
+                    <a class="item">
+                        <h5>Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review
+                            Pending').length}}</h5>
+                    </a>
+                    <a class="item">
+                        <h5>University Review:{{(projects | filter:project.status.name = 'University Review
+                            Pending').length}}</h5>
+                    </a>
+                    <a class="item">
+                        <h5>Published:{{(projects | filter:project.status.name = 'Published').length}}</h5>
+                    </a>
+                </div>
             </div>
         </div>
+    </div>
+    <br>
+    <div class="colum">
+        <div class="two column row" style="padding: 0px;">
+            <div class="left floated column">
+                <div ui-sref="add" class="ui primary button">
+                    Add Project
+                </div>
+            </div>
 
-        <div class="right aligned right floated column">
-            <div class="ui icon input">
-                <input type="text" ng-model="search" placeholder="Search">
+            <div class="right aligned right floated column">
+                <div class="ui icon input">
+                    <input type="text" ng-model="search" placeholder="Search">
+                </div>
             </div>
         </div>
     </div>
-
     <div class="one column row">
 
         <div class="column">

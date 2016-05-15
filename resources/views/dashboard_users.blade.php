@@ -63,7 +63,7 @@
                             @endforeach
                             <div class="divider"></div>
                             <a class="item" href="/user/edituser"  >Change Profile</a>
-                            <a class="item" ng-click="logout()">Logout</a>
+                            <a href="/users/logout" class="item">ออกจากระบบ</a>
                         </div>
                     </div>
                 </div>
