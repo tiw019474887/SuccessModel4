@@ -18,6 +18,8 @@ class File extends \NeoEloquent
 
     protected $fillable = ['url'];
 
-    
+    public function project(){
+        return $this->morphTo('App\Models\Project','FILE');
+    }
 
 }

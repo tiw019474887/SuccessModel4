@@ -76,6 +76,10 @@ class Project extends \NeoEloquent
         return $this->hasOne("App\Models\File","CURRENT_FILE");
     }
 
+    public function files(){
+        return $this->hasMany("App\Models\File","FILE");
+    }
+
     public function videos(){
         return $this->hasMany("App\Models\Video","VIDEO");
     }
