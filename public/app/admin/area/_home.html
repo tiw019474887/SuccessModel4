@@ -14,31 +14,38 @@
             </div>
         </div>
     </div>
-    <table class="ui celled striped table">
-        <thead>
-        <tr>
-            <th class="center aligned one wide">ID</th>
-            <th class="center aligned wide">Name(TH)</th>
-            <th class="center aligned two wide">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="area in areas |filter:search">
-            <td class="collapsing" ng-bind="area.id"></td>
-            <td ng-bind="area.name_th"></td>
-            <td class="center aligned collapsing">
-                <div class="ui buttons">
-                    <button class="ui icon button" ui-sref="edit({id:area.id})">
-                        <i class="edit icon"></i>
-                    </button>
-                    <button ng-click="showDeleteModal(area)" class="ui icon negative button" data-content="Delete">
-                        <i class="delete icon"></i>
-                    </button>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="one column row">
+
+        <div class="column">
+            <table class="ui celled striped table">
+                <thead>
+                <tr>
+                    <th class="center aligned one wide">ID</th>
+                    <th class="center aligned wide">Name(TH)</th>
+                    <th class="center aligned two wide">Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="area in areas |filter:search">
+                    <td class="collapsing" ng-bind="area.id"></td>
+                    <td ng-bind="area.name_th"></td>
+                    <td class="center aligned collapsing">
+                        <div class="ui buttons">
+                            <button class="ui icon button" ui-sref="edit({id:area.id})">
+                                <i class="edit icon"></i>
+                            </button>
+                            <button ng-click="showDeleteModal(area)" class="ui icon negative button"
+                                    data-content="Delete">
+                                <i class="delete icon"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 <modal ng-model="delete_modal">
     <i ng-click="closeDeleteModal()" class="close icon"></i>
