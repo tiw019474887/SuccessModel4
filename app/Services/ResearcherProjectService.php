@@ -82,18 +82,18 @@ class ResearcherProjectService extends ProjectService
         return $project;
     }
 
-//    private function  linkToCurrentUserSuggestion(Suggestion $suggestion, array $input)
-//    {
-//
-//        $user = Auth::user();
-//
-//        if($user){
-//
-//            $suggestion->createdBy()->associate($user)->save();
-//        }
-//
-//        return $suggestion;
-//    }
+    private function  linkToCurrentUserSuggestion(Suggestion $suggestion, array $input)
+    {
+
+        $user = Auth::user();
+
+        if($user){
+
+            $suggestion->createdBy()->save($user);
+        }
+
+        return $suggestion;
+    }
 
     private function linkToFaculty(Project $project, array $input)
     {
@@ -142,7 +142,7 @@ class ResearcherProjectService extends ProjectService
             $suggestion = new Suggestion();
             $suggestion->fill($input);
             $project->suggestion()->save($suggestion);
-            //$this->linkToCurrentUserSuggestion($suggestion, $input);
+            $this->linkToCurrentUserSuggestion($suggestion, $input);
         }
 
         return $project;
