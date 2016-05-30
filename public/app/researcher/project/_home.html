@@ -93,6 +93,10 @@
                     <td class="center aligned collapsing">
                         <div class="ui buttons" ng-if="project.status.key == 'draft' ">
                             <div class="ui buttons">
+                                <button ng-click="showAcceptModal(project)" class="ui icon olive button"
+                                        data-content="Accept">
+                                    <i class="checkmark icon"></i>
+                                </button>
                                 <button class="ui icon button" ui-sref="edit({id:project.id})" data-content="Edit">
                                     <i class="edit icon"></i>
                                 </button>

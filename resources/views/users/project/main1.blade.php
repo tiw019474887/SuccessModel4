@@ -137,12 +137,17 @@
                     </div>
 
                     <h3>ดำเนินการโดย/Operator</h3>
-
                     <div class="ui segment">
                         <?php if(isset($project->faculty->logo->url)) : ?>
                         <img class="ui avatar image" src="<% $project->faculty->logo->url %>?w=300&h=300"/>
                         <?php else : ?>
                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
+                        <?php endif; ?>
+
+                        <?php if(isset($project->faculty->name_th)) : ?>
+                        <% $project->faculty->name_th %>
+                        <?php else : ?>
+                        ไม่ทราบผู้ดำเนินการ
                         <?php endif; ?>
 
                     </div>

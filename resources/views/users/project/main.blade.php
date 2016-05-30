@@ -19,6 +19,8 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
+
 @stop
 
 
@@ -26,7 +28,7 @@
 @section('content')
     <div class="ui attached stackable menu">
         <div class="ui container">
-            <a class="item" href="/users">
+            <a class="blue item" href="/users">
                 โครการทั้งหมด
             </a>
             <a class="item" href="/users/district">
