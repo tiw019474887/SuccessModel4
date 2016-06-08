@@ -4,7 +4,7 @@
 
 
 var app = angular.module('UniversityProject', ['ui.router', 'AppConfig', 'User', 'University',
-    'Youtube','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown']);
+    'Youtube','Project' , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','openlayers-directive']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -120,7 +120,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService,UniversityService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
-
+    angular.extend($scope, {});
     $scope.project = project.data;
     $scope.images = images.data;
     $scope.youtubes = youtubes.data;

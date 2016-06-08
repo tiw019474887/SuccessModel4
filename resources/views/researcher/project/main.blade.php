@@ -59,5 +59,4 @@
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
 
-
 @stop

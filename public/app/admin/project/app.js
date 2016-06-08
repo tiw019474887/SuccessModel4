@@ -261,7 +261,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService,
                                      statuses, faculties, project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
-
+    angular.extend($scope, {});
     $scope.project = project.data;
     $scope.images = images.data;
     $scope.youtubes = youtubes.data;

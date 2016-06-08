@@ -4,10 +4,8 @@
     </div>
 
     <div class="ui grid">
-
         <div class="row">
             <div class="ten wide column">
-
                 <div class="one column row" style="">
                     <div class="column">
                         <div class="flexslider" style="margin-bottom: 0px;">
@@ -24,96 +22,92 @@
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
-
             <div class="six wide column">
                 <div class="row preview">
                     <h3 class="condensed">บทคัดย่อ</h3>
-
                     <div class="ui divider condensed"></div>
-                    <div btf-markdown="project.abstract"></div>
+                    <div class="ui segment">
+                        <div btf-markdown="project.abstract"></div>
+                        <div btf-markdown="project.abstractEN"></div>
+                    </div>
                 </div>
-
+                <br>
                 <div class="row preview">
                     <h3 class="condensed">ดำเนินการโดย</h3>
 
                     <div class="ui divider condensed"></div>
-                    <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
-                    <img ng-if="project.faculty.logo" class="ui avatar image"
-                         ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
-                    {{project.faculty.name_th}}
+                    <div class="ui segment">
+                        <img ng-if="!project.faculty.logo" class="ui avatar image" src="/images/square-image.png"/>
+                        <img ng-if="project.faculty.logo" class="ui avatar image"
+                             ng-src="{{project.faculty.logo.url}}?w=35&h=35&fit=crop"/>
+                        {{project.faculty.name_th}}
+                    </div>
                 </div>
-
+                <br>
                 <div class="row preview">
-                    <h3 class="condensed">การดำเนินการ</h3>
-
+                    <h3 class="condensed">นักวิจัย</h3>
                     <div class="ui divider condensed"></div>
-
-                    <div class="ui center aligned columns grid">
-                        <div class="ui row">
-                            <button ng-click="showRejectModal(project)" class="ui primary button">ปฏิเสธ</button>
-                            <button ng-click="showAcceptModal(project)" class="ui olive button">ยอมรับ</button>
+                    <div class="ui segment" style="padding: 14px;">
+                        <div class="ui two columns grid">
+                            <div class="ui column" ng-repeat="member in members">
+                                <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
+                                <img ng-if="member.logo" class="ui avatar image"
+                                     ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
+                                {{member.title}}{{member.firstname}} {{member.lastname}}
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="ui divider"></div>
         <div class="row">
             <div class="ten wide column">
                 <div class="row preview">
                     <h3 class="condensed">รายละเอียดโครงการ</h3>
-
                     <div class="ui divider condensed"></div>
-                    <div ng-bind-html="project.content"></div>
-                </div>
-
-                <div class="row">
+                    <div class="ui segment" id="tinymce_content" style="padding: 14px;">
+                        <div ng-bind-html="project.content"></div>
+                        <div ng-bind-html="project.contentEN"></div>
+                    </div>
                     <h3 class="condensed">ความคิดเห็น</h3>
-
                     <div class="ui divider condensed"></div>
+                    <div class="ui segment">
+                        <h5>ไม่มีความคิดเห็น</h5>
+                    </div>
                 </div>
-
-
             </div>
-
             <div class="six wide column">
-
-                <div class="row preview">
-                    <h3 class="condensed">ดาวน์โหลด</h3>
-
-                    <div class="ui divider condensed"></div>
-                    <div class="ui center aligned columns grid">
-                        <div class="ui row">
-                            <a href="/downloads/{{project.current_file.origin_name}}{{project.current_file.url}}"
-                               class="ui positive button">เอกสารฉบับเต็ม</a>
+                <h3>แผนที่/Map</h3>
+                <div class="ui divider condensed"></div>
+                <div class="six wide column">
+                    <div class="column">
+                        <div class="ui segment">
+                            <openlayers lat="{{project.area.lat}}" lon="{{project.area.lon}}"
+                                        zoom="{{project.area.zoom}}" height="300px">
+                                <ol-marker lat="project.area.lat"
+                                           lon="project.area.lon"></ol-marker>
+                            </openlayers>
                         </div>
                     </div>
                 </div>
-
-
-                <div class="row preview">
-
-                    <h3 class="condensed">นักวิจัย</h3>
-
-                    <div class="ui divider condensed"></div>
-                    <div class="ui two columns grid">
-                        <div class="ui column" ng-repeat="member in members">
-                            <img ng-if="!member.logo" class="ui avatar image" src="/images/square-image.png"/>
-                            <img ng-if="member.logo" class="ui avatar image"
-                                 ng-src="{{member.logo.url}}?w=35&h=35&fit=crop"/>
-                            {{member.title}}{{member.firstname}} {{member.lastname}}
+                <h3 class="condensed">การดำเนินการ</h3>
+                <div class="ui divider condensed"></div>
+                <div class="ui segment">
+                    <div class="ui center aligned columns grid">
+                        <div class="ui center aligned row">
+                            <button ng-click="showRejectModal(project)" class="ui primary button">ปฏิเสธ</button>
+                            <button ng-click="showAcceptModal(project)" class="ui olive button">ยอมรับ</button>
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 
 

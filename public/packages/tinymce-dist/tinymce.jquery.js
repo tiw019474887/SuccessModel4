@@ -30560,6 +30560,7 @@ define("tinymce/util/LocalStorage", [], function() {
  * Contributing: http://www.tinymce.com/contributing
  */
 
+	
 /**
  * TinyMCE core class.
  *

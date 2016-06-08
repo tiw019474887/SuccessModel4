@@ -57,9 +57,9 @@
                                                 <div class="ui fluid card" style="margin:1px;">
                                                     <div class="image">
                                                         <?php if(isset($project->logo->url)) : ?>
-                                                        <img src="<% $project->logo->url %>">
+                                                        <img src="<% $project->logo->url %>?w=640&h=280&fit=stretch"/>
                                                         <?php else : ?>
-                                                        <img src="/images/fff.png?w=300&h=300"/>
+                                                        <img src="/images/fff.png?w=640&h=280&fit=stretch"/>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="content">

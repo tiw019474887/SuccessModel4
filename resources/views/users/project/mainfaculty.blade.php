@@ -48,36 +48,37 @@
                 <div class="ui divider condensed"></div>
                 <div class="thirteen wide column">
                     <h3 class="condensed container"><a name="1">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</a></h3>
+                    <div class="right menu"> <div class="right aligned right floated column"><i class="angle up icon"></i></div></div>
                     @include('users.faculty.ag',['name_th' => 'คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ'])
-                    <h3 class="condensed container"><a name="2">คณะทันตแพทยศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="2">คณะทันตแพทยศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.dt',['name_th' => 'คณะทันตแพทยศาสตร์'])
-                    <h3 class="condensed container"><a name="3">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></h3>
+                    <h3 class="condensed container"><a name="3">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></h3><a href="#1">^</a>
                     @include('users.faculty.ict',['name_th' => 'คณะเทคโนโลยีสารสนเทศและการสื่อสาร'])
-                    <h3 class="condensed container" ><a name="4" >คณะนิติศาสตร์</a>้</h3>
+                    <h3 class="condensed container" ><a name="4" >คณะนิติศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.law',['name_th' => 'คณะนิติศาสตร์'])
-                    <h3 class="condensed container" ><a name="5">คณะพยาบาลศาสตร์</a></h3>
+                    <h3 class="condensed container" ><a name="5">คณะพยาบาลศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.nu',['name_th' => 'คณะพยาบาลศาสตร์'])
-                    <h3 class="condensed container" ><a name="6"> คณะแพทยศาสตร์</a></h3>
+                    <h3 class="condensed container" ><a name="6"> คณะแพทยศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.md',['name_th' => 'คณะแพทยศาสตร์'])
-                    <h3 class="condensed container"><a name="7">คณะเภสัชศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="7">คณะเภสัชศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.md',['name_th' => 'คณะเภสัชศาสตร์'])
-                    <h3 class="condensed container" ><a name="8"> คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></h3>
+                    <h3 class="condensed container" ><a name="8"> คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.mis',['name_th' => 'คณะวิทยาการจัดการและสารสนเทศศาสตร์'])
-                    <h3 class="condensed container"><a name="9"> คณะวิทยาศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="9"> คณะวิทยาศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.sc',['name_th' => 'คณะวิทยาศาสตร์'])
-                    <h3 class="condensed container"><a name="10"> คณะวิทยาศาสตร์การแพทย์</a></h3>
+                    <h3 class="condensed container"><a name="10"> คณะวิทยาศาสตร์การแพทย์</a></h3><a href="#1">^</a>
                     @include('users.faculty.medsci',['name_th' => 'คณะวิทยาศาสตร์การแพทย์'])
-                    <h3 class="condensed container"><a name="11"> คณะวิศวกรรมศาสตร์ </a></h3>
+                    <h3 class="condensed container"><a name="11"> คณะวิศวกรรมศาสตร์ </a></h3><a href="#1">^</a>
                     @include('users.faculty.en',['name_th' => 'คณะวิศวกรรมศาสตร์'])
-                    <h3 class="condensed container"><a name="12"> คณะศิลปศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="12"> คณะศิลปศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.fa',['name_th' => 'คณะศิลปศาสตร์'])
-                    <h3 class="condensed container"><a name="13"> คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="13"> คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.ar',['name_th' => 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'])
-                    <h3 class="condensed container"><a name="14"> คณะสหเวชศาสตร์</a></h3>
+                    <h3 class="condensed container"><a name="14"> คณะสหเวชศาสตร์</a></h3><a href="#1">^</a>
                     @include('users.faculty.ahs',['name_th'=> 'คณะสหเวชศาสตร์'])
-                    <h3 class="condensed container"><a name="15"> วิทยาลัยการศึกษา</a></h3>
+                    <h3 class="condensed container"><a name="15"> วิทยาลัยการศึกษา</a></h3><a href="#1">^</a>
                     @include('users.faculty.edu',['name_th' => 'วิทยาลัยการศึกษา'])
-                    <h3 class="condensed container"><a name="16"> วิทยาลัยพลังงานและสิ่งแวดล้อม</a></h3>
+                    <h3 class="condensed container"><a name="16"> วิทยาลัยพลังงานและสิ่งแวดล้อม</a></h3><a href="#1">^</a>
                     @include('users.faculty.seen',['name_th' => 'วิทยาลัยพลังงานและสิ่งแวดล้อม'])
 
 
