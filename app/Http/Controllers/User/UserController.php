@@ -39,7 +39,7 @@ class UserController extends Controller
         })->paginate(12);
 
         return view('users.project.maindistrict', [
-           // 'projects' => $projects,
+            'projects' => $projects,
 
         ]);
     }

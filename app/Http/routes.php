@@ -15,8 +15,8 @@ use Ramsey\Uuid\Uuid;
 \Blade::setContentTags('<%', '%>'); // for variables and all things Blade
 \Blade::setEscapedContentTags('<%%', '%%>'); // for escaped data
 
-//Route::get('/', 'User\UserController@index');
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'User\UserController@index');
+//Route::get('/', 'WelcomeController@index');
 
 Route::get('/auth/login', function () {
     return view('auth.login');
@@ -36,9 +36,20 @@ Route::group([
         Route::get('/admin/project-status', 'Admin\AdminController@projectStatus');
         Route::get('/admin/api-key', 'Admin\AdminController@apikey');
         Route::get('/search', 'User\UserController@getSearch');
-
-
     });
+Route::group([
+        'middleware' => 'researcher'
+    ]
+    , function () {});
+Route::group([
+        'middleware' => 'faculty'
+    ]
+    , function () {});
+Route::group([
+        'middleware' => 'university'
+    ]
+    , function () {});
+
 
 Route::get('/researcher', 'Researcher\ResearcherController@index');
 Route::get('/faculty', 'Faculty\FacultyController@index');
@@ -50,17 +61,16 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'User\UserController@index');
     Route::get('/logout', 'User\UserController@logout');
 
-    
-
     //faculty
     Route::get('/faculty', 'User\UserController@indexfaculty');
+    Route::get('/district', 'User\UserController@indexdistrict');
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search', 'User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');
     Route::post('/project/{id}/comment', 'User\UserController@addComment');
-
-
 });
+
+
 Route::group([
     'prefix' => 'm1',
 ], function () {

@@ -38,34 +38,39 @@
                             </form>
                         </a>
                     </div>
-                    <div class="item ui dropdown" ng-controller="UserCtrl">
-                        @if(Auth::user()->logo)
-                            <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
-                        @else
-                            <img class="ui avatar avatar-menu image" src="/images/square-image.png">
-                        @endif
-                        @if(Auth::user())
-                            <span><%Auth::user()->email%></span>
-                        @endif
-                        <div class="menu">
-                            <a class="item" href="/">หน้าหลัก</a>
+                    @if(Auth::user())
+                        <div class="item ui dropdown" ng-controller="UserCtrl">
+                            @if(Auth::user()->logo)
+                                <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                            @else
+                                <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                            @endif
+                            @if(Auth::user())
+                                <span><%Auth::user()->email%></span>
+                            @endif
+                            <div class="menu">
+                                <a class="item" href="/">หน้าหลัก</a>
 
-                            <div class="divider"></div>
-                            <div class="header">
-                                <i class="tags icon"></i>
-                                เลือกสิทธิ์การใช้งาน
+                                <div class="divider"></div>
+                                <div class="header">
+                                    <i class="tags icon"></i>
+                                    เลือกสิทธิ์การใช้งาน
+                                </div>
+                                @foreach( Auth::user()->roles as $role)
+                                    <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                                        href="/<%$role->key%>">
+                                        <% $role->name %>
+                                    </a>
+                                @endforeach
+                                <div class="divider"></div>
+                                <a class="item">Change Profile</a>
+                                <a class="item" href="/api/auth/logout">Logout</a>
+
                             </div>
-                            @foreach( Auth::user()->roles as $role)
-                                <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
-                                   href="/<%$role->key%>">
-                                    <% $role->name %>
-                                </a>
-                            @endforeach
-                            <div class="divider"></div>
-                            <a class="item" href="/user/edituser"  >Change Profile</a>
-                            <a href="api/auth/logout" class="item">ออกจากระบบ</a>
                         </div>
-                    </div>
+                    @else
+                        <a class="item" href="/auth/login">เข้าสู่ระบบ</a>
+                    @endif
                 </div>
             </div>
         </div>

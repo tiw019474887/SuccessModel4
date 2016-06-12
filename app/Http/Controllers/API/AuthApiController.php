@@ -86,7 +86,7 @@ class AuthApiController extends Controller
     public function unAuthenticate()
     {
         Auth::logout();
-        return ["true"];
+        return redirect ('/users');
     }
 
     public
