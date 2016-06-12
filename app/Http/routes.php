@@ -50,18 +50,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'User\UserController@index');
     Route::get('/logout', 'User\UserController@logout');
 
-    //district
-    Route::get('/district', 'User\UserController@indexdistrict');
-    Route::get('/maung', 'User\UserController@indexMaung');
-    Route::get('/maeChai', 'User\UserController@indexMaeChai');
-    Route::get('/chiangMuan', 'User\UserController@indexChiangMuan');
-    Route::get('/dokKhamtai', 'User\UserController@indexDokKhamtai');
-    Route::get('/phuKamyao', 'User\UserController@indexPhuKamyao');
-    Route::get('/phuSang', 'User\UserController@indexPhuSang');
-    Route::get('/chiangKham', 'User\UserController@indexChiangKham');
-    Route::get('/chun', 'User\UserController@indexChun');
-    Route::get('/pong', 'User\UserController@indexPong');
-
+    
 
     //faculty
     Route::get('/faculty', 'User\UserController@indexfaculty');
@@ -169,7 +158,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
     Route::post('auth/login', 'API\AuthApiController@authenticate');
-    Route::post('auth/logout', 'API\AuthApiController@unAuthenticate');
+    Route::any('auth/logout', 'API\AuthApiController@unAuthenticate');
     Route::get('auth/user', 'API\AuthApiController@user');
 
     Route::get('chart/faculty-project', 'API\ChartApiController@facultyProjectChart');

@@ -17,9 +17,9 @@
             height: 100%;
         }
     </style>
-
-    <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
     <link rel="stylesheet" href="/packages/openlayers/build/ol.css"/>
+    <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
+
 
 @stop
 

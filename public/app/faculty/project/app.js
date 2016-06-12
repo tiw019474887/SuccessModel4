@@ -107,6 +107,7 @@ app.controller("HomeCtrl", function ($scope, $timeout, projects, $state, Faculty
 
 });
 
+
 app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService,FacultyService,
                                      project, images, members, file, previousFiles, youtubes) {

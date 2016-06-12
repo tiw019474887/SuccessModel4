@@ -94,7 +94,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.controller("HomeCtrl", function ($scope, $state, $timeout, projects,suggestion,  ProjectService, ResearcherService) {
     console.log("HomeCtrl Start...");
     $scope.projects = projects.data;
-    $scope.suggestion = suggestion.data;
+    $scope.suggestion = {};
     $scope.project = {};
     $scope.delete_modal = false;
     $scope.accept_modal = false;
@@ -211,12 +211,13 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
                                      UserService, UserSearchService, ProjectService, ResearcherService,
                                      project, images, members, file, previousFiles, youtubes) {
     console.log("ViewCtrl Start...");
-    angular.extend($scope, {});
+
     $scope.project = project.data;
     $scope.images = images.data;
     $scope.youtubes = youtubes.data;
     $scope.project.content = $sce.trustAsHtml($scope.project.content);
     $scope.showItem = null;
+    $scope.accept_modal = false;
     $scope.members = members.data;
     $scope.setShowItem = function (item, type) {
         $scope.showItem = {item: item, type: type}
@@ -237,8 +238,6 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         $('.flexslider').flexslider({
             slideshow: true,
             video: true,
-            controlNav: false,
-            directionNav: true,
             before: function (slider) {
                 /* ------------------  YOUTUBE FOR AUTOSLIDER ------------------ */
                 playVideoAndPauseOthers($('.play3 iframe')[0]);
@@ -256,7 +255,8 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         $('.flex-next, .flex-prev').click(function () {
             playVideoAndPauseOthers($('.play3 iframe')[0]);
         });
-    }, 10);
+    }, 10)
+
     $scope.showAcceptModal = function () {
         $scope.accept_modal = true;
     }

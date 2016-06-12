@@ -49,9 +49,7 @@
                                 <div class="column">
                                     <button type="submit" class="fluid ui primary button">User Login</button>
                                 </div>
-                                <div class="column">
-                                    <a href="#" class="fluid ui positive button">Register</a>
-                                </div>
+
 
                             </div>
                         </div>

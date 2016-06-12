@@ -63,7 +63,7 @@
                             @endforeach
                             <div class="divider"></div>
                             <a class="item" href="/user/edituser"  >Change Profile</a>
-                            <a href="/users/logout" class="item">ออกจากระบบ</a>
+                            <a href="api/auth/logout" class="item">ออกจากระบบ</a>
                         </div>
                     </div>
                 </div>
