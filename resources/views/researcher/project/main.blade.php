@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/packages/openlayers/build/ol.css"/>
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
 
+
     <style>
         .videoWrapper {
             position: relative;

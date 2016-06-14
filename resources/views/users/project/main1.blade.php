@@ -115,7 +115,7 @@
                                         <% $project->member->title %>.<% $project->member->firstname %> <%
                                         $project->member->lastname %>
                                         <?php else : ?>
-                                        <div>----</div>
+                                        <div></div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -130,16 +130,16 @@
                         <h3 class="condensed">รายละเอียดโครงการ</h3>
                         <div class="ui divider condensed"></div>
                         <div class="ui segment" id="tinymce_content" style="padding: 14px;">
-                            <p><% $project->content %></P>
-                            <p><% $project->contentEN %></p>
+                            <?php echo $project->content ?>
+                            <?php echo $project->contentEN ?>
                         </div>
+                        @if(Auth::user())
                         <h3 class="condensed">ความคิดเห็น</h3>
                         <div class="ui divider condensed"></div>
-                        @if(Auth::user())
-                        <div class="ui segment">
-                            <div class="ui comments">
-                                @foreach($project->comments as $comment)
-                                    <div class="comment" style="background-color: #E8E8E8">
+                            <div class="ui segment">
+                                <div class="ui comments">
+                                    @foreach($project->comments as $comment)
+                                        <div class="comment" style="background-color: #E8E8E8">
 
                                             <a class="ui avatar image">
                                                 <?php if(Auth::user()->logo) : ?>
@@ -150,31 +150,25 @@
                                                 <?php endif; ?>
                                             </a>
 
-                                        <div class="content">
-                                            <?php if(isset($comment->createdBy->firstname)) : ?>
-                                            <a class="author"><% $comment->createdBy->firstname %></a>
-                                            <?php else : ?>
-                                            <a class="author">Unknown</a>
-                                            <?php endif; ?>
+                                            <div class="content">
+                                                <?php if(isset($comment->createdBy->firstname)) : ?>
+                                                <a class="author"><% $comment->createdBy->firstname %></a>
+                                                <?php else : ?>
+                                                <a class="author">Unknown</a>
+                                                <?php endif; ?>
 
-                                            <div class="metadata">
-                                                <div class="date"><% $comment->updated_at->diffForHumans() %>
+                                                <div class="metadata">
+                                                    <div class="date"><% $comment->updated_at->diffForHumans() %>
+                                                    </div>
+                                                </div>
+                                                <div class="text">
+                                                    <p><% $comment->comment %></p>
                                                 </div>
                                             </div>
-                                            <div class="text">
-                                                <p><% $comment->comment %></p>
-                                            </div>
-                                            <div class="actions">
-                                                <a class="reply" type="submit">ลบ</a>
-                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        @else
-
-                        @endif
                     </div>
 
                     <div class="row ">
@@ -191,14 +185,20 @@
                                 <button type="submit" class="ui yellow button">Comment</button>
                             </form>
                         </div>
+                        @else
+
+                        @endif
                     </div>
+
                 </div>
+
                 <div class="six wide column">
                     <h3>แผนที่/Map</h3>
                     <div class="ui divider condensed"></div>
                     <div class="six wide column">
                         <div class="column">
                             <div class="ui segment">
+                                <?php if(isset($project->area->lat)) : ?>
                                 <div ng-app="demoapp">
                                     <div ng-controller="DemoController">
                                         <openlayers lat="<% $project->area->lat %>" lon="<% $project->area->lon %>"
@@ -208,6 +208,9 @@
                                         </openlayers>
                                     </div>
                                 </div>
+                                <?php else : ?>
+                                <div>ไม่ได้แสดงต่ำแหน่งบนพื้นที่</div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -250,6 +253,7 @@
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
+    <script type="text/javascript" src="/packages/tinymce-dist/tinymce.min.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
     <script type="text/javascript" src="/app/users/UsersService.js"></script>

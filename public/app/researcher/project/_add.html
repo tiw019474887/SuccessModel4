@@ -23,22 +23,22 @@
         <h4 class="ui dividing header">ข้อมูลโปรเจคภาษาไทย/Project Information Thai</h4>
 
         <div class="field">
-            <label>ชื่อโปรเจค/Project Name</label>
-            <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
+            <label>ชื่อโปรเจค</label>
+            <input ng-model="project.name" type="text" name="name" placeholder="ชื่อโปรเจค" required="required"onkeyup="isThaichar(this.value,this)">
         </div>
 
         <div class="field">
-            <label>บทคัดย่อ/Project Abstract</label>
-            <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
+            <label>บทคัดย่อ</label>
+            <textarea rows="5" ng-model="project.abstract" required="required" placeholder="บทคัดย่อ"onkeyup="isThaichar(this.value,this)"></textarea>
         </div>
 
         <div class="field">
-            <label>รายละเอียดโครงการ/Project Content</label>
-            <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+            <label>รายละเอียดโครงการ</label>
+            <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="รายละเอียดโครงการ"onkeyup="isThaichar(this.value,this)"></textarea>
         </div>
 
         <div class="field">
-            <label>Year</label>
+            <label>ปีที่จัดทำโครงการ</label>
             <div class="ui fluid selection upward dropdown">
 
                 <span ng-if="!project.yearProject" class="text">Select Year</span>
@@ -66,17 +66,17 @@
 
         <div class="field">
             <label>ชื่อโปรเจค/Project Name</label>
-            <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required">
+            <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required"onkeyup="isEngchar(this.value,this)">
         </div>
 
         <div class="field">
             <label>บทคัดย่อ/Project Abstract</label>
-            <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"></textarea>
+            <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"onkeyup="isEngchar(this.value,this)"></textarea>
         </div>
 
         <div class="field">
             <label>รายละเอียดโครงการ/Project Content</label>
-            <textarea ui-tinymce="mceOptions" ng-model="project.contentEN" placeholder="Content English"></textarea>
+            <textarea ui-tinymce="mceOptions" ng-model="project.contentEN" placeholder="Content English"onkeyup="isEngchar(this.value,this)"></textarea>
         </div>
 
         <button type="submit" class="ui primary submit button">Save</button>

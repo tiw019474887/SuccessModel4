@@ -62,18 +62,61 @@
         });
     </script>
 
+    <script type="text/javascript">
+        function isThaichar(str,obj){
+            var orgi_text="ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ";
+            var str_length=str.length;
+            var str_length_end=str_length-1;
+            var isThai=true;
+            var Char_At="";
+            for(i=0;i<str_length;i++){
+                Char_At=str.charAt(i);
+                if(orgi_text.indexOf(Char_At)==-1){
+                    isThai=false;
+                }
+            }
+            if(str_length>=1){
+                if(isThai==false){
+                    obj.value=str.substr(0,str_length_end);
+                }
+            }
+            return isThai; // ถ้าเป็น true แสดงว่าเป็นภาษาไทยทั้งหมด
+        }
+    </script>
 
+    <script type="text/javascript">
+        function isEngchar(str,obj){
+            var orgi_text="qwertyuiopasdfghjklzxcvbnm";
+            var str_length=str.length;
+            var str_length_end=str_length-1;
+            var isThai=true;
+            var Char_At="";
+            for(i=0;i<str_length;i++){
+                Char_At=str.charAt(i);
+                if(orgi_text.indexOf(Char_At)==-1){
+                    isThai=false;
+                }
+            }
+            if(str_length>=1){
+                if(isThai==false){
+                    obj.value=str.substr(0,str_length_end);
+                }
+            }
+            return isThai; // ถ้าเป็น true แสดงว่าเป็นภาษาไทยทั้งหมด
+        }
+    </script>
 
 
     <script src="/app/admin/loader.js"></script>
     <script src="/app/users/project/app.js"></script>
-
-
+    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
+    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
 
     <script type="text/javascript" src="/packages/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="/packages/angular-flexslider/angular-flexslider.js"></script>
     <script type="text/javascript" src="/packages/showdown/compressed/Showdown.js"></script>
-    <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
@@ -87,9 +130,7 @@
     <script type="text/javascript" src="/app/admin/ProjectStatusService.js"></script>
     <script type="text/javascript" src="/app/admin/project/app.js"></script>
 
-    <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
-    <script type="text/javascript" src="/packages/angular/angular.min.js"></script>
-    <script type="text/javascript" src="/packages/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+
 
 @stop
 

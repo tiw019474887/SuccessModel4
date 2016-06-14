@@ -61,26 +61,23 @@
                     @include('users.faculty.md',['name_th' => 'คณะแพทยศาสตร์'])
                     <h3 class="condensed container"><a name="7">คณะเภสัชศาสตร์</a></h3>
                     @include('users.faculty.md',['name_th' => 'คณะเภสัชศาสตร์'])
-                    <h3 class="condensed container"><a name="8"> คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></h3><a
-                            href="#1">^</a>
+                    <h3 class="condensed container"><a name="8"> คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></h3>
                     @include('users.faculty.mis',['name_th' => 'คณะวิทยาการจัดการและสารสนเทศศาสตร์'])
-                    <h3 class="condensed container"><a name="9"> คณะวิทยาศาสตร์</a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="9"> คณะวิทยาศาสตร์</a></h3>
                     @include('users.faculty.sc',['name_th' => 'คณะวิทยาศาสตร์'])
-                    <h3 class="condensed container"><a name="10"> คณะวิทยาศาสตร์การแพทย์</a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="10"> คณะวิทยาศาสตร์การแพทย์</a></h3>
                     @include('users.faculty.medsci',['name_th' => 'คณะวิทยาศาสตร์การแพทย์'])
-                    <h3 class="condensed container"><a name="11"> คณะวิศวกรรมศาสตร์ </a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="11"> คณะวิศวกรรมศาสตร์ </a></h3>
                     @include('users.faculty.en',['name_th' => 'คณะวิศวกรรมศาสตร์'])
-                    <h3 class="condensed container"><a name="12"> คณะศิลปศาสตร์</a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="12"> คณะศิลปศาสตร์</a></h3>
                     @include('users.faculty.fa',['name_th' => 'คณะศิลปศาสตร์'])
-                    <h3 class="condensed container"><a name="13"> คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></h3><a
-                            href="#1">^</a>
+                    <h3 class="condensed container"><a name="13"> คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></h3>
                     @include('users.faculty.ar',['name_th' => 'คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์'])
-                    <h3 class="condensed container"><a name="14"> คณะสหเวชศาสตร์</a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="14"> คณะสหเวชศาสตร์</a></h3>
                     @include('users.faculty.ahs',['name_th'=> 'คณะสหเวชศาสตร์'])
-                    <h3 class="condensed container"><a name="15"> วิทยาลัยการศึกษา</a></h3><a href="#1">^</a>
+                    <h3 class="condensed container"><a name="15"> วิทยาลัยการศึกษา</a></h3>
                     @include('users.faculty.edu',['name_th' => 'วิทยาลัยการศึกษา'])
-                    <h3 class="condensed container"><a name="16"> วิทยาลัยพลังงานและสิ่งแวดล้อม</a></h3><a
-                            href="#1">^</a>
+                    <h3 class="condensed container"><a name="16"> วิทยาลัยพลังงานและสิ่งแวดล้อม</a></h3>
                     @include('users.faculty.seen',['name_th' => 'วิทยาลัยพลังงานและสิ่งแวดล้อม'])
 
 

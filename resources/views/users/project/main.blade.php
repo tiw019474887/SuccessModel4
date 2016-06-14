@@ -57,15 +57,15 @@
                                                 <div class="ui fluid card" style="margin:1px;">
                                                     <div class="image">
                                                         <?php if(isset($project->logo->url)) : ?>
-                                                        <img src="<% $project->logo->url %>?w=640&h=280&fit=stretch"/>
+                                                        <img src="<% $project->logo->url %>?w=640&h=380&fit=stretch"/>
                                                         <?php else : ?>
                                                         <img src="/images/fff.png?w=640&h=280&fit=stretch"/>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="content">
-                                                        <a class="header"><h2><% $project->name %></h2>
+                                                        <a class="header"><h3><% $project->name %></h3>
 
-                                                            <h3><% $project->nameEN %></h3></a>
+                                                            <h4><% $project->nameEN %></h4></a>
 
                                                         <div class="meta"><% $project->updated_at->diffForHumans() %></div>
 

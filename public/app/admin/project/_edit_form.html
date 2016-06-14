@@ -2,18 +2,17 @@
 
     <div class="field">
         <label>ชื่อโปรเจค/Project Name</label>
-        <input ng-model="project.name" type="text" name="name" placeholder="Project Name Thai" required="required">
+        <input ng-model="project.name" type="text" name="name" placeholder="ชื่อโปรเจค" required="required"onkeyup="isThaichar(this.value,this)">
     </div>
-
 
     <div class="field">
         <label>บทคัดย่อ/Project Abstract</label>
-        <textarea rows="5" ng-model="project.abstract" required="required" placeholder="Project Abstract Thai"></textarea>
+        <textarea rows="5" ng-model="project.abstract" required="required" placeholder="บทคัดย่อ"onkeyup="isThaichar(this.value,this)"></textarea>
     </div>
 
     <div class="field">
         <label>รายละเอียดโครงการ/Project Content</label>
-        <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="Content Thai"></textarea>
+        <textarea ui-tinymce="mceOptions" ng-model="project.content" placeholder="รายละเอียดโครงการ"></textarea>
     </div>
 
     <div class="field">

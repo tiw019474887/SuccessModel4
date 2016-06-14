@@ -283,7 +283,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
                                      UserService, UserSearchService,ProjectService, project,
-                                     images, areas, members, file, previousFiles, youtubes) {
+                                     images, areas, members,  previousFiles, youtubes) {
 
     console.log("EditCtrl Start...");
 
@@ -291,7 +291,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.images = images.data;
     $scope.areas = areas.data;
     $scope.projectMembers = members.data;
-    $scope.file = file.data;
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
     $scope.keyword;
@@ -300,12 +299,12 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
 
     $scope.mceOptions = {
         inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        content_css: '/packages/semantic/dist/semantic.min.css',
         plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
-        height: 400,
+        height: 150,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
         "bullist numlist outdent indent | hr | link unlink | image tinyflow |"

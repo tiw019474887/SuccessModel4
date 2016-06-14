@@ -2,12 +2,12 @@
 
     <div class="field">
         <label>ชื่อโปรเจค/Project Name</label>
-        <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required">
+        <input ng-model="project.nameEN" type="text" name="nameEN" placeholder="Project Name English" required="required"onkeyup="isEngchar(this.value,this)">
     </div>
 
     <div class="field">
         <label>บทคัดย่อ/Project Abstract</label>
-        <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"></textarea>
+        <textarea rows="5" ng-model="project.abstractEN" required="required" placeholder="Project Abstract English"onkeyup="isEngchar(this.value,this)"></textarea>
     </div>
 
     <div class="field">
