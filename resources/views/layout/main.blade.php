@@ -18,7 +18,7 @@
             <div class="ui grid container">
                 <div class="column">
                     <h2 class="ui header inverted" style="padding: 10px;">
-                        <img src="/images/uplogo.png">
+                        <img src="/images/fff.png">
 
                         <div class="content">
                             Success Model
