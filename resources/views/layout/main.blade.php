@@ -17,12 +17,15 @@
         <div class="column" style="background-color: #4c1d6e">
             <div class="ui grid container">
                 <div class="column">
-                    <h2 class="ui header inverted" style="padding: 10px;">
-                        <img src="/images/fff.png">
-
+                    <h2 class="ui header inverted" style="padding: 20px;">
+                        <div class="ui small image">
+                            <a>
+                                <img src="/images/fff.png">
+                            </a>
+                        </div>
                         <div class="content">
                             Success Model
-                            <div class="sub header">ระบบฐานข้อมูลหนึ่งคณะหนึ่งโมเดล</div>
+                            <div class="sub header">ระบบฐานข้อมูลโครงการหนึ่งคณะหนึ่งโมเดล</div>
                         </div>
                     </h2>
                 </div>

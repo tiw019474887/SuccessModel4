@@ -112,7 +112,8 @@
                                         <img class="ui avatar image" src="/images/daniel.jpg?w=300&h=300"/>
                                         <?php endif; ?>
                                         <?php if (isset ($project->member->title, $project->member->firstname, $project->member->lastname)) : ?>
-                                            <% $project->member->title %>.<% $project->member->firstname %> <% $project->member->lastname %>
+                                        <% $project->member->title %>.<% $project->member->firstname %> <%
+                                        $project->member->lastname %>
                                         <?php else : ?>
                                         <div>----</div>
                                         <?php endif; ?>
@@ -134,18 +135,20 @@
                         </div>
                         <h3 class="condensed">ความคิดเห็น</h3>
                         <div class="ui divider condensed"></div>
+                        @if(Auth::user())
                         <div class="ui segment">
                             <div class="ui comments">
                                 @foreach($project->comments as $comment)
                                     <div class="comment" style="background-color: #E8E8E8">
-                                        <a class="ui avatar image">
-                                            <?php if(Auth::user()->logo) : ?>
-                                            <img class="ui avatar avatar-menu image"
-                                                 src="<%Auth::user()->logo->url%>?h=200">
-                                            <?php else : ?>
-                                            <img class="ui avatar avatar-menu image" src="/images/square-image.png">
-                                            <?php endif; ?>
-                                        </a>
+
+                                            <a class="ui avatar image">
+                                                <?php if(Auth::user()->logo) : ?>
+                                                <img class="ui avatar avatar-menu image"
+                                                     src="<%Auth::user()->logo->url%>?h=200">
+                                                <?php else : ?>
+                                                <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                                                <?php endif; ?>
+                                            </a>
 
                                         <div class="content">
                                             <?php if(isset($comment->createdBy->firstname)) : ?>
@@ -169,6 +172,9 @@
                                 @endforeach
                             </div>
                         </div>
+                        @else
+
+                        @endif
                     </div>
 
                     <div class="row ">
