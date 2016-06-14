@@ -18,13 +18,12 @@ class AdminMiddleware
     {
 
         if (Auth::guest()) {
-            return redirect('/');
+            return redirect()->guest('/login');
         } else {
             $user = Auth::user();
             /* @var User $user */
-
-            if(!$user->isAdmin()){
-                return redirect('/');
+            if (!$user->isAdmin()) {
+                return redirect()->guest('//');
             }
         }
 
@@ -32,5 +31,4 @@ class AdminMiddleware
 
 
     }
-
 }

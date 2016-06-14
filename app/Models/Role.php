@@ -24,7 +24,7 @@ class Role extends \NeoEloquent {
      *
      * @var array
      */
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['key','name', 'description'];
 
     // --DEFINE RELATIONSHIPS--
     /**
@@ -33,5 +33,8 @@ class Role extends \NeoEloquent {
      * @var array
      * @return object
      */
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, "role_user");
+    }
 }

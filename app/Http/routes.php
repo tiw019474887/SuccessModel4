@@ -38,22 +38,27 @@ Route::group([
         Route::get('/search', 'User\UserController@getSearch');
     });
 Route::group([
-        'middleware' => 'researcher'
-    ]
-    , function () {});
-Route::group([
         'middleware' => 'faculty'
     ]
-    , function () {});
+    , function () {
+        Route::get('/faculty', 'Faculty\FacultyController@index');
+    });
 Route::group([
         'middleware' => 'university'
     ]
-    , function () {});
+    , function () {
+        Route::get('/university', 'University\UniversityController@index');
+    });
+Route::group([
+        'middleware' => 'researcher'
+    ]
+    , function () {
+        Route::get('/researcher', 'Researcher\ResearcherController@index');
+    });
 
 
-Route::get('/researcher', 'Researcher\ResearcherController@index');
-Route::get('/faculty', 'Faculty\FacultyController@index');
-Route::get('/university', 'University\UniversityController@index');
+
+
 Route::get('/user/edituser/', 'User\UserController@edituser');
 
 

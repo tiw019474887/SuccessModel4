@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-<br>
+    <br>
     <div class="one column row">
         <div class="column">
             <table class="ui celled striped table">
@@ -151,9 +151,9 @@
     <div class="header">
         Suggestion
     </div>
-
-    <p>Suggestion : <span ng-bind="project.suggestion"></span></p>
-
+    <div ng-repeat="project in projects">
+        <p>Suggestion : <span ng-bind="project.suggestion.id"></span></p>
+    </div>
 </modal>
 
 <modal ng-model="accept_modal">

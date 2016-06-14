@@ -92,13 +92,14 @@ class User extends \NeoEloquent implements  AuthenticatableContract, CanResetPas
     }
 
 
-    public function isAdmin(){
-        $roles = $this->roles;
-        foreach($roles as $role){
-            if($role->key == 'admin'){
+    public function is($roleName)
+    {
+        foreach ($this->roles()->get() as $role) {
+            if ($role->key == $roleName) {
                 return true;
             }
         }
+
         return false;
     }
 }

@@ -72,7 +72,7 @@
                                 @endforeach
                                 <div class="divider"></div>
                                 <a class="item">Change Profile</a>
-                                <a href="api/auth/logout" class="item">Logout</a>
+                                <a href="/api/auth/logout" class="item">Logout</a>
 
                             </div>
                         </div>
