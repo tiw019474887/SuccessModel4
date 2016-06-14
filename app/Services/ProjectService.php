@@ -16,12 +16,7 @@ use Ramsey\Uuid\Uuid;
 use \Auth;
 
 
-/**
- * Created by PhpStorm.
- * ProjectRequest: chaow
- * Date: 4/7/2015
- * Time: 3:03 PM
- */
+
 class ProjectService extends Service
 {
 

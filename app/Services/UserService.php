@@ -10,13 +10,6 @@ use Ramsey\Uuid\Uuid;
 use App\Soaps\LoginSoap;
 use App\Soaps\UserInfoSoap;
 
-/**
- * Created by PhpStorm.
- * UserRequest: chaow
- * Date: 4/7/2015
- * Time: 3:03 PM
- */
-
 class UserService extends Service{
 
     var $withArr = ['roles','logo','faculty'];

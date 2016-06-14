@@ -11,12 +11,6 @@ use Ramsey\Uuid\Uuid;
 
 use App\Services\UserService;
 
-/**
- * Created by PhpStorm.
- * UserRequest: chaow
- * Date: 4/7/2015
- * Time: 3:03 PM
- */
 
 class AreaService extends Service{
 

@@ -1,12 +1,5 @@
 <?php namespace App\Services;
 
-/**
- * Created by PhpStorm.
- * User: chaow
- * Date: 2/12/2015 AD
- * Time: 12:21 PM
- */
-
 use App\Models\Role as Role;
 
 class RoleService extends Service

@@ -1,15 +1,6 @@
 <?php namespace App\Services;
 use App\Models\ApiKey;
 use Rhumsaa\Uuid\Uuid;
-
-/**
- * Created by PhpStorm.
- * User: chaow
- * Date: 2/12/2015 AD
- * Time: 12:21 PM
- */
-
-
 class ApiKeyService extends Service
 {
 
