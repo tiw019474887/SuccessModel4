@@ -1,4 +1,3 @@
-
 @section('header')
     <style>
         .videoWrapper {
@@ -61,10 +60,10 @@
                                     </div>
                                     <div class="extra content">
                                         <?php if (isset($project->faculty->name_th)) : ?>
-
+                                            <% $project->faculty->name_th %>
                                           <?php else : ?>
 
-                                                        <?php endif; ?>
+                                          <?php endif; ?>
                                     </div>
                                     <a href="/users/project/<%$project->id%>">
                                         <div class="ui two bottom attached buttons">

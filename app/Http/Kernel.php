@@ -32,6 +32,7 @@ class Kernel extends HttpKernel
         'faculty' => 'App\Http\Middleware\Faculty',
         'university' => 'App\Http\Middleware\University',
         'researcher' => 'App\Http\Middleware\Researcher',
+        
 
     ];
 
