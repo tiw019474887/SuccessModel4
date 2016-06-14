@@ -32,7 +32,7 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with(['createdBy', 'faculty','status','suggestion'])->get();
+        return Project::with(['createdBy', 'faculty','status','suggestion','area'])->get();
         //return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
