@@ -45,7 +45,7 @@ class ResearcherProjectApiController extends Controller {
     }
 
     public function getSuggestion($id){
-        return $this->researcherProjectService->getSuggestion(zz);
+        return $this->researcherProjectService->getSuggestion($id);
     }
 
 
