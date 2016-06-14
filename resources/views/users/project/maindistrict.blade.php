@@ -30,7 +30,7 @@
             <a class="item" href="/users">
                 โครการทั้งหมด
             </a>
-            <a class="item" href="/users/district">
+            <a class="active item" href="/users/district">
                 อำเภอ
             </a>
             <a class="item" href="/users/faculty ">

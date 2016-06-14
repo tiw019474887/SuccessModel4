@@ -28,7 +28,7 @@
 @section('content')
     <div class="ui attached stackable menu">
         <div class="ui container">
-            <a class="blue item" href="/users">
+            <a class="active item" href="/users">
                 โครการทั้งหมด
             </a>
             <a class="item" href="/users/district">

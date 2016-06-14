@@ -33,7 +33,7 @@
             <a class="item" href="/users/district">
                 อำเภอ
             </a>
-            <a class="item" href="/users/faculty ">
+            <a class="active item" href="/users/faculty ">
                 คณะ
             </a>
         </div>
