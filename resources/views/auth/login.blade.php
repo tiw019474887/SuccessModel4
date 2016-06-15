@@ -40,7 +40,7 @@
 
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
-                                <input ng-model="user.password" name="password" type="password" placeholder="Password">
+                                <input ng-model="user.password" name="password"  type="password" minlength="6" placeholder="Password">
                             </div>
 
                         </div>
