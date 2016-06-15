@@ -44,6 +44,125 @@ class UserController extends Controller
         ]);
     }
 
+    public function chiangkham()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function chiangmuan()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function chun()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+
+    public function dokkhamtai()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+
+    public function maechai()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function maung()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function phukamyao()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function phusang()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function pong()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.maindistrict', [
+            'projects' => $projects,
+
+        ]);
+    }
+////////////// faculty
     public function indexfaculty()
     {
         $projects = Project::whereHas('status', function ($q) {
@@ -51,7 +170,200 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.mainfaculty', [
+        return view('users.project.mainfaculty.mainfaculty', [
+            'projects' => $projects,
+
+        ]);
+    }
+
+    public function ag()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfacultyAg', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function ash()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyAsh', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function ar()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyAr', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function dt()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyDt', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function edu()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyEdu', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function en()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyEn', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function fa()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyFa', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function ict()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyIct', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function law()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyLaw', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function md()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyMd', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function medsci()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyMedsci', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function mis()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyMis', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function nu()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyNu', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function ps()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultyPs', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function sc()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultySc', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function seen()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainfaculty.mainfacultySeen', [
             'projects' => $projects,
 
         ]);

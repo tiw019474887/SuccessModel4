@@ -22,7 +22,7 @@
                                         <?php if(isset($project->logo->url)) : ?>
                                         <img src="<% $project->logo->url %>?w=640&h=380&fit=stretch"/>
                                         <?php else : ?>
-                                        <img src="/images/fff.png?w=640&h=280&fit=stretch"/>
+                                        <img src="/images/fff.png?w=640&h=380&fit=stretch"/>
                                         <?php endif; ?>
                                     </div>
                                     <div class="content">

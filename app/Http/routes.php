@@ -68,7 +68,39 @@ Route::group(['prefix' => 'users'], function () {
 
     //faculty
     Route::get('/faculty', 'User\UserController@indexfaculty');
-    Route::get('/district', 'User\UserController@indexdistrict');
+    Route::get('/faculty/Ag', 'User\UserController@ag');
+    Route::get('/faculty/Ahs', 'User\UserController@ahs');
+    Route::get('/faculty/Ar', 'User\UserController@ar');
+    Route::get('/faculty/Dt', 'User\UserController@dt');
+    Route::get('/faculty/Edu', 'User\UserController@edu');
+    Route::get('/faculty/En', 'User\UserController@en');
+    Route::get('/faculty/Fa', 'User\UserController@fa');
+    Route::get('/faculty/Ict', 'User\UserController@ict');
+    Route::get('/faculty/Law', 'User\UserController@law');
+    Route::get('/faculty/Md', 'User\UserController@md');
+    Route::get('/faculty/Medsci', 'User\UserController@medsci');
+    Route::get('/faculty/Mis', 'User\UserController@mis');
+    Route::get('/faculty/Nu', 'User\UserController@nu');
+    Route::get('/faculty/Ps', 'User\UserController@ps');
+    Route::get('/faculty/Sc', 'User\UserController@sc');
+    Route::get('/faculty/Seen', 'User\UserController@seen');
+    
+    
+    Route::get('/district/chiangkham', 'User\UserController@chiangkham');
+    Route::get('/district/chiangmuan', 'User\UserController@chiangmuan');
+    Route::get('/district/chun', 'User\UserController@chun');
+    Route::get('/district/dokkhamtai', 'User\UserController@dokkhamtai');
+    Route::get('/district/maechai', 'User\UserController@maechai');
+    Route::get('/district/maung', 'User\UserController@maung');
+    Route::get('/district/phukamyao', 'User\UserController@phukamyao');
+    Route::get('/district/phusang', 'User\UserController@phusang');
+    Route::get('/district/pong', 'User\UserController@pong');
+
+    
+    
+    
+    
+    
     Route::get('/project/{id}', 'User\UserController@project');
     Route::get('/search', 'User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');

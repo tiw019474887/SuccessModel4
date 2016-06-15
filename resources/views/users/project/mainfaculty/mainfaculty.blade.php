@@ -27,15 +27,63 @@
 
     <div class="ui attached stackable menu">
         <div class="ui container">
-            <a class="item" href="/users">
+            <a class="active item" href="/users">
                 โครการทั้งหมด
             </a>
-            <a class="item" href="/users/district">
-                อำเภอ
-            </a>
-            <a class="active item" href="/users/faculty ">
-                คณะ
-            </a>
+            <div class="ui simple dropdown item">
+                โครการในแต่ละอำเภอ
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item" ><a href="/users/district/maung"> อำเภอเมือง</a></div>
+                    <div class="item" ><a href="/users/district/maechai">อำเภอแม่ใจ</a></div>
+                    <div class="item" ><a href="/users/district/chiangmuan">อำเภอเชียงม่วน</a></div>
+                    <div class="item" ><a href="/users/district/dokkhamtai">อำเภอดอกคำใต้</a></div>
+                    <div class="item" ><a href="/users/district/phukamyao">อำเภอภูกามยาว</a></div>
+                    <div class="item"><a  href="/users/district/phusang">อำเภอภูซาง</a></div>
+                    <div class="item" ><a href="/users/district/chiangkham">อำเภอเชียงคำ</a></div>
+                    <div class="item" ><a href="/users/district/chun">อำเภอจุน</a></div>
+                    <div class="item" ><a href="/users/district/pong">อำเภอปง</a></div>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
+                โครการในแต่ละคณะ
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item"><a href="/users/faculty/Ag">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</a></div>
+                    <div class="item"><a  href="/users/faculty/Dt">คณะทันตแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ict">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></div>
+                    <div class="item"><a href="/users/faculty/Law">คณะนิติศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Nu">คณะพยาบาลศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Md">คณะแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ps">คณะเภสัชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Mis">คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Sc">คณะวิทยาศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Medsci">คณะวิทยาศาสตร์การแพทย์</a></div>
+                    <div class="item"><a href="/users/faculty/Fa">คณะศิลปศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/En">คณะวิศวกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ar">คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ash">คณะสหเวชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Edu">วิทยาลัยการศึกษา</a></div>
+                    <div class="item"><a href="/users/faculty/Seen">วิทยาลัยพลังงานและสิ่งแวดล้อม</a></div>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
+                ปีที่ดำเนินการ
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">2555</div>
+                    <div class="item">2556</div>
+                    <div class="item">2557</div>
+                    <div class="item">2558</div>
+                    <div class="item">2559</div>
+                    <div class="item">2560</div>
+                    <div class="item">2561</div>
+                    <div class="item">2562</div>
+                    <div class="item">2563</div>
+                    <div class="item">2564</div>
+                    <div class="item">2565</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -79,33 +127,14 @@
                     @include('users.faculty.edu',['name_th' => 'วิทยาลัยการศึกษา'])
                     <h3 class="condensed container"><a name="16"> วิทยาลัยพลังงานและสิ่งแวดล้อม</a></h3>
                     @include('users.faculty.seen',['name_th' => 'วิทยาลัยพลังงานและสิ่งแวดล้อม'])
-
-
                     <div class="ui center">
                         <?php echo (new App\Pagination($projects))->render(); ?>
                     </div>
                 </div>
                 <div class="three wide right floated column container">
                     <div class="clounm">
-                        <h3 class="condensed">คณะ</h3>
-                        <div><a href="#1">คณะเกษตรศาสตร์</a></div>
-                        <div><a href="#2">คณะทันตแพทยศาสตร์</a></div>
-                        <div><a href="#3">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></div>
-                        <div><a href="#4">คณะนิติศาสตร์</a></div>
-                        <div><a href="#5">คณะพยาบาลศาสตร์</a></div>
-                        <div><a href="#6">คณะแพทยศาสตร์</a></div>
-                        <div><a href="#7">คณะเภสัชศาสตร์</a></div>
-                        <div><a href="#8">คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></div>
-                        <div><a href="#9">คณะวิทยาศาสตร์</a></div>
-                        <div><a href="#10">คณะวิทยาศาสตร์การแพทย์</a></div>
-                        <div><a href="#11">คณะวิศวกรรมศาสตร์ </a></div>
-                        <div><a href="#12">คณะศิลปศาสตร์</a></div>
-                        <div><a href="#13">คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></div>
-                        <div><a href="#14">คณะสหเวชศาสตร์</a></div>
-                        <div><a href="#15">วิทยาลัยการศึกษา</a></div>
-                        <div><a href="#16">วิทยาลัยพลังงานและสิ่งแวดล้อม</a></div>
 
-                        <h3 class="condensed">ลิ้งต่างๆ</h3>
+                        <h3 class="condensed">Link</h3>
 
                         <div class="ui divider condensed"></div>
 

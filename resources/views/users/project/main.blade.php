@@ -32,10 +32,13 @@
                 โครการทั้งหมด
             </a>
             <a class="item" href="/users/district">
-                อำเภอ
+                โครการในแต่ละอำเภอ
             </a>
             <a class="item" href="/users/faculty ">
-                คณะ
+                โครการในแต่ละคณะ
+            </a>
+            <a class="item" href=" ">
+                ปีที่ดำเนินการ
             </a>
         </div>
     </div>
