@@ -3,32 +3,30 @@
     <div class="one column row">
         <div class="ui attached stackable menu">
             <div class="ui attached stackable menu">
-                <a class="item">
+                <span class="item">
                     <h5> Status</h5>
-                </a>
+                </span>
                 <div class="ui container">
-                    <a class="item">
+                    <a class="item" ng-click="search.status.key = all">
                         <h5> Project All {{projects.length}}</h5>
                     </a>
-                    <a class="item">
-                        <h5>Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h5>
+                    <a class="item" ng-click="search.status.key = 'draft'">
+                        <h5>Draft:{{(projects | filter:project.status.key = 'Draft').length}}</h5>
                     </a>
-                    <a class="item">
-                        <h5>Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review
-                            Pending').length}}</h5>
+                    <a class="item" ng-click="search.status.key = 'faculty'">
+                        <h5>Faculty Review:{{(projects | filter:project.status.key = 'faculty').length}}</h5>
                     </a>
-                    <a class="item">
-                        <h5>University Review:{{(projects | filter:project.status.name = 'University Review
-                            Pending').length}}</h5>
+                    <a class="item" ng-click="search.status.key = 'university'">
+                        <h5>University Review:{{(projects | filter:project.status.key = 'university').length}}</h5>
                     </a>
-                    <a class="item">
-                        <h5>Published:{{(projects | filter:project.status.name = 'Published').length}}</h5>
+                    <a class="item" ng-click="search.status.key = 'published'">
+                        <h5>Published:{{(projects | filter:project.status.key = 'published').length}}</h5>
                     </a>
                     <div class="right menu">
                         <a class="item">
                             <div class="right aligned right floated column">
                                 <div class="ui icon input">
-                                    <input type="text" ng-model="search" placeholder="Search">
+                                    <input type="text" ng-model="inputSearch" placeholder="Search">
                                 </div>
                             </div>
                         </a>
@@ -63,7 +61,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="project in projects |filter:search| orderBy: ['status.id','yearProject']">
+                <tr ng-repeat="project in projects | filter:search | filter:inputSearch | orderBy: ['status.id','yearProject']">
                     <td class="center aligned collapsing" ng-bind="project.id"></td>
                     <td ng-bind="project.name"></td>
                     <td ng-bind="project.faculty.name_th"></td>
