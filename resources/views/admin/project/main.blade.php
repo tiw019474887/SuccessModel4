@@ -108,7 +108,6 @@
 
 
     <script src="/app/admin/loader.js"></script>
-    <script src="/app/users/project/app.js"></script>
     <script type="text/javascript" src="/packages/openlayers/build/ol.js"></script>
     <script type="text/javascript" src="/packages/angular-sanitize/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="/packages/angular/angular.min.js"></script>

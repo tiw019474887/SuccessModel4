@@ -31,7 +31,6 @@
                 Loading
             </div>
         </div>
-
         <ui-view></ui-view>
     </div>
 
