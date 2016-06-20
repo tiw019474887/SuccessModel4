@@ -1,8 +1,6 @@
 <?php
 namespace App\Services;
 use App\Models\Area;
-use App\Models\Faculty;
-use App\Models\Logo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
