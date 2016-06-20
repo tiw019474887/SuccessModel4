@@ -19,7 +19,7 @@ class ResearcherProjectService extends ProjectService
 
     public function getProjects()
     {
-        $projects = \App\Models\Project::with(['createdBy', 'faculty', 'area', 'status', 'suggestion'])->get();
+        $projects = \App\Models\Project::with(['createdBy', 'faculty', 'status', 'suggestion'])->get();
 
         $fil_projects = [];
 
