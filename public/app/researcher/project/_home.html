@@ -120,6 +120,44 @@
     </div>
 </div>
 
+<modal ng-model="accept_modal">
+    <i ng-click="closeAcceptModal()" class="close icon"></i>
+
+    <div class="header">
+        Comment Project
+    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+        </div>
+    </form>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxAccept(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
+
+<modal ng-model="suggestion_modal">
+    <i ng-click="closeSuggestionModal()" class="close icon"></i>
+    <div class="header">
+        Suggestion
+    </div>
+    <form class="ui reply form">
+        <div class="field">
+            <textarea>
+             {{project.suggestion.suggestion}}
+            </textarea>
+        </div>
+    </form>
+
+
+</modal>
+
 <modal ng-model="delete_modal">
     <i ng-click="closeDeleteModal()" class="close icon"></i>
 
@@ -139,45 +177,6 @@
             No
         </div>
         <div class="ui positive right labeled icon button" ng-click="ajaxDelete(project,true)">
-            Yes
-            <i class="checkmark icon"></i>
-        </div>
-    </div>
-</modal>
-
-
-<modal ng-model="suggestion_modal">
-    <i ng-click="closeSuggestionModal()" class="close icon"></i>
-    <div class="header">
-        Suggestion
-    </div>
-    <form class="ui reply form">
-        <div class="field">
-            <textarea>
-             {{project.suggestion.suggestion}}
-            </textarea>
-        </div>
-    </form>
-
-
-</modal>
-
-<modal ng-model="accept_modal">
-    <i ng-click="closeAcceptModal()" class="close icon"></i>
-
-    <div class="header">
-        Comment Project
-    </div>
-    <form class="ui reply form">
-        <div class="field">
-            <textarea required="required" placeholder="คำแนะนำ.........."></textarea>
-        </div>
-    </form>
-    <div class="actions">
-        <div class="ui black button" ng-click="ajaxAccept(null,false)">
-            No
-        </div>
-        <div class="ui positive right labeled icon button" ng-click="ajaxAccept(project,true)">
             Yes
             <i class="checkmark icon"></i>
         </div>

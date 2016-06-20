@@ -2,44 +2,44 @@
  * Created by chaow on 4/7/2015.
  */
 
-angular.module('Researcher',[])
-    .factory('ResearcherService',function($http){
+angular.module('Researcher', [])
+    .factory('ResearcherService', function ($http) {
         return {
             all: function () {
                 return $http.get('/api/project');
             },
-            getProjects : function (){
+            getProjects: function () {
                 return $http({
-                    url : '/api/researcher/projects',
-                    method : 'get'
-            })
+                    url: '/api/researcher/projects',
+                    method: 'get'
+                })
             },
-            addProject : function($project){
+            addProject: function ($project) {
                 return $http({
-                    url : '/api/researcher/add-project',
+                    url: '/api/researcher/add-project',
                     method: 'post',
-                    data : $project
+                    data: $project
                 })
             },
-            submit : function($id,$project){
+            submit: function ($id, $project) {
                 return $http({
-                    url : '/api/researcher/submit-project/'+ $id,
-                    method : 'post',
-                    data : $project
+                    url: '/api/researcher/submit-project/' + $id,
+                    method: 'post',
+                    data: $project
                 })
             },
-            get : function($id,$project){
+            get: function ($id, $project) {
                 return $http({
-                    url : '/api/researcher/get-project/'+ $id,
-                    method : 'get',
-                    data : $project
+                    url: '/api/researcher/get-project/' + $id,
+                    method: 'get',
+                    data: $project
                 })
             },
-            update : function ($id,$project){
+            update: function ($id, $project) {
                 return $http({
-                    url : '/api/researcher/update-project/'+ $id,
-                    method : 'post',
-                    data : $project
+                    url: '/api/researcher/update-project/' + $id,
+                    method: 'post',
+                    data: $project
                 })
             },
             save: function (project) {
@@ -115,7 +115,7 @@ angular.module('Researcher',[])
                     data: $file
                 })
             },
-            getYoutubes : function($id){
+            getYoutubes: function ($id) {
                 return $http({
                     url: '/api/project/' + $id + '/youtube',
                     method: 'get'
@@ -139,7 +139,7 @@ angular.module('Researcher',[])
                 return $http.delete('/api/project/' + project.id);
             },
 
-            getSuggestion : function ($id) {
+            getSuggestion: function ($id) {
                 return $http({
                     url: '/api/researcher/get-suggestion/' + $id,
                     method: 'get'
