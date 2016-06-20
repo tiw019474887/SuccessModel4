@@ -77,7 +77,6 @@ app.controller("HomeCtrl", function ($scope, $state, areas,$timeout ,AreaService
 app.controller("AddCtrl", function ($scope, $state, area, AreaService) {
     console.log("AddCtrl Start...");
     $scope.area = area.data;
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
     $scope.save = function () {
         AreaService.addArea($scope.area).success(function (resposne) {
