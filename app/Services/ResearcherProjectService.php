@@ -19,7 +19,7 @@ class ResearcherProjectService extends ProjectService
 
     public function getProjects()
     {
-        $projects = \App\Models\Project::with(['createdBy', 'faculty','status','suggestion'])->get();
+        $projects = \App\Models\Project::with(['createdBy', 'faculty', 'area', 'status', 'suggestion'])->get();
 
         $fil_projects = [];
 
@@ -34,7 +34,7 @@ class ResearcherProjectService extends ProjectService
         return $fil_projects;
     }
     public function get($id){
-        $project = Project::with(['createdBy', 'faculty','status'])->find($id);
+        $project = Project::with(['createdBy', 'faculty', 'area', 'status'])->find($id);
         return $project;
     }
 
