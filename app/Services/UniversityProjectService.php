@@ -29,7 +29,7 @@ class UniversityProjectService extends ResearcherProjectService
     }
 
     public function get($id){
-        $project = Project::with(['createdBy', 'faculty','status'])->find($id);
+        $project = Project::with(['createdBy', 'faculty', 'status', 'area'])->find($id);
         return $project;
     }
 
