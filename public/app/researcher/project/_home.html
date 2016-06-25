@@ -10,16 +10,16 @@
                     <h5> Project All {{projects.length}}</h5>
                 </a>
                 <a class="item" ng-click="search.status.key = 'draft'">
-                    <h5>Draft:{{(projects | filter:project.status.name = 'Draft').length}}</h5>
+                    <h5>Draft:{{(projects | filter:status.key = 'draft').length}}</h5>
                 </a>
                 <a class="item" ng-click="search.status.key = 'faculty'">
-                    <h5>Faculty Review:{{(projects | filter:project.status.name = 'Faculty Review Pending').length}}</h5>
+                    <h5>Faculty Review:{{(projects | filter:status.key = 'faculty').length}}</h5>
                 </a>
                 <a class="item" ng-click="search.status.key = 'university'">
-                    <h5>University Review:{{(projects | filter:project.status.name = 'University Review Pending').length}}</h5>
+                    <h5>University Review:{{(projects | filter:status.key = 'university').length}}</h5>
                 </a>
                 <a class="item" ng-click="search.status.key = 'published'">
-                    <h5>Published:{{(projects | filter:project.status.name = 'Published').length}}</h5>
+                    <h5>Published:{{(projects | filter:status.key = 'published').length}}</h5>
                 </a>
                 <div class="right menu">
                     <a class="item">
