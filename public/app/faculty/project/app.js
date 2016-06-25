@@ -123,6 +123,13 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
         $scope.showItem = {item: item, type: type}
     }
 
+    $scope.defaults = {
+        view:{
+            maxZoom: 13,
+            minZoom: 7
+        }
+    };
+
     $scope.getYoutubeEmbedUrl = function (vid) {
         return $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + vid + '?autoplay=0&enablejsapi=1&version=3&playerapiid=ytplayer');
     }

@@ -334,6 +334,13 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
             zoom: 9
     };
 
+    $scope.defaults = {
+        view:{
+            maxZoom: 13,
+            minZoom: 7
+        }
+    };
+
     $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.mceOptions = {

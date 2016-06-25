@@ -93,6 +93,13 @@ app.controller("EditCtrl", function ($scope, $state, area, AreaService) {
     $scope.area = area.data;
 
 
+    $scope.defaults = {
+        view:{
+            maxZoom: 13,
+            minZoom: 7
+        }
+    };
+
     $scope.save = function () {
         AreaService.save($scope.area).success(function (resposne) {
             $state.go("home")
