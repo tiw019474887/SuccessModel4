@@ -82,7 +82,7 @@ class ResearcherProjectService extends ProjectService
 
         if($user){
 
-            $suggestion->createdBy()->save($user);
+            $suggestion->createdBy()->associate($user)->save();
         }
 
         return $suggestion;
