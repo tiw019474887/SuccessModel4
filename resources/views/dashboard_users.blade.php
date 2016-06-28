@@ -22,7 +22,7 @@
     <div class="one column row" style="padding-bottom: 10px;">
         <div class="column" style="background-color: #4c1d6e">
             <div class="ui menu" id="MainMenu">
-                <a id="main-sidebar-btn"  class="item">
+                <a id="main-sidebar-btn" class="item">
                     <i class="sidebar icon"></i>
                     Menu
                 </a>
@@ -58,12 +58,12 @@
                                 </div>
                                 @foreach( Auth::user()->roles as $role)
                                     <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
-                                        href="/<%$role->key%>">
+                                       href="/<%$role->key%>">
                                         <% $role->name %>
                                     </a>
                                 @endforeach
                                 <div class="divider"></div>
-                                <a class="item">Change Profile</a>
+
                                 <a class="item" href="/api/auth/logout">Logout</a>
 
                             </div>

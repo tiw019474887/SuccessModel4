@@ -59,6 +59,7 @@
                             @endif
                             <div class="menu">
                                 <a class="item" href="/">หน้าหลัก</a>
+
                                 <div class="divider"></div>
                                 <div class="header">
                                     <i class="tags icon"></i>
@@ -71,7 +72,7 @@
                                     </a>
                                 @endforeach
                                 <div class="divider"></div>
-                                <a class="item">Change Profile</a>
+                                
                                 <a href="/api/auth/logout" class="item">Logout</a>
 
                             </div>
@@ -120,21 +121,21 @@
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 
-    function initialResizeWindows(){
+    function initialResizeWindows() {
         var bodyheight = $(window).height();
-        var contentHeight = $("#real-content").height()+55;
+        var contentHeight = $("#real-content").height() + 55;
 
 //        console.log("BodyHeight :"+ (bodyheight - 165));
 //        console.log("ContHeight :"+contentHeight);
 
-        if(contentHeight > bodyheight-165){
-            $("#resize-grid").height(contentHeight+200);
-        }else {
-            $("#resize-grid").height(bodyheight-165);
+        if (contentHeight > bodyheight - 165) {
+            $("#resize-grid").height(contentHeight + 200);
+        } else {
+            $("#resize-grid").height(bodyheight - 165);
         }
         $("#main-pusher").height($("#resize-grid").height());
     }
-    $(window).resize(function(){
+    $(window).resize(function () {
         initialResizeWindows();
     })
 
@@ -171,9 +172,6 @@
     angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
 
 </script>
-
-
-
 
 
 </body>
