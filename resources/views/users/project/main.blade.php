@@ -19,27 +19,77 @@
     </style>
 
     <link rel="stylesheet" type="text/css" href="/packages/flexslider/flexslider.css">
-    <link rel="stylesheet" href="/packages/openlayers/build/ol.css" />
+    <link rel="stylesheet" href="/packages/openlayers/build/ol.css"/>
 
 @stop
 
 
 
 @section('content')
+    <div class="ui small breadcrumb">
+        <a class="active section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">Project</div>
+    </div>
     <div class="ui attached stackable menu">
         <div class="ui container">
             <a class="active item" href="/users">
                 โครการทั้งหมด
             </a>
-            <a class="item" href="/users/district">
+            <div class="ui simple dropdown item">
                 โครการในแต่ละอำเภอ
-            </a>
-            <a class="item" href="/users/faculty ">
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item"><a href="/users/district/maindistrictMaung"> อำเภอเมือง</a></div>
+                    <div class="item"><a href="/users/district/maindistrictMaechai">อำเภอแม่ใจ</a></div>
+                    <div class="item"><a href="/users/district/maindistrictChiangmuan">อำเภอเชียงม่วน</a></div>
+                    <div class="item"><a href="/users/district/maindistrictDokkhamtai">อำเภอดอกคำใต้</a></div>
+                    <div class="item"><a href="/users/district/maindistrictPhukamyao">อำเภอภูกามยาว</a></div>
+                    <div class="item"><a href="/users/district/maindistrictPhusang">อำเภอภูซาง</a></div>
+                    <div class="item"><a href="/users/district/maindistrictChiangkham">อำเภอเชียงคำ</a></div>
+                    <div class="item"><a href="/users/district/maindistrictChun">อำเภอจุน</a></div>
+                    <div class="item"><a href="/users/district/maindistrictPong">อำเภอปง</a></div>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
                 โครการในแต่ละคณะ
-            </a>
-            <a class="item" href=" ">
-                ปีที่ดำเนินการ
-            </a>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item"><a href="/users/faculty/Ag">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</a></div>
+                    <div class="item"><a href="/users/faculty/Dt">คณะทันตแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ict">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></div>
+                    <div class="item"><a href="/users/faculty/Law">คณะนิติศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Nu">คณะพยาบาลศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Md">คณะแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ps">คณะเภสัชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Mis">คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Sc">คณะวิทยาศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Medsci">คณะวิทยาศาสตร์การแพทย์</a></div>
+                    <div class="item"><a href="/users/faculty/Fa">คณะศิลปศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/En">คณะวิศวกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ar">คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ash">คณะสหเวชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Edu">วิทยาลัยการศึกษา</a></div>
+                    <div class="item"><a href="/users/faculty/Seen">วิทยาลัยพลังงานและสิ่งแวดล้อม</a></div>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
+                โครการในแต่ละปี
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item"><a href="/users/year/Year2555"> 2555</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2556">อำเภอแม่ใจ</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2557">อำเภอเชียงม่วน</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2558">อำเภอดอกคำใต้</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2559">อำเภอภูกามยาว</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2560">อำเภอภูซาง</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2561">อำเภอเชียงคำ</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2562">อำเภอจุน</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2563">อำเภอปง</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2564">อำเภอปง</a></div>
+                    <div class="item"><a href="/users/year/maindistrictYear2565">อำเภอปง</a></div>
+                </div>
+            </div>
         </div>
     </div>
     <h2 class="condensed container">Success Model</h2>
@@ -70,17 +120,29 @@
 
                                                             <h4><% $project->nameEN %></h4></a>
 
-                                                        <div class="meta"><% $project->updated_at->diffForHumans() %></div>
+                                                        <div class="meta"><% $project->updated_at->diffForHumans() %>
+                                                        </div>
 
                                                         <p>
                                                             <% str_limit($project->abstract,100,'...') %>
                                                         </p>
                                                     </div>
                                                     <div class="extra content">
-                                                        <?php if(isset($project->faculty->name_th)) : ?>
+                                                        <div>
+                                                            ผู้วิจัย : <% $project->createdBy->firstname %>
+                                                        </div>
+                                                        <div>
+                                                            พื้นที่ : <?php if(isset($project->area->name_th)) : ?>
+                                                            <% $project->area->name_th %>
+                                                            <?php endif ?>
+                                                        </div>
+                                                        <div>
+                                                            <?php if(isset($project->faculty->name_th)) : ?>
                                                             <% $project->faculty->name_th %>
-                                                        <?php endif ?>
+                                                            <?php endif ?>
+                                                        </div>
                                                     </div>
+
                                                     <a href="/users/project/<%$project->id%>">
                                                         <div class="ui two bottom attached buttons">
                                                             <div class="ui inverted violet button">

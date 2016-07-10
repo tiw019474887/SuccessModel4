@@ -27,6 +27,13 @@
 
 
 @section('content')
+    <div class="ui small breadcrumb">
+        <a class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section">Project</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section"><% $project->name%></div>
+    </div>
 
     <h2></h2>
     <div id="contents">
@@ -134,8 +141,8 @@
                             <?php echo $project->contentEN ?>
                         </div>
                         @if(Auth::user())
-                        <h3 class="condensed">ความคิดเห็น</h3>
-                        <div class="ui divider condensed"></div>
+                            <h3 class="condensed">ความคิดเห็น</h3>
+                            <div class="ui divider condensed"></div>
                             <div class="ui segment">
                                 <div class="ui comments">
                                     @foreach($project->comments as $comment)
@@ -163,6 +170,10 @@
                                                 </div>
                                                 <div class="text">
                                                     <p><% $comment->comment %></p>
+                                                </div>
+                                                <div class="actions">
+                                                    <a class="reply" type="submit"method="post"
+                                                       action="/users/project/<% $project->id %>/delcomment" >ลบ</a>
                                                 </div>
                                             </div>
                                         </div>

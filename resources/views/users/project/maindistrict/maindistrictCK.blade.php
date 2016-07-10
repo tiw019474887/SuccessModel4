@@ -24,18 +24,55 @@
 
 
 @section('content')
-
+    <div class="ui small breadcrumb">
+        <a class="section">Home</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section">Project</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">อำเภอเชียงคำ</div>
+    </div>
     <div class="ui attached stackable menu">
         <div class="ui container">
             <a class="active item" href="/users">
                 โครการทั้งหมด
             </a>
-            <a class="item" href="/users/district">
+            <div class="ui simple dropdown item">
                 โครการในแต่ละอำเภอ
-            </a>
-            <a class="item" href="/users/faculty ">
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item" ><a href="/users/district/maindistrictMaung"> อำเภอเมือง</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictMaechai">อำเภอแม่ใจ</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChiangmuan">อำเภอเชียงม่วน</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictDokkhamtai">อำเภอดอกคำใต้</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictPhukamyao">อำเภอภูกามยาว</a></div>
+                    <div class="item"><a  href="/users/district/maindistrictPhusang">อำเภอภูซาง</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChiangkham">อำเภอเชียงคำ</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChun">อำเภอจุน</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictPong">อำเภอปง</a></div>
+                </div>
+            </div>
+            <div class="ui simple dropdown item">
                 โครการในแต่ละคณะ
-            </a>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item"><a href="/users/faculty/Ag">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</a></div>
+                    <div class="item"><a  href="/users/faculty/Dt">คณะทันตแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ict">คณะเทคโนโลยีสารสนเทศและการสื่อสาร</a></div>
+                    <div class="item"><a href="/users/faculty/Law">คณะนิติศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Nu">คณะพยาบาลศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Md">คณะแพทยศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ps">คณะเภสัชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Mis">คณะวิทยาการจัดการและสารสนเทศศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Sc">คณะวิทยาศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Medsci">คณะวิทยาศาสตร์การแพทย์</a></div>
+                    <div class="item"><a href="/users/faculty/Fa">คณะศิลปศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/En">คณะวิศวกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ar">คณะสถาปัตยกรรมศาสตร์และศิลปกรรมศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Ash">คณะสหเวชศาสตร์</a></div>
+                    <div class="item"><a href="/users/faculty/Edu">วิทยาลัยการศึกษา</a></div>
+                    <div class="item"><a href="/users/faculty/Seen">วิทยาลัยพลังงานและสิ่งแวดล้อม</a></div>
+                </div>
+            </div>
             <a class="item" href=" ">
                 ปีที่ดำเนินการ
             </a>
@@ -50,41 +87,16 @@
             <div class=" row container">
                 <div class="ui divider condensed"></div>
                 <div class="thirteen wide column">
-                    <h3 class="condensed container"><a name="1">อำเภอเมือง</a></h3>
-                    @include('users.district.maung',['name_th' => 'อำเภอเมือง'])
-                    <h3 class="condensed container"><a name="2">อำเภอแม่ใจ</a></h3>
-                    @include('users.district.maechai',['name_th' => 'อำเภอแม่ใจ'])
-                    <h3 class="condensed container"><a name="3">อำเภอเชียงม่วน</a></h3>
-                    @include('users.district.chiangmuan',['name_th' => 'อำเภอเชียงม่วน'])
-                    <h3 class="condensed container"><a name="4">อำเภอดอกคำใต</a>้</h3>
-                    @include('users.district.dokkhamtai',['name_th' => 'อำเภอดอกคำใต'])
-                    <h3 class="condensed container"><a name="5">อำเภอภูกามยาว</a></h3>
-                    @include('users.district.phukamyao',['name_th' => 'อำเภอภูกามยาว'])
-                    <h3 class="condensed container"><a name="6"> อำเภอภูซาง</a></h3>
-                    @include('users.district.phusang',['name_th' => 'อำเภอภูซาง'])
+
                     <h3 class="condensed container"><a name="7">อำเภอเชียงคำ</a></h3>
                     @include('users.district.chiangkham',['name_th' => 'อำเภอเชียงคำ'])
-                    <h3 class="condensed container"><a name="8"> อำเภอจุน</a></h3>
-                    @include('users.district.chun',['name_th' => 'อำเภอจุน'])
-                    <h3 class="condensed container"><a name="9"> อำเภอปง</a></h3>
-                    @include('users.district.pong',['name_th' => 'อำเภอปง'])
+
                 </div>
 
                 <div class="three wide right floated column container">
                     <div class="clounm">
-                        <h3 class="condensed">อำเภอ</h3>
 
-                        <div><a href="#1">อำเภอเมือง</a></div>
-                        <div><a href="#2">อำเภอแม่ใจ</a></div>
-                        <div><a href="#3">อำเภอเชียงม่วน</a></div>
-                        <div><a href="#4">อำเภอดอกคำใต้</a></div>
-                        <div><a href="#5">อำเภอภูกามยาว</a></div>
-                        <div><a href="#6">อำเภอภูซาง</a></div>
-                        <div><a href="#7">อำเภอเชียงคำ</a></div>
-                        <div><a href="#8">อำเภอจุน</a></div>
-                        <div><a href="#9">อำเภอปง</a></div>
-
-                        <h3 class="condensed">ลิ้งต่างๆ</h3>
+                        <h3 class="condensed">Link ที่เกี่ยวข้อง</h3>
 
                         <div class="ui divider condensed"></div>
 

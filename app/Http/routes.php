@@ -86,18 +86,18 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/faculty/Seen', 'User\UserController@seen');
     
     
-    Route::get('/district/chiangkham', 'User\UserController@chiangkham');
-    Route::get('/district/chiangmuan', 'User\UserController@chiangmuan');
-    Route::get('/district/chun', 'User\UserController@chun');
-    Route::get('/district/dokkhamtai', 'User\UserController@dokkhamtai');
-    Route::get('/district/maechai', 'User\UserController@maechai');
-    Route::get('/district/maung', 'User\UserController@maung');
-    Route::get('/district/phukamyao', 'User\UserController@phukamyao');
-    Route::get('/district/phusang', 'User\UserController@phusang');
-    Route::get('/district/pong', 'User\UserController@pong');
+    Route::get('/district/maindistrictChiangkham', 'User\UserController@chiangkham');
+    Route::get('/district/maindistrictChiangmuan', 'User\UserController@chiangmuan');
+    Route::get('/district/maindistrictChun', 'User\UserController@chun');
+    Route::get('/district/maindistrictDokkhamtai', 'User\UserController@dokkhamtai');
+    Route::get('/district/maindistrictMaechai', 'User\UserController@maechai');
+    Route::get('/district/maindistrictMaung', 'User\UserController@maung');
+    Route::get('/district/maindistrictPhukamyao', 'User\UserController@phukamyao');
+    Route::get('/district/maindistrictPhusang', 'User\UserController@phusang');
+    Route::get('/district/maindistrictPong', 'User\UserController@pong');
 
-    
-    
+
+    Route::get('/year/maindYear2555', 'User\UserController@year2555');
     
     
     
@@ -105,6 +105,7 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/search', 'User\UserController@getSearch');
     Route::get('/view', 'User\UserController@viewusers');
     Route::post('/project/{id}/comment', 'User\UserController@addComment');
+    Route::post('/project/{id}/delcomment', 'User\UserController@delComment');
 });
 
 

@@ -81,8 +81,8 @@
             <div class=" row container">
                 <div class="ui divider condensed"></div>
                 <div class="thirteen wide column">
-                    <h3 class="condensed container"><a name="12"> คณะศิลปศาสตร์</a></h3>
-                    @include('users.faculty.fa',['name_th' => 'คณะศิลปศาสตร์'])
+                    <h3 class="condensed container"><a name="1">ปี 2555 </a></h3>
+                    @include('users.year.year2555',['name_th' => '2555'])
                     <div class="ui center">
                         <?php echo (new App\Pagination($projects))->render(); ?>
                     </div>

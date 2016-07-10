@@ -51,7 +51,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictCK', [
             'projects' => $projects,
 
         ]);
@@ -64,7 +64,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictCM', [
             'projects' => $projects,
 
         ]);
@@ -77,7 +77,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictC', [
             'projects' => $projects,
 
         ]);
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictDK', [
             'projects' => $projects,
 
         ]);
@@ -105,7 +105,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictMC', [
             'projects' => $projects,
 
         ]);
@@ -118,7 +118,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictM', [
             'projects' => $projects,
 
         ]);
@@ -131,7 +131,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictPY', [
             'projects' => $projects,
 
         ]);
@@ -144,7 +144,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictPS', [
             'projects' => $projects,
 
         ]);
@@ -157,7 +157,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.maindistrict', [
+        return view('users.project.maindistrict.maindistrictP', [
             'projects' => $projects,
 
         ]);
@@ -183,7 +183,7 @@ class UserController extends Controller
 
         })->paginate(12);
 
-        return view('users.project.mainfacultyAg', [
+        return view('users.project.mainfaculty.mainfacultyAg', [
             'projects' => $projects,
 
         ]);
@@ -368,6 +368,21 @@ class UserController extends Controller
 
         ]);
     }
+    ////////////////////////////year////////////////////////////////////////
+
+    public function year2555()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2555', [
+            'projects' => $projects,
+
+        ]);
+    }
+
 
     public function project($id)
     {
@@ -413,15 +428,11 @@ class UserController extends Controller
     {
         return view('admin.user.main2');
     }
-    public function delComment($projectId)
-    {
-        $user = \Auth::user();
 
-        $comment = new Comment();
-        $comment-> comment = \Input::get("comment");
-        $project = Project::find($projectId);
-        $project->comments()->save($comment);
-        $comment->createdBy()->save($user);
+    public function delComment($projectId,$commentId)
+    {
+        $comment = Comment::find($commentId);
+        $comment->delete();
 
         return redirect("/users/project/$projectId");
 
@@ -432,5 +443,7 @@ class UserController extends Controller
         Auth::logout();
         return redirect('/auth/login');
     }
+
+
 
 }

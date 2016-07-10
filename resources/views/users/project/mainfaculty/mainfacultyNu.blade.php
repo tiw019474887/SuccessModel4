@@ -34,15 +34,15 @@
                 โครการในแต่ละอำเภอ
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item">อำเภอเมือง</div>
-                    <div class="item">อำเภอแม่ใจ</div>
-                    <div class="item">อำเภอเชียงม่วน</div>
-                    <div class="item">อำเภอดอกคำใต้</div>
-                    <div class="item">อำเภอภูกามยาว</div>
-                    <div class="item">อำเภอภูซาง</div>
-                    <div class="item">อำเภอเชียงคำ</div>
-                    <div class="item">อำเภอจุน</div>
-                    <div class="item">อำเภอปง</div>
+                    <div class="item" ><a href="/users/district/maindistrictMaung"> อำเภอเมือง</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictMaechai">อำเภอแม่ใจ</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChiangmuan">อำเภอเชียงม่วน</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictDokkhamtai">อำเภอดอกคำใต้</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictPhukamyao">อำเภอภูกามยาว</a></div>
+                    <div class="item"><a  href="/users/district/maindistrictPhusang">อำเภอภูซาง</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChiangkham">อำเภอเชียงคำ</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictChun">อำเภอจุน</a></div>
+                    <div class="item" ><a href="/users/district/maindistrictPong">อำเภอปง</a></div>
                 </div>
             </div>
             <div class="ui simple dropdown item">
@@ -67,24 +67,9 @@
                     <div class="item"><a href="/users/faculty/Seen">วิทยาลัยพลังงานและสิ่งแวดล้อม</a></div>
                 </div>
             </div>
-            <div class="ui simple dropdown item">
+            <a class="item" href=" ">
                 ปีที่ดำเนินการ
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="item">2555</div>
-                    <div class="item">2556</div>
-                    <div class="item">2557</div>
-                    <div class="item">2558</div>
-                    <div class="item">2559</div>
-                    <div class="item">2560</div>
-                    <div class="item">2561</div>
-                    <div class="item">2562</div>
-                    <div class="item">2563</div>
-                    <div class="item">2564</div>
-                    <div class="item">2565</div>
-                </div>
-            </div>
-
+            </a>
         </div>
     </div>
 
