@@ -3,8 +3,8 @@
  */
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
-    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown'
-    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
+    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','YearProject'
+    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','opwenlayers-directive'
 ]);
 
 
@@ -37,6 +37,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 faculties: function (FacultyService) {
                     return FacultyService.all();
+                },
+                years: function (YearProjectService) {
+                    return YearProjectService.all();
                 }
             }
         })
@@ -145,12 +148,12 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, UserService, UserSearchService, ProjectService, $timeout) {
+app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties, years, UserService, UserSearchService, ProjectService, $timeout) {
     console.log("AddCtrl Start...");
 
     $scope.project = project.data;
     $scope.faculties = faculties.data;
-
+    $scope.years = years.data;
 
 
     $scope.save = function () {
@@ -173,6 +176,9 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
         $scope.project.faculty = faculty;
     }
 
+    $scope.updateYear = function (year) {
+        $scope.project.year = year;
+    }
 
 
     // search segment
