@@ -83,4 +83,8 @@ class Project extends \NeoEloquent
     public  function area(){
         return $this->belongsTo("App\Models\Area","HAS_AREA");
     }
+
+    public  function year(){
+        return $this->belongsTo("App\Models\YearProject","HAS");
+    }
 }

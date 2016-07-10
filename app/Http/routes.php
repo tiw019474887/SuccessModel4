@@ -166,11 +166,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('researcher/submit-project/{id}', 'API\ResearcherProjectApiController@acceptProject');
 
     //api for area
-    Route::resource('area', 'API\AreaApiController');
     Route::get('area', 'API\AreaApiController@index');
     Route::get('area/get/{id}', 'API\AreaApiController@show');
     Route::post('area/update-area/{id}', 'API\AreaApiController@update');
     Route::post('area/add', 'API\AreaApiController@store');
+
+    //api for yearProject
+    Route::get('yearProject', 'API\YearProjectApiController@index');
 
     //api for published projects
     Route::get('publish/projects', 'API\PublishProjectApiController@index');
