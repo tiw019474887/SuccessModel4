@@ -3,14 +3,9 @@
  */
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
-<<<<<<< HEAD
-    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','YearProject'
-=======
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown', 'YearProject'
->>>>>>> origin/master
-    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
+    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube', 'openlayers-directive'
 ]);
-
 
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -118,8 +113,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 
-
-app.controller("HomeCtrl", function ($scope, $state,$timeout,
+app.controller("HomeCtrl", function ($scope, $state, $timeout,
                                      projects, ProjectService) {
     console.log("HomeCtrl Start...");
 
@@ -151,7 +145,7 @@ app.controller("HomeCtrl", function ($scope, $state,$timeout,
 
     }
 
-    $timeout(doPopup,200);
+    $timeout(doPopup, 200);
 
 });
 
@@ -322,7 +316,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 });
 
 app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter,
-                                     UserService, UserSearchService, ProjectService,years,
+                                     UserService, UserSearchService, ProjectService, years,
                                      statuses, faculties, project, images, areas, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
 
@@ -340,13 +334,13 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
     $scope.years = years.data;
 
     $scope.center = {
-            lat: 19.2154367,
-            lon: 100.2023692,
-            zoom: 9
+        lat: 19.2154367,
+        lon: 100.2023692,
+        zoom: 9
     };
 
     $scope.defaults = {
-        view:{
+        view: {
             maxZoom: 13,
             minZoom: 7
         }
@@ -399,7 +393,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
     }
 
 
-
     $scope.updateStatus = function (status) {
         $scope.project.status = status;
     }
@@ -412,7 +405,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
         $scope.project.area = area;
     }
 
-    $scope.updateYear = function (year){
+    $scope.updateYear = function (year) {
         $scope.project.year = year;
     }
 

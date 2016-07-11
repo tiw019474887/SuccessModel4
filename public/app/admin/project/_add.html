@@ -51,16 +51,11 @@
             <div class="ui fluid selection upward dropdown">
                 <i class="dropdown icon"></i>
                 <span ng-if="!project.year" class="text">Select Year</span>
-                <span ng-if="project.year" class="text">{{project.year.yearproject}}</span>
+                <span ng-if="project.year" class="text">{{project.year.yearProject}}</span>
 
                 <div class="menu">
-<<<<<<< HEAD
-                    <div class="item" ng-repeat="year in years" ng-click="updateyearProject(yearproject)">
-                        {{year.yearproject}}
-=======
                     <div class="item" ng-repeat="year in years" ng-click="updateYear(year)">
                         {{year.yearProject}}
->>>>>>> origin/master
                     </div>
                 </div>
             </div>
