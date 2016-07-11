@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use App\Models\YearProject;
 use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
@@ -24,7 +25,7 @@ class FacultyProjectService extends ResearcherProjectService
             /* @var Faculty $faculty */
             $faculty = $user->faculty;
             if($faculty){
-                $projects = Project::with(['createdBy', 'faculty','status'])->whereHas('status', function($q)
+                $projects = Project::with(['createdBy', 'faculty','status', 'year'])->whereHas('status', function($q)
                 {
                     $q->where('key', '=', 'faculty');
                 })->whereHas('faculty',function($q) use ($faculty)
@@ -39,7 +40,7 @@ class FacultyProjectService extends ResearcherProjectService
     }
 
     public function get($id){
-        $project = Project::with(['createdBy', 'faculty', 'status', 'area'])->find($id);
+        $project = Project::with(['createdBy', 'faculty', 'status', 'area', 'year'])->find($id);
         return $project;
     }
 
