@@ -48,6 +48,7 @@
     <script type="text/javascript" src="/packages/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/university/UniversityService.js"></script>
+    <script type="text/javascript" src="/app/admin/YearProjectService.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
     <script type="text/javascript" src="/app/admin/UserService.js"></script>
     <script type="text/javascript" src="/app/admin/ProjectService.js"></script>

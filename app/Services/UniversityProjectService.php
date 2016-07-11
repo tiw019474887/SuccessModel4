@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use App\Models\YearProject;
 use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
@@ -18,7 +19,7 @@ class UniversityProjectService extends ResearcherProjectService
     public function getUniversityStatusProjects()
     {
 
-        $projects = Project::with(['createdBy', 'faculty','status'])->whereHas('status', function($q)
+        $projects = Project::with(['createdBy', 'faculty','status', 'year'])->whereHas('status', function($q)
         {
             $q->where('key', '=', 'university');
 
@@ -29,7 +30,7 @@ class UniversityProjectService extends ResearcherProjectService
     }
 
     public function get($id){
-        $project = Project::with(['createdBy', 'faculty', 'status', 'area'])->find($id);
+        $project = Project::with(['createdBy', 'faculty', 'status', 'area', 'year'])->find($id);
         return $project;
     }
 

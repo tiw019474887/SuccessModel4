@@ -3,7 +3,7 @@
  */
 
 
-var app = angular.module('ResearcherProject', ['ui.router', 'ui.tinymce', 'AppConfig', 'User', 'Researcher',
+var app = angular.module('ResearcherProject', ['ui.router', 'ui.tinymce', 'AppConfig', 'User', 'Researcher', 'YearProject',
     'Youtube', 'User','Area', 'Project', 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','openlayers-directive'
 ]);
 
@@ -32,6 +32,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 project: function (ResearcherService) {
                     return {data: {}}
+                },
+                years: function (YearProjectService) {
+                    return YearProjectService.all();
                 }
             }
         })
@@ -60,6 +63,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 },
                 areas: function(AreaService){
                     return AreaService.all();
+                },
+                years: function (YearProjectService) {
+                    return YearProjectService.all();
                 }
 
             }
@@ -163,9 +169,14 @@ app.controller("HomeCtrl", function ($scope, $state, $timeout, projects,suggesti
 
 });
 
-app.controller("AddCtrl", function ($scope, $state, $timeout, project, ResearcherService) {
+app.controller("AddCtrl", function ($scope, $state, $timeout, project, years, ResearcherService) {
     console.log("AddCtrl Start...");
     $scope.project = project.data;
+    $scope.years = years.data;
+
+    $scope.updateYear = function (year) {
+        $scope.project.year = year;
+    }
 
     $scope.save = function () {
         ResearcherService.addProject($scope.project).success(function (resposne) {
@@ -174,8 +185,6 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, project, Researche
             alert(response.name_th);
         });
     }
-
-    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.mceOptions = {
         inline: false,
@@ -290,7 +299,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 });
 app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService, $filter,
                                      UserService, UserSearchService,ProjectService, project,
-                                     images, areas, members,  previousFiles, youtubes) {
+                                     images, areas, years, members,  previousFiles, youtubes) {
 
     console.log("EditCtrl Start...");
 
@@ -301,6 +310,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
     $scope.previousFiles = previousFiles.data;
     $scope.youtubes = youtubes.data;
     $scope.keyword;
+    $scope.years = years.data;
 
     $scope.defaults = {
         view:{
@@ -309,7 +319,9 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, ResearcherService
         }
     };
 
-    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
+    $scope.updateYear = function (year) {
+        $scope.project.year = year;
+    }
 
     $scope.mceOptions = {
         inline: false,
