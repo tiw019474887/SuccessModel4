@@ -13,7 +13,7 @@ class YearProject extends \NeoEloquent
     protected $fillable = ['yearProject'];
 
     public function projects(){
-        return $this->hasMany("App\Models\Project","HAS");
+        return $this->hasMany("App\Models\Project","YEAR");
     }
 
 }

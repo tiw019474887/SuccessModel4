@@ -18,14 +18,14 @@
     <div class="field">
         <label>Year</label>
         <div class="ui fluid selection upward dropdown">
+            <i class="dropdown icon"></i>
+            <span ng-if="!project.year" class="text">Select Year</span>
+            <span ng-if="project.year" class="text">{{project.year.yearProject}}</span>
 
-            <span ng-if="!project.yearProject" class="text">Select Year</span>
-            <span ng-if="project.yearProject" class="text">{{project.yearProject}}</span>
-
-            <div class="item">
-
-                <select  ng-model="project.yearProject" ng-options="opt as opt for opt in years" ></select>
-
+            <div class="menu">
+                <div class="item" ng-repeat="year in years" ng-click="updateYear(year)">
+                    {{year.yearProject}}
+                </div>
             </div>
         </div>
     </div>
