@@ -26,7 +26,7 @@ class Project extends \NeoEloquent
 
     protected $label = ['Project'];
 
-    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN','yearProject'];
+    protected $fillable = ['name','nameEN','abstract','abstractEN','content','contentEN'];
 
     public function cover(){
         return $this->hasOne('App\Models\Image','COVER');
@@ -85,6 +85,6 @@ class Project extends \NeoEloquent
     }
 
     public  function year(){
-        return $this->belongsTo("App\Models\YearProject","HAS");
+        return $this->belongsTo("App\Models\YearProject","YEAR");
     }
 }

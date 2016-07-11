@@ -3,7 +3,11 @@
  */
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
+<<<<<<< HEAD
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','YearProject'
+=======
+    , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown', 'YearProject'
+>>>>>>> origin/master
     , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
 ]);
 
@@ -50,6 +54,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             resolve: {
                 project: function (ProjectService, $stateParams) {
                     return ProjectService.edit($stateParams.id)
+                },
+                years: function (YearProjectService) {
+                    return YearProjectService.all();
                 },
                 statuses: function (ProjectStatusService) {
                     return ProjectStatusService.all();
@@ -155,7 +162,6 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
     $scope.faculties = faculties.data;
     $scope.years = years.data;
 
-
     $scope.save = function () {
         ProjectService.store($scope.project).success(function (resposne) {
             $state.go('home');
@@ -164,7 +170,6 @@ app.controller("AddCtrl", function ($scope, $state, project, statuses, faculties
             alert(response.name_th);
         });
     }
-    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.statuses = statuses.data;
 
@@ -317,7 +322,7 @@ app.controller("ViewCtrl", function ($scope, $state, $timeout, $sce,
 });
 
 app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter,
-                                     UserService, UserSearchService, ProjectService,
+                                     UserService, UserSearchService, ProjectService,years,
                                      statuses, faculties, project, images, areas, members, file, previousFiles, youtubes) {
     console.log("EditCtrl Start...");
 
@@ -332,7 +337,7 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
     $scope.youtubes = youtubes.data;
     $scope.upload = {};
     $scope.keyword;
-
+    $scope.years = years.data;
 
     $scope.center = {
             lat: 19.2154367,
@@ -346,8 +351,6 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $cookies, $filter
             minZoom: 7
         }
     };
-
-    $scope.years = ['2556','2557','2558','2559','2560','2561','2562','2563','2564','2565'];
 
     $scope.mceOptions = {
         inline: false,

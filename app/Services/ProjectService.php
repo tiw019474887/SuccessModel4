@@ -9,6 +9,7 @@ use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
 use App\Models\User;
+use App\Models\YearProject;
 use App\Models\Youtube;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -21,7 +22,7 @@ class ProjectService extends Service
 {
 
     var $withArr = [
-        'faculty','current_file', 'createdBy', 'cover', 'logo', 'area', 'status'
+        'faculty','current_file', 'createdBy', 'cover', 'logo', 'area', 'status', 'year'
     ];
 
     function __construct(ProjectStatusService $projectStatusService)
@@ -32,7 +33,7 @@ class ProjectService extends Service
 
     public function getAll()
     {
-        return Project::with(['createdBy', 'faculty','status','suggestion','area'])->get();
+        return Project::with(['createdBy', 'faculty','status','suggestion','area','year'])->get();
         //return Project::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
@@ -82,6 +83,17 @@ class ProjectService extends Service
         return $project;
     }
 
+    private function linkToYearProject(Project $project, array $input)
+    {
+        if (isset($input['year'])) {
+            $id = $input['year']['id'];
+            $year = YearProject::find($id);
+            $project->year()->associate($year)->save();
+        }
+
+        return $project;
+    }
+
     private function linkToArea(Project $project, array $input)
     {
         if (isset($input['area'])) {
@@ -99,6 +111,7 @@ class ProjectService extends Service
         $project = new Project();
         $project->fill($input);
         $project->save();
+        $this->linkToYearProject($project, $input);
         $this->linkToFaculty($project, $input);
         $this->linkToStatus($project, $input);
         $this->linkToUser($project, $input);
@@ -115,6 +128,7 @@ class ProjectService extends Service
             $project->fill($input);
             $project->save();
             $this->linkToArea($project, $input);
+            $this->linkToYearProject($project, $input);
             $this->linkToFaculty($project, $input);
             $this->linkToStatus($project, $input);
             $this->linkToUser($project, $input);
