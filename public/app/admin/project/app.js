@@ -4,7 +4,7 @@
 
 var app = angular.module('ProjectAdmin', ['ui.router', 'ui.tinymce', 'AppConfig'
     , 'angularify.semantic', 'flow', 'ngCookies', 'btford.markdown','YearProject'
-    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','opwenlayers-directive'
+    , 'Faculty', 'User', 'Area', 'Project', 'ProjectStatus', 'Youtube','openlayers-directive'
 ]);
 
 

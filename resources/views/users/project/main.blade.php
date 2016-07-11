@@ -107,7 +107,7 @@
                                     <div class="ui three column aligned stackable  grid">
                                         @foreach($projects as $project)
                                             <div class="column">
-                                                <div class="ui fluid card" style="margin:1px;">
+                                                <div class="ui fluid card" style="margin:1px;" >
                                                     <div class="image">
                                                         <?php if(isset($project->logo->url)) : ?>
                                                         <img src="<% $project->logo->url %>?w=640&h=380&fit=stretch"/>
