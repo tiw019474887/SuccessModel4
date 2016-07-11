@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use App\Models\YearProject;
 use App\Models\Faculty;
 use App\Models\Logo;
 use App\Models\ProjectStatus;
@@ -19,7 +20,7 @@ class ResearcherProjectService extends ProjectService
 
     public function getProjects()
     {
-        $projects = \App\Models\Project::with(['createdBy', 'faculty', 'status', 'suggestion'])->get();
+        $projects = \App\Models\Project::with(['createdBy', 'faculty', 'status', 'suggestion', 'year'])->get();
 
         $fil_projects = [];
 
@@ -34,7 +35,7 @@ class ResearcherProjectService extends ProjectService
         return $fil_projects;
     }
     public function get($id){
-        $project = Project::with(['createdBy', 'faculty', 'area', 'status'])->find($id);
+        $project = Project::with(['createdBy', 'faculty', 'area', 'status', 'year'])->find($id);
         return $project;
     }
 
@@ -46,6 +47,7 @@ class ResearcherProjectService extends ProjectService
         $project = new Project();
         $project->fill($input);
         $project->save();
+        $this->linkToYearProject($project, $input);
         $this->linkToCurrentUser($project, $input);
         $this->linkToFaculty($project, $input);
         $this->linkToDraftStatus($project, $input);
@@ -93,6 +95,17 @@ class ResearcherProjectService extends ProjectService
         $faculty = $project->createdBy->faculty;
         if($faculty){
             $project->faculty()->associate($faculty)->save();
+        }
+
+        return $project;
+    }
+
+    private function linkToYearProject(Project $project, array $input)
+    {
+        if (isset($input['year'])) {
+            $id = $input['year']['id'];
+            $year = YearProject::find($id);
+            $project->year()->associate($year)->save();
         }
 
         return $project;

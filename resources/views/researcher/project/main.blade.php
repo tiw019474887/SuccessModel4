@@ -75,6 +75,7 @@
     <script type="text/javascript" src="/packages/bxslider/jquery.bxSlider.min.js"></script>
     <script type="text/javascript" src="/app/researcher/ResearcherService.js"></script>
 
+    <script type="text/javascript" src="/app/admin/YearProjectService.js"></script>
     <script type="text/javascript" src="/app/users/UsersService.js"></script>
     <script type="text/javascript" src="/app/admin/AreaService.js"></script>
     <script type="text/javascript" src="/app/admin/YoutubeService.js"></script>
