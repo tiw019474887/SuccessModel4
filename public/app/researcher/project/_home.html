@@ -127,11 +127,11 @@
     <i ng-click="closeAcceptModal()" class="close icon"></i>
 
     <div class="header">
-        Comment Project
+        Project
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea ng-model="project.suggestion" required="required" placeholder="คำแนะนำ.........."></textarea>
+            <textarea> ตรวจเช็คข้อมูลให้เรียบร้อยก่อนกด Yes </textarea>
         </div>
     </form>
     <div class="actions">
@@ -145,6 +145,7 @@
     </div>
 </modal>
 
+
 <modal ng-model="suggestion_modal">
     <i ng-click="closeSuggestionModal()" class="close icon"></i>
     <div class="header">
@@ -152,9 +153,26 @@
     </div>
     <form class="ui reply form">
         <div class="field">
-            <textarea>
-             {{project.suggestion.suggestion}}
-            </textarea>
+
+
+            <table class="ui celled striped table">
+                <thead>
+                <tr>
+
+                    <th class="center aligned one wide">Date</th>
+                    <th class="center aligned three wide">Suggestion</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td> {{project.suggestion.created_at}}</td>
+                    <td>{{project.suggestion.suggestion}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
     </form>
 

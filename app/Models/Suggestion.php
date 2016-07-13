@@ -14,7 +14,7 @@ class Suggestion extends \NeoEloquent
 
 
     public function createdBy(){
-        return $this->belongsTo("App\Models\User","CREATE_BY");
+        return $this->hasOne("App\Models\User","CREATE_BY");
     }
 
 

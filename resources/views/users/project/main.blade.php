@@ -129,17 +129,25 @@
                                                     </div>
                                                     <div class="extra content">
                                                         <div>
-                                                            ผู้วิจัย : <% $project->createdBy->firstname %>
+                                                            ผู้วิจัย : <?php if(isset($project->createdBy->firstname)) : ?>
+                                                            <% $project->createdBy->firstname %>
+                                                            <?php else : ?>
+                                                            ไม่ทราบผู้วิจัย
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div>
                                                             พื้นที่ : <?php if(isset($project->area->name_th)) : ?>
                                                             <% $project->area->name_th %>
-                                                            <?php endif ?>
+                                                            <?php else : ?>
+                                                            ไม่ทราบพื้นที่
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div>
                                                             <?php if(isset($project->faculty->name_th)) : ?>
                                                             <% $project->faculty->name_th %>
-                                                            <?php endif ?>
+                                                                <?php else : ?>
+                                                                ไม่ทราบผู้วิจัย
+                                                                <?php endif; ?>
                                                         </div>
                                                     </div>
 
