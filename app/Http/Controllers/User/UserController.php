@@ -382,6 +382,126 @@ class UserController extends Controller
 
         ]);
     }
+    public function year2556()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2556', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2557()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2557', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2558()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2558', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2559()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2559', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2560()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2560', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2561()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2561', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2562()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2562', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2563()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2563', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2564()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2564', [
+            'projects' => $projects,
+
+        ]);
+    }
+    public function year2565()
+    {
+        $projects = Project::whereHas('status', function ($q) {
+            $q->where('key', '=', 'published');
+
+        })->paginate(12);
+
+        return view('users.project.mainyear.mainyear2565', [
+            'projects' => $projects,
+
+        ]);
+    }
 
 
     public function project($id)

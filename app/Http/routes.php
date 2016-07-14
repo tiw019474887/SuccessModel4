@@ -97,7 +97,17 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/district/maindistrictPong', 'User\UserController@pong');
 
 
-    Route::get('/year/maindYear2555', 'User\UserController@year2555');
+    Route::get('/year/mainYear2555', 'User\UserController@year2555');
+    Route::get('/year/mainYear2556', 'User\UserController@year2556');
+    Route::get('/year/mainYear2557', 'User\UserController@year2557');
+    Route::get('/year/mainYear2558', 'User\UserController@year2558');
+    Route::get('/year/mainYear2559', 'User\UserController@year2559');
+    Route::get('/year/mainYear2560', 'User\UserController@year2560');
+    Route::get('/year/mainYear2561', 'User\UserController@year2561');
+    Route::get('/year/mainYear2562', 'User\UserController@year2562');
+    Route::get('/year/mainYear2563', 'User\UserController@year2563');
+    Route::get('/year/mainYear2564', 'User\UserController@year2564');
+    Route::get('/year/mainYear2565', 'User\UserController@year2565');
     
     
     

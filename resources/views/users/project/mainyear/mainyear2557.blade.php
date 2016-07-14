@@ -30,7 +30,7 @@
             <i class="right chevron icon divider"></i>
             <a class="section">Project</a>
             <i class="right chevron icon divider"></i>
-            <div class="active section">อำเภอเชียงม่วน</div>
+            <div class="active section">ปี 2557</div>
         </div>
         <div class="ui attached stackable menu">
             <div class="ui container">
@@ -102,16 +102,16 @@
                 <div class=" row container">
                     <div class="ui divider condensed"></div>
                     <div class="thirteen wide column">
-
-                        <h3 class="condensed container"><a name="3">อำเภอเชียงม่วน</a></h3>
-                        @include('users.district.chiangmuan',['name_th' => 'อำเภอเชียงม่วน'])
-
+                        <h3 class="condensed container"><a name="1">ปี 2557 </a></h3>
+                        @include('users.year.year2557',['yearproject' => '2557'])
+                        <div class="ui center">
+                            <?php echo (new App\Pagination($projects))->render(); ?>
+                        </div>
                     </div>
-
                     <div class="three wide right floated column container">
                         <div class="clounm">
 
-                            <h3 class="condensed">Link ที่เกี่ยวข้อง</h3>
+                            <h3 class="condensed">Link</h3>
 
                             <div class="ui divider condensed"></div>
 

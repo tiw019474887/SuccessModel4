@@ -29,8 +29,8 @@
                     <div class="ui three column aligned stackable  grid">
 
                         <?php
-                        $projects = \App\Models\Project::whereHas('year', function ($a)  {
-                            $a->where('yearProject', '=', 2555);
+                        $projects = \App\Models\Project::whereHas('year', function ($a) {
+                            $a->where('yearProject', '=', 2558);
 
                         }, 'status', function ($q) {
                             $q->where('key', '=', 'published');

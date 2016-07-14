@@ -54,21 +54,20 @@
             <table class="ui celled striped table">
                 <thead>
                 <tr>
-                    <th class="center aligned one wide">ID</th>
-                    <th class="center aligned two wide">Project Name</th>
-                    <th class="center aligned three wide">Faculty</th>
                     <th class="center aligned one wide">Year</th>
+                    <th class="center aligned three wide">Faculty</th>
+                    <th class="center aligned two wide">Project Name</th>
+                    <th class="center aligned two wide">Create By</th>
                     <th class="center aligned three wide">Status</th>
                     <th class="center aligned two wide">Action</th>
-
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="project in projects | filter:search | filter:inputSearch | orderBy: ['status.id','yearProject']">
-                    <td class="center aligned collapsing" ng-bind="project.id"></td>
-                    <td ng-bind="project.name"></td>
-                    <td ng-bind="project.faculty.name_th"></td>
                     <td ng-bind="project.year.yearProject"></td>
+                    <td ng-bind="project.faculty.name_th"></td>
+                    <td ng-bind="project.name"></td>
+                    <td ng-bind="project.created_by.email"></td>
                     <td>
                         <div class="ui active progress">
                             <div class="bar" ng-if="project.status.key == 'draft'"
@@ -166,8 +165,8 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td> {{project.suggestion.created_at}}</td>
-                    <td>{{project.suggestion.suggestion}}</td>
+                    <td ng-bind="project.suggestion.created_at"></td>
+                    <td ng-bind="project.suggestion.suggestion"></td>
                 </tr>
                 </tbody>
             </table>
@@ -183,7 +182,7 @@
     <i ng-click="closeDeleteModal()" class="close icon"></i>
 
     <div class="header">
-        Delete User
+        Delete Project
     </div>
     <div class="content">
         <div class="description">

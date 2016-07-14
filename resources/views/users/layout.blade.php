@@ -20,6 +20,7 @@
 @stop
 
 @section('content')
+
     @yield('content')
 @stop
 
