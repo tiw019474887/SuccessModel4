@@ -184,11 +184,11 @@
                 @yield('sidemenu')
             </div>
 
-            <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
-                <div class="column">
-                    @yield('content')
+                <div id="real-content" class="ui container" style="margin-bottom: 40px;padding-top: 15px;">
+                    <div class="column">
+                        @yield('content')
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

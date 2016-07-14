@@ -554,6 +554,7 @@ class UserController extends Controller
         $comment = Comment::find($commentId);
         $comment->delete();
 
+
         return redirect("/users/project/$projectId");
 
     }

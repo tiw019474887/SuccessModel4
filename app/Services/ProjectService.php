@@ -104,6 +104,16 @@ class ProjectService extends Service
 
         return $project;
     }
+    private function linkToS(Project $project, array $input)
+    {
+        if (isset($input['area'])) {
+            $id = $input['area']['id'];
+            $area = Area::find($id);
+            $project->area()->associate($area)->save();
+        }
+
+        return $project;
+    }
 
     public function store(array $input)
     {
