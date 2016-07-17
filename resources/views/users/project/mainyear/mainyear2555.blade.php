@@ -36,10 +36,10 @@
         <div class="ui attached stackable menu">
             <div class="ui container">
                 <a class="active item" href="/users">
-                    โครการทั้งหมด
+                    โครงการทั้งหมด
                 </a>
                 <div class="ui simple dropdown item">
-                    โครการในแต่ละอำเภอ
+                    โครงการในแต่ละอำเภอ
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item"><a href="/users/district/maindistrictMaung"> อำเภอเมือง</a></div>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
-                    โครการในแต่ละคณะ
+                    โครงการในแต่ละคณะ
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item"><a href="/users/faculty/Ag">คณะเกษตรศาสตร์และทรัพยากรธรรมชาติ</a></div>
@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div class="ui simple dropdown item">
-                    โครการในแต่ละปี
+                    โครงการในแต่ละปี
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="item"><a href="/users/year/mainYear2555"> 2555</a></div>
