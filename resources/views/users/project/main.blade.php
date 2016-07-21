@@ -121,7 +121,8 @@
 
                                                                 <h4><% $project->nameEN %></h4></a>
 
-                                                            <div class="meta"><% $project->updated_at->diffForHumans()
+                                                            <div class="meta"><%
+                                                                $project->updated_at->diffForHumans()
                                                                 %>
                                                             </div>
 
@@ -139,7 +140,8 @@
                                                                 <?php endif; ?>
                                                             </div>
                                                             <div>
-                                                                พื้นที่ : <?php if(isset($project->area->name_th)) : ?>
+                                                                พื้นที่
+                                                                : <?php if(isset($project->area->name_th)) : ?>
                                                                 <% $project->area->name_th %>
                                                                 <?php else : ?>
                                                                 ไม่ทราบพื้นที่
@@ -170,6 +172,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="ui center">
                             <?php echo (new App\Pagination($projects))->render(); ?>
